@@ -1,0 +1,36 @@
+*{
+   scroll-behavior: smooth;
+}
+:root{
+  /* =====================
+   VERSION CLAIRE
+===================== */
+
+/* Couleurs principales */
+--primary-blue: #173366;       /* Bleu profond, pour header, textes importants */
+--secondary-white: #FFFFFF;    /* Blanc pur, pour fonds et textes sur foncé */
+--highlight-gold: #E6C200;    /* Or doux, pour boutons, accents, call-to-action */
+--background-light: #F5F5F5;  /* Fond clair secondaire */
+--text-secondary: #4D4D4D;    /* Texte secondaire / icônes */
+--text-dark: #000000;          /* Texte noir principal */
+
+/* Couleur d’accent */
+--accent-cyan: #00BFFF;       /* Liens, boutons, hover */
+
+/* =====================
+   VERSION SOMBRE
+===================== */
+
+/* Couleurs principales sombre */
+--dark-background: #1E1E1E;    /* Fond général sombre */
+--dark-blue: #003366;           /* Bleu foncé pour header ou boutons */
+--dark-gold: #E6C200;           /* Or doux, pour accents sur sombre */
+--dark-white: #FFFFFF;           /* Texte blanc sur sombre */
+--dark-grey: #CCCCCC;            /* Texte secondaire clair */
+--dark-black: #000000;           /* Noir pur */
+--dark-accent: #00BFFF;          /* Accent cyan sur sombre */
+
+
+}
+
+

@@ -1,0 +1,39 @@
+//couleurs typographiques du projet
+
+ //Mode clair
+
+Bleu ciel #0096FF : Fond principal, accents
+
+
+Blanc pur : #FFFFFF    Fond des sections, texte clair
+
+
+Or doré  #FFD700  Logo, boutons, titres, icônes
+
+
+Gris clair  #F5F5F5  Arrière-plans secondaires, bordures
+
+ 
+Gris moyen  #666666  Texte secondaire, descriptions
+
+Noir  #000000  Texte principal, ombres
+
+
+
+
+
+🌙 Mode Sombre (Dark Mode)
+Noir  profond:#121212  Fond principal
+
+
+Gris foncé:  #1E1E1E  :Zones de contenu, arrière-plans
+Bleu foncé:#003366 Accents, bordures, liens
+
+Or doré :  #FFD700  Logo, boutons, titres, icônes
+
+Blanc : #FFFFFF  : Texte principal, boutons
+
+Gris clair:  #CCCCCC   : Texte secondaire, icônes
+
+
+
