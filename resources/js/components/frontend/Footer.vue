@@ -1,109 +1,114 @@
 <script>
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 // Brand icons
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-
 // Solid icons
 import { faPhone, faEnvelope, faMapMarkerAlt, faGlobe } from '@fortawesome/free-solid-svg-icons'
 
-// Ajouter toutes les icônes à la librairie
+// Ajouter les icônes
 library.add(faFacebook, faTwitter, faInstagram, faLinkedin, faPhone, faEnvelope, faMapMarkerAlt, faGlobe)
 
 export default {
-    components: {
-        Link,
-        FontAwesomeIcon
+  components: { Link, FontAwesomeIcon },
+  data() {
+    return {
+      openIndex: null,
+      currentYear: new Date().getFullYear(),
+      faqs: [
+        { question: "Comment passer une commande ?", answer: "Pour passer une commande, rendez-vous sur la page produits et cliquez sur 'Ajouter au panier'..." },
+        { question: "Quels moyens de paiement acceptez-vous ?", answer: "Nous acceptons Orange Money." },
+        { question: "Comment contacter le support ?", answer: "Vous pouvez nous écrire à walnertech@gmail.com ou appeler au 656 89 47 73." },
+        { question: "Livrez-vous à l’international ?", answer: "Actuellement nous livrons uniquement au Cameroun." }
+      ]
     }
+  },
+  methods: {
+    toggle(index) {
+      this.openIndex = this.openIndex === index ? null : index
+    }
+  }
 }
 </script>
 
 <template>
-    <section>
-        <footer class="bg-[var(--primary-blue)] text-white py-8">
-            <div class="flex justify-between flex-wrap items-start gap-6 px-6">
-                <!-- Contact -->
-                <div>
-                    <h3 class="font-bold text-lg md:text-xl mb-2">Nous contacter</h3>
+  <section>
+    <footer class="bg-[var(--primary-blue)] text-white py-8">
+      <div class="flex justify-between flex-wrap items-start gap-6 px-6">
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="font-bold text-lg md:text-xl mb-2">Nous contacter</h3>
 
-                    <div class="flex items-center gap-2 mb-2">
-                        <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" />
-                        <span>Bafoussam Immeuble Ancien Bureau des transports</span>
-                    </div>
+          <div class="flex items-center gap-2 mb-2">
+            <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" />
+            <span>Bafoussam Immeuble Ancien Bureau des transports; <br/> Yaoundé Terminus mimboman face sapeur pompier</span>
+          </div>
 
-                    <div class="flex items-center gap-2 mb-2">
-                        <FontAwesomeIcon :icon="['fas', 'phone']" />
-                        <span>656 89 47 73 / 692 21 41 05</span>
-                    </div>
+          <div class="flex items-center gap-2 mb-2">
+            <FontAwesomeIcon :icon="['fas', 'phone']" />
+            <span>656 89 47 73 / 692 21 41 05</span>
+          </div>
 
-                    <div class="flex items-center gap-2 mb-2">
-                        <FontAwesomeIcon :icon="['fas', 'globe']" />
-                        <a href="https://walcom.com" target="_blank" class="underline">https://walcom.com</a>
-                    </div>
+          <div class="flex items-center gap-2 mb-2">
+            <FontAwesomeIcon :icon="['fas', 'globe']" />
+            <a href="https://walcom.com" target="_blank" class="underline">https://walcom.com</a>
+          </div>
 
-                    <div class="flex items-center gap-2">
-                        <FontAwesomeIcon :icon="['fas', 'envelope']" />
-                        <a href="mailto:walnertech@gmail.com" class="underline">walcom@gmail.com</a>
-                    </div>
-                </div>
+          <div class="flex items-center gap-2">
+            <FontAwesomeIcon :icon="['fas', 'envelope']" />
+            <a href="mailto:walnertech@gmail.com" class="underline">walcom@gmail.com</a>
+          </div>
+        </div>
 
+        <!-- Ressources -->
+        <div>
+          <h3 class="font-bold text-lg md:text-xl mb-2">Ressources</h3>
+          <div class="mb-2"><Link href="/legales">Mentions Légales</Link></div>
+          <div class="mb-2"><Link href="/confidentialite">Politique de confidentialité</Link></div>
+          <div class="mb-2"><Link href="/cgu">Conditions générales d'utilisation</Link></div>
+          <div class="mb-2"><Link href="/refundpolicy">Politique de Non-Remboursement</Link></div>
+        </div>
 
-                <!-- Ressources -->
-                <div>
-                    <h3 class="font-bold text-lg md:text-xl">Ressources</h3>
-                    <div>
-                        <Link href="">Mentions Légales</Link>
-                    </div>
-                    <div>
-                        <Link href="">Politique de confidentialité</Link>
-                    </div>
-                    <div>
-                        <Link href="">Conditions générales de vente</Link>
-                    </div>
-                    <div>
-                        <Link href="">Conditions de remboursement</Link>
-                    </div>
-                </div>
-
-                <!-- FAQ -->
-                <div>
-                    <h3 class="font-bold text-lg md:text-xl">F.A.Q</h3>
-                    <div>—</div>
-                </div>
-            </div><br>
-            <div class="border-white border-1 border-solid mx-auto w-[90%] "></div>
-            <div class="flex justify-between flex-wrap items-center gap-4 px-4">
-                <!-- Ligne + Réseaux sociaux -->
-                <div class="mt-8  border-gray-400  ">
-                    <h3 class="font-bold mb-2">Suivez-nous</h3>
-                    <div class="flex justify-center gap-6 text-2xl ">
-                        <a href="">
-                            <FontAwesomeIcon :icon="['fab', 'facebook']" />
-                        </a>
-                        <a href="">
-                            <FontAwesomeIcon :icon="['fab', 'instagram']" />
-                        </a>
-                        <a href="">
-                            <FontAwesomeIcon :icon="['fab', 'twitter']" />
-                        </a>
-                        <a href="">
-                            <FontAwesomeIcon :icon="['fab', 'linkedin']" />
-                        </a>
-                    </div>
-
-                </div>
-                <div class="text-center ">
-                    <p class="text-xs md:text-sm">&copy; 2024 Walcom. Tous droits réservés.</p>
-
-                    <p class="text-xs md:text-sm">Propulsé avec ❤️ par Aubin Boris Simo</p>
-                </div>
+        <!-- FAQ -->
+        <div>
+          <h3 class="font-bold text-lg md:text-xl">F.A.Q</h3>
+          <div class="faq space-y-4">
+            <div v-for="(item, index) in faqs" :key="index" class="border-b border-gray-300 pb-2">
+              <button @click="toggle(index)" class="w-full flex justify-between items-center text-left">
+                <span class="font-semibold">{{ item.question }}</span>
+                <span>{{ openIndex === index ? '-' : '+' }}</span>
+              </button>
+              <p v-if="openIndex === index" class="mt-1 text-sm text-gray-300">{{ item.answer }}</p>
             </div>
-        </footer>
-    </section>
-</template>
+          </div>
+        </div>
+      </div>
 
-<style>
-/* tu peux personnaliser encore ici */
-</style>
+      <br />
+
+      <!-- Ligne de séparation -->
+      <div class="border border-white mx-auto w-[90%]"></div>
+
+      <!-- Bas du footer -->
+      <div class="flex justify-between flex-wrap items-center gap-4 px-4 mt-6">
+        <div class="text-center">
+          <p class="text-xs md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
+          <p class="text-xs md:text-sm">Propulsé avec ❤️ par Aubin Boris Simo</p>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-2">Suivez-nous</h3>
+          <div class="flex justify-center gap-6 text-2xl">
+            <a href=""><FontAwesomeIcon :icon="['fab', 'facebook']" /></a>
+            <a href=""><FontAwesomeIcon :icon="['fab', 'instagram']" /></a>
+            <a href=""><FontAwesomeIcon :icon="['fab', 'twitter']" /></a>
+            <a href=""><FontAwesomeIcon :icon="['fab', 'linkedin']" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+</template>

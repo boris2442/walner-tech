@@ -1,6 +1,8 @@
 <!-- AboutSection.vue -->
  <script setup>
-import { route } from 'ziggy-js';
+import { Link } from '@inertiajs/vue3';
+// import { route } from 'ziggy-js';
+
 </script>
 <template>
     <section id="about" class="bg-[var(--background-light)] py-20 dark:bg-[var(--dark-background)]">

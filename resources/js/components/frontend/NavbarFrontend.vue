@@ -1,7 +1,7 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
 import { onMounted, ref } from 'vue';
-import { route } from 'ziggy-js';
+// import { route } from 'ziggy-js';
 const open = ref(false);
 const cartCount = ref(3);
 const isDark = ref(false);

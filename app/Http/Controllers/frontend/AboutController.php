@@ -11,7 +11,7 @@ class AboutController extends Controller
    public function index()
     {
 
-        return Inertia::render('frontend/About')
+        return Inertia::render('Frontend/About')
       
             ;
     }

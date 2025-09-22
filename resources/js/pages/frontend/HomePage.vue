@@ -4,7 +4,8 @@ import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Service from '@/components/frontend/Service.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import Footer from '@/components/frontend/Footer.vue';
-// import { route } from 'ziggy-js';
+
+
 // import { VueTyper } from 'vue-typer';
 </script>
 <template>
