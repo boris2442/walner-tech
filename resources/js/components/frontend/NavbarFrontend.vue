@@ -34,7 +34,7 @@ function toggleDark() {
                 <!-- Logo -->
                 <div class="flex-shrink-0">
                     <Link href="/home">
-                        <img src="assets/logo.png" alt="Walner Tech" class="max-h-12 w-auto object-contain" />
+                        <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 w-auto object-cover rounded-full" />
                     </Link>
                 </div>
 
@@ -42,35 +42,35 @@ function toggleDark() {
                 <div class="hidden space-x-6 md:flex">
                     <Link
                         href="/products"
-                        class="font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                         >Produits</Link
                     >
                     <!-- <Link
                         href="#services"
-                        class="font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                         >Services</Link
                     > -->
                     <a
                         href="#services"
-                        class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                     >
                         Services
                     </a>
 
                     <Link
                         href="/blog"
-                        class="font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                         >Blog</Link
                     >
                     <Link
                         href="/about"
-                        class="font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                     >
                         À propos
                     </Link>
                     <Link
                         href="/contact"
-                        class="font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                         >Contact</Link
                     >
                 </div>
@@ -93,7 +93,7 @@ function toggleDark() {
 
                     <Link
                         href="/cart"
-                        class="relative text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="relative text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -112,7 +112,7 @@ function toggleDark() {
 
                     <Link
                         href="/account"
-                        class="text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                        class="text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -139,30 +139,30 @@ function toggleDark() {
         <div v-if="open" class="space-y-2 px-4 pt-2 pb-4 md:hidden">
             <Link
                 href="/products"
-                class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                 >Produits</Link
             >
             <!-- <Link
                 href="#services"
-                class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                 >S
                 ervices</Link
             > -->
             <a
                 href="#services"
-                class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
             >
                 Services
             </a>
 
             <Link
                 href="/blog"
-                class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                 >Blog</Link
             >
             <Link
                 href="/about"
-                class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
+                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
                 >À propos</Link
             >
             <Link

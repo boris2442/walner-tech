@@ -3,6 +3,7 @@
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Service from '@/components/frontend/Service.vue';
 import { Link } from '@inertiajs/inertia-vue3';
+import Footer from '@/components/frontend/Footer.vue';
 // import { route } from 'ziggy-js';
 // import { VueTyper } from 'vue-typer';
 </script>
@@ -32,7 +33,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
             <!-- Image / Logo -->
             <div class="w-full max-w-xl lg:w-1/2">
-                <img src="assets/homepage.jpg" alt="Walner Tech" class="max-h-[450px] w-full rounded-lg object-cover shadow-lg" />
+                <img src="assets/homepage.jpg" alt="Walner Tech" class="max-h-[450px] w-full rounded-lg object-cover shadow-lg z-[-10]" />
             </div>
         </div>
     </section>
@@ -74,6 +75,9 @@ import { Link } from '@inertiajs/inertia-vue3';
                 <img src="assets/homepage.jpg" alt="Walner Tech - À propos" class="max-h-[450px] w-full rounded-lg object-cover shadow-lg" />
             </div>
         </div>
+    </section>
+    <section>
+        <Footer/>
     </section>
 </template>
 
