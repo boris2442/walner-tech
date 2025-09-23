@@ -1,12 +1,19 @@
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3';
-import { onMounted, ref } from 'vue';
-// import { route } from 'ziggy-js';
+import { ref, onMounted } from 'vue';
+import { Link } from '@inertiajs/vue3';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faUserCircle, faSignOutAlt, faTachometerAlt, faSignInAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faUser, faUserCircle, faSignOutAlt, faTachometerAlt, faSignInAlt, faMoon, faSun, faFacebook, faInstagram, faTwitter, faLinkedin);
+
 const open = ref(false);
+const openAccountMenu = ref(false);
 const cartCount = ref(3);
 const isDark = ref(false);
+const isAuthenticated = ref(true); // Remplace par ton vrai state auth
 
-// Lecture de la préférence stockée
 onMounted(() => {
     const saved = localStorage.getItem('darkMode');
     if (saved === 'true') {
@@ -25,159 +32,104 @@ function toggleDark() {
         localStorage.setItem('darkMode', 'false');
     }
 }
+
+function toggleAccountMenu() {
+    openAccountMenu.value = !openAccountMenu.value;
+}
 </script>
 
 <template>
-    <nav class="fixed top-0 left-0 z-50 w-full bg-[var(--primary-blue)] shadow-[0_4px_6px_rgba(0,0,0,0.3)] dark:bg-[var(--dark-background)]">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <Link href="/home">
-                        <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 w-auto object-cover rounded-full" />
-                    </Link>
-                </div>
+<nav class="fixed top-0 left-0 z-50 w-full bg-[var(--primary-blue)] shadow-[0_4px_6px_rgba(0,0,0,0.3)] dark:bg-[var(--dark-background)]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <Link href="/home">
+          <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 w-auto object-cover rounded-full" />
+        </Link>
+      </div>
 
-                <!-- Menu principal Desktop -->
-                <div class="hidden space-x-6 md:flex">
-                    <Link
-                        href="/products"
-                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                        >Produits</Link
-                    >
-                    <!-- <Link
-                        href="#services"
-                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                        >Services</Link
-                    > -->
-                    <a
-                        href="#services"
-                        class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                    >
-                        Services
-                    </a>
+      <!-- Menu Desktop -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <Link href="/products" class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Produits</Link>
+        <Link href="#services" class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Services</Link>
+        <Link href="/blog" class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Blog</Link>
+        <Link href="/about" class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">À propos</Link>
+        <Link href="/contact" class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Contact</Link>
+      </div>
 
-                    <Link
-                        href="/blog"
-                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                        >Blog</Link
-                    >
-                    <Link
-                        href="/about"
-                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                    >
-                        À propos
-                    </Link>
-                    <Link
-                        href="/contact"
-                        class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                        >Contact</Link
-                    >
-                </div>
+      <!-- Icons -->
+      <div class="flex items-center space-x-4">
+        <!-- Dark Mode Toggle -->
+        <button @click="toggleDark" class="focus:outline-none">
+          <FontAwesomeIcon :icon="isDark ? 'sun' : 'moon'" class="h-6 w-6 text-[var(--background-light)] dark:text-[var(--dark-accent)]" />
+        </button>
 
-                <!-- Icons + Toggle -->
-                <div class="flex items-center space-x-4">
-                    <button @click="toggleDark" class="text-[#F5F5F5] hover:text-[#FFD700] focus:outline-none dark:text-[#0096FF]">
-                        <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 3v1m0 16v1m8.485-8.485h1M3.515 12.515h1M18.364 5.636l.707.707M4.929 19.071l.707.707M18.364 18.364l.707-.707M4.929 4.929l.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"
-                            />
-                        </svg>
-                        <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
-                        </svg>
-                    </button>
+        <!-- Cart -->
+        <Link href="/cart" class="relative text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M5 21h14" />
+          </svg>
+          <span v-if="cartCount>0" class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFD700] text-xs text-black">{{ cartCount }}</span>
+        </Link>
 
-                    <Link
-                        href="/cart"
-                        class="relative text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M5 21h14"
-                            />
-                        </svg>
-                        <span
-                            v-if="cartCount > 0"
-                            class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFD700] text-xs text-black"
-                            >{{ cartCount }}</span
-                        >
-                    </Link>
+        <!-- Account -->
+        <div class="relative">
+          <button @click="toggleAccountMenu" class="focus:outline-none">
+            <FontAwesomeIcon :icon="isAuthenticated ? 'user-circle' : 'user'" class="h-6 w-6 text-[var(--background-light)] dark:text-[var(--dark-accent)]" />
+          </button>
 
-                    <Link
-                        href="/account"
-                        class="text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5.121 17.804A12.004 12.004 0 0112 15c2.66 0 5.08.88 7.121 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                        </svg>
-                    </Link>
-                </div>
+          <div v-if="openAccountMenu" class="absolute right-0 mt-2 w-48 bg-[var(--secondary-white)] dark:bg-[var(--dark-background)] shadow-lg rounded-lg z-50 py-2">
+            <!-- Non connecté -->
+            <template v-if="!isAuthenticated">
+              <Link href="/login" class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--highlight-gold)] dark:hover:bg-[var(--dark-gold)]">
+                <FontAwesomeIcon icon="sign-in-alt" /> Sign In
+              </Link>
+              <Link href="/register" class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--highlight-gold)] dark:hover:bg-[var(--dark-gold)]">
+                <FontAwesomeIcon icon="user" /> Register
+              </Link>
+            </template>
 
-                <div class="flex items-center md:hidden">
-                    <button @click="open = !open" class="text-[#F5F5F5] hover:text-[#FFD700] focus:outline-none dark:text-[#0096FF]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path v-if="!open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <!-- Connecté -->
+            <template v-else>
+              <Link href="/dashboard" class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--highlight-gold)] dark:hover:bg-[var(--dark-gold)]">
+                <FontAwesomeIcon icon="tachometer-alt" /> Dashboard
+              </Link>
+              <Link href="/logout" class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--highlight-gold)] dark:hover:bg-[var(--dark-gold)]">
+                <FontAwesomeIcon icon="sign-out-alt" /> Sign Out
+              </Link>
+            </template>
+          </div>
         </div>
+      </div>
 
-        <div v-if="open" class="space-y-2 px-4 pt-2 pb-4 md:hidden">
-            <Link
-                href="/products"
-                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                >Produits</Link
-            >
-            <!-- <Link
-                href="#services"
-                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                >S
-                ervices</Link
-            > -->
-            <a
-                href="#services"
-                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-            >
-                Services
-            </a>
+      <!-- Mobile Toggle -->
+      <div class="md:hidden">
+        <button @click="open=!open" class="focus:outline-none text-[var(--background-light)] dark:text-[var(--dark-accent)]">
+          <svg v-if="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
 
-            <Link
-                href="/blog"
-                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                >Blog</Link
-            >
-            <Link
-                href="/about"
-                class="block font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                >À propos</Link
-            >
-            <Link
-                href="/contact"
-                class="block font-medium text-[var(--accent-cyan)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]"
-                >Contact</Link
-            >
-        </div>
-    </nav>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div v-if="open" class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)]">
+    <Link href="/products" class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Produits</Link>
+    <Link href="#services" class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Services</Link>
+    <Link href="/blog" class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Blog</Link>
+    <Link href="/about" class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">À propos</Link>
+    <Link href="/contact" class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Contact</Link>
+  </div>
+</nav>
 </template>
 
-
 <style scoped>
-/* Transitions douces pour le toggle */
-button svg {
-    transition: transform 0.2s ease;
-}
+button svg { transition: transform 0.2s ease; }
 </style>

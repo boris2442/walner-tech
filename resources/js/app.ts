@@ -1,7 +1,7 @@
 import '../css/app.css';
 
 import { createInertiaApp,Link } from '@inertiajs/vue3';
-
+import NProgress from './plugins/nprogress'; // notre fichier
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
@@ -26,3 +26,7 @@ createInertiaApp({
 
 
 initializeTheme();
+import { Inertia } from '@inertiajs/inertia';
+
+Inertia.on('start', () => NProgress.start());
+Inertia.on('finish', () => NProgress.done());

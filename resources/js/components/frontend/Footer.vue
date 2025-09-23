@@ -35,7 +35,7 @@ export default {
 
 <template>
   <section>
-    <footer class="bg-[var(--primary-blue)] text-white py-8">
+    <footer class="bg-[var(--primary-blue)] text-[var(--secondary-white)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] py-8">
       <div class="flex justify-between flex-wrap items-start gap-6 px-6">
         
         <!-- Contact -->
@@ -54,61 +54,69 @@ export default {
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'globe']" />
-            <a href="https://walcom.com" target="_blank" class="underline">https://walcom.com</a>
+            <a href="https://walcom.com" target="_blank" class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">https://walcom.com</a>
           </div>
 
           <div class="flex items-center gap-2">
             <FontAwesomeIcon :icon="['fas', 'envelope']" />
-            <a href="mailto:walnertech@gmail.com" class="underline">walcom@gmail.com</a>
+            <a href="mailto:walnertech@gmail.com" class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">walcom@gmail.com</a>
           </div>
         </div>
 
         <!-- Ressources -->
         <div>
           <h3 class="font-bold text-lg md:text-xl mb-2">Ressources</h3>
-          <div class="mb-2"><Link href="/legales">Mentions Légales</Link></div>
-          <div class="mb-2"><Link href="/confidentialite">Politique de confidentialité</Link></div>
-          <div class="mb-2"><Link href="/cgu">Conditions générales d'utilisation</Link></div>
-          <div class="mb-2"><Link href="/refundpolicy">Politique de Non-Remboursement</Link></div>
+          <div class="mb-2">
+            <Link href="/legales" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Mentions Légales</Link>
+          </div>
+          <div class="mb-2">
+            <Link href="/confidentialite" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Politique de confidentialité</Link>
+          </div>
+          <div class="mb-2">
+            <Link href="/cgu" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Conditions générales d'utilisation</Link>
+          </div>
+          <div class="mb-2">
+            <Link href="/refundpolicy" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Politique de Non-Remboursement</Link>
+          </div>
         </div>
 
         <!-- FAQ -->
         <div>
           <h3 class="font-bold text-lg md:text-xl">F.A.Q</h3>
           <div class="faq space-y-4">
-            <div v-for="(item, index) in faqs" :key="index" class="border-b border-gray-300 pb-2">
+            <div v-for="(item, index) in faqs" :key="index" class="border-b border-gray-300 dark:border-gray-600 pb-2">
               <button @click="toggle(index)" class="w-full flex justify-between items-center text-left">
                 <span class="font-semibold">{{ item.question }}</span>
                 <span>{{ openIndex === index ? '-' : '+' }}</span>
               </button>
-              <p v-if="openIndex === index" class="mt-1 text-sm text-gray-300">{{ item.answer }}</p>
+              <p v-if="openIndex === index" class="mt-1 text-sm text-gray-700 dark:text-gray-300">{{ item.answer }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <br />
-
       <!-- Ligne de séparation -->
-      <div class="border border-white mx-auto w-[90%]"></div>
+      <div class="border border-gray-300 dark:border-gray-600 mx-auto w-[90%] my-6"></div>
 
       <!-- Bas du footer -->
-      <div class="flex justify-between flex-wrap items-center gap-4 px-4 mt-6">
+      <div class="flex justify-between flex-wrap items-center gap-4 px-4">
         <div class="text-center">
           <p class="text-xs md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
           <p class="text-xs md:text-sm">Propulsé avec ❤️ par Aubin Boris Simo</p>
         </div>
 
+        <!-- Réseaux sociaux -->
         <div>
           <h3 class="font-bold mb-2">Suivez-nous</h3>
           <div class="flex justify-center gap-6 text-2xl">
-            <a href=""><FontAwesomeIcon :icon="['fab', 'facebook']" /></a>
-            <a href=""><FontAwesomeIcon :icon="['fab', 'instagram']" /></a>
-            <a href=""><FontAwesomeIcon :icon="['fab', 'twitter']" /></a>
-            <a href=""><FontAwesomeIcon :icon="['fab', 'linkedin']" /></a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'facebook']" /></a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'instagram']" /></a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'twitter']" /></a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'linkedin']" /></a>
           </div>
         </div>
       </div>
     </footer>
   </section>
 </template>
+

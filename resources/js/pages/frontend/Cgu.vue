@@ -1,7 +1,7 @@
 <script setup>
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
-
+import BackButton from '@/components/frontend/BackButton.vue';
 const sections = [
     {
         title: "1. À propos de Walner Tech",
@@ -40,10 +40,11 @@ const sections = [
 
 <template>
     <NavbarFrontend />
-    <section class="px-6 pt-24
-md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]
-                    dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-        <div class="max-w-5xl mx-auto">
+    <section
+        class="px-6 pt-24 md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
+        <div class=" mx-auto">
+                  <!-- 🔹 Bouton retour -->
+      <BackButton />
             <h1 class="text-3xl md:text-4xl font-bold mb-8 text-[ text-[var(--dark-gold)]">
                 Conditions Générales d’Utilisation
             </h1>
