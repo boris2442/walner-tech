@@ -16,7 +16,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
-            .component('Link', Link) // très important ⚡
+            // .component('Link', Link) // très important ⚡
             .mount(el);
     },
     progress: {

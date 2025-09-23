@@ -35,16 +35,18 @@ export default {
 
 <template>
   <section>
-    <footer class="bg-[var(--primary-blue)] text-[var(--secondary-white)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] py-8">
+    <footer
+      class="bg-[var(--primary-blue)] text-[var(--secondary-white)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] py-8">
       <div class="flex justify-between flex-wrap items-start gap-6 px-6">
-        
+
         <!-- Contact -->
         <div>
           <h3 class="font-bold text-lg md:text-xl mb-2">Nous contacter</h3>
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" />
-            <span>Bafoussam Immeuble Ancien Bureau des transports; <br/> Yaoundé Terminus mimboman face sapeur pompier</span>
+            <span>Bafoussam Immeuble Ancien Bureau des transports; <br /> Yaoundé Terminus mimboman face sapeur
+              pompier</span>
           </div>
 
           <div class="flex items-center gap-2 mb-2">
@@ -54,12 +56,14 @@ export default {
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'globe']" />
-            <a href="https://walcom.com" target="_blank" class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">https://walcom.com</a>
+            <a href="https://walcom.com" target="_blank"
+              class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">https://walcom.com</a>
           </div>
 
           <div class="flex items-center gap-2">
             <FontAwesomeIcon :icon="['fas', 'envelope']" />
-            <a href="mailto:walnertech@gmail.com" class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">walcom@gmail.com</a>
+            <a href="mailto:walnertech@gmail.com"
+              class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">walcom@gmail.com</a>
           </div>
         </div>
 
@@ -67,16 +71,20 @@ export default {
         <div>
           <h3 class="font-bold text-lg md:text-xl mb-2">Ressources</h3>
           <div class="mb-2">
-            <Link href="/legales" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Mentions Légales</Link>
+            <Link href="/legales" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Mentions
+            Légales</Link>
           </div>
           <div class="mb-2">
-            <Link href="/confidentialite" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Politique de confidentialité</Link>
+            <Link href="/confidentialite" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            Politique de confidentialité</Link>
           </div>
           <div class="mb-2">
-            <Link href="/cgu" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Conditions générales d'utilisation</Link>
+            <Link href="/cgu" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Conditions
+            générales d'utilisation</Link>
           </div>
           <div class="mb-2">
-            <Link href="/refundpolicy" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Politique de Non-Remboursement</Link>
+            <Link href="/refundpolicy" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            Politique de Non-Remboursement</Link>
           </div>
         </div>
 
@@ -109,14 +117,21 @@ export default {
         <div>
           <h3 class="font-bold mb-2">Suivez-nous</h3>
           <div class="flex justify-center gap-6 text-2xl">
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'facebook']" /></a>
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'instagram']" /></a>
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'twitter']" /></a>
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]"><FontAwesomeIcon :icon="['fab', 'linkedin']" /></a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+              <FontAwesomeIcon :icon="['fab', 'facebook']" />
+            </a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+              <FontAwesomeIcon :icon="['fab', 'instagram']" />
+            </a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+              <FontAwesomeIcon :icon="['fab', 'twitter']" />
+            </a>
+            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+              <FontAwesomeIcon :icon="['fab', 'linkedin']" />
+            </a>
           </div>
         </div>
       </div>
     </footer>
   </section>
 </template>
-

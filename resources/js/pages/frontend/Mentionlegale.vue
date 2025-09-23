@@ -54,7 +54,7 @@ const sections = reactive([
     </h1>
 
     <div v-for="(section, index) in sections" :key="index" class="mb-6">
-      <h2 class="text-2xl md:text-3xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-blue)] mb-2">
+      <h2 class="text-2xl  font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-blue)] mb-2">
         {{ section.title }}
       </h2>
 
