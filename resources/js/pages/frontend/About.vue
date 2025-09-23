@@ -2,11 +2,11 @@
     <NavbarFrontend />
     <section
         class="about min-h-screen  px-6 py-16 text-[var(--text-dark)] md:px-20 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-        <div class="mx-auto max-w-6xl space-y-16">
+        <div class="mx-auto  space-y-16">
 
-            <!-- 🚀 MISSION (cards avec animation de bordure) -->
+
             <div>
-                <h2 class="mb-6 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                <h2 class="mt-6 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                     Notre mission
                 </h2>
                 <p
@@ -18,7 +18,7 @@
                 </p>
 
                 <div class="grid gap-6 md:grid-cols-3">
-                    <!-- Carte 1 -->
+
                     <div
                         class="rounded-xl bg-white p-6 shadow-md dark:bg-[var(--dark-card)] animated-border-card transition-all duration-300 hover:scale-[1.02]">
                         <font-awesome-icon :icon="['fas', 'laptop']"
@@ -30,7 +30,7 @@
                         </p>
                     </div>
 
-                    <!-- Carte 2 -->
+
                     <div
                         class="rounded-xl bg-white p-6 shadow-md dark:bg-[var(--dark-card)] animated-border-card transition-all duration-300 hover:scale-[1.02]">
                         <font-awesome-icon :icon="['fas', 'mobile-alt']"
@@ -42,7 +42,7 @@
                         </p>
                     </div>
 
-                    <!-- Carte 3 -->
+
                     <div
                         class="rounded-xl bg-white p-6 shadow-md dark:bg-[var(--dark-card)] animated-border-card transition-all duration-300 hover:scale-[1.02]">
                         <font-awesome-icon :icon="['fas', 'headphones']"
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <!-- 👥 ÉQUIPE -->
+
             <div class="flex flex-col items-center gap-8 lg:flex-row">
                 <div class="lg:w-1/2">
                     <img src="assets/homepage.jpg" alt="Équipe Walner Tech"
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <!-- 🌱 VALEURS -->
+
             <div class="flex flex-col-reverse items-center gap-8 lg:flex-row">
                 <div class="lg:w-1/2">
                     <h2 class="mb-3 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Nos
@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <!-- 📞 CONTACT -->
+
             <div class="flex flex-col items-center gap-8 lg:flex-row">
                 <div class="lg:w-1/2">
                     <img src="assets/homepage.jpg" alt="Contact Walner Tech"
@@ -148,7 +148,7 @@ import Footer from '@/components/frontend/Footer.vue';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-// Importer toutes les icônes utilisées dans ton template
+
 import {
     faLaptop,
     faMobileAlt,

@@ -97,7 +97,7 @@ export default {
                 <span class="font-semibold">{{ item.question }}</span>
                 <span>{{ openIndex === index ? '-' : '+' }}</span>
               </button>
-              <p v-if="openIndex === index" class="mt-1 text-sm text-gray-700 dark:text-gray-300">{{ item.answer }}</p>
+              <p v-if="openIndex === index" class="mt-1 text-sm text-[#E6C200] dark:text-gray-300">{{ item.answer }}</p>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full h-full">
-    <!-- Skeleton -->
+    <!-- Skeleton loader -->
     <div v-if="!loaded" class="animate-pulse bg-gray-300 dark:bg-gray-700 w-full h-full rounded-xl"></div>
 
     <!-- Image -->
@@ -18,8 +18,8 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-  src: String,
-  alt: String,
+  src: { type: String, required: true },
+  alt: { type: String, default: '' },
 })
 
 const loaded = ref(false)
