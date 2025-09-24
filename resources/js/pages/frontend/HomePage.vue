@@ -5,11 +5,12 @@ import Service from '@/components/frontend/Service.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import Footer from '@/components/frontend/Footer.vue';
 import Testimony from '@/components/frontend/Testimony.vue';
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
 </script>
 
 <template>
     <NavbarFrontend />
-
+<FloatingAction />
     <!-- Section Hero -->
     <section
         class="relative flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6 pt-24 text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] md:pb-0 pb-12 overflow-hidden">
@@ -18,11 +19,7 @@ import Testimony from '@/components/frontend/Testimony.vue';
 
             <!-- Texte -->
             <div class="max-w-lg lg:text-left md:pt-15">
-                <!-- <h1
-                    class="animate-fade-up mb-4 text-2xl font-bold opacity-0 sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[37px]">
-                 
-                    Walner Tech: La tech a portée de main
-                </h1> -->
+          
                 <h1 class="animate-fade-up mb-4 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold opacity-0">
                     Walner Tech: La maison du futur
                 </h1>
