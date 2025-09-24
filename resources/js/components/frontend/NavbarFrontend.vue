@@ -47,27 +47,26 @@ function toggleAccountMenu() {
 
         <!-- Logo -->
         <div class="flex-shrink-0">
-          <Link href="/home">
-          <img src="assets/walner.png" alt="Walner Tech"
-           class="max-h-14 object-cover"/>
+          <Link href="/home" class="nav-link">
+          <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 object-cover" />
           </Link>
         </div>
 
         <!-- Menu Desktop -->
         <div class="hidden md:flex space-x-6 items-center justify-between">
           <Link href="/products"
-            class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
-               Produits
-        </Link>
+            class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
+          Produits
+          </Link>
 
           <Link href="/blog"
-            class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+            class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Blog</Link>
           <Link href="/about"
-            class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+            class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           À propos</Link>
           <Link href="/contact"
-            class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+            class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Contact</Link>
         </div>
 
@@ -81,7 +80,7 @@ function toggleAccountMenu() {
 
           <!-- Cart -->
           <Link href="/cart"
-            class="relative text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+            class="relative text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M5 21h14" />
@@ -149,17 +148,17 @@ function toggleAccountMenu() {
     <div v-if="open"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)]">
       <Link href="/products"
-        class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+        class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Produits</Link>
 
       <Link href="/blog"
-        class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+        class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Blog</Link>
       <Link href="/about"
-        class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+        class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       À propos</Link>
       <Link href="/contact"
-        class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
+        class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Contact</Link>
     </div>
   </nav>
@@ -171,6 +170,96 @@ button svg {
 }
 
 nav {
-  z-index: 10000 !important;
+  z-index: 1000 !important;
+}
+
+/* .nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px; 
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--dark-gold);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 6px var(--dark-gold, #FFD700);
+  transition: width 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--dark-gold);
+  transition: color 0.3s ease;
+} */
+
+/* ====== Lien principal ====== */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  /* desktop inline */
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+/* ====== Trait animé ====== */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  /* départ du centre */
+  bottom: 0;
+  width: 0;
+  /* invisible au départ */
+  height: 2px;
+  background-color: var(--dark-gold);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--dark-gold, #FFD700);
+  transform: translateX(-50%);
+  transform-origin: center;
+  transition: width 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* ====== Hover ====== */
+.nav-link:hover::after {
+  width: 100%;
+  /* trait complet */
+}
+
+.nav-link:hover {
+  color: var(--dark-gold);
+}
+
+/* ====== RESPONSIVE MOBILE ====== */
+@media (max-width: 768px) {
+  .nav-link {
+    display: block;
+    /* menu vertical */
+    /* text-align: center; */
+    /* centre le texte */
+    padding-bottom: 6px;
+    /* espace pour le trait */
+  }
+
+  .nav-link::after {
+    left: 50%;
+    /* toujours départ du centre */
+    transform: translateX(-50%);
+    /* centre le trait sous le texte */
+  }
 }
 </style>

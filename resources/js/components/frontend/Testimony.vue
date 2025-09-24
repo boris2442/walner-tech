@@ -8,31 +8,31 @@ const testimonials = [
     {
         name: "Boris Aubin",
         role: "Developpeur Web",
-        image: "/images/james.jpg",
+        image: "/assets/aubin.jpg",
         rating: 5,
         feedback:
             "J’ai acheté un smartphone chez Walner Tech et la qualité est exceptionnelle !",
     },
     {
-        name: "Sophia Taylor",
-        role: "CEO at Urban Trends",
-        image: "/images/sophia.jpg",
+        name: "Yannick Nguimfack",
+        role: "Hebergeur web/ Dev backend",
+        image: "/assets/yannick22.jpg",
         rating: 5,
         feedback:
             "L’équipe de Walner Tech m’a conseillé le meilleur produit selon mes besoins.",
     },
     {
-        name: "Michael Brown",
-        role: "Entrepreneur",
-        image: "/images/michael.jpg",
-        rating: 4,
+        name: "George wagne",
+        role: "Entrepreneur Digital",
+        image: "/assets/wagne.jpg",
+        rating: 5,
         feedback:
             "Des prix compétitifs pour des produits de grande qualité. Je recommande !",
     },
     {
-        name: "Emily Davis",
-        role: "Product Designer",
-        image: "/images/emily.jpg",
+        name: "Miguel Tchinda",
+        role: "Etudiant",
+        image: "/assets/miguel.jpg",
         rating: 5,
         feedback:
             "Navigation facile sur le site, commande rapide et produits bien emballés.",
@@ -40,7 +40,7 @@ const testimonials = [
     {
         name: "David Wilson",
         role: "Founder at StartUpHub",
-        image: "/images/david.jpg",
+        image: "/assets/yannick22.jpg",
         rating: 5,
         feedback:
             "Site fiable et produits authentiques, je fais toujours mes achats chez Walner Tech.",
@@ -48,8 +48,8 @@ const testimonials = [
     {
         name: "Olivia Martinez",
         role: "Project Manager",
-        image: "/images/olivia.jpg",
-        rating: 4,
+        image: "/assets/aubin.jpg",
+        rating: 5,
         feedback:
             "Service impeccable, je suis client depuis plusieurs années et je recommande vivement !",
     },
@@ -65,8 +65,8 @@ const testimonials = [
             </h2>
 
             <!-- Slider -->
-            <Swiper :modules="[Pagination, Autoplay]" :slides-per-view="1" :space-between="20"
-                :pagination="{ clickable: true }" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: false }"
+            <Swiper :modules="[ Autoplay]" :slides-per-view="1" :space-between="20"
+                :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: false }"
                 :breakpoints="{
                     768: { slidesPerView: 2, spaceBetween: 20 },
                     1024: { slidesPerView: 3, spaceBetween: 30 }
@@ -77,7 +77,7 @@ const testimonials = [
                         <!-- Image + nom + role -->
                         <div class="flex items-center gap-4 mb-4">
                             <img :src="t.image" alt="testimonial"
-                                class="w-12 h-12 rounded-full border-2 border-[var(--highlight-gold)]" />
+                                class="w-12 h-12 rounded-full border-2 border-[var(--highlight-gold)] object-cover" />
                             <div class="text-left">
                                 <h3
                                     class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-white)] group-hover:text-[#FFE600]">

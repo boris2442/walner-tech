@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
     <div v-if="show"
-        class="fixed inset-0 flex flex-col justify-center items-center bg-[var(--background-light)] dark:bg-[var(--dark-background)] z-1000">
+        class="fixed inset-0 flex flex-col justify-center items-center bg-[var(--background-light)] dark:bg-[var(--dark-background)] z-10000">
         <!-- Cercle rotatif -->
         <div
             class="w-16 h-16 border-4 border-[var(--primary-blue)] border-t-[var(--highlight-gold)] rounded-full animate-spin mb-6">
@@ -38,5 +38,5 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Tu peux ajuster l'animation spin avec Tailwind */
+
 </style>
