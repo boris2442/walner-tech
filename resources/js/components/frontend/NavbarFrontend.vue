@@ -48,7 +48,8 @@ function toggleAccountMenu() {
         <!-- Logo -->
         <div class="flex-shrink-0">
           <Link href="/home">
-          <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 w-auto object-cover rounded-full" />
+          <img src="assets/walner.png" alt="Walner Tech"
+           class="max-h-14 object-cover"/>
           </Link>
         </div>
 
@@ -56,8 +57,9 @@ function toggleAccountMenu() {
         <div class="hidden md:flex space-x-6 items-center justify-between">
           <Link href="/products"
             class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
-          Produits</Link>
-          <!-- <Link href="#services" class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Services</Link> -->
+               Produits
+        </Link>
+
           <Link href="/blog"
             class="font-medium text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
           Blog</Link>
@@ -149,7 +151,7 @@ function toggleAccountMenu() {
       <Link href="/products"
         class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
       Produits</Link>
-      <!-- <Link href="#services" class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">Services</Link> -->
+
       <Link href="/blog"
         class="block text-[var(--background-light)] hover:text-[var(--highlight-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)]">
       Blog</Link>

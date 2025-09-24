@@ -17,40 +17,25 @@
                     quotidien numérique.
                 </p>
 
+             
+
+
                 <div class="grid gap-6 md:grid-cols-3">
+                    <div v-for="(product, index) in products" :key="index"
+                        class="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group">
+                        <!-- Icône -->
+                        <font-awesome-icon :icon="product.icon"
+                            class="mb-3 text-2xl text-[var(--primary-blue)] dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]" />
 
-                    <div
-                        class="rounded-xl bg-white p-6 shadow-md dark:bg-[var(--dark-card)] animated-border-card transition-all duration-300 hover:scale-[1.02]">
-                        <font-awesome-icon :icon="['fas', 'laptop']"
-                            class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mb-3 text-2xl" />
-                        <h3 class="font-semibold text-lg mb-2">Ordinateurs & périphériques</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">
-                            Vente d’ordinateurs portables et fixes, ainsi que tous les périphériques nécessaires pour
-                            travailler efficacement.
-                        </p>
-                    </div>
+                        <!-- Titre -->
+                        <h3
+                            class="font-semibold text-lg mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-white)] group-hover:text-[#FFE600]">
+                            {{ product.title }}
+                        </h3>
 
-
-                    <div
-                        class="rounded-xl bg-white p-6 shadow-md dark:bg-[var(--dark-card)] animated-border-card transition-all duration-300 hover:scale-[1.02]">
-                        <font-awesome-icon :icon="['fas', 'mobile-alt']"
-                            class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mb-3 text-2xl" />
-                        <h3 class="font-semibold text-lg mb-2">Téléphones & accessoires</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">
-                            Une large gamme de smartphones et accessoires, du câble aux écouteurs, pour rester connecté
-                            en toute simplicité.
-                        </p>
-                    </div>
-
-
-                    <div
-                        class="rounded-xl bg-white p-6 shadow-md dark:bg-[var(--dark-card)] animated-border-card transition-all duration-300 hover:scale-[1.02]">
-                        <font-awesome-icon :icon="['fas', 'headphones']"
-                            class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mb-3 text-2xl" />
-                        <h3 class="font-semibold text-lg mb-2">Support & service client</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">
-                            Assistance et conseils personnalisés pour vous aider à choisir le meilleur appareil selon
-                            vos besoins.
+                        <!-- Description -->
+                        <p class="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-300">
+                            {{ product.description }}
                         </p>
                     </div>
                 </div>
@@ -159,13 +144,34 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
+
+const products = [
+    {
+        icon: ['fas', 'laptop'],
+        title: "Ordinateurs & périphériques",
+        description:
+            "Vente d’ordinateurs portables et fixes, ainsi que tous les périphériques nécessaires pour travailler efficacement.",
+    },
+    {
+        icon: ['fas', 'mobile-alt'],
+        title: "Téléphones & accessoires",
+        description:
+            "Une large gamme de smartphones et accessoires, du câble aux écouteurs, pour rester connecté en toute simplicité.",
+    },
+    {
+        icon: ['fas', 'headphones'],
+        title: "Support & service client",
+        description:
+            "Assistance et conseils personnalisés pour vous aider à choisir le meilleur appareil selon vos besoins.",
+    },
+];
 </script>
-<style scoped>
+<!-- <style scoped>
 .animated-border-card {
     position: relative;
     overflow: hidden;
     border-radius: 0.75rem;
-    /* rounded-xl */
+   
 }
 
 .animated-border-card::before {
@@ -205,4 +211,4 @@ library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
         background-position: 0% 50%;
     }
 }
-</style>
+</style> -->

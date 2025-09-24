@@ -99,7 +99,7 @@
                     <textarea placeholder="Message" class="p-2 border border-gray-300 rounded w-full h-32"
                         name="message" v-model="form.message"></textarea>
                     <button type="submit"
-                        class="bg-[var(--highlight-gold)] text-[var(--dark-blue)] px-4 py-2 rounded hover:opacity-90 transition"
+                        class="bg-[var(--primary-blue)] text-[var(--dark-blue)] px-4 py-2 rounded hover:opacity-90 transition"
                         :disabled="form.processing">
                         Envoyer
                     </button>

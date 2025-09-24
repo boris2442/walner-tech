@@ -54,16 +54,16 @@ export default {
             <span>656 89 47 73 / 692 21 41 05</span>
           </div>
 
-          <div class="flex items-center gap-2 mb-2">
+          <!-- <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'globe']" />
-            <a href="https://walcom.com" target="_blank"
-              class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">https://walcom.com</a>
-          </div>
+            <a href="https://walcom.com" target="_blank" class="underline text-[var(--dark-gold)] dark:text-[var(--dark-accent)] hover:text-[var(--text-secondary)]
+">https://walcom.com</a>
+          </div> -->
 
           <div class="flex items-center gap-2">
             <FontAwesomeIcon :icon="['fas', 'envelope']" />
-            <a href="mailto:walnertech@gmail.com"
-              class="underline text-[var(--accent-cyan)] dark:text-[var(--dark-accent)]">walcom@gmail.com</a>
+            <a href="mailto:walnertech@gmail.com" class="underline text-[var(--dark-gold)] dark:text-[var(--dark-accent)] hover:text-[var(--text-secondary)]
+">walnertech@gmail.com</a>
           </div>
         </div>
 
@@ -71,19 +71,19 @@ export default {
         <div>
           <h3 class="font-bold text-lg md:text-xl mb-2">Ressources</h3>
           <div class="mb-2">
-            <Link href="/legales" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Mentions
+            <Link href="/legales" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">Mentions
             Légales</Link>
           </div>
           <div class="mb-2">
-            <Link href="/confidentialite" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            <Link href="/confidentialite" class="hover:text-[var(--dark-gold)]  transition dark:hover:text-[var(--dark-accent)]">
             Politique de confidentialité</Link>
           </div>
           <div class="mb-2">
-            <Link href="/cgu" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">Conditions
+            <Link href="/cgu" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">Conditions
             générales d'utilisation</Link>
           </div>
           <div class="mb-2">
-            <Link href="/refundpolicy" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            <Link href="/refundpolicy" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
             Politique de Non-Remboursement</Link>
           </div>
         </div>
@@ -97,7 +97,8 @@ export default {
                 <span class="font-semibold">{{ item.question }}</span>
                 <span>{{ openIndex === index ? '-' : '+' }}</span>
               </button>
-              <p v-if="openIndex === index" class="mt-1 text-sm text-[#E6C200] dark:text-gray-300">{{ item.answer }}</p>
+              <p v-if="openIndex === index" class="mt-1 text-sm text-[var(--dark-gold)] dark:text-gray-300">{{
+                item.answer }}</p>
             </div>
           </div>
         </div>
@@ -115,18 +116,18 @@ export default {
 
         <!-- Réseaux sociaux -->
         <div>
-          <h3 class="font-bold mb-2">Suivez-nous</h3>
+          <!-- <h3 class="font-bold mb-2">Suivez-nous</h3> -->
           <div class="flex justify-center gap-6 text-2xl">
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            <a href="" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
               <FontAwesomeIcon :icon="['fab', 'facebook']" />
             </a>
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            <a href="" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
               <FontAwesomeIcon :icon="['fab', 'instagram']" />
             </a>
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            <a href="" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
               <FontAwesomeIcon :icon="['fab', 'twitter']" />
             </a>
-            <a href="" class="hover:text-[var(--accent-cyan)] dark:hover:text-[var(--dark-accent)]">
+            <a href="" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
               <FontAwesomeIcon :icon="['fab', 'linkedin']" />
             </a>
           </div>

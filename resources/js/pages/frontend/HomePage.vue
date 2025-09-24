@@ -4,81 +4,99 @@ import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Service from '@/components/frontend/Service.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import Footer from '@/components/frontend/Footer.vue';
-
-
-// import { VueTyper } from 'vue-typer';
+import Testimony from '@/components/frontend/Testimony.vue';
 </script>
+
 <template>
     <NavbarFrontend />
+
+    <!-- Section Hero -->
     <section
-        class="flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6 pt-24 text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]"
-    >
-        <div class="container mx-auto flex flex-col justify-between gap-10 rounded-lg px-6 lg:flex-row">
+        class="relative flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6 pt-24 text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] md:pb-0 pb-12 overflow-hidden">
+
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between gap-10 rounded-lg">
+
             <!-- Texte -->
-            <div class="max-w-lg lg:text-left">
-                <h1 class="animate-fade-up mb-4 text-xl font-bold opacity-0 sm:text-[26px] md:text-[24px] lg:text-[28px] xl:text-[37px]">
-                    Bienvenue sur Walner Tech
+            <div class="max-w-lg lg:text-left md:pt-15">
+                <!-- <h1
+                    class="animate-fade-up mb-4 text-2xl font-bold opacity-0 sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[37px]">
+                 
+                    Walner Tech: La tech a portée de main
+                </h1> -->
+                <h1 class="animate-fade-up mb-4 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold opacity-0">
+                    Walner Tech: La maison du futur
                 </h1>
+
                 <p
-                    class="animate-fade-up mb-8 text-lg leading-relaxed text-[var(--text-paragraph-light)] opacity-0 delay-200 dark:text-[var(--dark-grey)]"
-                >
-                    Découvrez les meilleurs produits électroniques et services technologiques.
+                    class="animate-fade-up mb-8 text-md leading-relaxed text-[var(--text-paragraph-light)] opacity-0 delay-200 dark:text-[var(--dark-grey)]">
+                    Explorez nos ordinateurs, smartphones et équipements électroniques de qualité.
                 </p>
-                <Link
-                    href="/products"
-                    class="animate-fade-up bg-boris inline-block transform rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] opacity-0 shadow-md transition-transform delay-400 hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]"
-                >
-                    Explorer les produits
+                <Link href="/products"
+                    class="animate-fade-up bg-boris inline-block transform rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] opacity-0 shadow-md transition-transform delay-400 hover:-translate-y-1 hover:bg-[var(--text-secondary)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
+                Explorer les produits
                 </Link>
             </div>
 
             <!-- Image / Logo -->
-            <div class="w-full max-w-xl lg:w-1/2">
-                <img src="assets/homepage.jpg" alt="Walner Tech" class="max-h-[450px] w-full rounded-lg object-cover shadow-lg z-[-10]" />
+            <div class="w-full max-w-xl lg:w-1/2 rounded-lg overflow-hidden">
+                <img src="assets/homepage.jpg" alt="Walner Tech" class="w-full h-full object-cover shadow-lg" />
             </div>
+
         </div>
     </section>
+
+    <!-- Section Services -->
     <Service />
-    <!-- <About /> -->
-        <section id="about" class="bg-[var(--background-light)] py-20 dark:bg-[var(--dark-background)]">
+
+    <!-- Section À propos -->
+    <section id="about" class="bg-[var(--background-light)] py-20 dark:bg-[var(--dark-background)]">
         <div class="container mx-auto flex flex-col-reverse items-center gap-12 px-6 md:flex-row md:gap-16">
+
             <!-- Texte -->
             <div class="max-w-xl">
-                <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">À propos de Walner Tech</h2>
+                <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                    À propos de Walner Tech
+                </h2>
 
                 <p class="mb-6 text-lg text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
-                    Chez <span class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Walner Tech</span>, nous croyons que la
-                    technologie doit être <span class="text-[var(--highlight-gold)]">accessible, fiable et innovante</span>. Notre mission est
-                    d’accompagner particuliers et entreprises avec des solutions technologiques modernes, allant des produits électroniques aux
-                    services de développement et de maintenance.
+                    Chez <span class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Walner
+                        Tech</span>, nous croyons que la
+                    technologie doit être <span class="text-[var(--highlight-gold)]">accessible, fiable et
+                        innovante</span>.
+                    Notre mission est d’accompagner particuliers et entreprises avec des solutions technologiques
+                    modernes,
+                    allant des produits électroniques aux services de développement et de maintenance.
                 </p>
 
                 <ul class="mb-6 space-y-3">
-                    <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Expertise en produits et solutions technologiques</li>
-                    <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Un service client rapide et professionnel</li>
-                    <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">
-                        ✔️ Une vision orientée vers l’innovation et la satisfaction
-                    </li>
+                    <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Expertise en produits et
+                        solutions technologiques</li>
+                    <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Un service client rapide et
+                        professionnel</li>
+                    <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Une vision orientée vers
+                        l’innovation et la satisfaction</li>
                 </ul>
 
-                <!-- Bouton "En savoir plus" -->
-                <Link
-                    href="/about"
-                    aria-label="En savoir plus sur Walner Tech"
-                    class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]"
-                >
-                    En savoir plus
+                <Link href="/about" aria-label="En savoir plus sur Walner Tech"
+                    class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
+                En savoir plus
                 </Link>
             </div>
 
             <!-- Image -->
-            <div class="w-full md:w-1/2">
-                <img src="assets/homepage.jpg" alt="Walner Tech - À propos" class="max-h-[450px] w-full rounded-lg object-cover shadow-lg" />
+            <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
+                <img src="assets/homepage.jpg" alt="Walner Tech - À propos"
+                    class="w-full h-full object-cover shadow-lg" />
             </div>
+
         </div>
     </section>
+    <!-- TEstimony -->
+    <Testimony />
+    <!-- End TEstimony -->
+    <!-- Footer -->
     <section>
-        <Footer/>
+        <Footer />
     </section>
 </template>
 
@@ -89,6 +107,7 @@ import Footer from '@/components/frontend/Footer.vue';
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
