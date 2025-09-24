@@ -171,6 +171,6 @@ button svg {
 }
 
 nav {
-  z-index: 1000 !important;
+  z-index: 10000 !important;
 }
 </style>

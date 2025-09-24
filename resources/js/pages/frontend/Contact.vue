@@ -1,7 +1,7 @@
 <template>
     <NavbarFrontend /><br /><br />
- 
-<FlashMessage v-if="form.status" :message="form.status" type="success" />
+
+    <FlashMessage v-if="form.status" :message="form.status" type="success" />
 
 
 
@@ -73,30 +73,30 @@
                         Envoyez-nous votre message.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="">
-                            <label for=""
+                            <label for="name"
                                 class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Enter
                                 votre nom</label>
                             <input type="text" placeholder="Your Name" class="p-2 border border-gray-300 rounded w-full"
-                                name="name" v-model="form.name" />
+                                id="name" name="name" v-model="form.name" />
                         </div>
                         <div class="">
-                            <label for=""
+                            <label for="adresse"
                                 class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Enter
                                 votre Adresse</label>
-                            <input type="email" placeholder="Email Address"
+                            <input type="email" placeholder="Email Address" id="adresse"
                                 class="p-2 border border-gray-300 rounded w-full" name="email" v-model="form.email" />
                         </div>
                     </div>
                     <div class="">
-                        <label for=""
+                        <label for="subject"
                             class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Sujet</label>
 
                         <input type="text" placeholder="Subject" class="p-2 border border-gray-300 rounded w-full"
-                            name="subject" v-model="form.subject" />
+                            id="subject" name="subject" v-model="form.subject" />
                     </div>
-                    <label for=""
+                    <label for="message"
                         class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Message</label>
-                    <textarea placeholder="Message" class="p-2 border border-gray-300 rounded w-full h-32"
+                    <textarea id="message" placeholder="Message" class="p-2 border border-gray-300 rounded w-full h-32"
                         name="message" v-model="form.message"></textarea>
                     <button type="submit"
                         class="bg-[var(--primary-blue)] text-[var(--dark-blue)] px-4 py-2 rounded hover:opacity-90 transition"

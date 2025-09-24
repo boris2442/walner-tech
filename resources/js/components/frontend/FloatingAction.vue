@@ -29,7 +29,7 @@ onUnmounted(() => {
     <transition name="fade">
         <div v-if="showButtons" class="fixed bottom-6 w-full flex justify-between px-6 z-50 pointer-events-none">
             <!-- WhatsApp à gauche -->
-            <a href="https://wa.me/237656894773" target="_blank"
+            <a href="https://wa.me/656894773" target="_blank"
                 class="pointer-events-auto bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110"
                 title="Contactez-nous sur WhatsApp">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
