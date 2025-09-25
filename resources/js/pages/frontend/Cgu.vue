@@ -45,7 +45,7 @@ const sections = [
         <div class=" mx-auto">
                   <!-- 🔹 Bouton retour -->
       <BackButton />
-            <h1 class="text-3xl md:text-4xl font-bold mb-8 text-[ text-[var(--dark-gold)]">
+            <h1 class="text-3xl md:text-4xl font-bold mb-8  text-[var(--dark-gold)]">
                 Conditions Générales d’Utilisation
             </h1>
 

@@ -6,21 +6,21 @@ import { Link } from '@inertiajs/inertia-vue3';
 import Footer from '@/components/frontend/Footer.vue';
 import Testimony from '@/components/frontend/Testimony.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
-import Loading from '@/components/frontend/Loading.vue';
+// import Loading from '@/components/frontend/Loading.vue';
 </script>
 
 <template>
-    <Loading />
+    <!-- <Loading /> -->
     <NavbarFrontend />
 <FloatingAction />
     <!-- Section Hero -->
     <section
-        class="relative flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6 pt-24 text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] md:pb-0 pb-12 overflow-hidden">
+        class="relative flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6  text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] md:pb-0 pb-12 overflow-hidden">
 
         <div class="container mx-auto flex flex-col lg:flex-row justify-between gap-10 rounded-lg">
 
             <!-- Texte -->
-            <div class="max-w-lg lg:text-left md:pt-15">
+            <div class="max-w-lg lg:text-left ">
           
                 <h1 class="animate-fade-up mb-4 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold opacity-0">
                     Walner Tech: La maison du futur

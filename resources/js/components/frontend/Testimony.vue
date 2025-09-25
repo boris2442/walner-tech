@@ -15,7 +15,7 @@ const testimonials = [
     },
     {
         name: "Yannick Nguimfack",
-        role: "Hebergeur web/ Dev backend",
+        role: "Hebergeur web/ Developpeur back-end",
         image: "/assets/yannick22.jpg",
         rating: 5,
         feedback:
@@ -57,11 +57,11 @@ const testimonials = [
 </script>
 
 <template>
-    <section class="py-16 bg-[var(--background-light)] dark:bg-[var(--dark-background)]" id="testimonials">
+    <section class="pb-16 bg-[var(--background-light)] dark:bg-[var(--dark-background)]" id="testimonials">
         <div class="container mx-auto px-6 text-center">
             <!-- Titre -->
             <h2 class="mb-12 text-2xl font-bold text-[var(--primary-blue)] sm:text-3xl dark:text-[var(--dark-white)]">
-                <span class="text-[var(--highlight-gold)]">Temoignages:</span>  les retours de nos clients
+                <span class="text-[var(--highlight-gold)]">Les retours</span>   de nos clients
             </h2>
 
             <!-- Slider -->
