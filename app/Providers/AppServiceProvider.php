@@ -18,13 +18,26 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-       Inertia::share([
-        'status' => function () {
-            return session('status');
-        },
+    // public function boot(): void
+    // {
+    //    Inertia::share([
+    //     'status' => function () {
+    //         return session('status');
+    //     },
  
+    // ]);
+    // }
+
+
+    public function boot()
+{
+    Inertia::share([
+        'flash' => function () {
+            return [
+                'success' => session('success'),
+                'error' => session('error'),
+            ];
+        },
     ]);
-    }
+}
 }

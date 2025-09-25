@@ -1,6 +1,7 @@
 <script setup>
 defineProps({
     label: String,
+    required: Boolean,
     id: String,
     modelValue: [String, Number],
     type: { type: String, default: "text" },
@@ -15,6 +16,7 @@ const emit = defineEmits(["update:modelValue"]);
             }}</label>
         <input
         :id="id"
+        :required="true"
         :name="id"
         :type="type" :placeholder="placeholder" :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"

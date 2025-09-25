@@ -6,6 +6,7 @@ use App\Http\Controllers\frontend\AboutController;
 use Inertia\Inertia;
 use App\Http\Controllers\frontend\RessourceController;
 use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\Backend\CategoryController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -24,5 +25,20 @@ Route::get('/refundpolicy', [RessourceController::class, 'noRemboursement'])->na
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+
+// Backend routes
+// Categories create
+Route::prefix('/categories')->group(function () {
+
+
+    // Categories create
+    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('', [CategoryController::class, 'index'])->name('categories.index');
+});
+// Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
