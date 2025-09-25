@@ -1,5 +1,6 @@
 <template>
     <NavbarBackend />
+    <FloatingAction />
     <section>
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-4 min-h-screen transition-colors duration-300">
@@ -94,7 +95,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import NavbarBackend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
-
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
 library.add(faCartShopping, faHeart)
 
 const props = defineProps({

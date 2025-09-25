@@ -1,6 +1,6 @@
 <template>
     <NavbarFrontend /><br /><br />
-
+    <FloatingAction />
     <FlashMessage v-if="form.status" :message="form.status" type="success" />
 
 
@@ -17,8 +17,8 @@
                 <!-- Infos -->
                 <div class="space-y-4">
                     <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] dark:bg-[var(--dark-blue)] p-4 rounded shadow">
-                        <font-awesome-icon :icon="['fas', 'phone']" class="text-[var(--highlight-gold)] text-xl" />
+                        class="flex items-center gap-3 bg-[var(--secondary-white)]  p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                        <font-awesome-icon :icon="['fas', 'phone']" class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
                         <div>
                             <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Phone
                                 Number</h3>
@@ -27,8 +27,8 @@
                         </div>
                     </div>
                     <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] dark:bg-[var(--dark-blue)] p-4 rounded shadow">
-                        <font-awesome-icon :icon="['fas', 'envelope']" class="text-[var(--highlight-gold)] text-xl" />
+                        class="flex items-center gap-3 bg-[var(--secondary-white)]  p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                        <font-awesome-icon :icon="['fas', 'envelope']" class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
                         <div>
                             <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Contact
                             </h3>
@@ -37,9 +37,9 @@
                         </div>
                     </div>
                     <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] dark:bg-[var(--dark-blue)] p-4 rounded shadow">
+                        class="flex items-center gap-3 bg-[var(--secondary-white)]  p-4 rounded shadow dark:bg-[var(--dark-black)]">
                         <font-awesome-icon :icon="['fas', 'map-marker-alt']"
-                            class="text-[var(--highlight-gold)] text-xl" />
+                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
                         <div>
                             <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                                 Localisation
@@ -51,8 +51,8 @@
                         </div>
                     </div>
                     <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] dark:bg-[var(--dark-blue)] p-4 rounded shadow">
-                        <font-awesome-icon :icon="['fas', 'clock']" class="text-[var(--highlight-gold)] text-xl" />
+                        class="flex items-center gap-3 bg-[var(--secondary-white)]  p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                        <font-awesome-icon :icon="['fas', 'clock']" class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
                         <div>
                             <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Horaires
                                 d'ouverture</h3>
@@ -63,7 +63,7 @@
                 </div>
 
                 <!-- Formulaire -->
-                <form class="bg-[var(--secondary-white)] dark:bg-[var(--dark-blue)] p-6 rounded shadow space-y-4"
+                <form class="bg-[var(--secondary-white)]  p-6 rounded shadow space-y-4 dark:bg-[var(--dark-black)]"
                     @submit.prevent="submit">
 
 
@@ -131,7 +131,8 @@
 </template>
 
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPhone, faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons'
 
