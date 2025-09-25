@@ -1,5 +1,6 @@
 <template>
     <NavbarFrontend />
+    <FloatingAction />
     <section
         class="about min-h-screen  px-6 py-16 text-[var(--text-dark)] md:px-20 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <div class="mx-auto  space-y-16">
@@ -128,6 +129,7 @@
 
 <script setup>
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
+import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import { Link } from '@inertiajs/vue3'
 import Footer from '@/components/frontend/Footer.vue';
 
@@ -166,49 +168,3 @@ const products = [
     },
 ];
 </script>
-<!-- <style scoped>
-.animated-border-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.75rem;
-   
-}
-
-.animated-border-card::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    bottom: -2px;
-    left: -2px;
-    z-index: -1;
-    background: linear-gradient(45deg,
-            var(--primary-blue, #007BFF),
-            var(--highlight-gold, #FFD700),
-            var(--accent-cyan, #00C8FF),
-            var(--primary-blue, #007BFF));
-    background-size: 400% 400%;
-    border-radius: 0.875rem;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.animated-border-card:hover::before {
-    opacity: 1;
-    animation: borderSweep 2s ease infinite;
-}
-
-@keyframes borderSweep {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-</style> -->

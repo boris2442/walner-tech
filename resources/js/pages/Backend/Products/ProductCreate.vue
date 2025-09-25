@@ -41,20 +41,20 @@ const submitForm = () => {
         data.append("images[]", file);
     });
 
-    form.post("/products/store", {
+    form.post("/admin/products/store", {
         onSuccess: () => {
             form.reset();
             imagePreviews.value = [];
-            flashMessage.value = "Produit ajouté avec succès !";
+            // flashMessage.value = "Produit ajouté avec succès !";
         },
-        onError: () => {
-            flashMessage.value = "Erreur lors de l'ajout du produit.";
-        },
+        // onError: () => {
+        //     flashMessage.value = "Erreur lors de l'ajout du produit.";
+        // },
     });
 };
 
 // Flash message
-const flashMessage = ref("");
+// const flashMessage = ref("");
 
 // Quand on sélectionne des images
 const handleFiles = (event) => {
@@ -66,7 +66,7 @@ const handleFiles = (event) => {
 <template>
     <div class="bg-white dark:bg-[#1E1E1E] p-6 rounded-lg shadow-md w-full max-w-lg">
         <!-- Flash message -->
-        <FlashMessage v-if="flashMessage" :message="flashMessage" type="success" />
+        <!-- <FlashMessage v-if="flashMessage" :message="flashMessage" type="success" /> -->
 
         <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
             Ajouter un Produit

@@ -1,10 +1,12 @@
 <script setup>
 import Footer from '@/components/frontend/Footer.vue';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 </script>
 <template>
   <NavbarFrontend />
+    <FloatingAction/>
   <section>
 
     <div

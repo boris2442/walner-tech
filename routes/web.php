@@ -43,27 +43,28 @@ Route::prefix('/categories')->group(function () {
 // Products routes
 
 // Groupe pour le backend (optionnel : middleware auth + admin)
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->group(function () {
 
     // Liste tous les produits
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
 
     // Formulaire création produit
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
 
     // Stockage nouveau produit
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
 
     // Formulaire édition produit
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
 
     // Mise à jour produit
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
 
     // Suppression produit
-    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 });
 // Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
+

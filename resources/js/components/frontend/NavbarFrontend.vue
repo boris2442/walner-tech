@@ -56,7 +56,7 @@ function toggleAccountMenu() {
 
         <!-- Menu Desktop -->
         <div class="hidden md:flex space-x-6 items-center justify-between">
-          <Link href="/products"
+          <Link href="/admin/products"
             class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Produits
           </Link>
@@ -149,7 +149,7 @@ function toggleAccountMenu() {
     <!-- Mobile Menu -->
     <div v-if="open"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)]">
-      <Link href="/products"
+      <Link href="/admin/products"
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Produits</Link>
 
