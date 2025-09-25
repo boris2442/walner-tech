@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\frontend\RessourceController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -37,6 +38,30 @@ Route::prefix('/categories')->group(function () {
     Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('', [CategoryController::class, 'index'])->name('categories.index');
+});
+
+// Products routes
+
+// Groupe pour le backend (optionnel : middleware auth + admin)
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    // Liste tous les produits
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+    // Formulaire création produit
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+    // Stockage nouveau produit
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+    // Formulaire édition produit
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+
+    // Mise à jour produit
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+    // Suppression produit
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 // Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 
