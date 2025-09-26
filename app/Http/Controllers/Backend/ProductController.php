@@ -13,65 +13,104 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
-    {
-        $query = Product::query()->with('category', 'images'); // images relation si tu as une table images
+    //  public function index(Request $request)
+    //  {
+    //      $query = Product::query()->with('category', 'images'); // images relation si tu as une table images
 
-        // Filtre par recherche si rempli
-        if ($request->has('search') && $request->search != '') {
-            $query->where('name', 'like', "%{$request->search}%");
-        }
+    // //     // Filtre par recherche si rempli
+    //      if ($request->has('search') && $request->search != '') {
+    //          $query->where('name', 'like', "%{$request->search}%");
+    //      }
 
-        // Filtre par catégorie si demandé
-        if ($request->has('category') && $request->category != '') {
-            $query->whereHas('category', function ($q) use ($request) {
-                $q->where('id', $request->category);
-            });
-        }
+    // //     // Filtre par catégorie si demandé
+    //      if ($request->has('category') && $request->category != '') {
+    //          $query->whereHas('category', function ($q) use ($request) {
+    //              $q->where('id', $request->category);
+    //          });
+    //      }
 
-        $products = $query->paginate(70);
-        // $products = Product::all();
+    //      $products = $query->paginate(70);
+      
 
-        $categories = Category::all();
+    //      $categories = Category::all();
 
-        // return Inertia::render('Backend/Products/ProductIndex', compact('products'));
+    
+    //      return Inertia::render('Backend/Products/ProductIndex', [
+    //          'products' => $products,
+    //          'categories' => $categories,
+    //          'filters' => $request->only(['search', 'category']),
+    //      ]);
+    //  }
 
-        return Inertia::render('Backend/Products/ProductIndex', [
-            'products' => $products,
-            'categories' => $categories,
-            'filters' => $request->only(['search', 'category']),
-        ]);
+
+//     public function index(Request $request)
+// {
+//     $query = Product::with(['category', 'images']); // eager loading
+
+//     // Filtre recherche
+//     if (!empty($request->search)) {
+//         $query->where('title', 'like', "%{$request->search}%");
+//     }
+
+//     // Filtre catégorie
+//     if (!empty($request->category)) {
+//         // Optimisé : pas besoin de whereHas si category_id est déjà dans la table products
+//         $query->where('category_id', $request->category);
+//     }
+
+//     // Pas de pagination, on récupère tout
+//     $products = $query->get();
+
+//     // Comme les catégories sont souvent utilisées, on peut les charger en une seule requête
+//     $categories = Category::select('id', 'name')->get();
+
+//     return Inertia::render('Backend/Products/ProductIndex', [
+//         'products' => $products,
+//         'categories' => $categories,
+//         'filters' => $request->only(['search', 'category']),
+//     ]);
+// }
+
+   
+
+
+
+public function index(Request $request)
+{
+    // On récupère tous les produits avec leurs images et catégorie
+    $query = Product::with('category', 'images');
+
+    // Filtre par recherche si rempli
+    if ($request->has('search') && $request->search != '') {
+        $query->where('title', 'like', "%{$request->search}%");
     }
 
-    public function create()
+    // Filtre par catégorie si demandé
+    if ($request->has('category') && $request->category != '') {
+        $query->where('category_id', $request->category);
+    }
+
+    // On récupère tous les produits (sans pagination)
+    $products = $query->get();
+
+    // Récupération des catégories
+    $categories = Category::all();
+
+    return Inertia::render('Backend/Products/ProductIndex', [
+        'products' => $products,          // renvoie tous les produits
+        'categories' => $categories,      // toutes les catégories
+        'filters' => $request->only(['search', 'category']),
+    ]);
+}
+
+
+
+public function create()
     {
         $categories = Category::all();
         return Inertia::render('Backend/Products/ProductCreate', compact('categories'));
     }
 
-    // public function store(ProductRequest $request)
-    // {
-    //     try {
-    //         $product = Product::create($request->validated());
-
-
-    //         if ($request->hasFile('images')) {
-    //             foreach ($request->file('images') as $image) {
-    //                 $path = $image->store('imageProducts', 'public');
-    //                 $product->images()->create(['url_image' => $path]);
-    //             }
-    //         }
-    //         dd($path, $image);
-
-       
-    //         return redirect()->route('admin.products.index')
-    //             ->with('success', 'Produit ajouté avec succès !');
-
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()
-    //             ->with('error', 'Erreur lors de l\'ajout du produit.');
-    //     }
-    // }
 
     public function store(ProductRequest $request)
 {
