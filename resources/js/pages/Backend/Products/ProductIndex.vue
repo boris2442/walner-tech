@@ -19,31 +19,31 @@
 
             <!-- Liste des catégories -->
             <div class="flex flex-wrap gap-3 justify-center mb-4">
-                <Link @click="filterByCategory('')" :class="[
+                <button @click="filterByCategory('')" :class="[
                     'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none',
                     selectedCategory === ''
                         ? (darkMode ? 'bg-[var(--dark-accent)] text-dark-white' : 'bg-accent-cyan text-white')
-                        : (darkMode ? 'bg-dark-grey text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
+                        : (darkMode ? 'bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
                 ]">
-                Tous
-                </Link>
-                <Link v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)" :class="[
+                    Tous
+                </button>
+                <button v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)" :class="[
                     'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none',
                     selectedCategory === cat.id
                         ? (darkMode ? 'bg-[var(--dark-accent)] text-dark-white' : 'bg-accent-cyan text-white')
-                        : (darkMode ? 'bg-dark-grey text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
+                        : (darkMode ? 'bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
                 ]">
-                {{ cat.name }}
-                </Link>
+                    {{ cat.name }}
+                </button>
             </div>
 
             <!-- Trait séparateur sous les catégories -->
-            <hr class="border-t border-gray-300 dark:border-dark-grey mb-6" />
+            <hr class="border-t border-gray-300 dark:border-[var(--dark-grey)] mb-6" />
 
             <!-- Skeleton Loader quand ça charge -->
             <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div v-for="n in 5" :key="n"
-                    class="animate-pulse rounded p-3 bg-gray-200 dark:bg-dark-grey flex flex-col">
+                    class="animate-pulse rounded p-3 bg-gray-200 dark:bg-[var(--dark-grey)] flex flex-col">
                     <div class="w-full h-40 bg-gray-300 dark:bg-dark-background rounded mb-3"></div>
                     <div class="h-4 bg-gray-300 dark:bg-dark-background rounded mb-2"></div>
                     <div class="h-3 bg-gray-300 dark:bg-dark-background rounded mb-1"></div>
@@ -54,23 +54,23 @@
             <!-- Produits -->
             <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div v-for="product in filteredProducts" :key="product.id"
-                    :class="darkMode ? 'bg-dark-background shadow-md border border-dark-grey' : 'bg-background-light shadow-md'"
+                    :class="darkMode ? 'bg-[var(--dark-background)] shadow-md border border-[var(--dark-grey)]' : 'bg-background-light shadow-md'"
                     class="rounded flex flex-col transition-transform duration-300 hover:scale-105">
 
                     <!-- Zone image sans padding -->
-                    <div class="-mx-3">
+                    <div class=" overflow-hidden rounded">
                         <!-- Swiper auto -->
                         <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
                             :autoplay="{ delay: 3000 }" pagination loop>
                             <swiper-slide v-for="img in product.images" :key="img.id">
                                 <img :src="getImageUrl(img.url_image)" :alt="product.name"
-                                    class="w-full h-40 object-contain transition-transform duration-300 hover:scale-110" />
+                                    class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                             </swiper-slide>
                         </swiper>
 
                         <!-- Si une seule image -->
                         <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.name"
-                            class="w-full h-40 object-contain transition-transform duration-300 hover:scale-110" />
+                            class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                     </div>
 
                     <!-- Zone texte et boutons avec padding -->
@@ -81,7 +81,7 @@
                         </h3>
 
                         <!-- Description -->
-                        <p :class="darkMode ? 'text-dark-grey' : 'text-text-secondary'"
+                        <p :class="darkMode ? 'text-[var(--dark-grey)]' : 'text-text-secondary'"
                             class="text-xs mt-1 line-clamp-3">
                             {{ product.description }}
                         </p>
@@ -131,7 +131,6 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
-import { Link } from '@inertiajs/vue3';
 library.add(faCartShopping, faHeart)
 
 const props = defineProps({
@@ -145,7 +144,6 @@ const selectedCategory = ref(props.filters.category || '');
 const darkMode = ref(false);
 const loading = ref(true);
 
-// Simulation de chargement
 onMounted(() => {
     darkMode.value = localStorage.getItem('darkMode') === 'true';
     setTimeout(() => loading.value = false, 1500)
