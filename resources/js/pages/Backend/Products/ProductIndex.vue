@@ -1,5 +1,5 @@
 <template>
-    <NavbarBackend />
+    <NavbarFrontend />
     <FloatingAction />
     <section>
         <div
@@ -101,7 +101,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import NavbarBackend from '@/components/frontend/NavbarFrontend.vue';
+import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 library.add(faCartShopping, faHeart)

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faUserCircle, faSignOutAlt, faTachometerAlt, faSignInAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+// import logo from '@/images/walner.png';
 
 library.add(faUser, faUserCircle, faSignOutAlt, faTachometerAlt, faSignInAlt, faMoon, faSun, faFacebook, faInstagram, faTwitter, faLinkedin);
 
@@ -47,7 +48,7 @@ function toggleAccountMenu() {
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
 
-        <!-- Logo -->
+        <!-- Logo assets/walner.png -->
         <div class="flex-shrink-0">
           <Link href="/home" class="nav-link">
           <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 object-cover" />

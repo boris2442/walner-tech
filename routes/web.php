@@ -64,7 +64,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 });
 // Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+//page not found
 
+// Page 404 personnalisée
+Route::fallback(function () {
+    return Inertia::render('Frontend/NotFound');
+});
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
 
