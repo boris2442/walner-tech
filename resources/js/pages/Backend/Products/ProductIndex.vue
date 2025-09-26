@@ -33,48 +33,56 @@
             <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div v-for="product in products.data" :key="product.id"
                     :class="darkMode ? 'bg-dark-background shadow-md border border-dark-grey' : 'bg-background-light shadow-md'"
-                    class="rounded p-3 flex flex-col transition-transform duration-300 hover:scale-105">
+                    class="rounded flex flex-col transition-transform duration-300 hover:scale-105">
 
-                    <!-- Swiper auto -->
-                    <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
-                        :autoplay="{ delay: 3000 }" pagination loop>
-                        <swiper-slide v-for="img in product.images" :key="img.id">
-                            <img :src="getImageUrl(img.url_image)" :alt="product.name"
-                                class="w-full h-40 object-contain transition-transform duration-300 hover:scale-110" />
-                        </swiper-slide>
-                    </swiper>
+                    <!-- Zone image sans padding -->
+                    <div class="-mx-3">
+                        <!-- Swiper auto -->
+                        <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
+                            :autoplay="{ delay: 3000 }" pagination loop>
+                            <swiper-slide v-for="img in product.images" :key="img.id">
+                                <img :src="getImageUrl(img.url_image)" :alt="product.name"
+                                    class="w-full h-40 object-contain transition-transform duration-300 hover:scale-110" />
+                            </swiper-slide>
+                        </swiper>
 
-                    <!-- Si une seule image -->
-                    <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.name"
-                        class="w-full h-40 object-contain transition-transform duration-300 hover:scale-110" />
+                        <!-- Si une seule image -->
+                        <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.name"
+                            class="w-full h-40 object-contain transition-transform duration-300 hover:scale-110" />
+                    </div>
 
-                    <!-- Titre -->
-                    <h3 class="dark:text-(var[--dark-white])text-text-dark mt-2 font-medium text-sm truncate">
-                        {{ product.name }}
-                    </h3>
+                    <!-- Zone texte et boutons avec padding -->
+                    <div class="p-3 flex flex-col flex-1">
+                        <!-- Titre -->
+                        <h3 class="dark:text-(var[--dark-white]) text-text-dark mt-2 font-medium text-sm truncate">
+                            {{ product.title }}
+                        </h3>
 
-                    <!-- Description -->
-                    <p :class="darkMode ? 'text-dark-grey' : 'text-text-secondary'" class="text-xs mt-1 line-clamp-3">
-                        {{ product.description }}
-                    </p>
+                        <!-- Description -->
+                        <p :class="darkMode ? 'text-dark-grey' : 'text-text-secondary'"
+                            class="text-xs mt-1 line-clamp-3">
+                            {{ product.description }}
+                        </p>
 
-                    <!-- Prix -->
-                    <p :class="darkMode ? 'text-dark-white' : 'text-text-dark'" class="text-sm font-semibold mt-2">
-                        {{ product.prix }} FCFA
-                    </p>
+                        <!-- Prix -->
+                        <p :class="darkMode ? 'text-dark-white' : 'text-text-dark'" class="text-sm font-semibold mt-2">
+                            {{ product.prix }} FCFA
+                        </p>
 
-                    <!-- Boutons Like & Panier -->
-                    <div class="mt-auto flex justify-between items-center">
-                        <button
-                            class="transition-transform duration-200 hover:scale-125 active:scale-90  text-[var(--accent-cyan)] dark:text-[var(--dark-gold)]">
-                            <font-awesome-icon :icon="['fas', 'cart-shopping']" />
-                        </button>
-                        <button
-                            class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-[var(--dark-gold)]">
-                            <font-awesome-icon :icon="['far', 'heart']" />
-                        </button>
+                        <!-- Boutons Like & Panier -->
+                        <div class="mt-auto flex justify-between items-center">
+                            <button
+                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-[var(--dark-gold)]">
+                                <font-awesome-icon :icon="['fas', 'cart-shopping']" />
+                            </button>
+                            <button
+                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-[var(--dark-gold)]">
+                                <font-awesome-icon :icon="['far', 'heart']" />
+                            </button>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

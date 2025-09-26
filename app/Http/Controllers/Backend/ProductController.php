@@ -29,7 +29,8 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->paginate(20);
+        $products = $query->paginate(70);
+        // $products = Product::all();
 
         $categories = Category::all();
 
