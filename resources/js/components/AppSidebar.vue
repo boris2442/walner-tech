@@ -35,6 +35,11 @@ const mainNavItems: NavItem[] = [
         title: 'Orders',
         href: 'admin/orders',
         icon: Folder,
+    },
+    {
+        title: 'users',
+        href: 'admin/users',
+        icon: BookOpen,
     }
 ];
 
