@@ -25,13 +25,24 @@ class Product extends Model
     }
 
     // Relation avec la catégorie
-     // Un produit appartient à une catégorie
+    // Un produit appartient à une catégorie
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    
+   // Product.php
+public function likes()
+{
+    return $this->hasMany(\App\Models\LikeProduit::class);
+}
 
-    
+
+// public function isLikedBy($user)
+// {
+//     return $this->likes()->where('user_id', $user->id)->exists();
+// }
+
+
+
 }

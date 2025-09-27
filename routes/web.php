@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\frontend\HomeController;
-use App\Http\Controllers\frontend\AboutController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\AboutController;
 use Inertia\Inertia;
-use App\Http\Controllers\frontend\RessourceController;
-use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\Frontend\RessourceController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Frontend\LikeController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -26,6 +27,7 @@ Route::get('/refundpolicy', [RessourceController::class, 'noRemboursement'])->na
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 
 
 
@@ -63,6 +65,12 @@ Route::prefix('admin')->group(function () {
     // Suppression produit
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 });
+// Route::middleware('auth')->post('/like/{product}', [LikeController::class, 'toggle']);
+
+// Route::middleware('auth')->group(function() {
+//     Route::post('/like/{product}', [LikeController::class, 'toggle']);
+// });
+
 // Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 //page not found
 
