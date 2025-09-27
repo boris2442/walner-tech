@@ -197,10 +197,9 @@ function toggleLike(product) {
 }
 </style> -->
 
-
 <template>
     <NavbarFrontend />
-
+    <!-- <FloatingAction /> -->
     <section>
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-4 min-h-screen transition-colors duration-300">
@@ -221,6 +220,7 @@ function toggleLike(product) {
             <div class="flex flex-wrap gap-3 justify-center mb-4">
                 <button @click="filterByCategory('')" :class="categoryButtonClass('')">Tous</button>
                 <button v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
+                    class="px-4 py-2 text-sm font-medium transition-colors duration-300 border-none dark:text-[#333333]"
                     :class="categoryButtonClass(cat.id)">
                     {{ cat.name }}
                 </button>
@@ -270,7 +270,7 @@ function toggleLike(product) {
                         <!-- Boutons -->
                         <div class="mt-auto flex justify-between items-center">
                             <button @click="flyToCart(product, $event)"
-                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-[var(--dark-gold)]">
+                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
                                 <font-awesome-icon :icon="['fas', 'cart-shopping']" />
                             </button>
 
@@ -293,14 +293,52 @@ function toggleLike(product) {
 
         <!-- Panier flottant -->
         <div class="fixed bottom-6 right-6 z-50">
-            <button ref="cartButton"
-                class="relative bg-accent-cyan dark:bg-dark-gold rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg">
+            <button ref="cartButton" @click="toggleCart"
+                class="relative  bg-[var(--primary-blue)]  rounded-full w-12 h-12 flex items-center justify-center text-[var(--dark-gold)] shadow-lg">
                 <font-awesome-icon :icon="['fas', 'cart-shopping']" class="text-2xl" />
                 <span v-if="cart.length"
                     class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                     {{ totalItems }}
                 </span>
             </button>
+
+            <!-- Mini panier -->
+            <transition name="fade-slide">
+                <div v-if="showCart"
+                    class="mt-2 w-72 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll">
+                    <div v-for="item in cart" :key="item.id" class="flex items-center mb-2">
+                        <img :src="getImageUrl(item.images[0]?.url_image)"
+                            class="w-12 h-12 object-cover rounded mr-2" />
+                        <div class="flex-1">
+                            <p class="text-sm font-medium truncate">{{ item.title }}</p>
+                            <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{ item.quantity
+                                }}</p>
+
+                            <!-- Boutons + et - -->
+                            <div class="flex items-center mt-1 gap-1">
+                                <button @click="decreaseQuantity(item)"
+                                    class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">-</button>
+                                <span class="px-2">{{ item.quantity }}</span>
+                                <button @click="increaseQuantity(item)"
+                                    class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-2 border-gray-300 dark:border-[var(--dark-grey)]" />
+                    <div class="flex justify-between font-semibold">
+                        <span>Total :</span>
+                        <span class="taxt-[var(--dark-white)]">{{ cartTotal }} FCFA</span>
+                    </div>
+                    <!-- Bouton commander -->
+                    <div class="mt-3">
+                        <button
+                            class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] dark:text-dark-white py-2 rounded  dark:hover:bg-[var(--dark-gold)]/80 transition">
+                            Commander
+                        </button>
+
+                    </div>
+                </div>
+            </transition>
         </div>
 
     </section>
@@ -308,22 +346,23 @@ function toggleLike(product) {
     <Footer />
 </template>
 
+
 <script setup>
-import FlashMessage from '@/components/backend/flash/FlashMessage.vue';
-import { ref, onMounted, computed } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
+import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
+import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-library.add(faCartShopping, faHeart);
+import FlashMessage from '@/components/backend/flash/FlashMessage.vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+// import FloatingAction from '@/components/frontend/FloatingAction.vue';
+import { Autoplay, Pagination } from "swiper/modules";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
+library.add(faCartShopping, faHeart)
 
 const props = defineProps({
     products: Array,
@@ -336,38 +375,21 @@ const selectedCategory = ref(props.filters.category || '');
 const darkMode = ref(false);
 const loading = ref(true);
 
+// Panier
+const cart = ref([]);
+const showCart = ref(false);
 const cartButton = ref(null);
-const cart = ref(JSON.parse(localStorage.getItem('cart') || '[]'));
-const totalItems = computed(() => cart.value.reduce((acc, item) => acc + item.quantity, 0));
 
 onMounted(() => {
     darkMode.value = localStorage.getItem('darkMode') === 'true';
     setTimeout(() => loading.value = false, 1500);
+
+    // Charger panier depuis localStorage
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) cart.value = JSON.parse(savedCart);
 });
 
-function getImageUrl(path) {
-    return path ? `/storage/${path}` : '/fallback.png';
-}
-
-function updateFilters() {
-    Inertia.get('/products', { search: search.value, category: selectedCategory.value }, { preserveState: true, replace: true });
-}
-
-function filterByCategory(id) {
-    selectedCategory.value = id;
-    updateFilters();
-}
-
-function categoryButtonClass(id) {
-    const base = 'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none';
-    if (selectedCategory.value === id) {
-        return darkMode.value ? `${base} bg-[var(--dark-accent)] text-dark-white` : `${base} bg-accent-cyan text-white`;
-    } else {
-        return darkMode.value ? `${base} bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60` : `${base} bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white`;
-    }
-}
-
-// Filtrage dynamique côté front
+// Filtrage produit
 const filteredProducts = computed(() => {
     return props.products.filter(product => {
         const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase());
@@ -384,9 +406,9 @@ function toggleLike(product) {
     });
 }
 
-// Fly to cart
+// Fly-to-cart
 function flyToCart(product, event) {
-    const img = event.target.closest('.product-card').querySelector('img');
+    const img = event.currentTarget.closest('.product-card').querySelector('img');
     if (!img) return;
 
     const imgRect = img.getBoundingClientRect();
@@ -399,19 +421,9 @@ function flyToCart(product, event) {
     clone.style.transition = 'all 0.7s ease-in-out';
     clone.style.zIndex = 1000;
 
-    // Info produit
-    const info = document.createElement('div');
-    info.innerHTML = `<p style="color:white;font-size:12px;margin:0;">${product.title}</p>
-                      <p style="color:white;font-size:12px;margin:0;">${product.prix} FCFA</p>`;
-    info.style.position = 'absolute';
-    info.style.bottom = '0';
-    info.style.left = '0';
-    clone.appendChild(info);
-
     document.body.appendChild(clone);
 
     const cartRect = cartButton.value.getBoundingClientRect();
-
     setTimeout(() => {
         clone.style.top = cartRect.top + 'px';
         clone.style.left = cartRect.left + 'px';
@@ -422,14 +434,68 @@ function flyToCart(product, event) {
 
     clone.addEventListener('transitionend', () => {
         document.body.removeChild(clone);
-        // Ajouter au panier local
         const item = cart.value.find(p => p.id === product.id);
         if (item) item.quantity += 1;
         else cart.value.push({ ...product, quantity: 1 });
-        localStorage.setItem('cart', JSON.stringify(cart.value));
+        saveCart();
     });
 }
+
+// Gérer quantité dans le panier
+function increaseQuantity(item) {
+    item.quantity += 1;
+    saveCart();
+}
+
+function decreaseQuantity(item) {
+    if (item.quantity > 1) item.quantity -= 1;
+    else {
+        const index = cart.value.findIndex(p => p.id === item.id);
+        if (index !== -1) cart.value.splice(index, 1);
+    }
+    saveCart();
+}
+
+// Stockage local
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart.value));
+}
+
+// Toggle mini-panier
+function toggleCart() {
+    showCart.value = !showCart.value;
+}
+
+// Total items et total prix
+const totalItems = computed(() => cart.value.reduce((acc, p) => acc + p.quantity, 0));
+const cartTotal = computed(() => cart.value.reduce((acc, p) => acc + (p.prix * p.quantity), 0));
+
+// Filtrage catégories (classes)
+function categoryButtonClass(id) {
+    const selected = selectedCategory.value === id;
+    return [
+        'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none',
+        selected
+            ? (darkMode.value ? 'bg-[var(--dark-accent)] text-dark-white' : 'bg-accent-cyan text-white')
+            : (darkMode.value ? 'bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
+    ];
+}
+
+// Filtrage et recherche
+function updateFilters() {
+    Inertia.get('/products', { search: search.value, category: selectedCategory.value }, { preserveState: true, replace: true });
+}
+function filterByCategory(id) {
+    selectedCategory.value = id;
+    updateFilters();
+}
+
+// Obtenir URL image
+function getImageUrl(path) {
+    return path ? `/storage/${path}` : '/fallback.png';
+}
 </script>
+
 
 <style scoped>
 .line-clamp-3 {
@@ -437,5 +503,64 @@ function flyToCart(product, event) {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: all 0.3s ease;
+}
+
+.fade-slide-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: all 0.3s ease;
+}
+
+.fade-slide-enter-from {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.fade-slide-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-slide-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+
+
+
+/* Scroll invisible */
+.cart-scroll {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.cart-scroll::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.cart-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 </style>
