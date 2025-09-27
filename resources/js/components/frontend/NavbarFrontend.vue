@@ -41,8 +41,7 @@ function toggleAccountMenu() {
 </script>
 
 <template>
-  <nav
-    class="
+  <nav class="
     
      z-50 w-full bg-[var(--primary-blue)] shadow-[0_4px_6px_rgba(0,0,0,0.3)] dark:bg-[var(--dark-background)]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -81,17 +80,7 @@ function toggleAccountMenu() {
               class="h-6 w-6 text-[var(--background-light)] dark:text-[var(--dark-accent)]" />
           </button>
 
-          <!-- Cart -->
-          <Link href="/cart"
-            class="relative text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M5 21h14" />
-          </svg>
-          <span v-if="cartCount > 0"
-            class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFD700] text-xs text-black">{{
-              cartCount }}</span>
-          </Link>
+       
 
           <!-- Account -->
           <div class="relative">
@@ -117,11 +106,11 @@ function toggleAccountMenu() {
               <!-- Connecté -->
               <template v-else>
                 <Link href="/dashboard"
-                  class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--highlight-gold)] dark:hover:bg-[var(--dark-gold)]">
+                  class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--dark-gold)]  dark:hover:bg-[var(--dark-gold)] hover:text-white dark:hover:text-white">
                 <FontAwesomeIcon icon="tachometer-alt" /> Dashboard
                 </Link>
                 <Link href="/logout"
-                  class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--highlight-gold)] dark:hover:bg-[var(--dark-gold)]">
+                  class="flex items-center px-4 py-2 gap-2 hover:bg-[var(--dark-gold)]  dark:hover:bg-[var(--dark-gold)] hover:text-white dark:hover:text-white">
                 <FontAwesomeIcon icon="sign-out-alt" /> Sign Out
                 </Link>
               </template>
