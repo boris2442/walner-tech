@@ -17,11 +17,11 @@ import { LoaderCircle } from 'lucide-vue-next';
     <FloatingAction />
 
     <Head title="Register" />
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-        <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4 dark:bg-[var(--dark-background)]">
+        <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
             <!-- Left Section (Welcome Back) -->
             <div
-                class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-8 flex flex-col justify-center items-center rounded-tr-[90px] rounded-br-[90px]">
+                class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-8 flex flex-col justify-center items-center sm:rounded-tr-[90px] sm:rounded-br-[90px] dark:bg-[#535353]">
                 <!-- Logo assets/walner.png -->
                 <!-- <div class="mb-6 text-center">
                     <Link href="/home" class="nav-link">
@@ -38,7 +38,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                 </div> -->
             </div>
 
-            <div class="w-full md:w-1/2 p-8">
+            <div class="w-full md:w-1/2 p-8 dark:bg-[var(--dark-background)]">
                 <h2 class="text-xl font-semibold mb-6 text-[var(--primary-blue)]">Créer un compte</h2>
                 <p class="text-sm text-gray-500 mb-6">ou utilisez votre email pour vous inscrire</p>
                 <Form v-bind="RegisteredUserController.store.form()"
@@ -74,10 +74,10 @@ import { LoaderCircle } from 'lucide-vue-next';
                             <InputError :message="errors.password_confirmation" />
                         </div>
                         <Button type="submit"
-                            class="w-full bg-[var(--primary-blue)] text-white hover:bg-[var(--primary-blue2)]"
+                            class="w-full bg-[var(--primary-blue)] text-white hover:bg-[var(--primary-blue2)] dark:bg-[var(--dark-black)] dark:hover:bg-gray-900 "
                             :disabled="processing">
                             <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin mr-2" />
-                            Se connecter
+                            S'inscrire
                         </Button>
                     </div>
                     <div class="text-center text-sm text-gray-500">

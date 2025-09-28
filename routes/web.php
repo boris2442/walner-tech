@@ -25,8 +25,8 @@ Route::get('/confidentialite', [RessourceController::class, 'politiqueDeConfiden
 Route::get('/legales', [RessourceController::class, 'mentionsLegales'])->name('ressources.notice');
 Route::get('/refundpolicy', [RessourceController::class, 'noRemboursement'])->name('ressources.noRemboursement');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('contact', [ContactController::class, 'index'])->name('contact');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 

@@ -112,7 +112,7 @@
                         Vous avez une question ou besoin d’aide pour choisir un produit ? L’équipe <strong>Walner
                             Tech</strong>
                         est là pour vous aider. Rendez-vous sur notre
-                        <Link href="/contact"
+                        <Link :href="contact()"
                             class="text-[var(--accent-cyan)] underline hover:text-[var(--highlight-gold)]">
                         page de contact
                         </Link>
@@ -132,7 +132,7 @@ import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import { Link } from '@inertiajs/vue3'
 import Footer from '@/components/frontend/Footer.vue';
-
+import {contact} from '@/routes';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 

@@ -116,7 +116,7 @@ defineProps<{
             {{ status }}
         </div>
         <div class=" flex items-center justify-center">
-            <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
                 <!-- Left Section (Sign In Form) -->
                 <div class="w-full md:w-1/2 p-6 md:p-8">
                     <h2 class="text-xl font-semibold mb-6 text-[var(--primary-blue)]">Se connecter</h2>
@@ -149,7 +149,7 @@ defineProps<{
                                 </Label>
                             </div>
                             <Button type="submit"
-                                class="w-full bg-[var(--primary-blue)] text-white hover:bg-[var(--primary-blue2)]"
+                                class="w-full bg-[var(--primary-blue)] text-white hover:bg-[var(--primary-blue2)] dark:bg-[var(--dark-black)]"
                                 :tabindex="4" :disabled="processing">
                                 <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin mr-2" />
                                 Log in
@@ -165,7 +165,7 @@ defineProps<{
                 </div>
                 <!-- Right Section (Welcome Message) class="text-[var(--primary-blue)]"-->
                 <div
-                    class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-6 md:p-8 flex flex-col justify-center items-center rounded-tl-[90px] rounded-bl-[90px]">
+                    class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-6 md:p-8 flex flex-col justify-center items-center sm:rounded-tl-[90px] sm:rounded-bl-[90px] dark:bg-[var(--text-secondary)]">
                     <h2 class="text-2xl font-bold mb-4">Hello, Friend!</h2>
                     <p class="text-center mb-6">Connectez-vous avec vos identifiants pour accéder à votre compte.</p>
                     <Button variant="outline"

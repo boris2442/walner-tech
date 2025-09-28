@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faUserCircle, faSignOutAlt, faTachometerAlt, faSignInAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+//importation de la route contact
+import {contact } from '@/routes'
 // import logo from '@/images/walner.png';
 
 library.add(faUser, faUserCircle, faSignOutAlt, faTachometerAlt, faSignInAlt, faMoon, faSun, faFacebook, faInstagram, faTwitter, faLinkedin);
@@ -67,7 +69,7 @@ function toggleAccountMenu() {
           <Link href="/about"
             class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           À propos</Link>
-          <Link href="/contact"
+          <Link :href="contact()"
             class="font-medium text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Contact</Link>
         </div>
@@ -149,7 +151,7 @@ function toggleAccountMenu() {
       <Link href="/about"
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       À propos</Link>
-      <Link href="/contact"
+      <Link :href="contact()"
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Contact</Link>
     </div>
