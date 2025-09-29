@@ -456,7 +456,5 @@ import { Head, Link } from '@inertiajs/vue3';
         <div class="hidden h-14.5 lg:block"></div>
     </div>
 
-    <div class="mb-2">
-        <Link href="/cgu">Conditions générales d'utilisation</Link>
-    </div>
+
 </template>

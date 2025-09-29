@@ -1,5 +1,5 @@
 <template>
-    <NavbarFrontend /><br /><br />
+    <NavbarFrontend :auth="$page.props.auth"/><br /><br />
     <FloatingAction />
     <FlashMessage v-if="form.status" :message="form.status" type="success" />
 

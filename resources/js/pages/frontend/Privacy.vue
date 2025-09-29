@@ -52,13 +52,13 @@ const sections = reactive([
 </script>
 
 <template>
-    <NavbarFrontend />
-   <FloatingAction/>
+    <NavbarFrontend :auth="$page.props.auth" />
+    <FloatingAction />
     <section class="px-6 pt-24
 md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]
                     dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-                    <!-- 🔹 Bouton retour -->
-      <BackButton />
+        <!-- 🔹 Bouton retour -->
+        <BackButton />
         <h1 class="text-3xl font-bold mb-8 text-color1">Politique de Confidentialité</h1>
 
         <p class="mb-6">

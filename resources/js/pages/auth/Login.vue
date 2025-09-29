@@ -100,41 +100,56 @@ import AuthBase from '@/layouts/AuthLayout.vue';
 import { register } from '@/routes';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import { LoaderCircle, LogIn } from 'lucide-vue-next';
 
 defineProps<{
     status?: string;
     canResetPassword: boolean;
 }>();
+// Fonction pour rediriger vers Google OAuth
+const loginWithGoogle = () => {
+    window.location.href = '/auth/google';
+};
 </script>
 
 <template>
-    <AuthBase title="Log in to your account" description="Enter your email and password below to log in">
+    <AuthBase title="Connectez-vous à votre compte" description="Entrez votre email et votre mot de passe ci-dessous pour vous connecter">
 
         <Head title="Log in" />
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
         </div>
         <div class=" flex items-center justify-center">
-            <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
+            <div
+                class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
                 <!-- Left Section (Sign In Form) -->
                 <div class="w-full md:w-1/2 p-6 md:p-8">
-                    <h2 class="text-xl font-semibold mb-6 text-[var(--primary-blue)]">Se connecter</h2>
+                    <!-- <h2 class="text-xl font-semibold mb-6 text-[var(--primary-blue)]">Se connecter</h2> -->
+                    <!-- Google login button -->
+                    <Button type="button"
+                        class="w-full bg-red-500 text-white hover:bg-red-600 flex items-center justify-center gap-2"
+                        @click="loginWithGoogle">
+                        <LogIn class="h-5 w-5" />
+                        Se connecter avec Google
+                    </Button>
+                    <div class="py-4 text-center text-gray-400 ">
+                        <p>
+                            OU CONNECTEZ-VOUS AVEC ADRESSE E-MAIL</p>
+                    </div>
                     <Form v-bind="AuthenticatedSessionController.store.form()" :reset-on-success="['password']"
                         v-slot="{ errors, processing }" class="space-y-6">
                         <div class="grid gap-4">
                             <div class="grid gap-2">
-                                <Label for="email" class="text-[var(--primary-blue)]">Email address</Label>
+                                <Label for="email" class="text-[var(--primary-blue)]">Adresse email</Label>
                                 <Input id="email" type="email" name="email" required autofocus :tabindex="1"
                                     autocomplete="email" placeholder="email@example.com" />
                                 <InputError :message="errors.email" />
                             </div>
                             <div class="grid gap-2">
                                 <div class="flex items-center justify-between">
-                                    <Label for="password" class="text-[var(--primary-blue)]">Password</Label>
+                                    <Label for="password" class="text-[var(--primary-blue)]">Mot de passe</Label>
                                     <TextLink v-if="canResetPassword" :href="request()"
-                                        class="text-sm text-[var(--primary-blue)] hover:underline" :tabindex="5"> Forgot
-                                        password?
+                                        class="text-sm text-[var(--primary-blue)] hover:underline" :tabindex="5"> Mot de passe oublié?
                                     </TextLink>
                                 </div>
                                 <Input id="password" type="password" name="password" required :tabindex="2"
@@ -152,8 +167,9 @@ defineProps<{
                                 class="w-full bg-[var(--primary-blue)] text-white hover:bg-[var(--primary-blue2)] dark:bg-[var(--dark-black)]"
                                 :tabindex="4" :disabled="processing">
                                 <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin mr-2" />
-                                Log in
+                                Se connecter
                             </Button>
+
                         </div>
                         <div class="text-center text-sm text-gray-500">
                             Vous n'avez pas de compte ?
@@ -168,10 +184,8 @@ defineProps<{
                     class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-6 md:p-8 flex flex-col justify-center items-center sm:rounded-tl-[90px] sm:rounded-bl-[90px] dark:bg-[var(--text-secondary)]">
                     <h2 class="text-2xl font-bold mb-4">Hello, Friend!</h2>
                     <p class="text-center mb-6">Connectez-vous avec vos identifiants pour accéder à votre compte.</p>
-                    <Button variant="outline"
-                        class="w-full md:w-auto bg-white text-[var(--primary-blue)] hover:bg-gray-100">
-                        S'inscrire
-                    </Button>
+
+
                 </div>
             </div>
         </div>

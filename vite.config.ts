@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
-
+import svgLoader from 'vite-svg-loader'; // <-- Ajouté
 export default defineConfig({
     plugins: [
         laravel({
@@ -15,6 +15,7 @@ export default defineConfig({
         wayfinder({
             formVariants: true,
         }),
+         svgLoader(), // <-- Ajouté ici
         vue({
             template: {
                 transformAssetUrls: {

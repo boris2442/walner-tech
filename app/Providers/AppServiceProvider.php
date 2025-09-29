@@ -24,20 +24,31 @@ class AppServiceProvider extends ServiceProvider
     //     'status' => function () {
     //         return session('status');
     //     },
- 
+
     // ]);
     // }
 
 
     public function boot()
-{
-    Inertia::share([
-        'flash' => function () {
-            return [
-                'success' => session('success'),
-                'error' => session('error'),
-            ];
-        },
-    ]);
-}
+    {
+        Inertia::share([
+            'flash' => function () {
+                return [
+                    'success' => session('success'),
+                    'error' => session('error'),
+                ];
+            },
+            // Ajout de l'utilisateur connecté pour tous les composants
+            'auth' => function () {
+                return [
+                    'user' => auth()->user() ? [
+                        'id' => auth()->user()->id,
+                        'name' => auth()->user()->name,
+                        'email' => auth()->user()->email,
+                        // tu peux ajouter d'autres champs si besoin
+                    ] : null,
+                ];
+            },
+        ]);
+    }
 }

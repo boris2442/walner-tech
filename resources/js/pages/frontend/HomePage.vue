@@ -11,8 +11,8 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 
 <template>
     <!-- <Loading /> -->
-    <NavbarFrontend />
-<FloatingAction />
+    <NavbarFrontend :auth="$page.props.auth" />
+    <FloatingAction />
     <!-- Section Hero -->
     <section
         class="relative flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6  text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] md:pb-0 pb-12 overflow-hidden">
@@ -21,7 +21,7 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 
             <!-- Texte -->
             <div class="max-w-lg lg:text-left ">
-          
+
                 <h1 class="animate-fade-up mb-4 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold opacity-0">
                     Walner Tech: La maison du futur
                 </h1>

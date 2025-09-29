@@ -5,7 +5,7 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 </script>
 <template>
-  <NavbarFrontend />
+  <NavbarFrontend :auth="$page.props.auth"/>
     <FloatingAction/>
   <section>
 

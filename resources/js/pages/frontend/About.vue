@@ -1,5 +1,5 @@
 <template>
-    <NavbarFrontend />
+    <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction />
     <section
         class="about min-h-screen  px-6 py-16 text-[var(--text-dark)] md:px-20 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">

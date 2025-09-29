@@ -9,11 +9,16 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\LikeController;
+use App\Http\Controllers\Auth\GoogleController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
+// Redirection vers Google
+Route::get('auth/google', [GoogleController::class, 'redirect']);
 
+// Callback après login Google
+Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 Route::get('/home', [HomeController::class, 'index'])->name('home.page');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 

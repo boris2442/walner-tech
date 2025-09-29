@@ -42,7 +42,7 @@ const sections = reactive([
 </script>
 
 <template>
-  <NavbarFrontend />
+  <NavbarFrontend :auth="$page.props.auth"/>
    <FloatingAction/>
   <section
     class="px-6 pt-24 md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
