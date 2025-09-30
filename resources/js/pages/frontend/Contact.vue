@@ -22,8 +22,7 @@
                         <div>
                             <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Phone
                                 Number</h3>
-                            <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">656 89 47 73 / 692 21
-                                41 05</p>
+                            <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">656 89 47 73 / 651 70 97 52</p>
                         </div>
                     </div>
                     <div
@@ -45,7 +44,7 @@
                                 Localisation
                             </h3>
                             <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">
-                                Bafoussam: Immeuble Ancien Bureau des transports<br />
+                                Bafoussam: Immeuble le pelicant Ancien bureau des transports<br />
                                 Yaoundé: Terminus mimboman en face, sapeur pompier
                             </p>
                         </div>
@@ -110,8 +109,6 @@
 
             <!-- Cartes Google Maps -->
 
-
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 z-[-10]">
                 <!-- Carte Bafoussam -->
                 <MapCard title="Bafoussam" :center="[5.479026658474593, 10.415195351707034]" :zoom="13"
@@ -121,10 +118,7 @@
                 <MapCard title="Yaoundé" :center="[3.8718546453685936, 11.550169137595887]" :zoom="13"
                     class="w-full h-96 rounded " />
             </div>
-
-
-
-
+            
         </div>
     </section>
     <Footer />
@@ -157,7 +151,7 @@ const submit = () => {
     form.post('/contact', {
         onSuccess: (page) => {
             if (page.props.status) {
-                form.status = page.props.status; // définis une variable locale
+                form.status = page.props.status; 
             }
             form.reset();
         }

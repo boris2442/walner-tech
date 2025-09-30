@@ -45,13 +45,13 @@ export default {
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" />
-            <span>Bafoussam Immeuble Ancien Bureau des transports; <br /> Yaoundé Terminus mimboman face sapeur
+            <span>Bafoussam: Immeuble le pelicant Ancien bureau des transports;<br /> Yaoundé Terminus mimboman face sapeur
               pompier</span>
           </div>
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'phone']" />
-            <span>656 89 47 73 / 692 21 41 05</span>
+            <span>656 89 47 73 / 651 70 97 52</span>
           </div>
 
           <!-- <div class="flex items-center gap-2 mb-2">
@@ -75,7 +75,8 @@ export default {
             Légales</Link>
           </div>
           <div class="mb-2">
-            <Link href="/confidentialite" class="hover:text-[var(--dark-gold)]  transition dark:hover:text-[var(--dark-accent)]">
+            <Link href="/confidentialite"
+              class="hover:text-[var(--dark-gold)]  transition dark:hover:text-[var(--dark-accent)]">
             Politique de confidentialité</Link>
           </div>
           <div class="mb-2">
@@ -118,7 +119,8 @@ export default {
         <div>
           <!-- <h3 class="font-bold mb-2">Suivez-nous</h3> -->
           <div class="flex justify-center gap-6 text-2xl">
-            <a href="" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+            <a target="_blank" href="https://www.facebook.com/walnertech"
+              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
               <FontAwesomeIcon :icon="['fab', 'facebook']" />
             </a>
             <a href="" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">

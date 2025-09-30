@@ -6,11 +6,11 @@ import { Link } from '@inertiajs/inertia-vue3';
 import Footer from '@/components/frontend/Footer.vue';
 import Testimony from '@/components/frontend/Testimony.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
-// import Loading from '@/components/frontend/Loading.vue';
+import Loading from '@/components/frontend/Loading.vue';
 </script>
 
 <template>
-    <!-- <Loading /> -->
+    <Loading />
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction />
     <!-- Section Hero -->
