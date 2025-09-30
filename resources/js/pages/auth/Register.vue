@@ -54,6 +54,14 @@ import { LoaderCircle } from 'lucide-vue-next';
                             <InputError :message="errors.name" />
                         </div>
                         <div class="grid gap-2">
+                            <Label for="phone" class="text-[var(--primary-blue)]">Phone</Label>
+                            <Input
+                                class="border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "
+                                id="phone" type="tel" required autofocus :tabindex="1" autocomplete="phone" name="phone"
+                                placeholder="652 22 65 29" />
+                            <InputError :message="errors.phone" />
+                        </div>
+                        <div class="grid gap-2">
                             <Label for="email" class="text-[var(--primary-blue)]">Address email</Label>
                             <Input id="email" type="email" required :tabindex="2" autocomplete="email" name="email"
                                 placeholder="email@example.com" />

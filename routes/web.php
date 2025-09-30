@@ -11,15 +11,16 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Auth\GoogleController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return Inertia::render('Welcome');
+// })->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home.page');
 // Redirection vers Google
 Route::get('auth/google', [GoogleController::class, 'redirect']);
 
 // Callback après login Google
 Route::get('auth/google/callback', [GoogleController::class, 'callback']);
-Route::get('/home', [HomeController::class, 'index'])->name('home.page');
+//Route::get('/home', [HomeController::class, 'index'])->name('home.page');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('dashboard', function () {
@@ -33,9 +34,6 @@ Route::get('/refundpolicy', [RessourceController::class, 'noRemboursement'])->na
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
-
-
-
 // Backend routes
 // Categories create
 Route::prefix('/categories')->group(function () {
@@ -48,12 +46,12 @@ Route::prefix('/categories')->group(function () {
 });
 
 // Products routes
-
+// Liste tous les produits
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::prefix('admin')->group(function () {
 
-    // Liste tous les produits
-    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+
 
     // Formulaire création produit
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');

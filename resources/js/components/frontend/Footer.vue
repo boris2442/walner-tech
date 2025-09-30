@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/vue3'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-
+import ressources from '@/routes/ressources'
 // Brand icons
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 // Solid icons
@@ -17,6 +17,7 @@ export default {
     return {
       openIndex: null,
       currentYear: new Date().getFullYear(),
+      ressources,
       faqs: [
         { question: "Comment passer une commande ?", answer: "Pour passer une commande, rendez-vous sur la page produits et cliquez sur 'Ajouter au panier'..." },
         { question: "Quels moyens de paiement acceptez-vous ?", answer: "Nous acceptons Orange Money." },
@@ -31,6 +32,7 @@ export default {
     }
   }
 }
+console.log('ressources:', ressources)
 </script>
 
 <template>
@@ -45,7 +47,8 @@ export default {
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" />
-            <span>Bafoussam: Immeuble le pelicant Ancien bureau des transports;<br /> Yaoundé Terminus mimboman face sapeur
+            <span>Bafoussam: Immeuble le pelicant Ancien bureau des transports;<br /> Yaoundé Terminus mimboman face
+              sapeur
               pompier</span>
           </div>
 
@@ -53,12 +56,6 @@ export default {
             <FontAwesomeIcon :icon="['fas', 'phone']" />
             <span>656 89 47 73 / 651 70 97 52</span>
           </div>
-
-          <!-- <div class="flex items-center gap-2 mb-2">
-            <FontAwesomeIcon :icon="['fas', 'globe']" />
-            <a href="https://walcom.com" target="_blank" class="underline text-[var(--dark-gold)] dark:text-[var(--dark-accent)] hover:text-[var(--text-secondary)]
-">https://walcom.com</a>
-          </div> -->
 
           <div class="flex items-center gap-2">
             <FontAwesomeIcon :icon="['fas', 'envelope']" />
@@ -71,20 +68,24 @@ export default {
         <div>
           <h3 class="font-bold text-lg md:text-xl mb-2">Ressources</h3>
           <div class="mb-2">
-            <Link href="/legales" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">Mentions
+            <Link prefetch :href="ressources.notice().url"
+              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">Mentions
             Légales</Link>
           </div>
           <div class="mb-2">
-            <Link href="/confidentialite"
+            <Link prefetch :href="ressources.policy().url"
               class="hover:text-[var(--dark-gold)]  transition dark:hover:text-[var(--dark-accent)]">
             Politique de confidentialité</Link>
           </div>
           <div class="mb-2">
-            <Link href="/cgu" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">Conditions
+            <Link prefetch :href="ressources.cgu().url"
+              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+            Conditions
             générales d'utilisation</Link>
           </div>
           <div class="mb-2">
-            <Link href="/refundpolicy" class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+            <Link prefetch :href="ressources.noRemboursement().url"
+              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
             Politique de Non-Remboursement</Link>
           </div>
         </div>
