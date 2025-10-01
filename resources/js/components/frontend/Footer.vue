@@ -32,7 +32,7 @@ export default {
     }
   }
 }
-console.log('ressources:', ressources)
+
 </script>
 
 <template>

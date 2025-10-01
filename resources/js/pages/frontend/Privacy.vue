@@ -53,9 +53,8 @@ const sections = reactive([
 
 <template>
     <NavbarFrontend :auth="$page.props.auth" />
-    <FloatingAction />
-    <section class="px-6 pt-24
-md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]
+    <FloatingAction /> <br>
+    <section class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]
                     dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <!-- 🔹 Bouton retour -->
         <BackButton />

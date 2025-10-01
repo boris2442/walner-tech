@@ -41,9 +41,9 @@ const sections = [
 
 <template>
     <NavbarFrontend  :auth="$page.props.auth"/>
-    <FloatingAction/>
+    <FloatingAction/>  <br>
     <section
-        class="px-6 pt-24 md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
+        class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <div class=" mx-auto">
                   <!-- 🔹 Bouton retour -->
       <BackButton />

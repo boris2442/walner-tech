@@ -14,7 +14,7 @@ use App\Http\Controllers\Auth\GoogleController;
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
 // })->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home.page');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 // Redirection vers Google
 Route::get('auth/google', [GoogleController::class, 'redirect']);
 
@@ -26,10 +26,10 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/cgu', [RessourceController::class, 'cgu'])->name('ressources.cgu');
-Route::get('/confidentialite', [RessourceController::class, 'politiqueDeConfidentialite'])->name('ressources.policy');
-Route::get('/legales', [RessourceController::class, 'mentionsLegales'])->name('ressources.notice');
-Route::get('/refundpolicy', [RessourceController::class, 'noRemboursement'])->name('ressources.noRemboursement');
+Route::get('/ressources/cgu', [RessourceController::class, 'cgu'])->name('ressources.cgu');
+Route::get('/ressources/confidentialite', [RessourceController::class, 'politiqueDeConfidentialite'])->name('ressources.policy');
+Route::get('/ressources/legales', [RessourceController::class, 'mentionsLegales'])->name('ressources.notice');
+Route::get('/ressources/refundpolicy', [RessourceController::class, 'noRemboursement'])->name('ressources.noRemboursement');
 
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
@@ -47,7 +47,7 @@ Route::prefix('/categories')->group(function () {
 
 // Products routes
 // Liste tous les produits
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::prefix('admin')->group(function () {
 

@@ -10,16 +10,15 @@ import BackButton from '@/components/frontend/BackButton.vue';
   <section>
 
     <div
-      class="px-6 pt-24
-md:px-20 md:pt-32 antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-      <!-- 🔹 Bouton retour -->
-      <BackButton />
-      <!-- Titre principal -->
+      class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]"><br>
+     
+      <BackButton /> 
+      
       <h1 class="text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mb-6">
         Politique de Non-Remboursement
       </h1>
 
-      <!-- Introduction -->
+
       <p class="mb-6 text-lg text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">
         Chez <strong>Walner Tech</strong>, nous accordons une grande importance à la satisfaction de nos clients.
         Cependant, afin de garantir la qualité et la transparence de nos services, nous appliquons une politique stricte

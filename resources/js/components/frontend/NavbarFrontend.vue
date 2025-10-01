@@ -2,7 +2,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
-import { about, contact } from '@/routes';
+import { about, contact, home, products } from '@/routes';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -84,19 +84,17 @@ function toggleAccountMenu() {
 
         <!-- 1. Logo -->
         <div class="flex-shrink-0">
-          <Link href="/" prefetch >
+          <Link :href="home()" prefetch >
           <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 object-cover" />
           </Link>
         </div>
 
         <!-- 2. Liens principaux (centre) -->
         <div class="hidden md:flex space-x-6 justify-center flex-1">
-          <Link href="/products" prefetch 
+          <Link :href="products()" prefetch 
             class=" text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Produits</Link>
-          <!-- <Link href="/blog" prefetch 
-            class=" text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
-          Blog</Link> -->
+        
           <Link :href="about()" prefetch 
             class=" text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           À propos</Link>
@@ -147,14 +145,11 @@ function toggleAccountMenu() {
     <!-- Mobile Menu -->
     <div v-if="open"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)]">
-      <Link href="/admin/products" prefetch 
+      <Link :href="products()" prefetch 
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Produits
       </Link>
-      <!-- <Link href="/blog" prefetch 
-        class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
-      Blog
-      </Link> -->
+    
       <Link href="/about" prefetch 
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       À propos

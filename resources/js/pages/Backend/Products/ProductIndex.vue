@@ -7,8 +7,8 @@
             <h1 class="text-xl font-semibold mb-6">Liste des produits</h1>
 
             <!-- Flash global -->
-            <FlashMessage v-if="$page.props.flash?.success" :message="$page.props.flash.success" type="success" />
-            <FlashMessage v-if="$page.props.flash?.error" :message="$page.props.flash.error" type="error" />
+            <!-- <FlashMessage v-if="$page.props.flash?.success" :message="$page.props.flash.success" type="success" />
+            <FlashMessage v-if="$page.props.flash?.error" :message="$page.props.flash.error" type="error" /> -->
 
             <!-- Barre de recherche -->
             <div class="mb-6 flex justify-center">
@@ -113,7 +113,7 @@
                         <div class="flex-1">
                             <p class="text-sm font-medium truncate">{{ item.title }}</p>
                             <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{ item.quantity
-                                }}</p>
+                            }}</p>
 
                             <!-- Boutons + et - -->
                             <div class="flex items-center mt-1 gap-1">
@@ -132,7 +132,7 @@
                     </div>
                     <!-- Bouton commander -->
                     <div class="mt-3">
-                        <button
+                        <button @click="orderOnWhatsapp"
                             class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] dark:text-dark-white py-2 rounded  dark:hover:bg-[var(--dark-gold)]/80 transition">
                             Commander
                         </button>
@@ -153,7 +153,7 @@ import axios from 'axios';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
-import FlashMessage from '@/components/backend/flash/FlashMessage.vue';
+//import FlashMessage from '@/components/backend/flash/FlashMessage.vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 // import FloatingAction from '@/components/frontend/FloatingAction.vue';
@@ -294,6 +294,23 @@ function filterByCategory(id) {
 function getImageUrl(path) {
     return path ? `/storage/${path}` : '/fallback.png';
 }
+
+function orderOnWhatsapp() {
+    const userName = props?.auth?.user?.name;
+
+    // ⚠️ Mets ici ton numéro WhatsApp entreprise (format international sans +)
+    const entreprisePhone = "237679135177";
+
+    let message = `Bonjour, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
+    cart.value.forEach(item => {
+        message += `- ${item.title} (x${item.quantity}) : ${item.prix * item.quantity} FCFA\n`;
+    });
+    message += `\nTotal : ${cartTotal.value} FCFA\n\nMerci !`;
+
+    const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+}
+
 </script>
 
 <style scoped>
