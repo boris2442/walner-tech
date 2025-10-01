@@ -36,14 +36,14 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 
 // Backend routes
 // Categories create
-Route::prefix('/categories')->group(function () {
+// Route::prefix('/categories')->group(function () {
 
 
-    // Categories create
-    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('', [CategoryController::class, 'index'])->name('categories.index');
-});
+// Categories create
+Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('admin/categories', [CategoryController::class, 'index'])->name('categories.index');
+// });
 
 // Products routes
 // Liste tous les produits
@@ -75,6 +75,9 @@ Route::prefix('admin')->group(function () {
 // });
 
 // Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+
+//Users
+//route::get(admin/users)
 //page not found
 
 // Page 404 personnalisée

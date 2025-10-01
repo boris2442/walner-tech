@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewUserRegistered;
 
 class RegisteredUserController extends Controller
 {
@@ -25,8 +27,6 @@ class RegisteredUserController extends Controller
 
     /**
      * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
@@ -37,15 +37,28 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Créer l'utilisateur avec rôle explicite
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'role' => 'user', // rôle explicite
         ]);
 
+        // Recharger les données depuis la DB (optionnel ici car role défini)
+        $user->refresh();
+
+        // Récupérer tous les admins
+        $admins = User::where('role', 'admin')->get();
+
+        // Envoyer la notification aux admins
+        Notification::send($admins, new NewUserRegistered($user));
+
+        // Déclencher l'événement Registered
         event(new Registered($user));
 
+        // Connecter l'utilisateur automatiquement
         Auth::login($user);
 
         return to_route('dashboard');

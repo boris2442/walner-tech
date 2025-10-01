@@ -113,7 +113,7 @@
                         <div class="flex-1">
                             <p class="text-sm font-medium truncate">{{ item.title }}</p>
                             <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{ item.quantity
-                            }}</p>
+                                }}</p>
 
                             <!-- Boutons + et - -->
                             <div class="flex items-center mt-1 gap-1">

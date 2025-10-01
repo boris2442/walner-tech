@@ -8,7 +8,7 @@ import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'categories',
+        title: 'Users',
         href: categories.index().url,
     },
 ];
