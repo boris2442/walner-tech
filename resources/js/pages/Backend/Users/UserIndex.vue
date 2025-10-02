@@ -1,44 +1,202 @@
+
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-// import { dashboard } from '@/routes';
-import categories from '@/routes/categories';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
-import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import { Head, Link } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
+import { Pencil, Trash2 } from 'lucide-vue-next';
+import dayjs from 'dayjs';
+import { Inertia } from '@inertiajs/inertia';
 
+// Props envoyés depuis UserController@index
+const props = defineProps<{
+    stats: {
+        total: number;
+        today: number;
+    };
+    users: {
+        data: any[];
+        links: any[];
+    };
+    filters: {
+        search?: string;
+    };
+}>();
+
+// Breadcrumb
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Users',
-        href: categories.index().url,
+        href: '/admin/users',
     },
 ];
+
+// Recherche côté client
+const search = ref(props.filters.search || '');
+
+// Filtrage client (si besoin, mais le mieux c'est via backend)
+const filteredUsers = computed(() => {
+    if (!search.value) return props.users.data;
+    return props.users.data.filter(u =>
+        u.name.toLowerCase().includes(search.value.toLowerCase()) ||
+        u.phone.toLowerCase().includes(search.value.toLowerCase()) ||
+
+        u.email.toLowerCase().includes(search.value.toLowerCase())
+    );
+});
+
+// Formatage date
+function formatDate(date: string) {
+    return dayjs(date).format('DD/MM/YYYY HH:mm');
+}
+
+// Supprimer un user
+const deleteUser = (id: number) => {
+    if (confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
+        Inertia.delete(`/admin/users/${id}`, {
+            preserveScroll: true,
+        });
+    }
+};
+
+const showActions = ref(false);
+
+// Fermer le menu si clic à l'extérieur
+function handleClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.relative')) {
+        showActions.value = false;
+    }
+}
+document.addEventListener('click', handleClickOutside);
 </script>
 
 <template>
 
-    <Head title="Categories" />
-    <!-- <Head title="Dashboard" /> -->
+    <Head title="Users" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
+        <div class="flex flex-col gap-4 p-4 overflow-x-auto">
+
+            <!-- KPI Cards -->
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div class="kpi-card">
+                    <div class="kpi-icon">👥</div>
+                    <div class="kpi-text">
+                        <h3>Total Utilisateurs</h3>
+                        <p>{{ props.stats.total }}</p>
+                    </div>
                 </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
-                </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <PlaceholderPattern />
+                <div class="kpi-card">
+                    <div class="kpi-icon">🆕</div>
+                    <div class="kpi-text">
+                        <h3>Inscrits Aujourd'hui</h3>
+                        <p>{{ props.stats.today }}</p>
+                    </div>
                 </div>
             </div>
-            <div
-                class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                <PlaceholderPattern />
+
+            <!-- Table -->
+            <div class="relative rounded-xl border border-sidebar-border/70 dark:border-sidebar-border min-h-[50vh]">
+                <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-4 p-2">
+                    <input type="text" v-model="search" placeholder="Rechercher par nom ou contact ou email"
+                        class="border p-2 rounded flex-1 text-xs sm:text-sm md:text-base" />
+
+                    <!-- Menu Actions -->
+                    <div class="relative">
+                        <button @click="showActions = !showActions"
+                            class="p-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+                            ⋮
+                        </button>
+
+                        <div v-if="showActions"
+                            class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border rounded shadow-lg z-50">
+                            <ul>
+                                <li>
+                                    <Link href="/admin/users/create"
+                                        class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    Créer un utilisateur
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm md:text-base">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Nom</th>
+                                <th class="p-2">Prénom</th>
+                                <th class="p-2">Email</th>
+                                <th class="p-2">Téléphone</th>
+                                <th class="p-2">Rôle</th>
+                                <th class="p-2">Créé le</th>
+                                <th class="p-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="user in filteredUsers" :key="user.id"
+                                class="border-b hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <td class="p-2 truncate max-w-[150px]">{{ user.name }}</td>
+                                <td class="p-2">{{ user.prenom }}</td>
+                                <td class="p-2">{{ user.email }}</td>
+                                <td class="p-2">{{ user.phone }}</td>
+                                <td class="p-2">{{ user.role }}</td>
+                                <td class="p-2">{{ formatDate(user.created_at) }}</td>
+                                <td class="p-2 flex gap-2">
+                                    <Link :href="`/admin/users/${user.id}/edit`"
+                                        class="text-blue-500 hover:text-blue-700" title="Éditer">
+                                    <Pencil class="w-4 h-4 md:w-5 md:h-5" />
+                                    </Link>
+                                    <button class="text-red-500 hover:text-red-700" title="Supprimer"
+                                        @click="deleteUser(user.id)">
+                                        <Trash2 class="w-4 h-4 md:w-5 md:h-5" />
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr v-if="filteredUsers.length === 0">
+                                <td colspan="7" class="text-center p-4 text-gray-500">
+                                    Aucun utilisateur trouvé
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </AppLayout>
 </template>
+
+<style scoped>
+.kpi-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #cbd5e1;
+    min-height: 80px;
+    transition: transform 0.2s;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+}
+
+.kpi-icon {
+    font-size: 1.5rem;
+}
+
+.kpi-text h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.kpi-text p {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+</style>

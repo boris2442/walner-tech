@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Backend\UserController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
@@ -39,13 +40,18 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 // Route::prefix('/categories')->group(function () {
 
 
-// Categories create
-Route::get('admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('admin/categories', [CategoryController::class, 'indexBackend'])->name('categories.index');
-// Route pour la suppression d'une catégorie
-Route::delete('admin/categories/{id}', [CategoryController::class, 'destroy'])
-    ->name('categories.destroy');
+//categorys 
+Route::prefix('admin')->group(function () {
+    Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('categories', [CategoryController::class, 'indexBackend'])->name('categories.index');
+
+    // Route pour la suppression d'une catégorie
+    Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+});
+
 // });
 
 // Products routes
@@ -79,6 +85,15 @@ Route::prefix('admin')->group(function () {
 //Users
 //route::get(admin/users)
 //page not found
+
+Route::prefix('admin')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('users', [UserController::class, 'store'])->name('users.store');
+    Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 // Page 404 personnalisée
 Route::fallback(function () {
