@@ -1,9 +1,22 @@
-<script setup>
+<script setup lang="ts">
+import AppLayout from '@/layouts/AppLayout.vue';
+import { dashboard } from '@/routes';
+import { type BreadcrumbItem } from '@/types';
+import { Head } from '@inertiajs/vue3';
+
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Create Category',
+        href: dashboard().url,
+    },
+];
+
 import { ref } from "vue";
 import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
-import FlashMessage from "@/components/frontend/flash/FlashMessage.vue";
+// import FlashMessage from "@/components/frontend/flash/FlashMessage.vue";
 import { useForm } from "@inertiajs/vue3";
 const flashMessage = ref("");
 const form = useForm({
@@ -11,32 +24,41 @@ const form = useForm({
     description: "",
 });
 
-// const submitForm = () => {
-//     form.post("/categories/store", {
-//         onSuccess: () => form.reset(),
-//     });
-
 const submitForm = () => {
     form.post("/categories/store");
 };
 </script>
 
 <template>
-    <div class="bg-white dark:bg-[#1E1E1E] p-6 rounded-lg shadow-md w-full max-w-md">
-        <!-- Flash message -->
-        <FlashMessage v-if="flashMessage" :message="flashMessage" type="success" />
-        <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
-            Ajouter une Catégorie
-        </h2>
 
-        <form @submit.prevent="submitForm">
-            <Input :required="true" id="name" label="Nom de la catégorie" v-model="form.name"
-                placeholder="Ex: Téléphones" :error="form.errors.name" />
+    <Head title="Category create" />
+    <!-- <Head title="Dashboard" /> -->
 
-            <Textarea label="Description" v-model="form.description"
-                placeholder="Ex: Catégorie pour tous les smartphones" :rows="4" :error="form.errors.description" />
+    <AppLayout :breadcrumbs="breadcrumbs">
+        <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
 
-            <SubmitButton :processing="form.processing" label="Enregistrer" />
-        </form>
-    </div>
+            <div
+                class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
+                <!-- <PlaceholderPattern /> -->
+
+                <!-- <FlashMessage v-if="flashMessage" :message="flashMessage" type="success" /> -->
+                <div class="m-3">
+                    <h2 class="text-xl font-bold mb-4 ">
+                        Ajouter une Catégorie
+                    </h2>
+
+                    <form @submit.prevent="submitForm">
+                        <Input :required="true" id="name" label="Nom de la catégorie" v-model="form.name"
+                            placeholder="Ex: Téléphones" :error="form.errors.name" />
+
+                        <Textarea label="Description" v-model="form.description"
+                            placeholder="Ex: Catégorie pour tous les smartphones" :rows="4"
+                            :error="form.errors.description" />
+
+                        <SubmitButton :processing="form.processing" label="Enregistrer" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </AppLayout>
 </template>

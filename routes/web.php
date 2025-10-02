@@ -40,9 +40,12 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 
 
 // Categories create
-Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::get('admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('admin/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('admin/categories', [CategoryController::class, 'indexBackend'])->name('categories.index');
+// Route pour la suppression d'une catégorie
+Route::delete('admin/categories/{id}', [CategoryController::class, 'destroy'])
+    ->name('categories.destroy');
 // });
 
 // Products routes
@@ -50,9 +53,6 @@ Route::get('admin/categories', [CategoryController::class, 'index'])->name('cate
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::prefix('admin')->group(function () {
-
-
-
     // Formulaire création produit
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
 

@@ -45,6 +45,7 @@
         "axios": "^1.12.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
+        "dayjs": "^1.11.18",
         "laravel-vite-plugin": "^2.0.1",
         "leaflet": "^1.9.4",
         "lucide-vue-next": "^0.468.0",
