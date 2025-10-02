@@ -15,10 +15,14 @@ class UserController extends Controller
     {
         $totalUsers = User::count();
         $todayUsers = User::whereDate('created_at', Carbon::today())->count();
+          $totalAdmins = User::where('role', 'admin')->count();
+    $totalClients = User::where('role', 'user')->count(); // ou 'client' selon ton rôle
 
         return [
             'total' => $totalUsers,
             'today' => $todayUsers,
+            'admins' => $totalAdmins,
+            'clients' => $totalClients,
         ];
     }
     /**
@@ -33,11 +37,12 @@ class UserController extends Controller
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')
                     ->orWhere('phone', 'like', '%' . $request->search . '%')
+                    ->orWhere('role', 'like', '%' . $request->search . '%')
                     ->orWhere('email', 'like', '%' . $request->search . '%');
             });
         }
 
-        $users = $query->latest()->paginate(10);
+        $users = $query->latest()->paginate(70);
 
         return inertia('Backend/Users/UserIndex', [
             'users' => $users,

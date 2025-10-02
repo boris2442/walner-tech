@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -13,6 +12,8 @@ const props = defineProps<{
     stats: {
         total: number;
         today: number;
+        admins: number;
+        clients: number;
     };
     users: {
         data: any[];
@@ -35,13 +36,14 @@ const breadcrumbs: BreadcrumbItem[] = [
 const search = ref(props.filters.search || '');
 
 // Filtrage client (si besoin, mais le mieux c'est via backend)
+
 const filteredUsers = computed(() => {
     if (!search.value) return props.users.data;
     return props.users.data.filter(u =>
-        u.name.toLowerCase().includes(search.value.toLowerCase()) ||
-        u.phone.toLowerCase().includes(search.value.toLowerCase()) ||
-
-        u.email.toLowerCase().includes(search.value.toLowerCase())
+        (u.name ?? '').toLowerCase().includes(search.value.toLowerCase()) ||
+        (u.phone ?? '').toLowerCase().includes(search.value.toLowerCase()) ||
+        (u.role ?? '').toLowerCase().includes(search.value.toLowerCase()) ||
+        (u.email ?? '').toLowerCase().includes(search.value.toLowerCase())
     );
 });
 
@@ -69,6 +71,7 @@ function handleClickOutside(event: MouseEvent) {
     }
 }
 document.addEventListener('click', handleClickOutside);
+
 </script>
 
 <template>
@@ -92,6 +95,20 @@ document.addEventListener('click', handleClickOutside);
                     <div class="kpi-text">
                         <h3>Inscrits Aujourd'hui</h3>
                         <p>{{ props.stats.today }}</p>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">🛡️</div>
+                    <div class="kpi-text">
+                        <h3>Administrateurs</h3>
+                        <p>{{ props.stats.admins }}</p>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">👤</div>
+                    <div class="kpi-text">
+                        <h3>Utilisateurs</h3>
+                        <p>{{ props.stats.clients }}</p>
                     </div>
                 </div>
             </div>
@@ -128,7 +145,7 @@ document.addEventListener('click', handleClickOutside);
                         <thead>
                             <tr class="border-b">
                                 <th class="p-2">Nom</th>
-                                <th class="p-2">Prénom</th>
+
                                 <th class="p-2">Email</th>
                                 <th class="p-2">Téléphone</th>
                                 <th class="p-2">Rôle</th>
@@ -140,7 +157,7 @@ document.addEventListener('click', handleClickOutside);
                             <tr v-for="user in filteredUsers" :key="user.id"
                                 class="border-b hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td class="p-2 truncate max-w-[150px]">{{ user.name }}</td>
-                                <td class="p-2">{{ user.prenom }}</td>
+
                                 <td class="p-2">{{ user.email }}</td>
                                 <td class="p-2">{{ user.phone }}</td>
                                 <td class="p-2">{{ user.role }}</td>
@@ -163,6 +180,28 @@ document.addEventListener('click', handleClickOutside);
                             </tr>
                         </tbody>
                     </table>
+                    <!-- <div class="mt-4 flex justify-end">
+                        <nav class="flex items-center gap-1">
+                            <button v-for="link in props.users.links" :key="link.label" v-html="link.label"
+                                :disabled="!link.url"
+                                @click.prevent="link.url && Inertia.get(link.url, {}, { preserveState: true })"
+                                class="px-3 py-1 rounded border bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"></button>
+                        </nav>
+                    </div> -->
+
+
+                    <!-- <div class="mt-4 flex justify-end">
+                        <nav class="flex items-center gap-1">
+                            <button v-for="link in props.users.links" :key="link.label" v-html="link.label"
+                                :disabled="!link.url" @click="goToPage(link.url)" :class="[
+                                    'px-3 py-1 rounded border',
+                                    link.active ? 'bg-blue-500 text-white' : 'bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700',
+                                    !link.url ? 'opacity-50 cursor-not-allowed' : ''
+                                ]"></button>
+                        </nav>
+                    </div> -->
+
+
                 </div>
             </div>
         </div>
