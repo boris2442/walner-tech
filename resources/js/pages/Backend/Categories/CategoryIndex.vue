@@ -125,7 +125,8 @@ document.addEventListener('click', handleClickOutside);
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm md:text-base">
+                    <table
+                        class="w-full text-left border-collapse text-[0.75rem] sm:text-[0.75rem] md:text-[0.875rem] lg:text-[0.875rem]">
                         <thead>
                             <tr class="border-b">
                                 <th class="p-2">Nom</th>

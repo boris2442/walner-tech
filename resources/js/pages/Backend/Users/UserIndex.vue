@@ -14,6 +14,8 @@ const props = defineProps<{
         today: number;
         admins: number;
         clients: number;
+        week: number;
+
     };
     users: {
         data: any[];
@@ -22,6 +24,7 @@ const props = defineProps<{
     filters: {
         search?: string;
     };
+    roles: string[];
 }>();
 
 // Breadcrumb
@@ -52,14 +55,7 @@ function formatDate(date: string) {
     return dayjs(date).format('DD/MM/YYYY HH:mm');
 }
 
-// Supprimer un user
-const deleteUser = (id: number) => {
-    if (confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
-        Inertia.delete(`/admin/users/${id}`, {
-            preserveScroll: true,
-        });
-    }
-};
+
 
 const showActions = ref(false);
 
@@ -72,17 +68,40 @@ function handleClickOutside(event: MouseEvent) {
 }
 document.addEventListener('click', handleClickOutside);
 
+//Supprimer un user
+const deleteUser = (id: number) => {
+    if (confirm('Voulez-vous vraiment supprimer cette catégorie ?')) {
+        Inertia.delete(`/admin/users/${id}`, {
+            onSuccess: () => {
+                // Optionnel : afficher message ou rafraîchir
+                console.log('Supprimé avec succès')
+            },
+            preserveScroll: true
+        })
+    }
+}
+
+function changeRole(userId: number, newRole: string) {
+    Inertia.put(`/admin/users/${userId}/role`, { role: newRole }, {
+        preserveScroll: true,
+        onSuccess: () => {
+            console.log(`Rôle de l'utilisateur ${userId} mis à jour : ${newRole}`);
+        },
+        onError: (errors) => {
+            console.error(errors);
+        }
+    });
+}
 </script>
 
 <template>
 
     <Head title="Users" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">
 
             <!-- KPI Cards -->
-            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                 <div class="kpi-card">
                     <div class="kpi-icon">👥</div>
                     <div class="kpi-text">
@@ -109,6 +128,13 @@ document.addEventListener('click', handleClickOutside);
                     <div class="kpi-text">
                         <h3>Utilisateurs</h3>
                         <p>{{ props.stats.clients }}</p>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">👤</div>
+                    <div class="kpi-text">
+                        <h3>Inscrit cette semaine</h3>
+                        <p>{{ props.stats.week }}</p>
                     </div>
                 </div>
             </div>
@@ -141,7 +167,8 @@ document.addEventListener('click', handleClickOutside);
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm md:text-base">
+                    <table
+                        class="w-full text-left border-collapse text-[0.75rem] sm:text-[0.75rem] md:text-[0.875rem] lg:text-[0.875rem]">
                         <thead>
                             <tr class="border-b">
                                 <th class="p-2">Nom</th>
@@ -160,13 +187,50 @@ document.addEventListener('click', handleClickOutside);
 
                                 <td class="p-2">{{ user.email }}</td>
                                 <td class="p-2">{{ user.phone }}</td>
-                                <td class="p-2">{{ user.role }}</td>
+                                <!-- <td class="p-2">{{ user.role }}</td> -->
+                                <!-- <td class="p-2">
+                                    <select :value="user.role" @change="e => changeRole(user.id, e.target.value)"
+                                        class="border rounded p-1 text-sm">
+                                        <option v-for="role in props.roles" :key="role" :value="role">
+                                            {{ role }}
+                                        </option>
+                                    </select>
+                                </td> -->
+
+
+                                <!-- <td class="p-2">
+                                    <select v-model="user.role" @change="updateRole(user)"
+                                        class="border rounded px-2 py-1 text-sm">
+                                        <option v-for="role in props.roles" :key="role" :value="role">
+                                            {{ role }}
+                                        </option>
+                                    </select>
+                                </td> -->
+                                <!-- <td class="p-2">
+                                    <select v-model="user.role" @change="() => changeRole(user.id, user.role)"
+                                        class="border rounded px-2 py-1 text-sm">
+                                        <option v-for="role in props.roles" :key="role" :value="role">
+                                            {{ role }}
+                                        </option>
+                                    </select>
+                                </td> -->
+
+                                <td class="p-2">
+                                    <select v-model="user.role" @change="e => changeRole(user.id, e.target.value)"
+                                        class="border rounded px-2 py-1 text-sm">
+                                        <option v-for="role in props.roles" :key="role" :value="role">
+                                            {{ role }}
+                                        </option>
+                                    </select>
+                                </td>
+
+
                                 <td class="p-2">{{ formatDate(user.created_at) }}</td>
                                 <td class="p-2 flex gap-2">
-                                    <Link :href="`/admin/users/${user.id}/edit`"
+                                    <!-- <Link :href="`/admin/users/${user.id}/edit`"
                                         class="text-blue-500 hover:text-blue-700" title="Éditer">
                                     <Pencil class="w-4 h-4 md:w-5 md:h-5" />
-                                    </Link>
+                                    </Link> -->
                                     <button class="text-red-500 hover:text-red-700" title="Supprimer"
                                         @click="deleteUser(user.id)">
                                         <Trash2 class="w-4 h-4 md:w-5 md:h-5" />
@@ -190,16 +254,7 @@ document.addEventListener('click', handleClickOutside);
                     </div> -->
 
 
-                    <!-- <div class="mt-4 flex justify-end">
-                        <nav class="flex items-center gap-1">
-                            <button v-for="link in props.users.links" :key="link.label" v-html="link.label"
-                                :disabled="!link.url" @click="goToPage(link.url)" :class="[
-                                    'px-3 py-1 rounded border',
-                                    link.active ? 'bg-blue-500 text-white' : 'bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700',
-                                    !link.url ? 'opacity-50 cursor-not-allowed' : ''
-                                ]"></button>
-                        </nav>
-                    </div> -->
+
 
 
                 </div>
@@ -207,35 +262,39 @@ document.addEventListener('click', handleClickOutside);
         </div>
     </AppLayout>
 </template>
-
 <style scoped>
 .kpi-card {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    border-radius: 0.75rem;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    /* plus compact que before */
+    border-radius: 0.5rem;
     border: 1px solid #cbd5e1;
-    min-height: 80px;
+    min-height: 60px;
+    /* un peu plus petit */
     transition: transform 0.2s;
+    font-size: 0.875rem;
+    /* taille de texte plus petite */
 }
 
 .kpi-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .kpi-icon {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    /* icône plus petite */
 }
 
 .kpi-text h3 {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem;
 }
 
 .kpi-text p {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 </style>

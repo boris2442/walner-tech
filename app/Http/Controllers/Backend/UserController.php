@@ -7,22 +7,42 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    protected function getRolesEnum(): array
+    {
+        $column = DB::select("SHOW COLUMNS FROM users WHERE Field = 'role'");
+
+        if (!isset($column[0])) {
+            return [];
+        }
+
+        $type = $column[0]->Type ?? '';
+
+        preg_match("/^enum\('(.*)'\)$/", $type, $matches);
+
+        return isset($matches[1]) ? explode("','", $matches[1]) : [];
+    }
+
     public function stats()
     {
         $totalUsers = User::count();
         $todayUsers = User::whereDate('created_at', Carbon::today())->count();
-          $totalAdmins = User::where('role', 'admin')->count();
-    $totalClients = User::where('role', 'user')->count(); // ou 'client' selon ton rôle
+        $totalAdmins = User::where('role', 'admin')->count();
+        $totalClients = User::where('role', 'user')->count(); // ou 'client' selon ton rôle
+        $weekUsers = User::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+
 
         return [
             'total' => $totalUsers,
             'today' => $todayUsers,
             'admins' => $totalAdmins,
             'clients' => $totalClients,
+            'week' => $weekUsers,
         ];
     }
     /**
@@ -31,7 +51,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $query = User::query();
-
+        $roles = $this->getRolesEnum();
         // Recherche par nom/email
         if ($request->has('search') && $request->search != '') {
             $query->where(function ($q) use ($request) {
@@ -43,17 +63,59 @@ class UserController extends Controller
         }
 
         $users = $query->latest()->paginate(70);
+        // dd($roles);
 
         return inertia('Backend/Users/UserIndex', [
+            'auth' => [
+                'user' => Auth::user(), // <-- doit être un objet User
+            ],
             'users' => $users,
             'filters' => $request->only('search'),
             'stats' => $this->stats(), // 👈 ici tu fournis les stats
+            'roles' => $roles, // 👈 on envoie les rôles dynamiques
         ]);
     }
 
+    public function updateRole(Request $request, User $user)
+    {
+        $roles = $this->getRolesEnum();
+
+        $request->validate([
+            'role' => 'required|in:' . implode(',', $roles),
+        ]);
+
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Rôle mis à jour avec succès');
+    }
+
+
+
+    // public function updateRole(Request $request, User $user)
+    // {
+    //     $roles = $this->getRolesEnum();
+
+    //     $request->validate([
+    //         'role' => 'required|in:' . implode(',', $roles),
+    //     ]);
+
+    //     $user->role = $request->role;
+    //     $user->save();
+
+    //     return response()->json([
+    //         'message' => 'Rôle mis à jour avec succès',
+    //         'user' => $user,
+    //     ]);
+    // }
+
     /**
      * Formulaire création utilisateur
-     */
+
+
+
+
+    */
     public function create()
     {
         return inertia('Backend/Users/Create');
@@ -130,6 +192,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return back()->with('success', 'Utilisateur supprimé avec succès');
+        return redirect()->route('users.index')->with('success', 'users mise à jour avec succès.');
     }
 }
