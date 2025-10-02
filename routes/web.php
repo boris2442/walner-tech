@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\ContactBackendController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
@@ -95,6 +96,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::put('users/{user}/role', [UserController::class, 'updateRole'])->name('users.updateRole');
 
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('contact', [ContactBackendController::class, 'index'])->name('contacts.index');
+    // Route::get('contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+    // Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 });
 
 // Page 404 personnalisée

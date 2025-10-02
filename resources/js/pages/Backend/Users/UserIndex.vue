@@ -187,34 +187,6 @@ function changeRole(userId: number, newRole: string) {
 
                                 <td class="p-2">{{ user.email }}</td>
                                 <td class="p-2">{{ user.phone }}</td>
-                                <!-- <td class="p-2">{{ user.role }}</td> -->
-                                <!-- <td class="p-2">
-                                    <select :value="user.role" @change="e => changeRole(user.id, e.target.value)"
-                                        class="border rounded p-1 text-sm">
-                                        <option v-for="role in props.roles" :key="role" :value="role">
-                                            {{ role }}
-                                        </option>
-                                    </select>
-                                </td> -->
-
-
-                                <!-- <td class="p-2">
-                                    <select v-model="user.role" @change="updateRole(user)"
-                                        class="border rounded px-2 py-1 text-sm">
-                                        <option v-for="role in props.roles" :key="role" :value="role">
-                                            {{ role }}
-                                        </option>
-                                    </select>
-                                </td> -->
-                                <!-- <td class="p-2">
-                                    <select v-model="user.role" @change="() => changeRole(user.id, user.role)"
-                                        class="border rounded px-2 py-1 text-sm">
-                                        <option v-for="role in props.roles" :key="role" :value="role">
-                                            {{ role }}
-                                        </option>
-                                    </select>
-                                </td> -->
-
                                 <td class="p-2">
                                     <select v-model="user.role" @change="e => changeRole(user.id, e.target.value)"
                                         class="border rounded px-2 py-1 text-sm">

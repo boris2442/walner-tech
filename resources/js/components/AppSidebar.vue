@@ -4,6 +4,9 @@ import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import categories from '@/routes/categories';
+import contacts from '@/routes/contacts';
+import users from '@/routes/users';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, MessageCircleMore, Store, Grid, Home } from 'lucide-vue-next';
@@ -22,7 +25,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Contacts',
-        href: 'admin/contact',
+        href: contacts.index().url,
         icon: MessageCircleMore,
     },
 
@@ -33,7 +36,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Categories',
-        href: 'admin/categories',
+        href: categories.index().url,
         icon: Grid,
     },
     {
@@ -43,7 +46,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'users',
-        href: 'admin/users',
+        href: users.index().url,
         icon: BookOpen,
     }
 ];
