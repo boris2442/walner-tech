@@ -6,6 +6,7 @@ import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
 
+
 const props = defineProps<{
     category: {
         id: number;

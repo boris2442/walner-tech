@@ -11,6 +11,7 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, MessageCircleMore, Store, Grid, Home } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import products from '@/routes/products';
 
 const mainNavItems: NavItem[] = [
     {
@@ -31,7 +32,7 @@ const mainNavItems: NavItem[] = [
 
     {
         title: 'Products',
-        href: 'admin/products',
+        href: products.index().url,
         icon: Store,
     },
     {

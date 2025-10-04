@@ -18,14 +18,35 @@
             </div>
 
             <!-- Liste des catégories -->
-            <div class="flex flex-wrap gap-3 justify-center mb-4">
-                <button @click="filterByCategory('')" :class="categoryButtonClass('')">Tous</button>
-                <button v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
+            <!-- <div class="flex  gap-3 justify-center mb-4">
+                <p @click="filterByCategory('')" :class="categoryButtonClass('')">Tous</p>
+                <p v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
                     class="px-4 py-2 text-sm font-medium transition-colors duration-300 border-none dark:text-[#333333]"
                     :class="categoryButtonClass(cat.id)">
                     {{ cat.name }}
-                </button>
+                </p>
+            </div> -->
+
+            <!-- Liste des catégories -->
+            <!-- Liste des catégories -->
+            <div class="flex gap-3 justify-center mb-4 overflow-x-auto whitespace-nowrap">
+                <!-- "Tous" -->
+                <span @click="filterByCategory('')" :class="categoryButtonClass('')"
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
+                    Tous
+                </span>
+
+                <!-- Catégories -->
+                <span v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
+                    :class="categoryButtonClass(cat.id)"
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
+                    {{ cat.name }}
+                </span>
             </div>
+
+
+
+
 
             <hr class="border-t border-gray-300 dark:border-[var(--dark-grey)] mb-6" />
 
@@ -113,7 +134,7 @@
                         <div class="flex-1">
                             <p class="text-sm font-medium truncate">{{ item.title }}</p>
                             <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{ item.quantity
-                                }}</p>
+                            }}</p>
 
                             <!-- Boutons + et - -->
                             <div class="flex items-center mt-1 gap-1">
@@ -156,7 +177,7 @@ import Footer from '@/components/frontend/Footer.vue';
 //import FlashMessage from '@/components/backend/flash/FlashMessage.vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-// import FloatingAction from '@/components/frontend/FloatingAction.vue';
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import { Autoplay, Pagination } from "swiper/modules";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -271,15 +292,28 @@ const totalItems = computed(() => cart.value.reduce((acc, p) => acc + p.quantity
 const cartTotal = computed(() => cart.value.reduce((acc, p) => acc + (p.prix * p.quantity), 0));
 
 // Filtrage catégories (classes)
+
+// function categoryButtonClass(id) {
+//     const selected = selectedCategory.value === id;
+//     return [
+//         'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none',
+//         selected
+//             ? (darkMode.value ? 'bg-[var(--dark-accent)] text-dark-white' : 'bg-accent-cyan text-white')
+//             : (darkMode.value ? 'bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
+//     ];
+// }
+// Dans ton <script setup>
 function categoryButtonClass(id) {
     const selected = selectedCategory.value === id;
     return [
-        'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none',
+        'border-none', // tu peux ajouter d'autres styles communs ici
         selected
-            ? (darkMode.value ? 'bg-[var(--dark-accent)] text-dark-white' : 'bg-accent-cyan text-white')
-            : (darkMode.value ? 'bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
+            ? 'underline text-[var(--accent-cyan)]' // pour montrer la sélection sans bg
+            : 'text-text-dark hover:text-[var(--accent-cyan)]'
     ];
 }
+
+
 
 // Filtrage et recherche
 function updateFilters() {

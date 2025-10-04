@@ -14,11 +14,12 @@ defineProps<{
         created_at: string
     }>
     totalMessages: number
+    messagesThisWeek: number
 }>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Contacts',
         href: dashboard().url,
     },
 ];
@@ -38,6 +39,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="kpi-text">
                         <h3>Total Messages</h3>
                         <p>{{ totalMessages }}</p>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">🆕</div>
+                    <div class="kpi-text">
+                        <h3>Total Messages semaine </h3>
+                        <p>{{ messagesThisWeek }}</p>
                     </div>
                 </div>
 

@@ -60,20 +60,24 @@ Route::prefix('admin')->group(function () {
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::prefix('admin')->group(function () {
+    //affichage formulaire
+    Route::get('/products', [ProductController::class, 'indexBackend'])->name('products.index');
     // Formulaire création produit
-    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
     // Stockage nouveau produit
-    Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 
     // Formulaire édition produit
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
 
     // Mise à jour produit
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 
     // Suppression produit
-    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    // Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+    Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 // Route::middleware('auth')->post('/like/{product}', [LikeController::class, 'toggle']);
 

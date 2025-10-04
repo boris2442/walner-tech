@@ -144,7 +144,9 @@ document.addEventListener('click', handleClickOutside);
                                 <td class="p-2">{{ formatDate(cat.created_at) }}</td>
                                 <td class="p-2">{{ formatDate(cat.updated_at) }}</td>
                                 <td class="p-2 flex gap-2">
-                                    <Link :href="`/admin/categories/${cat.id}/edit`"
+                                    <Link
+                                    prefetch
+                                    :href="`/admin/categories/${cat.id}/edit`"
                                         class="text-blue-500 hover:text-blue-700" title="Éditer">
                                     <Pencil class="w-4 h-4 md:w-5 md:h-5" />
                                     </Link>
