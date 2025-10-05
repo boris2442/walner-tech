@@ -47,7 +47,7 @@ export default {
 
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" />
-            <span>Bafoussam: Immeuble le pelicant Ancien bureau des transports;<br /> Yaoundé Terminus mimboman face
+            <span>Bafoussam: Immeuble le Pelicant Ancien bureau des transports;<br /> Yaoundé Terminus mimboman face
               sapeur
               pompier</span>
           </div>

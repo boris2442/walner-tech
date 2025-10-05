@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ContactBackendController;
+use App\Http\Middleware\IsAdmin;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
@@ -40,74 +41,66 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 // Categories create
 // Route::prefix('/categories')->group(function () {
 
-
-//categorys 
-Route::prefix('admin')->group(function () {
-    Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('categories', [CategoryController::class, 'indexBackend'])->name('categories.index');
-
-    // Route pour la suppression d'une catégorie
-    Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-    Route::get('categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
-});
-
-// });
-
 // Products routes
 // Liste tous les produits
-Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('products', [ProductController::class, 'index'])->name('products');
+
 // Groupe pour le backend (optionnel : middleware auth + admin)
-Route::prefix('admin')->group(function () {
-    //affichage formulaire
-    Route::get('/products', [ProductController::class, 'indexBackend'])->name('products.index');
-    // Formulaire création produit
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
 
-    // Stockage nouveau produit
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+    //categorys 
+    Route::prefix('admin')->group(function () {
+        Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('categories', [CategoryController::class, 'indexBackend'])->name('categories.index');
 
-    // Formulaire édition produit
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        // Route pour la suppression d'une catégorie
+        Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+        Route::get('categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    });
 
-    // Mise à jour produit
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 
-    // Suppression produit
-    // Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-    Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::prefix('admin')->group(function () {
+        //affichage formulaire
+        Route::get('/products', [ProductController::class, 'indexBackend'])->name('products.index');
+        // Formulaire création produit
+        Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+        // Stockage nouveau produit
+        Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+
+        // Formulaire édition produit
+        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+
+        // Mise à jour produit
+        Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+        // Suppression produit
+        // Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+        Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    });
+
+    //page users
+
+    Route::prefix('admin')->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('users', [UserController::class, 'store'])->name('users.store');
+        Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::put('users/{user}/role', [UserController::class, 'updateRole'])->name('users.updateRole');
+
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::get('contact', [ContactBackendController::class, 'index'])->name('contacts.index');
+
+    });
 });
-// Route::middleware('auth')->post('/like/{product}', [LikeController::class, 'toggle']);
-
-// Route::middleware('auth')->group(function() {
-//     Route::post('/like/{product}', [LikeController::class, 'toggle']);
-// });
-
-// Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-
-//Users
-//route::get(admin/users)
-//page not found
-
-Route::prefix('admin')->group(function () {
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
-    Route::get('users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('users', [UserController::class, 'store'])->name('users.store');
-    Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::put('users/{user}/role', [UserController::class, 'updateRole'])->name('users.updateRole');
-
-});
-
-Route::prefix('admin')->group(function () {
-    Route::get('contact', [ContactBackendController::class, 'index'])->name('contacts.index');
-    // Route::get('contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
-    // Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
-});
-
 // Page 404 personnalisée
 Route::fallback(function () {
     return Inertia::render('Frontend/NotFound');

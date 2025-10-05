@@ -31,7 +31,7 @@ import { products } from '@/routes';
                     class="animate-fade-up mb-8 text-md leading-relaxed text-[var(--text-paragraph-light)] opacity-0 delay-200 dark:text-[var(--dark-grey)]">
                     Explorez nos ordinateurs, smartphones et équipements électroniques de qualité.
                 </p>
-                <Link :href="products()" prefetch
+                <Link href="/products" prefetch 
                     class="animate-fade-up bg-boris inline-block transform rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] opacity-0 shadow-md transition-transform delay-400 hover:-translate-y-1 hover:bg-[var(--text-secondary)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
                 Explorer les produits
                 </Link>

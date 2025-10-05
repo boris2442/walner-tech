@@ -12,7 +12,10 @@ import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, MessageCircleMore, Store, Grid, Home } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import products from '@/routes/products';
-
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+const page = usePage();
+const user = computed(() => page.props.auth?.user);
 const mainNavItems: NavItem[] = [
     {
         title: 'Accueil',
@@ -40,11 +43,7 @@ const mainNavItems: NavItem[] = [
         href: categories.index().url,
         icon: Grid,
     },
-    {
-        title: 'Orders',
-        href: 'admin/orders',
-        icon: Folder,
-    },
+
     {
         title: 'users',
         href: users.index().url,
@@ -52,18 +51,18 @@ const mainNavItems: NavItem[] = [
     }
 ];
 
-const footerNavItems: NavItem[] = [
-    // {
-    //     title: 'Github Repo',
-    //     href: 'https://github.com/laravel/vue-starter-kit',
-    //     icon: Folder,
-    // },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
-];
+    const footerNavItems: NavItem[] = [
+        // {
+        //     title: 'Github Repo',
+        //     href: 'https://github.com/laravel/vue-starter-kit',
+        //     icon: Folder,
+        // },
+        // {
+        //     title: 'Documentation',
+        //     href: 'https://laravel.com/docs/starter-kits#vue',
+        //     icon: BookOpen,
+        // },
+    ];
 </script>
 
 <template>

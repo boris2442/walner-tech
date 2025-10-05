@@ -44,7 +44,7 @@
                                 Localisation
                             </h3>
                             <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">
-                                Bafoussam: Immeuble le pelicant Ancien bureau des transports<br />
+                                Bafoussam: Immeuble le Pelicant Ancien bureau des transports<br />
                                 Yaoundé: Terminus mimboman en face, sapeur pompier
                             </p>
                         </div>

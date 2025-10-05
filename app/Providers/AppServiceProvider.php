@@ -18,18 +18,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    // public function boot(): void
-    // {
-    //    Inertia::share([
-    //     'status' => function () {
-    //         return session('status');
-    //     },
-
-    // ]);
-    // }
-
-
-    public function boot()
+    public function boot(): void
     {
         Inertia::share([
             'flash' => function () {
@@ -38,14 +27,17 @@ class AppServiceProvider extends ServiceProvider
                     'error' => session('error'),
                 ];
             },
-            // Ajout de l'utilisateur connecté pour tous les composants
+
+            // 🔹 Ajout de l'utilisateur connecté
             'auth' => function () {
+                $user = auth()->user();
+
                 return [
-                    'user' => auth()->user() ? [
-                        'id' => auth()->user()->id,
-                        'name' => auth()->user()->name,
-                        'email' => auth()->user()->email,
-                        // tu peux ajouter d'autres champs si besoin
+                    'user' => $user ? [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'role' => $user->role, // ✅ important pour Vue
                     ] : null,
                 ];
             },

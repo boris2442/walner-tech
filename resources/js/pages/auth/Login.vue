@@ -126,15 +126,15 @@ const loginWithGoogle = () => {
                 <div class="w-full md:w-1/2 p-6 md:p-8">
                     <!-- <h2 class="text-xl font-semibold mb-6 text-[var(--primary-blue)]">Se connecter</h2> -->
                     <!-- Google login button -->
-                    <Button type="button"
+                    <!-- <Button type="button"
                         class="w-full bg-red-500 text-white hover:bg-red-600 flex items-center justify-center gap-2"
                         @click="loginWithGoogle">
                         <LogIn class="h-5 w-5" />
                         Se connecter avec Google
-                    </Button>
+                    </Button> -->
                     <div class="py-4 text-center text-gray-400 ">
-                        <p>
-                            OU CONNECTEZ-VOUS AVEC ADRESSE E-MAIL</p>
+                        <!-- <p>
+                            OU CONNECTEZ-VOUS AVEC ADRESSE E-MAIL</p> -->
                     </div>
                     <Form v-bind="AuthenticatedSessionController.store.form()" :reset-on-success="['password']"
                         v-slot="{ errors, processing }" class="space-y-6">
