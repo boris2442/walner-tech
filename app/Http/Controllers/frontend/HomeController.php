@@ -11,24 +11,11 @@ class HomeController extends Controller
     public function index()
     {
 
-        return Inertia::render('Frontend/HomePage')
-      
-            ;
+        return Inertia::render('frontend/HomePage')
+
+        ;
     }
 
 
-    //   public function index()
-    // {
-    //      use HasSeo;
-    //     return Inertia::render('Frontend/HomePage', [
-    //         'seo' => $this->seo(
-    //             'Walner Tech - Accueil',
-    //             'Walner Tech : boutique en ligne de PC, accessoires et produits électroniques modernes.',
-    //             'Walner Tech, PC, accessoires, électronique'
-    //         ),
-    //         'auth' => [
-    //             'user' => auth()->user(),
-    //         ],
-    //     ]);
-    // }
+
 }

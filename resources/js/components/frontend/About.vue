@@ -2,6 +2,7 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
 // import { route } from 'ziggy-js';
+import about from '@/routes'
 
 </script>
 <template>
@@ -33,7 +34,7 @@ import { Link } from '@inertiajs/vue3';
                 </ul>
 
                 <!-- Bouton "En savoir plus" -->
-                <Link href="/about" aria-label="En savoir plus sur Walner Tech"
+                <Link :href=about().url aria-label="En savoir plus sur Walner Tech"
                     class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
                 En savoir plus
                 </Link>

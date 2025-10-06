@@ -21,7 +21,7 @@ class ContactBackendController extends Controller
             Carbon::now()->startOfWeek(),
             Carbon::now()->endOfWeek()
         ])->count();
-        return Inertia::render('Backend/Contacts/Contact', [
+        return Inertia::render('backend/contacts/Contact', [
             'messages' => $messages,
             'totalMessages' => Contact::count(), // pour KPI
             'messagesThisWeek' => $messagesThisWeek, // 👈 KPI supplémentaire

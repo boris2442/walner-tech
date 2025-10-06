@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function create()
     {
-        return Inertia::render('Backend/Categories/CategoryCreate');
+        return Inertia::render('backend/categories/CategoryCreate');
     }
     public function store(CategoryRequest $request)
     {
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return Inertia::render('Backend/Categories/CategoryIndex', compact('categories'));
+        return Inertia::render('backend/categories/CategoryIndex', compact('categories'));
     }
 
     public function stats()
@@ -85,7 +85,7 @@ class CategoryController extends Controller
             ->orderBy('created_at', 'desc')
             ->get(); // pas de pagination
 
-        return Inertia::render('Backend/Categories/CategoryIndex', [
+        return Inertia::render('backend/categories/CategoryIndex', [
             'stats' => $stats,
             'categories' => $categories,
         ]);
@@ -122,7 +122,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return inertia('Backend/Categories/Edit', [
+        return inertia('backend/categories/Edit', [
             'category' => $category
         ]);
     }

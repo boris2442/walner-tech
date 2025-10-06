@@ -18,7 +18,8 @@ import { LoaderCircle } from 'lucide-vue-next';
 
     <Head title="Register" />
     <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4 dark:bg-[var(--dark-background)]">
-        <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
+        <div
+            class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
             <!-- Left Section (Welcome Back) -->
             <div
                 class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-8 flex flex-col justify-center items-center sm:rounded-tr-[90px] sm:rounded-br-[90px] dark:bg-[#535353]">

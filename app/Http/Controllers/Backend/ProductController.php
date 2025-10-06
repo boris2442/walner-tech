@@ -43,7 +43,7 @@ class ProductController extends Controller
         // Récupération des catégories
         $categories = Category::all();
 
-        return Inertia::render('Backend/Products/ProductIndex', [
+        return Inertia::render('backend/products/ProductIndex', [
             'products' => $products,          // renvoie tous les produits avec likes_count + liked
             'categories' => $categories,      // toutes les catégories
             'filters' => $request->only(['search', 'category']),
@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return Inertia::render('Backend/Products/ProductCreate', compact('categories'));
+        return Inertia::render('backend/products/ProductCreate', compact('categories'));
     }
 
 
@@ -119,7 +119,7 @@ class ProductController extends Controller
         // Toutes les catégories pour le filtre
         $categories = Category::all();
 
-        return Inertia::render('Backend/produits/Index', [
+        return Inertia::render('backend/produits/Index', [
             'products' => $products,
             'stats' => [
                 'total' => $totalProducts,
@@ -151,7 +151,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return inertia('Backend/produits/Edit', [
+        return inertia('backend/produits/Edit', [
             'product' => $product->load('images'),
             'categories' => $categories,
         ]);

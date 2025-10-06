@@ -8,16 +8,20 @@ use Inertia\Inertia;
 
 class RessourceController extends Controller
 {
-   public function cgu(){
-    return Inertia::render('Frontend/Cgu');
+   public function cgu()
+   {
+      return Inertia::render('frontend/Cgu');
    }
-   public function politiqueDeConfidentialite(){
-    return Inertia::render('Frontend/Privacy');
+   public function politiqueDeConfidentialite()
+   {
+      return Inertia::render('frontend/Privacy');
    }
-   public function mentionsLegales(){
-    return Inertia::render('Frontend/Mentionlegale');
+   public function mentionsLegales()
+   {
+      return Inertia::render('frontend/Mentionlegale');
    }
-   public function noRemboursement(){
-    return Inertia::render('Frontend/Noremboursement');
+   public function noRemboursement()
+   {
+      return Inertia::render('frontend/Noremboursement');
    }
 }
