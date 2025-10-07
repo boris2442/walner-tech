@@ -4,6 +4,7 @@ import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head, usePage } from '@inertiajs/vue3';
 import CategoryPieChart from '@/components/charts/CategoryPieChart.vue';
+import UsersLineChart from '@/components/charts/UsersLineChart.vue';
 import { computed } from 'vue';
 
 // Props Inertia
@@ -13,6 +14,11 @@ console.log(productsByCategory.value);
 
 
 console.log(productsByCategory.value); // Vérifie les données
+
+
+//utilisateurs au fil du temps
+const usersOverTime = computed(() => page.props.users_over_time || []);
+
 
 // Breadcrumbs
 const breadcrumbs: BreadcrumbItem[] = [
@@ -34,13 +40,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                     style="min-height: 320px;">
                     <CategoryPieChart :data="productsByCategory" />
                 </div>
+                <!-- Graphique répartition catégories -->
+                <div class="relative overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-white dark:bg-[var(--dark-background)]"
+                    style="min-height: 320px;">
+                    <UsersLineChart :data="usersOverTime" />
+
+                </div>
 
 
                 <!-- Placeholders pour futurs graph -->
-                <div
+                <!-- <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <p class="text-center p-4 text-gray-500">Graphique à venir</p>
-                </div>
+                </div> -->
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <p class="text-center p-4 text-gray-500">Graphique à venir</p>
