@@ -176,12 +176,14 @@ import Footer from '@/components/frontend/Footer.vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
+// import axios from 'axios';
 import { Autoplay, Pagination } from "swiper/modules";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 library.add(faCartShopping, faHeart)
+
 
 const props = defineProps({
     products: Array,
@@ -252,13 +254,26 @@ function flyToCart(product, event) {
         clone.style.opacity = '0.5';
     }, 50);
 
+    // clone.addEventListener('transitionend', () => {
+    //     document.body.removeChild(clone);
+    //     const item = cart.value.find(p => p.id === product.id);
+    //     if (item) item.quantity += 1;
+    //     else cart.value.push({ ...product, quantity: 1 });
+    //     saveCart();
+    // });
+
+
+
     clone.addEventListener('transitionend', () => {
-        document.body.removeChild(clone);
+        if (document.body.contains(clone)) {
+            document.body.removeChild(clone);
+        }
         const item = cart.value.find(p => p.id === product.id);
         if (item) item.quantity += 1;
         else cart.value.push({ ...product, quantity: 1 });
         saveCart();
     });
+
 }
 
 // Gérer quantité dans le panier
@@ -314,13 +329,52 @@ function getImageUrl(path) {
     return path ? `/storage/${path}` : '/fallback.png';
 }
 
+// function orderOnWhatsapp() {
+
+
+//     const userName = props?.auth?.user?.name;
+//     const userId = props.auth?.user?.id || null;
+
+
+//     axios.post('/api/track-order-click', {
+//         product_id: product.id,
+//         quantity: product.quantity,
+//         user_id: userId,
+//     });
+
+//     const entreprisePhone = "237679135177";
+
+//     let message = `Bonjour, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
+//     cart.value.forEach(item => {
+//         message += `- ${item.title} (x${item.quantity}) : ${item.prix * item.quantity} FCFA\n`;
+//     });
+//     message += `\nTotal : ${cartTotal.value} FCFA\n\nMerci !`;
+
+//     const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
+//     window.open(whatsappUrl, "_blank");
+// }
+// console.log("props.auth:", props.auth);
+// console.log("props.auth.user:", props.auth?.user);
+
+
+
+
 function orderOnWhatsapp() {
     const userName = props?.auth?.user?.name;
-
-
+    const userId = props.auth?.user?.id || null;
     const entreprisePhone = "237679135177";
 
-    let message = `Bonjour, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
+    // Tracker chaque produit du panier
+    cart.value.forEach(item => {
+        axios.post('/api/track-order-click', {
+            product_id: item.id,
+            quantity: item.quantity,
+            user_id: userId,
+        });
+    });
+
+    // Construire message WhatsApp
+    let message = `Hello Walner, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
     cart.value.forEach(item => {
         message += `- ${item.title} (x${item.quantity}) : ${item.prix * item.quantity} FCFA\n`;
     });
@@ -329,9 +383,6 @@ function orderOnWhatsapp() {
     const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 }
-// console.log("props.auth:", props.auth);
-// console.log("props.auth.user:", props.auth?.user);
-
 
 </script>
 

@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Contact;
+use App\Models\Product;
 class DashboardController extends Controller
 {
 
@@ -53,12 +54,25 @@ class DashboardController extends Controller
 
 
 
+
+
+        // Graphe 4 : clics sur "Commander" par produit
+        $ordersByProduct = Product::withCount('orderClicks')
+            ->orderBy('order_clicks_count', 'desc')
+            ->get()
+            ->map(function ($p) {
+                return [
+                    'name' => $p->title,
+                    'count' => (int) $p->order_clicks_count,
+                ];
+            });
         // dd($productsByCategory);
         return Inertia::render('backend/admin/Administrateur', [
             'products_by_category' => $productsByCategory,
             'users_over_time' => $usersOverTime,
             'total_messages' => $totalMessages,
             'last7Days' => $last7Days,       // ✅ ajouter ici
+            'orders_by_product' => $ordersByProduct, // ✅ nouveau graphe
         ]);
     }
 

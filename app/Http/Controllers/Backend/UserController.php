@@ -65,7 +65,7 @@ class UserController extends Controller
         $users = $query->latest()->paginate(70);
         // dd($roles);
 
-        return inertia('Backend/users/UserIndex', [
+        return inertia('backend/users/UserIndex', [
             'auth' => [
                 'user' => Auth::user(), // <-- doit être un objet User
             ],

@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ContactBackendController;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\OrderClickController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 
 // Route::get('/', function () {
@@ -104,9 +105,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 });
 
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin')->middleware(['auth', 'isAdmin']);
 
-
+Route::post('/api/track-order-click', [OrderClickController::class, 'store'])->middleware('auth');
 
 // Page 404 personnalisée
 Route::fallback(function () {

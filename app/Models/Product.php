@@ -43,6 +43,9 @@ public function likes()
 //     return $this->likes()->where('user_id', $user->id)->exists();
 // }
 
+public function orderClicks() {
+    return $this->hasMany(OrderClick::class);
+}
 
 
 }
