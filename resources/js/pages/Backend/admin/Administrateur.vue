@@ -6,9 +6,10 @@ import { Head, usePage } from '@inertiajs/vue3';
 import CategoryPieChart from '@/components/charts/CategoryPieChart.vue';
 import MessagesSparkline from '@/components/charts/MessagesSparkline.vue';
 import UsersLineChart from '@/components/charts/UsersLineChart.vue';
+import ClicksByWeekdayChart from '@/components/charts/ClicksByWeekdayChart.vue';
 import { computed } from 'vue';
 import OrdersByProductChart from '@/components/charts/OrdersByProductChart.vue';
-
+import OrdersByMonthChart from '@/components/charts/OrdersByMonthChart.vue'
 // Props Inertia
 const page = usePage();
 const productsByCategory = computed(() => page.props.products_by_category || []);
@@ -25,6 +26,13 @@ const totalMessages = computed(() => page.props.total_messages || 0);
 
 // Données pour le graphique des commandes par produit
 const ordersClicksData = computed(() => page.props.orders_by_product || []);
+
+// Données pour le graphique des commandes par mois
+const ordersByMonth = computed(() => page.props.orders_by_month || [])
+
+// Props Inertia
+// const clicksByWeekday = computed(() => page.props.clicks_by_weekday || []);
+const clicksLast7Days = computed(() => page.props.clicks_last_7_days || []);
 
 
 
@@ -99,7 +107,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     /* max-width: 400px; */
                     max-height: 400px;
                     ">
-
+                    <OrdersByMonthChart :data="ordersByMonth" />
 
                 </div>
                 <!-- Graphique répartition catégories -->
@@ -110,6 +118,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     ">
 
 
+                    <ClicksByWeekdayChart :data="clicksLast7Days" />
 
 
                 </div>
