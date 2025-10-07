@@ -40,102 +40,96 @@ onMounted(() => {
     <Loading v-if="showLoading" />
 
     <!-- Contenu principal -->
-    <template v-else>
+    <div v-else>
         <NavbarFrontend :auth="$page.props.auth" />
         <FloatingAction />
 
-        <!-- Hero Section -->
-        <section
-            class="relative flex min-h-screen items-center rounded-br-[50%] bg-[var(--primary-blue)] px-6 text-[var(--secondary-white)] md:px-20 md:pt-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] md:pb-0 pb-12 overflow-hidden">
+        <!-- Hero Section Premium -->
+        <section class="relative flex items-start min-h-screen bg-cover bg-center bg-no-repeat
+            px-6 md:px-16 lg:px-32 pt-24 md:pt-32 lg:pt-40 overflow-hidden
+            dark:bg-[var(--dark-background)] dark:text-[#e0e7ff] bg-[#1e293b]"
+            style="background-image: url('/herop2.png');
+            background-size: cover; background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            ">
+        
 
-            <div class="container mx-auto flex flex-col lg:flex-row justify-between gap-10 rounded-lg">
+            <!-- Couche d’assombrissement -->
+            <div class="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
 
-                <!-- Texte -->
-                <div class="max-w-lg lg:text-left">
-                    <h1 :class="[
-                        'mb-4 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold',
-                        animateHero ? 'animate-fade-up opacity-100' : 'opacity-0'
-                    ]">
-                        Walner Tech: Expert en equipement informatiques
-                    </h1>
+            <!-- Contenu principal offset à gauche -->
+            <div class="relative z-10 flex flex-col gap-6 max-w-4xl transform -translate-x-2 md:-translate-x-0">
 
-                    <p :class="[
-                        'mb-8 text-md leading-relaxed text-[var(--text-paragraph-light)] dark:text-[var(--dark-grey)]',
-                        animateHero ? 'animate-fade-up opacity-100 delay-200' : 'opacity-0'
-                    ]">
-                        Explorez nos ordinateurs, smartphones et équipements électroniques de qualité.
-                    </p>
+                <!-- H1 animé slide + fade -->
+                <h1 :class="[
+                    'text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-3xl font-extrabold leading-snug drop-shadow-xl tracking-tight text-[var(--secondary-white)] dark:text-[var(--dark-grey)]',
+                    animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out' : 'opacity-0 translate-y-10'
+                ]">
+                    Walner Tech: <br class="sm:block">Votre expert en équipements informatiques
+                </h1>
 
-                    <Link :href="products().url" :class="[
-                        'bg-boris inline-block transform rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--text-secondary)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]',
-                        animateHero ? 'animate-fade-up opacity-100 delay-400' : 'opacity-0'
+                <!-- Paragraphe animé fade + slide -->
+                <p :class="[
+                    'text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-[var(--secondary-white)] dark:text-[var(--dark-grey)]',
+                    animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out delay-200' : 'opacity-0 translate-y-10'
+                ]">
+                    Découvrez nos ordinateurs, smartphones et accessoires électroniques de qualité,
+                    conçus pour la performance et la durabilité.
+                </p>
+
+                <!-- Bouton animé -->
+                <Link :href="products().url"
+                    prefetch
+                    aria-label="Explorer les produits Walner Tech"
+                    :class="[
+                        'inline-block rounded-lg bg-[var(--highlight-gold)] px-8 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--text-secondary)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)] max-w-[220px]',
+                        animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out delay-400' : 'opacity-0 translate-y-10'
                     ]">
                     Explorer les produits
-                    </Link>
-                </div>
-
-                <!-- Image / Logo -->
-                <div class="w-full max-w-xl lg:w-1/2 rounded-lg overflow-hidden">
-                    <img src="assets/homepage.jpg" alt="Walner Tech" class="w-full h-full object-cover shadow-lg" />
-                </div>
-
+                </Link>
             </div>
         </section>
 
-        <!-- Section Services -->
+        <!-- Services / About / Testimony / Footer restent identiques -->
         <Service />
-
-        <!-- Section À propos -->
         <section id="about" class="bg-[var(--background-light)] py-20 dark:bg-[var(--dark-background)]">
             <div class="container mx-auto flex flex-col-reverse items-center gap-12 px-6 md:flex-row md:gap-16">
-
-                <!-- Texte -->
                 <div class="max-w-xl">
                     <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                         À propos de Walner Tech
                     </h2>
-
                     <p class="mb-6 text-lg text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
                         Chez <span class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Walner
-                            Tech</span>,
+                        Tech</span>,
                         nous croyons que la technologie doit être <span class="text-[var(--highlight-gold)]">accessible,
-                            fiable et innovante</span>.
+                        fiable et innovante</span>.
                         Notre mission est d’accompagner particuliers et entreprises avec des solutions technologiques
                         modernes,
                         allant des produits électroniques aux services de développement et de maintenance.
                     </p>
-
                     <ul class="mb-6 space-y-3">
-                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Expertise en produits
-                            et solutions technologiques</li>
-                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Un service client
-                            rapide et professionnel</li>
-                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Une vision orientée
-                            vers l’innovation et la satisfaction</li>
+                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Expertise en produits et solutions technologiques</li>
+                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Un service client rapide et professionnel</li>
+                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Une vision orientée vers l’innovation et la satisfaction</li>
                     </ul>
-
                     <Link :href="about().url" prefetch aria-label="En savoir plus sur Walner Tech"
                         class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
-                    En savoir plus
+                        En savoir plus
                     </Link>
                 </div>
-
-                <!-- Image -->
                 <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
                     <img src="assets/homepage.jpg" alt="Walner Tech - À propos"
-                        class="w-full h-full object-cover shadow-lg" />
+                        class="w-full h-auto object-cover shadow-lg" />
                 </div>
-
             </div>
         </section>
-
-        <!-- Testimony -->
         <Testimony />
-
-        <!-- Footer -->
         <Footer />
-    </template>
+    </div>
 </template>
+
+
 
 <style scoped>
 /* Animations */

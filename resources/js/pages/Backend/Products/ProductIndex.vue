@@ -4,7 +4,15 @@
     <section>
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-4 min-h-screen transition-colors duration-300">
-            <h1 class="text-xl font-semibold mb-6">Liste des produits</h1>
+            <!-- <h1 class="text-xl font-semibold mb-6">Liste des produits</h1> -->
+            <h1 class="text-2xl font-bold mb-2  text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                Découvrez nos produits exclusifs
+            </h1>
+            <p class="  text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400  mx-auto">
+                Explorez notre collection soigneusement sélectionnée d’appareils électroniques alliant performance,
+                design et fiabilité.
+                Trouvez l’équipement parfait pour booster votre quotidien ou votre entreprise.
+            </p>
 
             <!-- Flash global -->
             <!-- <FlashMessage v-if="$page.props.flash?.success" :message="$page.props.flash.success" type="success" />
@@ -17,17 +25,7 @@
                     class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300" />
             </div>
 
-            <!-- Liste des catégories -->
-            <!-- <div class="flex  gap-3 justify-center mb-4">
-                <p @click="filterByCategory('')" :class="categoryButtonClass('')">Tous</p>
-                <p v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
-                    class="px-4 py-2 text-sm font-medium transition-colors duration-300 border-none dark:text-[#333333]"
-                    :class="categoryButtonClass(cat.id)">
-                    {{ cat.name }}
-                </p>
-            </div> -->
 
-            <!-- Liste des catégories -->
             <!-- Liste des catégories -->
             <div class="flex gap-3 justify-center mb-4 overflow-x-auto whitespace-nowrap">
                 <!-- "Tous" -->
@@ -188,7 +186,8 @@ library.add(faCartShopping, faHeart)
 const props = defineProps({
     products: Array,
     categories: Array,
-    filters: Object
+    filters: Object,
+    auth: Object
 });
 
 const search = ref(props.filters.search || '');
@@ -291,18 +290,6 @@ function toggleCart() {
 const totalItems = computed(() => cart.value.reduce((acc, p) => acc + p.quantity, 0));
 const cartTotal = computed(() => cart.value.reduce((acc, p) => acc + (p.prix * p.quantity), 0));
 
-// Filtrage catégories (classes)
-
-// function categoryButtonClass(id) {
-//     const selected = selectedCategory.value === id;
-//     return [
-//         'px-4 py-2 text-sm font-medium transition-colors duration-300 border-none',
-//         selected
-//             ? (darkMode.value ? 'bg-[var(--dark-accent)] text-dark-white' : 'bg-accent-cyan text-white')
-//             : (darkMode.value ? 'bg-[var(--dark-grey)] text-dark-white hover:bg-[var(--dark-accent)]/60' : 'bg-gray-200 text-text-dark hover:bg-[var(--accent-cyan)]/70 hover:text-white')
-//     ];
-// }
-// Dans ton <script setup>
 function categoryButtonClass(id) {
     const selected = selectedCategory.value === id;
     return [
@@ -312,8 +299,6 @@ function categoryButtonClass(id) {
             : 'text-text-dark hover:text-[var(--accent-cyan)]'
     ];
 }
-
-
 
 // Filtrage et recherche
 function updateFilters() {
@@ -332,7 +317,7 @@ function getImageUrl(path) {
 function orderOnWhatsapp() {
     const userName = props?.auth?.user?.name;
 
-    // ⚠️ Mets ici ton numéro WhatsApp entreprise (format international sans +)
+
     const entreprisePhone = "237679135177";
 
     let message = `Bonjour, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
@@ -344,6 +329,9 @@ function orderOnWhatsapp() {
     const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 }
+// console.log("props.auth:", props.auth);
+// console.log("props.auth.user:", props.auth?.user);
+
 
 </script>
 

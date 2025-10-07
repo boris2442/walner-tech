@@ -47,6 +47,9 @@ class ProductController extends Controller
             'products' => $products,          // renvoie tous les produits avec likes_count + liked
             'categories' => $categories,      // toutes les catégories
             'filters' => $request->only(['search', 'category']),
+            'auth' => [
+                'user' => auth()->user()
+            ],
         ]);
     }
 
