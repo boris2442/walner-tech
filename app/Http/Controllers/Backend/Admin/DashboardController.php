@@ -8,27 +8,10 @@ use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\Contact;
 class DashboardController extends Controller
 {
-    //  public function index()
-    // {
-    //     // Répartition des produits par catégorie
-    //     $productsByCategory = Category::withCount('products')
-    //         ->orderBy('products_count', 'desc')
-    //         ->get()
-    //         ->map(function($c) {
-    //             return [
-    //                 'name'  => $c->name,
-    //                 'count' => (int) $c->products_count,
-    //             ];
-    //         });
-
-    //     // tu peux renvoyer d'autres dataset plus tard (users, top_products, ...)
-    //     return Inertia::render('backend/admin/Administrateur', [
-    //         'products_by_category' => $productsByCategory,
-    //     ]);
-    // }
-
 
     public function index()
     {
@@ -55,10 +38,27 @@ class DashboardController extends Controller
             ]);
 
 
+        // Graphe 4 : messages reçus récemment (7 derniers jours)
+        // Messages reçus sur les 7 derniers jours
+        $last7Days = collect();
+        for ($i = 6; $i >= 0; $i--) {
+            $day = Carbon::today()->subDays($i);
+            $count = Contact::whereDate('created_at', $day)->count();
+            $last7Days->push([
+                'date' => $day->format('Y-m-d'),
+                'count' => $count,
+            ]);
+        }
+        $totalMessages = $last7Days->sum('count');
+
+
+
         // dd($productsByCategory);
         return Inertia::render('backend/admin/Administrateur', [
             'products_by_category' => $productsByCategory,
             'users_over_time' => $usersOverTime,
+            'total_messages' => $totalMessages,
+            'last7Days' => $last7Days,       // ✅ ajouter ici
         ]);
     }
 

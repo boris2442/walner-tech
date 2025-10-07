@@ -22,7 +22,7 @@ import {
     PointElement,
     LineController,  // <-- ajouter
     CategoryScale,   // <-- ajouter
-    LinearScale
+    LinearScale,Filler 
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 

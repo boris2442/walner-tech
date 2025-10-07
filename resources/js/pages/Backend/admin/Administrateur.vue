@@ -4,6 +4,7 @@ import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head, usePage } from '@inertiajs/vue3';
 import CategoryPieChart from '@/components/charts/CategoryPieChart.vue';
+import MessagesSparkline from '@/components/charts/MessagesSparkline.vue';
 import UsersLineChart from '@/components/charts/UsersLineChart.vue';
 import { computed } from 'vue';
 
@@ -18,6 +19,10 @@ console.log(productsByCategory.value); // Vérifie les données
 
 //utilisateurs au fil du temps
 const usersOverTime = computed(() => page.props.users_over_time || []);
+
+// Messages sur les 7 derniers jours
+const last7Days = computed(() => page.props.last7Days || []);
+const totalMessages = computed(() => page.props.total_messages || 0);
 
 
 // Breadcrumbs
@@ -46,6 +51,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <UsersLineChart :data="usersOverTime" />
 
                 </div>
+                <!-- Graphique répartition catégories -->
+                <div class="relative overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-white dark:bg-[var(--dark-background)]"
+                   
+                    >
+                    <MessagesSparkline :data="last7Days" :totalMessages="totalMessages" />
+
+
+
+                </div>
 
 
                 <!-- Placeholders pour futurs graph -->
@@ -53,10 +67,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <p class="text-center p-4 text-gray-500">Graphique à venir</p>
                 </div> -->
-                <div
+                <!-- <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <p class="text-center p-4 text-gray-500">Graphique à venir</p>
-                </div>
+                </div> -->
             </div>
 
             <div
