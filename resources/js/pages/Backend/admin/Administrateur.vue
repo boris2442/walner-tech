@@ -21,9 +21,6 @@ const usersOverTime = computed(() => page.props.users_over_time || []);
 const last7Days = computed(() => page.props.last7Days || []);
 const totalMessages = computed(() => page.props.total_messages || 0);
 
-
-
-
 // Données pour le graphique des commandes par produit
 const ordersClicksData = computed(() => page.props.orders_by_product || []);
 
@@ -121,7 +118,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <ClicksByWeekdayChart :data="clicksLast7Days" />
 
 
-                </div>
+                </div> 
 
 
                 <!-- Placeholders pour futurs graph -->

@@ -186,4 +186,16 @@ class ProductController extends Controller
         return redirect()->route('products.index', $product->id)
             ->with('success', 'Produit mis à jour avec succès');
     }
+
+
+    public function show(Product $product)
+    {
+        // Charger les images et likes
+        $product->load('images');
+        return Inertia::render('backend/products/ProductDetail', [
+            'product' => $product,
+            'auth' => auth()->user()
+        ]);
+    }
+
 }

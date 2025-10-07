@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 class ProductImage extends Model
 {
     use HasFactory;
@@ -21,5 +22,12 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
-    
+    protected static function booted()
+{
+    static::creating(function ($image) {
+        if (!$image->uuid) {
+            $image->uuid = (string) Str::uuid();
+        }
+    });
+}
 }

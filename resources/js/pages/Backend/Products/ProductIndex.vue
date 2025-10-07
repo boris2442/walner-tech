@@ -1,50 +1,39 @@
 <template>
     <NavbarFrontend :auth="$page.props.auth" />
-    <FloatingAction />
+    <!-- <FloatingAction /> -->
+   
+    <!-- Section Produits -->
     <section>
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-4 min-h-screen transition-colors duration-300">
-            <!-- <h1 class="text-xl font-semibold mb-6">Liste des produits</h1> -->
-            <h1 class="text-2xl font-bold mb-2  text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+
+            <h1 class="text-2xl font-bold mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                 Découvrez nos produits exclusifs
             </h1>
-            <p class="  text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400  mx-auto">
+            <p class="text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400 mx-auto">
                 Explorez notre collection soigneusement sélectionnée d’appareils électroniques alliant performance,
-                design et fiabilité.
-                Trouvez l’équipement parfait pour booster votre quotidien ou votre entreprise.
+                design et fiabilité. Trouvez l’équipement parfait pour booster votre quotidien ou votre entreprise.
             </p>
-
-            <!-- Flash global -->
-            <!-- <FlashMessage v-if="$page.props.flash?.success" :message="$page.props.flash.success" type="success" />
-            <FlashMessage v-if="$page.props.flash?.error" :message="$page.props.flash.error" type="error" /> -->
 
             <!-- Barre de recherche -->
             <div class="mb-6 flex justify-center">
-                <input v-model="search" @input="updateFilters" type="text" placeholder="Rechercher un produit..."
+                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
                     :class="darkMode ? 'border-dark-grey bg-dark-background text-dark-white placeholder-dark-grey focus:ring-dark-accent' : 'border-text-secondary bg-background-light text-text-dark placeholder-text-secondary focus:ring-accent-cyan'"
                     class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300" />
             </div>
 
-
             <!-- Liste des catégories -->
             <div class="flex gap-3 justify-center mb-4 overflow-x-auto whitespace-nowrap">
-                <!-- "Tous" -->
                 <span @click="filterByCategory('')" :class="categoryButtonClass('')"
                     class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
                     Tous
                 </span>
-
-                <!-- Catégories -->
                 <span v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
                     :class="categoryButtonClass(cat.id)"
                     class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
                     {{ cat.name }}
                 </span>
             </div>
-
-
-
-
 
             <hr class="border-t border-gray-300 dark:border-[var(--dark-grey)] mb-6" />
 
@@ -60,13 +49,14 @@
             </div>
 
             <!-- Produits -->
-            <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 flex-wrap">
                 <div v-for="product in filteredProducts" :key="product.id"
                     class="product-card rounded flex flex-col transition-transform duration-300 hover:scale-105"
                     :class="darkMode ? 'bg-[var(--dark-background)] shadow-md border border-[var(--dark-grey)]' : 'bg-background-light shadow-md'">
 
                     <!-- Images -->
                     <div class="overflow-hidden rounded">
+                        <Link :href="`/products/${product.id}`"  prefetch  class="hover:underline">
                         <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
                             :autoplay="{ delay: 3000 }" pagination loop>
                             <swiper-slide v-for="img in product.images" :key="img.id">
@@ -76,30 +66,29 @@
                         </swiper>
                         <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title"
                             class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
+                        </Link>
                     </div>
-
                     <!-- Infos produit -->
                     <div class="p-3 flex flex-col flex-1">
+
                         <h3 class="text-sm font-medium truncate mt-2">{{ product.title }}</h3>
-                        <p class="text-xs mt-1 line-clamp-3"
-                            :class="darkMode ? 'text-[var(--dark-grey)]' : 'text-text-secondary'">{{ product.description
-                            }}</p>
+
                         <p class="text-sm font-semibold mt-2" :class="darkMode ? 'text-dark-white' : 'text-text-dark'">
                             {{ product.prix }} FCFA</p>
+                    </div>
 
-                        <!-- Boutons -->
-                        <div class="mt-auto flex justify-between items-center">
-                            <button @click="flyToCart(product, $event)"
-                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
-                                <font-awesome-icon :icon="['fas', 'cart-shopping']" />
-                            </button>
+                    <!-- Boutons -->
+                    <div class="mt-auto flex justify-between items-center">
+                        <button @click="addToCart(product, $event)"
+                            class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
+                            <font-awesome-icon :icon="['fas', 'cart-shopping']" />
+                        </button>
 
-                            <button @click="toggleLike(product)"
-                                :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
-                                <font-awesome-icon :icon="['far', 'heart']" />
-                                <span class="ml-1 text-sm">{{ product.likes_count }}</span>
-                            </button>
-                        </div>
+                        <button @click="toggleLike(product)"
+                            :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
+                            <font-awesome-icon :icon="['far', 'heart']" />
+                            <span class="ml-1 text-sm">{{ product.likes_count }}</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -109,58 +98,53 @@
                 class="text-center mt-6 text-gray-500 dark:text-dark-grey">
                 Aucun produit trouvé
             </div>
-        </div>
 
-        <!-- Panier flottant -->
-        <div class="fixed bottom-6 right-6 z-50">
-            <button ref="cartButton" @click="toggleCart"
-                class="relative  bg-[var(--primary-blue)]  rounded-full w-12 h-12 flex items-center justify-center text-[var(--dark-gold)] shadow-lg">
-                <font-awesome-icon :icon="['fas', 'cart-shopping']" class="text-2xl" />
-                <span v-if="cart.length"
-                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                    {{ totalItems }}
-                </span>
-            </button>
+            <!-- Panier flottant -->
+            <div class="fixed bottom-6 right-6 z-50">
+                <button ref="cartButton" @click="toggleCart"
+                    class="relative bg-[var(--primary-blue)] rounded-full w-12 h-12 flex items-center justify-center text-[var(--dark-gold)] shadow-lg">
+                    <font-awesome-icon :icon="['fas', 'cart-shopping']" class="text-2xl" />
+                    <span v-if="cart.length"
+                        class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                        {{ totalItems }}
+                    </span>
+                </button>
 
-            <!-- Mini panier -->
-            <transition name="fade-slide">
-                <div v-if="showCart"
-                    class="mt-2 w-72 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll">
-                    <div v-for="item in cart" :key="item.id" class="flex items-center mb-2">
-                        <img :src="getImageUrl(item.images[0]?.url_image)"
-                            class="w-12 h-12 object-cover rounded mr-2" />
-                        <div class="flex-1">
-                            <p class="text-sm font-medium truncate">{{ item.title }}</p>
-                            <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{ item.quantity
-                                }}</p>
-
-                            <!-- Boutons + et - -->
-                            <div class="flex items-center mt-1 gap-1">
-                                <button @click="decreaseQuantity(item)"
-                                    class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">-</button>
-                                <span class="px-2">{{ item.quantity }}</span>
-                                <button @click="increaseQuantity(item)"
-                                    class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">+</button>
+                <!-- Mini panier -->
+                <transition name="fade-slide">
+                    <div v-if="showCart"
+                        class="mt-2 w-72 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll">
+                        <div v-for="item in cart" :key="item.id" class="flex items-center mb-2">
+                            <img :src="getImageUrl(item.images[0]?.url_image)"
+                                class="w-12 h-12 object-cover rounded mr-2" />
+                            <div class="flex-1">
+                                <p class="text-sm font-medium truncate">{{ item.title }}</p>
+                                <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{
+                                    item.quantity }}</p>
+                                <div class="flex items-center mt-1 gap-1">
+                                    <button @click="decreaseQuantity(item)"
+                                        class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">-</button>
+                                    <span class="px-2">{{ item.quantity }}</span>
+                                    <button @click="increaseQuantity(item)"
+                                        class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">+</button>
+                                </div>
                             </div>
                         </div>
+                        <hr class="my-2 border-gray-300 dark:border-[var(--dark-grey)]" />
+                        <div class="flex justify-between font-semibold">
+                            <span>Total :</span>
+                            <span class="text-[var(--dark-white)]">{{ cartTotal }} FCFA</span>
+                        </div>
+                        <div class="mt-3">
+                            <button @click="orderOnWhatsapp"
+                                class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] dark:text-dark-white py-2 rounded dark:hover:bg-[var(--dark-gold)]/80 transition">
+                                Commander
+                            </button>
+                        </div>
                     </div>
-                    <hr class="my-2 border-gray-300 dark:border-[var(--dark-grey)]" />
-                    <div class="flex justify-between font-semibold">
-                        <span>Total :</span>
-                        <span class="taxt-[var(--dark-white)]">{{ cartTotal }} FCFA</span>
-                    </div>
-                    <!-- Bouton commander -->
-                    <div class="mt-3">
-                        <button @click="orderOnWhatsapp"
-                            class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] dark:text-dark-white py-2 rounded  dark:hover:bg-[var(--dark-gold)]/80 transition">
-                            Commander
-                        </button>
-
-                    </div>
-                </div>
-            </transition>
+                </transition>
+            </div>
         </div>
-
     </section>
 
     <Footer />
@@ -172,18 +156,17 @@ import axios from 'axios';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
-//import FlashMessage from '@/components/backend/flash/FlashMessage.vue';
+import { Link } from '@inertiajs/inertia-vue3';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import FloatingAction from '@/components/frontend/FloatingAction.vue';
-// import axios from 'axios';
+// import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import { Autoplay, Pagination } from "swiper/modules";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
-library.add(faCartShopping, faHeart)
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+library.add(faCartShopping, faHeart);
 
 const props = defineProps({
     products: Array,
@@ -202,13 +185,14 @@ const cart = ref([]);
 const showCart = ref(false);
 const cartButton = ref(null);
 
+// Debounce recherche
+let searchTimeout = null;
+
 onMounted(() => {
     darkMode.value = localStorage.getItem('darkMode') === 'true';
-    setTimeout(() => loading.value = false, 1500);
-
-    // Charger panier depuis localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) cart.value = JSON.parse(savedCart);
+    loading.value = false;
 });
 
 // Filtrage produit
@@ -225,11 +209,17 @@ function toggleLike(product) {
     axios.post(`/like/${product.id}`).then(res => {
         product.liked = res.data.liked;
         product.likes_count = res.data.likesCount;
-    });
+    }).catch(() => { });
 }
 
-// Fly-to-cart
-function flyToCart(product, event) {
+// Ajouter au panier avec animation
+function addToCart(product, event) {
+    const item = cart.value.find(p => p.id === product.id);
+    if (item) item.quantity += 1;
+    else cart.value.push({ ...product, quantity: 1 });
+    saveCart();
+
+    if (!event) return;
     const img = event.currentTarget.closest('.product-card').querySelector('img');
     if (!img) return;
 
@@ -242,7 +232,6 @@ function flyToCart(product, event) {
     clone.style.height = imgRect.height + 'px';
     clone.style.transition = 'all 0.7s ease-in-out';
     clone.style.zIndex = 1000;
-
     document.body.appendChild(clone);
 
     const cartRect = cartButton.value.getBoundingClientRect();
@@ -254,52 +243,18 @@ function flyToCart(product, event) {
         clone.style.opacity = '0.5';
     }, 50);
 
-    // clone.addEventListener('transitionend', () => {
-    //     document.body.removeChild(clone);
-    //     const item = cart.value.find(p => p.id === product.id);
-    //     if (item) item.quantity += 1;
-    //     else cart.value.push({ ...product, quantity: 1 });
-    //     saveCart();
-    // });
-
-
-
     clone.addEventListener('transitionend', () => {
-        if (document.body.contains(clone)) {
-            document.body.removeChild(clone);
-        }
-        const item = cart.value.find(p => p.id === product.id);
-        if (item) item.quantity += 1;
-        else cart.value.push({ ...product, quantity: 1 });
-        saveCart();
+        if (document.body.contains(clone)) document.body.removeChild(clone);
     });
-
 }
 
-// Gérer quantité dans le panier
-function increaseQuantity(item) {
-    item.quantity += 1;
-    saveCart();
-}
-
-function decreaseQuantity(item) {
-    if (item.quantity > 1) item.quantity -= 1;
-    else {
-        const index = cart.value.findIndex(p => p.id === item.id);
-        if (index !== -1) cart.value.splice(index, 1);
-    }
-    saveCart();
-}
-
-// Stockage local
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart.value));
-}
+// Gérer quantité
+function increaseQuantity(item) { item.quantity += 1; saveCart(); }
+function decreaseQuantity(item) { if (item.quantity > 1) item.quantity -= 1; else cart.value = cart.value.filter(p => p.id !== item.id); saveCart(); }
+function saveCart() { localStorage.setItem('cart', JSON.stringify(cart.value)); }
 
 // Toggle mini-panier
-function toggleCart() {
-    showCart.value = !showCart.value;
-}
+function toggleCart() { showCart.value = !showCart.value; }
 
 // Total items et total prix
 const totalItems = computed(() => cart.value.reduce((acc, p) => acc + p.quantity, 0));
@@ -308,9 +263,9 @@ const cartTotal = computed(() => cart.value.reduce((acc, p) => acc + (p.prix * p
 function categoryButtonClass(id) {
     const selected = selectedCategory.value === id;
     return [
-        'border-none', // tu peux ajouter d'autres styles communs ici
+        'border-none',
         selected
-            ? 'underline text-[var(--accent-cyan)]' // pour montrer la sélection sans bg
+            ? 'underline text-[var(--accent-cyan)]'
             : 'text-text-dark hover:text-[var(--accent-cyan)]'
     ];
 }
@@ -324,56 +279,29 @@ function filterByCategory(id) {
     updateFilters();
 }
 
-// Obtenir URL image
-function getImageUrl(path) {
-    return path ? `/storage/${path}` : '/fallback.png';
+// Debounce recherche
+function onSearchInput() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(updateFilters, 300);
 }
 
-// function orderOnWhatsapp() {
+// Obtenir URL image
+function getImageUrl(path) { return path ? `/storage/${path}` : '/fallback.png'; }
 
-
-//     const userName = props?.auth?.user?.name;
-//     const userId = props.auth?.user?.id || null;
-
-
-//     axios.post('/api/track-order-click', {
-//         product_id: product.id,
-//         quantity: product.quantity,
-//         user_id: userId,
-//     });
-
-//     const entreprisePhone = "237679135177";
-
-//     let message = `Bonjour, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
-//     cart.value.forEach(item => {
-//         message += `- ${item.title} (x${item.quantity}) : ${item.prix * item.quantity} FCFA\n`;
-//     });
-//     message += `\nTotal : ${cartTotal.value} FCFA\n\nMerci !`;
-
-//     const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
-//     window.open(whatsappUrl, "_blank");
-// }
-// console.log("props.auth:", props.auth);
-// console.log("props.auth.user:", props.auth?.user);
-
-
-
-
+// Commander sur WhatsApp
 function orderOnWhatsapp() {
-    const userName = props?.auth?.user?.name;
+    const userName = props?.auth?.user?.name || 'Client';
     const userId = props.auth?.user?.id || null;
     const entreprisePhone = "237679135177";
 
-    // Tracker chaque produit du panier
     cart.value.forEach(item => {
         axios.post('/api/track-order-click', {
             product_id: item.id,
             quantity: item.quantity,
             user_id: userId,
-        });
+        }).catch(() => { });
     });
 
-    // Construire message WhatsApp
     let message = `Hello Walner, je suis ${userName}.\n\nJe souhaite commander les articles suivants :\n`;
     cart.value.forEach(item => {
         message += `- ${item.title} (x${item.quantity}) : ${item.prix * item.quantity} FCFA\n`;
@@ -383,7 +311,6 @@ function orderOnWhatsapp() {
     const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 }
-
 </script>
 
 <style scoped>
@@ -394,21 +321,7 @@ function orderOnWhatsapp() {
     overflow: hidden;
 }
 
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-    transition: all 0.3s ease;
-}
-
-.fade-slide-enter-from {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.fade-slide-leave-to {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
+/* Fade slide transition */
 .fade-slide-enter-active,
 .fade-slide-leave-active {
     transition: all 0.3s ease;
@@ -434,10 +347,7 @@ function orderOnWhatsapp() {
     transform: translateY(-20px);
 }
 
-
-
-
-/* Scroll invisible */
+/* Scroll invisible panier */
 .cart-scroll {
     max-height: 350px;
     overflow-y: auto;
