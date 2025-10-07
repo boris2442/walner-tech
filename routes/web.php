@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ContactBackendController;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\Backend\Admin\DashboardController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
@@ -101,6 +102,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     });
 });
+
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
+
+
+
 // Page 404 personnalisée
 Route::fallback(function () {
     return Inertia::render('Frontend/NotFound');

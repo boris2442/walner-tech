@@ -1,12 +1,13 @@
 import '../css/app.css';
 
-import { createInertiaApp,Link } from '@inertiajs/vue3';
-import NProgress from './plugins/nprogress'; // notre fichier
+import { Inertia } from '@inertiajs/inertia';
+import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 
 import { initializeTheme } from './composables/useAppearance';
+import NProgress from './plugins/nprogress'; // notre fichier
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -16,7 +17,8 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
-            // .component('Link', Link) // très important ⚡
+        
+
             .mount(el);
     },
     progress: {
@@ -24,9 +26,7 @@ createInertiaApp({
     },
 });
 
-
 initializeTheme();
-import { Inertia } from '@inertiajs/inertia';
 
 Inertia.on('start', () => NProgress.start());
 Inertia.on('finish', () => NProgress.done());

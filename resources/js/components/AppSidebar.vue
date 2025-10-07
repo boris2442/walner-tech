@@ -7,6 +7,7 @@ import { dashboard } from '@/routes';
 import categories from '@/routes/categories';
 import contacts from '@/routes/contacts';
 import users from '@/routes/users';
+import dashboardAdmin from '@/routes/dashboard';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, MessageCircleMore, Store, Grid, Home } from 'lucide-vue-next';
@@ -49,20 +50,27 @@ const mainNavItems: NavItem[] = [
         href: users.index().url,
         icon: BookOpen,
     }
+    ,
+
+    {
+        title: 'Administrateurs',
+        href: dashboardAdmin.admin().url,
+        icon: LayoutGrid,
+    }
 ];
 
-    const footerNavItems: NavItem[] = [
-        // {
-        //     title: 'Github Repo',
-        //     href: 'https://github.com/laravel/vue-starter-kit',
-        //     icon: Folder,
-        // },
-        // {
-        //     title: 'Documentation',
-        //     href: 'https://laravel.com/docs/starter-kits#vue',
-        //     icon: BookOpen,
-        // },
-    ];
+const footerNavItems: NavItem[] = [
+    // {
+    //     title: 'Github Repo',
+    //     href: 'https://github.com/laravel/vue-starter-kit',
+    //     icon: Folder,
+    // },
+    // {
+    //     title: 'Documentation',
+    //     href: 'https://laravel.com/docs/starter-kits#vue',
+    //     icon: BookOpen,
+    // },
+];
 </script>
 
 <template>
