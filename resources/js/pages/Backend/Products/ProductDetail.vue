@@ -1,6 +1,6 @@
 <template>
     <NavbarFrontend :auth="$page.props.auth" />
-      <BackButton class="m-4" />
+    <BackButton class="m-4" />
     <div class=" bg-background-light dark:bg-dark-background text-text-dark dark:text-dark-white p-4 md:p-8">
 
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -11,6 +11,7 @@
                     <swiper-slide v-for="img in product.images" :key="img.id">
                         <img :src="getImageUrl(img.url_image)" :alt="product.title"
                             class="w-full h-80 md:h-[500px] object-cover rounded" />
+
                     </swiper-slide>
                 </swiper>
                 <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title"
