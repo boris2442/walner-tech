@@ -56,7 +56,7 @@
 
                     <!-- Images -->
                     <div class="overflow-hidden rounded">
-                        <Link :href="`/products/${product.id}`" prefetch class="hover:underline">
+                        <Link :href="`/products/${product.uuid}`" prefetch class="hover:underline">
                         <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
                             :autoplay="{ delay: 3000 }" pagination loop>
                             <swiper-slide v-for="img in product.images" :key="img.id">

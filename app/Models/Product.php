@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
@@ -31,21 +32,27 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-   // Product.php
-public function likes()
-{
-    return $this->hasMany(\App\Models\LikeProduit::class);
-}
+    // Product.php
+    public function likes()
+    {
+        return $this->hasMany(\App\Models\LikeProduit::class);
+    }
 
 
-// public function isLikedBy($user)
+    // public function isLikedBy($user)
 // {
 //     return $this->likes()->where('user_id', $user->id)->exists();
 // }
 
-public function orderClicks() {
-    return $this->hasMany(OrderClick::class);
-}
+    public function orderClicks()
+    {
+        return $this->hasMany(OrderClick::class);
+    }
 
-
+    protected static function booted()
+    {
+        static::creating(function ($product) {
+            $product->uuid = (string) Str::uuid();
+        });
+    }
 }

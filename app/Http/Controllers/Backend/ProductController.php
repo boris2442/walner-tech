@@ -249,4 +249,14 @@ class ProductController extends Controller
         ]);
     }
 
+
+    public function showByUuid($uuid)
+    {
+        $product = Product::where('uuid', $uuid)->with('images')->firstOrFail();
+        return Inertia::render('backend/products/ProductDetail', [
+            'product' => $product,
+            'auth' => auth()->user()
+        ]);
+    }
+
 }

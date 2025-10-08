@@ -47,13 +47,12 @@ onMounted(() => {
         <!-- Hero Section Premium -->
         <section class="relative flex items-start min-h-screen bg-cover bg-center bg-no-repeat
             px-6 md:px-16 lg:px-32 pt-24 md:pt-32 lg:pt-40 overflow-hidden
-            dark:bg-[var(--dark-background)] dark:text-[#e0e7ff] bg-[#1e293b]"
-            style="background-image: url('/herop2.png');
+            dark:bg-[var(--dark-background)] dark:text-[#e0e7ff] bg-[#1e293b]" style="background-image: url('/herop2.png');
             background-size: cover; background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             ">
-        
+
 
             <!-- Couche d’assombrissement -->
             <div class="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
@@ -79,51 +78,62 @@ onMounted(() => {
                 </p>
 
                 <!-- Bouton animé -->
-                <Link :href="products().url"
-                    prefetch
-                    aria-label="Explorer les produits Walner Tech"
-                    :class="[
-                        'inline-block rounded-lg bg-[var(--highlight-gold)] px-8 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--text-secondary)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)] max-w-[220px]',
-                        animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out delay-400' : 'opacity-0 translate-y-10'
-                    ]">
-                    Explorer les produits
+                <Link :href="products().url" prefetch aria-label="Explorer les produits Walner Tech" :class="[
+                    'inline-block rounded-lg bg-[var(--highlight-gold)] px-8 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--text-secondary)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)] max-w-[220px]',
+                    animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out delay-400' : 'opacity-0 translate-y-10'
+                ]">
+                Explorer les produits
                 </Link>
             </div>
         </section>
 
         <!-- Services / About / Testimony / Footer restent identiques -->
         <Service />
-        <section id="about" class="bg-[var(--background-light)] py-20 dark:bg-[var(--dark-background)]">
-            <div class="container mx-auto flex flex-col-reverse items-center gap-12 px-6 md:flex-row md:gap-16">
-                <div class="max-w-xl">
-                    <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+        <section id="about" class="bg-[var(--background-light)] py-12 md:py-20 dark:bg-[var(--dark-background)]">
+            <div class="container mx-auto flex flex-col-reverse items-center gap-8 px-4 md:flex-row md:gap-16 max-w-6xl">
+
+                <!-- Texte -->
+                <div class="w-full md:w-1/2 max-w-xl md:text-left">
+                    <h2
+                        class="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                         À propos de Walner Tech
                     </h2>
-                    <p class="mb-6 text-lg text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
+                    <p
+                        class="mb-6 text-[var(--text-dark)] dark:text-[var(--dark-grey)] text-base sm:text-sm md:text-base lg:text-lg leading-relaxed sm:leading-6 md:leading-7 lg:leading-8">
                         Chez <span class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Walner
-                        Tech</span>,
+                            Tech</span>,
                         nous croyons que la technologie doit être <span class="text-[var(--highlight-gold)]">accessible,
-                        fiable et innovante</span>.
-                        Notre mission est d’accompagner particuliers et entreprises avec des solutions technologiques
-                        modernes,
-                        allant des produits électroniques aux services de développement et de maintenance.
+                            fiable et innovante</span>.
+                        Notre mission est d’accompagner particuliers et entreprises avec des solutions modernes, allant
+                        des produits électroniques aux services de développement, maintenance et support technique
+                        personnalisé.
+                        <br /><br />
+                        Chaque projet est traité avec attention pour garantir qualité, performance et satisfaction, tout
+                        en restant à l’écoute des besoins de nos clients.
                     </p>
-                    <ul class="mb-6 space-y-3">
-                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Expertise en produits et solutions technologiques</li>
-                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Un service client rapide et professionnel</li>
-                        <li class="text-[var(--text-secondary)] dark:text-[var(--dark-grey)]">✔️ Une vision orientée vers l’innovation et la satisfaction</li>
+                    <ul
+                        class="mb-6 space-y-2 text-[var(--text-secondary)] dark:text-[var(--dark-grey)] text-sm sm:text-sm md:text-base leading-relaxed">
+                        <li>✔️ Expertise en produits et solutions technologiques adaptées à chaque client</li>
+                        <li>✔️ Service client réactif, professionnel et disponible</li>
+                        <li>✔️ Innovation constante et vision orientée vers la satisfaction totale</li>
                     </ul>
                     <Link :href="about().url" prefetch aria-label="En savoir plus sur Walner Tech"
-                        class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
-                        En savoir plus
+                        class="inline-block rounded-lg bg-[var(--highlight-gold)] px-5 py-3 text-sm sm:text-sm md:text-base font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
+                    En savoir plus
                     </Link>
                 </div>
-                <div class="w-full md:w-1/2 rounded-lg overflow-hidden">
-                    <img src="assets/homepage.jpg" alt="Walner Tech - À propos"
-                        class="w-full h-auto object-cover shadow-lg" />
+
+                <!-- Image -->
+                <div class="w-full md:w-1/2 rounded-lg overflow-hidden flex justify-center md:justify-end">
+                    <img src="assets/about1.jpg" alt="Walner Tech - À propos"
+                        class="w-full max-w-[350px] sm:max-w-xs md:max-w-sm lg:max-w-md h-auto object-cover shadow-lg rounded-lg transition-transform duration-500 hover:scale-105" />
                 </div>
+
             </div>
         </section>
+
+
+
         <Testimony />
         <Footer />
     </div>

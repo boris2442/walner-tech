@@ -2,39 +2,38 @@
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction />
     <section
-        class="about min-h-screen  px-6 py-16 text-[var(--text-dark)] md:px-20 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-        <div class="mx-auto  space-y-16">
+        class="about min-h-screen px-6 py-6 text-[var(--text-dark)] md:px-20 lg:px-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
 
+        <div class="mx-auto max-w-6xl space-y-10">
 
+            <!-- Notre mission -->
             <div>
                 <h2 class="mt-6 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                     Notre mission
                 </h2>
                 <p
-                    class="mb-8 text-[14px] leading-relaxed sm:text-[14px] md:text-[16px] text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
-                    Chez <strong>Walner Tech</strong>, notre mission est de <span
-                        class="text-[var(--highlight-gold)]">fournir des appareils électroniques de qualité</span>
-                    et des accessoires fiables, tout en offrant un service client exceptionnel pour simplifier votre
-                    quotidien numérique.
+                    class="mb-8 text-[14px] sm:text-[14px] md:text-[16px] leading-relaxed text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
+                    Chez <strong>Walner Tech</strong>, notre mission est de <span class="text-[var(--highlight-gold)]">
+                        fournir des appareils électroniques de qualité</span> et des accessoires fiables, tout en
+                    offrant un
+                    service client exceptionnel pour simplifier votre quotidien numérique.
+                    <br /><br />
+                    Nous combinons expertise technique et approche client pour garantir une expérience optimale à chaque
+                    étape, du choix du produit au support après-vente.
                 </p>
-
-             
-
 
                 <div class="grid gap-6 md:grid-cols-3">
                     <div v-for="(product, index) in products" :key="index"
                         class="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group">
-                        <!-- Icône -->
+
                         <font-awesome-icon :icon="product.icon"
                             class="mb-3 text-2xl text-[var(--primary-blue)] dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]" />
 
-                        <!-- Titre -->
                         <h3
                             class="font-semibold text-lg mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-white)] group-hover:text-[#FFE600]">
                             {{ product.title }}
                         </h3>
 
-                        <!-- Description -->
                         <p class="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-300">
                             {{ product.description }}
                         </p>
@@ -42,100 +41,132 @@
                 </div>
             </div>
 
-
-            <div class="flex flex-col items-center gap-8 lg:flex-row">
+            <!-- Notre équipe -->
+            <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 max-w-6xl mx-auto p-6">
                 <div class="lg:w-1/2">
-                    <img src="assets/homepage.jpg" alt="Équipe Walner Tech"
-                        class="h-auto w-full rounded-xl shadow-md" />
-                </div>
-                <div class="lg:w-1/2">
-                    <h2 class="mb-3 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                    <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                         Notre équipe
                     </h2>
                     <p
-                        class="text-[14px] leading-relaxed sm:text-[14px] md:text-[16px] text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
-                        L’équipe <strong>Walner Tech</strong> est composée de spécialistes en électronique et service
-                        client,
-                        dédiés à vous fournir les meilleurs produits et conseils pour vos besoins technologiques
-                        quotidiens.
+                        class="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed lg:leading-[2.2] text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
+                        L’équipe <strong>Walner Tech</strong> rassemble des spécialistes en électronique et service
+                        client, dédiés
+                        à fournir les meilleurs produits et conseils pour vos besoins technologiques.
+                        <br /><br />
+                        Nous combinons expertise technique et approche client pour garantir une expérience optimale, que
+                        ce soit
+                        dans la sélection des produits, la résolution de problèmes techniques ou l’accompagnement
+                        personnalisé.
+                        <br /><br />
+                        Notre objectif : offrir des conseils adaptés, des recommandations fiables et un support réactif.
+                        Chez
+                        <strong>Walner Tech</strong>, innovation, qualité et proximité guident chaque interaction.
                     </p>
+                </div>
+
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="overflow-hidden rounded-xl shadow-xl">
+                        <img src="assets/about1.jpg" alt="Équipe Walner Tech"
+                            class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
+                    </div>
                 </div>
             </div>
 
-
-            <div class="flex flex-col-reverse items-center gap-8 lg:flex-row">
+            <!-- Nos valeurs -->
+            <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 max-w-6xl mx-auto p-6">
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="overflow-hidden rounded-xl shadow-xl">
+                        <img src="assets/homepage.jpg" alt="Valeurs Walner Tech"
+                            class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
+                    </div>
+                </div>
                 <div class="lg:w-1/2">
-                    <h2 class="mb-3 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Nos
-                        valeurs</h2>
-                    <ul class="space-y-3 text-[14px] md:text-[16px]">
-                        <li class="flex items-start gap-2">
+                    <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                        Nos valeurs
+                    </h2>
+                    <ul
+                        class="space-y-5 text-[15px] md:text-[16px] leading-relaxed text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
+                        <li class="flex items-start gap-4">
                             <font-awesome-icon :icon="['fas', 'bolt']"
                                 class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mt-1" />
-                            Qualité : proposer des produits fiables et durables pour tous nos clients.
+                            <span><strong>Qualité :</strong> proposer des produits fiables et durables. Chaque produit
+                                est testé
+                                pour garantir une expérience optimale.</span>
                         </li>
-                        <li class="flex items-start gap-2">
+                        <li class="flex items-start gap-4">
                             <font-awesome-icon :icon="['fas', 'handshake']"
                                 class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mt-1" />
-                            Confiance : établir des relations honnêtes et transparentes avec chaque client.
+                            <span><strong>Confiance :</strong> établir des relations honnêtes et transparentes. Nous
+                                valorisons
+                                l’intégrité et les liens durables.</span>
                         </li>
-                        <li class="flex items-start gap-2">
+                        <li class="flex items-start gap-4">
                             <font-awesome-icon :icon="['fas', 'headphones-alt']"
                                 class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mt-1" />
-                            Service : un accompagnement attentif pour répondre à toutes vos questions et besoins.
+                            <span><strong>Service :</strong> accompagnement attentif pour répondre à toutes vos
+                                questions et besoins.
+                                Nous guidons et conseillons à chaque étape.</span>
                         </li>
-                        <li class="flex items-start gap-2">
+                        <li class="flex items-start gap-4">
                             <font-awesome-icon :icon="['fas', 'users']"
                                 class="text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mt-1" />
-                            Innovation : suivre les dernières tendances technologiques pour toujours vous offrir le
-                            meilleur.
+                            <span><strong>Innovation :</strong> suivre les dernières tendances technologiques pour
+                                offrir le meilleur.
+                                Nous investissons dans la recherche et les nouvelles technologies.</span>
                         </li>
                     </ul>
                 </div>
-                <div class="lg:w-1/2">
-                    <img src="assets/homepage.jpg" alt="Valeurs Walner Tech"
-                        class="h-auto w-full rounded-xl shadow-md" />
-                </div>
             </div>
 
-
-            <div class="flex flex-col items-center gap-8 lg:flex-row">
+            <!-- Contactez-nous -->
+            <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 max-w-6xl mx-auto p-6">
                 <div class="lg:w-1/2">
-                    <img src="assets/homepage.jpg" alt="Contact Walner Tech"
-                        class="h-auto w-full rounded-xl shadow-md" />
-                </div>
-                <div class="lg:w-1/2">
-                    <h2 class="mb-3 text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                    <h2 class="mb-4 text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                         Contactez-nous
                     </h2>
                     <p
-                        class="text-[14px] leading-relaxed sm:text-[14px] md:text-[16px] text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
+                        class="text-[15px] md:text-[16px] leading-relaxed lg:leading-[2.2] text-[var(--text-dark)] dark:text-[var(--dark-grey)]">
                         Vous avez une question ou besoin d’aide pour choisir un produit ? L’équipe <strong>Walner
                             Tech</strong>
-                        est là pour vous aider. Rendez-vous sur notre
+                        vous accompagne à chaque étape.
+                        <br /><br />
+                        Nous vous aidons à trouver le produit adapté à vos besoins, expliquons ses fonctionnalités et
+                        proposons
+                        les meilleures options disponibles. Que ce soit pour vérifier la compatibilité, résoudre un
+                        problème
+                        technique ou obtenir des recommandations personnalisées, nous garantissons un support rapide et
+                        efficace.
+                        <br /><br />
+                        N’hésitez pas à nous contacter via notre
                         <Link :href="contact()"
                             class="text-[var(--accent-cyan)] underline hover:text-[var(--highlight-gold)]">
                         page de contact
-                        </Link>
-                        pour échanger avec nous.
+                        </Link> pour échanger directement avec nous. Nous sommes disponibles pour répondre à toutes vos
+                        questions et assurer votre entière satisfaction.
                     </p>
                 </div>
+
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="overflow-hidden rounded-xl shadow-xl">
+                        <img src="assets/about2.jpg" alt="Contact Walner Tech"
+                            class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
     <Footer />
 </template>
-
-
 
 <script setup>
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import { Link } from '@inertiajs/vue3'
 import Footer from '@/components/frontend/Footer.vue';
-import {contact} from '@/routes';
+import { contact } from '@/routes';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-
 import {
     faLaptop,
     faMobileAlt,
@@ -151,20 +182,17 @@ const products = [
     {
         icon: ['fas', 'laptop'],
         title: "Ordinateurs & périphériques",
-        description:
-            "Vente d’ordinateurs portables et fixes, ainsi que tous les périphériques nécessaires pour travailler efficacement.",
+        description: "Vente d’ordinateurs portables et fixes, ainsi que tous les périphériques nécessaires pour travailler efficacement.",
     },
     {
         icon: ['fas', 'mobile-alt'],
         title: "Téléphones & accessoires",
-        description:
-            "Une large gamme de smartphones et accessoires, du câble aux écouteurs, pour rester connecté en toute simplicité.",
+        description: "Une large gamme de smartphones et accessoires, du câble aux écouteurs, pour rester connecté en toute simplicité.",
     },
     {
         icon: ['fas', 'headphones'],
         title: "Support & service client",
-        description:
-            "Assistance et conseils personnalisés pour vous aider à choisir le meilleur appareil selon vos besoins.",
+        description: "Assistance et conseils personnalisés pour vous aider à choisir le meilleur appareil selon vos besoins.",
     },
 ];
 </script>
