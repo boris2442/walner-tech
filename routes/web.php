@@ -111,7 +111,7 @@ Route::post('/api/track-order-click', [OrderClickController::class, 'store'])->m
 
 // Page 404 personnalisée
 Route::fallback(function () {
-    return Inertia::render('Frontend/NotFound');
+    return Inertia::render('frontend/NotFound');
 });
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

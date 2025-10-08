@@ -21,7 +21,7 @@ class ContactController extends Controller
 
     // Here you can handle the form submission, e.g., save to database or send an email
 
-  return redirect()->back()->with('status', 'Votre message a été envoyé avec succès !');
+    return redirect()->back()->with('status', 'Votre message a été envoyé avec succès !');
 
 
 

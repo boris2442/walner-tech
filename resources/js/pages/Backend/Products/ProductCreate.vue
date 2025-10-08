@@ -8,6 +8,7 @@ import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
 import { useForm } from "@inertiajs/vue3";
+import BackButton from '@/components/frontend/BackButton.vue';
 
 // Props venant du controller
 const props = defineProps({
@@ -67,6 +68,7 @@ const handleFiles = (event: Event) => {
     <Head title="Créer un Produit" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4">
+              <BackButton class="m-4" />
             <div
                 class="relative min-h-[80vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border p-6">
                 <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">

@@ -5,6 +5,7 @@ import { Head, useForm } from '@inertiajs/vue3';
 import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
+import BackButton from '@/components/frontend/BackButton.vue';
 import { ref } from 'vue';
 // Props venant du controller
 const props = defineProps<{
@@ -69,10 +70,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
+
     <Head title="Modifier un produit" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
+            <BackButton class="m-4" />
             <h2 class="text-xl font-bold mb-4">Modifier le produit</h2>
             <form @submit.prevent="submitForm" class="flex flex-col gap-4">
                 <Input label="Titre du produit" v-model="form.title" :error="form.errors.title" required />
@@ -87,7 +90,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <option value="" disabled>Choisir une catégorie</option>
                         <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                     </select>
-                    <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id }}</p>
+                    <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id }}
+                    </p>
                 </div>
 
                 <div>

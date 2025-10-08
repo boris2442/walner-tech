@@ -4,6 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
 import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
+import BackButton from '@/components/frontend/BackButton.vue';
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
 
 const props = defineProps<{
@@ -35,6 +36,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
+            <BackButton class="m-4" />
             <h2 class="text-xl font-bold mb-4">Modifier une catégorie</h2>
             <form @submit.prevent="submitForm">
                 <Input id="name" label="Nom de la catégorie" v-model="form.name" :error="form.errors.name" required />

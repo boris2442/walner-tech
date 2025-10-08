@@ -93,10 +93,56 @@ class ProductController extends Controller
     }
 
 
+    // public function indexBackend(Request $request)
+    // {
+    //     $query = Product::with(['category', 'images']);
+
+    //     if ($request->filled('search')) {
+    //         $query->where(function ($q) use ($request) {
+    //             $q->where('title', 'like', "%{$request->search}%")
+    //                 ->orWhere('description', 'like', "%{$request->search}%");
+    //         });
+    //     }
+
+    //     if ($request->filled('category')) {
+    //         $query->where('category_id', $request->category);
+    //     }
+
+    //     $products = $query->paginate(50)->withQueryString();
+
+    //     // Stats
+    //     $totalProducts = Product::count();
+    //     $addedThisWeek = Product::where('created_at', '>=', now()->startOfWeek())->count();
+    //     $productsByCategory = Product::select('category_id')
+    //         ->selectRaw('count(*) as count')
+    //         ->groupBy('category_id')
+    //         ->with('category')
+    //         ->get();
+
+    //     // Toutes les catégories pour le filtre
+    //     $categories = Category::all();
+
+    //     return Inertia::render('backend/produits/Index', [
+    //         'products' => $products,
+    //         'stats' => [
+    //             'total' => $totalProducts,
+    //             'addedThisWeek' => $addedThisWeek,
+    //             'byCategory' => $productsByCategory,
+    //         ],
+    //         'filters' => $request->only(['search', 'category']),
+    //         'categories' => $categories, // 🔑 On envoie cette prop
+    //     ]);
+    // }
+
+
+
+
     public function indexBackend(Request $request)
     {
-        $query = Product::with(['category', 'images']);
+        // Requête de base
+        $query = Product::with(['category:id,name', 'images']);
 
+        // 🔍 Filtre recherche
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('title', 'like', "%{$request->search}%")
@@ -104,23 +150,29 @@ class ProductController extends Controller
             });
         }
 
+        // 📦 Filtre catégorie
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
 
+        // Pagination
         $products = $query->paginate(50)->withQueryString();
 
-        // Stats
+        // 📊 Statistiques globales
         $totalProducts = Product::count();
         $addedThisWeek = Product::where('created_at', '>=', now()->startOfWeek())->count();
-        $productsByCategory = Product::select('category_id')
-            ->selectRaw('count(*) as count')
+
+        // 📈 Produits par catégorie (sécurisé)
+        $productsByCategory = Product::selectRaw('category_id, count(*) as count')
             ->groupBy('category_id')
-            ->with('category')
+            ->with('category:id,name')
             ->get();
 
-        // Toutes les catégories pour le filtre
-        $categories = Category::all();
+        // 🔹 Toutes les catégories pour le filtre
+        $categories = Category::select('id', 'name')->get();
+        // $product = Product::with('images')->first();
+        // dd($product->images->toArray());
+
 
         return Inertia::render('backend/produits/Index', [
             'products' => $products,
@@ -130,10 +182,9 @@ class ProductController extends Controller
                 'byCategory' => $productsByCategory,
             ],
             'filters' => $request->only(['search', 'category']),
-            'categories' => $categories, // 🔑 On envoie cette prop
+            'categories' => $categories,
         ]);
     }
-
 
     public function destroy($id)
     {
