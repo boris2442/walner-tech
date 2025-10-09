@@ -84,8 +84,8 @@
                         <div>
                             <label for="adresse"
                                 class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Votre
-                                Adresse</label>
-                            <input type="email" placeholder="Email Address" id="adresse"
+                                Contact</label>
+                            <input type="tel" placeholder="650 20 16 89" id="adresse"
                                 class="p-2 border border-gray-300 rounded w-full" name="email" v-model="form.email" />
                         </div>
                     </div>

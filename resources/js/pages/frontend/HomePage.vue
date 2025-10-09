@@ -90,7 +90,8 @@ onMounted(() => {
         <!-- Services / About / Testimony / Footer restent identiques -->
         <Service />
         <section id="about" class="bg-[var(--background-light)] py-12 md:py-20 dark:bg-[var(--dark-background)]">
-            <div class="container mx-auto flex flex-col-reverse items-center gap-8 px-4 md:flex-row md:gap-16 max-w-6xl">
+            <div
+                class="container mx-auto flex flex-col-reverse items-center gap-8 px-4 md:flex-row md:gap-16 max-w-6xl">
 
                 <!-- Texte -->
                 <div class="w-full md:w-1/2 max-w-xl md:text-left">
