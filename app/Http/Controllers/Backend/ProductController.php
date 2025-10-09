@@ -255,7 +255,9 @@ class ProductController extends Controller
         $product = Product::where('uuid', $uuid)->with('images')->firstOrFail();
         return Inertia::render('backend/products/ProductDetail', [
             'product' => $product,
-            'auth' => auth()->user()
+            'auth' => [
+                'user' => auth()->user(),
+            ],
         ]);
     }
 

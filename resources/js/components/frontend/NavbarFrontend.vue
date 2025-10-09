@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { about, contact, home, products } from '@/routes';
@@ -226,5 +226,118 @@ button svg {
     left: 50%;
     transform: translateX(-50%);
   }
+}
+</style> -->
+
+
+
+<script setup>
+import { ref, onMounted, computed } from 'vue';
+import { Link } from '@inertiajs/vue3';
+import { home, products, about, contact } from '@/routes';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faUserCircle,
+  faSignOutAlt,
+  faTachometerAlt
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faUserCircle, faSignOutAlt, faTachometerAlt);
+
+const props = defineProps({ auth: Object });
+const isAuthenticated = computed(() => !!props.auth?.user);
+
+const openMenu = ref(false);
+const openAccountMenu = ref(false);
+
+function toggleAccountMenu() {
+  openAccountMenu.value = !openAccountMenu.value;
+}
+</script>
+
+<template>
+  <nav class="bg-[var(--primary-blue)] dark:bg-[var(--dark-background)] shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <Link :href="home()">
+          <img src="assets/walner.png" alt="Walner Tech" class="h-12 object-contain" />
+          </Link>
+        </div>
+
+        <!-- Menu desktop -->
+        <div class="hidden md:flex space-x-6 flex-1 justify-center">
+          <Link :href="products()" class="nav-link">Produits</Link>
+          <Link :href="about()" class="nav-link">À propos</Link>
+          <Link :href="contact()" class="nav-link">Contact</Link>
+        </div>
+
+        <!-- Actions (toujours visibles) -->
+        <div class="flex items-center space-x-4">
+
+          <!-- Compte toujours visible -->
+          <div class="relative">
+            <button @click="toggleAccountMenu" class="text-white text-2xl">
+              <FontAwesomeIcon icon="user-circle" />
+            </button>
+            <div v-if="openAccountMenu"
+              class="absolute right-0 mt-2 w-44 bg-white dark:bg-[var(--dark-background)] rounded-md shadow-lg py-1 z-50">
+              <template v-if="isAuthenticated">
+                <Link href="/dashboard" class="block px-4 py-2 nav-link">Dashboard</Link>
+                <Link href="/logout" method="post" class="block px-4 py-2 nav-link">Déconnexion</Link>
+              </template>
+              <template v-else>
+                <Link href="/login" class="block px-4 py-2 nav-link">Se connecter</Link>
+                <Link href="/register" class="block px-4 py-2 nav-link">S’inscrire</Link>
+              </template>
+            </div>
+          </div>
+
+          <!-- Burger menu mobile -->
+          <div class="md:hidden">
+            <button @click="openMenu = !openMenu" class="text-white">
+              <svg v-if="!openMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <div v-if="openMenu"
+      class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)] flex flex-col">
+      <Link :href="products()" class="block nav-link">Produits</Link>
+      <Link :href="about()" class="block nav-link">À propos</Link>
+      <Link :href="contact()" class="block nav-link">Contact</Link>
+    </div>
+  </nav>
+</template>
+
+<style scoped>
+.nav-link {
+  color: rgb(38, 25, 25);
+  transition: color 0.3s;
+  cursor: pointer;
+  display: inline-block;
+  padding: 4px 0;
+}
+
+.nav-link:hover {
+  color: var(--dark-gold);
+}
+
+button svg {
+  transition: transform 0.2s ease;
 }
 </style>
