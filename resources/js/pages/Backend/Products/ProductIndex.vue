@@ -1,5 +1,6 @@
 <template>
-    <NavbarFrontend :auth="$page.props.auth" />
+    <TopBanner />
+    <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <!-- <FloatingAction /> -->
 
     <!-- Section Produits -->
@@ -138,7 +139,7 @@
                         <div class="mt-3">
                             <button @click="orderOnWhatsapp"
                                 class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] dark:text-dark-white py-2 rounded dark:hover:bg-[var(--dark-gold)]/80 transition">
-                                Commander
+                                Reserver
                             </button>
                         </div>
                     </div>
@@ -146,13 +147,14 @@
             </div>
         </div>
     </section>
-
+    <LoginReminder />
     <Footer />
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import Footer from '@/components/frontend/Footer.vue';
@@ -160,6 +162,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 // import FloatingAction from '@/components/frontend/FloatingAction.vue';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Autoplay, Pagination } from "swiper/modules";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

@@ -8,6 +8,8 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Loading from '@/components/frontend/Loading.vue';
 import { products, about } from '@/routes';
 import { Link } from '@inertiajs/vue3';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 
 
 // Loader : true si on doit afficher le loader
@@ -41,8 +43,10 @@ onMounted(() => {
 
     <!-- Contenu principal -->
     <div v-else>
-        <NavbarFrontend :auth="$page.props.auth" />
+        <TopBanner />
+        <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
         <FloatingAction />
+        <LoginReminder />
 
         <!-- Hero Section Premium -->
         <section class="relative flex items-start min-h-screen bg-cover bg-center bg-no-repeat

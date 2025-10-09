@@ -35,6 +35,7 @@ Route::get('/ressources/cgu', [RessourceController::class, 'cgu'])->name('ressou
 Route::get('/ressources/confidentialite', [RessourceController::class, 'politiqueDeConfidentialite'])->name('ressources.policy');
 Route::get('/ressources/legales', [RessourceController::class, 'mentionsLegales'])->name('ressources.notice');
 Route::get('/ressources/refundpolicy', [RessourceController::class, 'noRemboursement'])->name('ressources.noRemboursement');
+Route::get('/ressources/faq', [RessourceController::class, 'faq'])->name('ressources.faq');
 
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');

@@ -5,6 +5,7 @@ import Footer from '@/components/frontend/Footer.vue';
 import { reactive } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import BackButton from '@/components/frontend/BackButton.vue';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 // Sections dynamiques
 const sections = reactive([
   {
@@ -44,6 +45,7 @@ const sections = reactive([
 <template>
   <NavbarFrontend :auth="$page.props.auth"/>
    <FloatingAction/>
+      <LoginReminder />
   <section
     class="px-6   antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
     <!-- 🔹 Bouton retour --> <br>

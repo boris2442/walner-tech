@@ -3,10 +3,12 @@ import Footer from '@/components/frontend/Footer.vue';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 </script>
 <template>
   <NavbarFrontend :auth="$page.props.auth"/>
     <FloatingAction/>
+       <LoginReminder />
   <section>
 
     <div

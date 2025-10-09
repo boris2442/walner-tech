@@ -2,6 +2,7 @@
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Footer from '@/components/frontend/Footer.vue';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 const sections = [
     {
@@ -45,6 +46,7 @@ const sections = [
     <section
         class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <div class=" mx-auto">
+               <LoginReminder />
                   <!-- 🔹 Bouton retour -->
       <BackButton />
             <h1 class="text-3xl md:text-4xl font-bold mb-8  text-[var(--dark-gold)]">

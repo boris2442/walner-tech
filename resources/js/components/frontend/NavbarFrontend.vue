@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
@@ -33,7 +32,7 @@ library.add(
 
 
 
-// Props auth venant de Laravel/Inertia
+
 const props = defineProps({
   auth: {
     type: Object,
@@ -46,11 +45,9 @@ const open = ref(false);
 const openAccountMenu = ref(false);
 const isDark = ref(false);
 
-// Computed pour savoir si utilisateur connecté
-// const isAuthenticated = computed(() => !!props.auth?.user);
 
 
-// Computed pour savoir si l’utilisateur est connecté
+
 const isAuthenticated = computed(() => !!props.auth.user);
 
 onMounted(() => {
@@ -82,29 +79,29 @@ function toggleAccountMenu() {
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
 
-        <!-- 1. Logo -->
+
         <div class="flex-shrink-0">
-          <Link :href="home()" prefetch >
+          <Link :href="home()" prefetch>
           <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 object-cover" />
           </Link>
         </div>
 
-        <!-- 2. Liens principaux (centre) -->
+
         <div class="hidden md:flex space-x-6 justify-center flex-1">
-          <Link :href="products()" prefetch 
+          <Link :href="products()" prefetch
             class=" text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Produits</Link>
-        
-          <Link :href="about()" prefetch 
+
+          <Link :href="about()" prefetch
             class=" text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           À propos</Link>
-          <Link :href="contact()" prefetch 
+          <Link :href="contact()" prefetch
             class=" text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
           Contact</Link>
         </div>
 
 
-        <!-- Auth / Utilisateur -->
+
         <div class="hidden md:flex items-center space-x-4">
           <div v-if="isAuthenticated" class="relative">
             <button @click="toggleAccountMenu" class="flex items-center space-x-2 nav-link">
@@ -124,10 +121,10 @@ function toggleAccountMenu() {
             <Link href="/register" class="nav-link" prefetch prefetch-on="hover">S’inscrire</Link>
           </div>
         </div>
-        <!-- Mobile Toggle -->
+
         <div class="md:hidden">
           <button @click="open = !open"
-            class="focus:outline-none text-[var(--background-light)] dark:text-[var(--dark-accent)]">
+            class="focus:outline-none text-[var(--background-light)] dark:text-[var(--dark-accent)] flex">
             <svg v-if="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -136,30 +133,31 @@ function toggleAccountMenu() {
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
+            <span>MENU</span>
           </button>
         </div>
       </div>
 
     </div>
 
-    <!-- Mobile Menu -->
+
     <div v-if="open"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)]">
-      <Link :href="products()" prefetch 
+      <Link :href="products()" prefetch
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Produits
       </Link>
-    
-      <Link href="/about" prefetch 
+
+      <Link href="/about" prefetch
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       À propos
       </Link>
-      <Link :href="contact()" prefetch 
+      <Link :href="contact()" prefetch
         class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
       Contact
       </Link>
 
-      <!-- Mobile Auth -->
+
       <div v-if="isAuthenticated" class="mt-2 space-y-1">
         <Link href="/dashboard"
           class="block px-4 py-2 text-[var(--background-light)] hover:text-[var(--dark-gold)] nav-link">

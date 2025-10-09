@@ -2,6 +2,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import ScrollReveal from "scrollreveal";
+// import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 const services = [
     {
         icon: "💻",
@@ -66,6 +67,7 @@ onMounted(() => {
 <!-- ServicesSection.vue -->
 <template>
     <section class="bg-[var(--background-light)] py-10 dark:bg-[var(--dark-background)]" id="services">
+            <!-- <LoginReminder /> -->
         <div class="container mx-auto px-6 text-center">
             <!-- Titre -->
             <h2 class="mb-12 text-2xl font-bold text-[var(--primary-blue)] sm:text-3xl dark:text-[var(--dark-white)]">

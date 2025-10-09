@@ -1,6 +1,8 @@
 <template>
-    <NavbarFrontend :auth="$page.props.auth" />
+    <TopBanner />
+    <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />
+    <LoginReminder />
     <section
         class="about min-h-screen px-6 py-6 text-[var(--text-dark)] md:px-20 lg:px-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
 
@@ -165,6 +167,7 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import { Link } from '@inertiajs/vue3'
 import Footer from '@/components/frontend/Footer.vue';
 import { contact } from '@/routes';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -175,6 +178,7 @@ import {
     faUsers,
     faHandshake
 } from '@fortawesome/free-solid-svg-icons'
+import TopBanner from '@/components/frontend/TopBanner.vue';
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
 

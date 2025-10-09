@@ -24,4 +24,7 @@ class RessourceController extends Controller
    {
       return Inertia::render('frontend/Noremboursement');
    }
+   public function faq(){
+      return Inertia::render('frontend/Faq');
+   }
 }

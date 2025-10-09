@@ -1,6 +1,8 @@
 <template>
-    <NavbarFrontend :auth="$page.props.auth" /><br /><br />
+    <TopBanner />
+    <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" /><br /><br />
     <FloatingAction />
+    <LoginReminder />
 
     <!-- Flash message unique en haut -->
     <FlashMessage v-if="alertMessage" :message="alertMessage" type="success" />
@@ -133,6 +135,8 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import Footer from '@/components/frontend/Footer.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
+import TopBanner from '@/components/frontend/TopBanner.vue'
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import MapCard from '@/components/frontend/MapCard.vue'
 import BackButton from '@/components/frontend/BackButton.vue'
 import FlashMessage from '@/components/frontend/flash/FlashMessage.vue'

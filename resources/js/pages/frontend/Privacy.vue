@@ -4,7 +4,7 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import { reactive } from 'vue';
 import BackButton from '@/components/frontend/BackButton.vue';
-
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 // Définition des sections pour v-for
 const sections = reactive([
     {
@@ -54,6 +54,7 @@ const sections = reactive([
 <template>
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction /> <br>
+       <LoginReminder />
     <section class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]
                     dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <!-- 🔹 Bouton retour -->

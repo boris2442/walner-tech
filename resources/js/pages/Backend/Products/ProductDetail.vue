@@ -1,6 +1,8 @@
 <template>
+    <TopBanner/>
     <NavbarFrontend :auth="$page.props.auth" />
     <BackButton class="m-4" />
+       <LoginReminder />
     <div class=" bg-background-light dark:bg-dark-background text-text-dark dark:text-dark-white p-4 md:p-8">
 
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -52,12 +54,14 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { Autoplay, Pagination } from "swiper/modules";
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 library.add(faHeart);
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 const props = defineProps({
     product: Object,

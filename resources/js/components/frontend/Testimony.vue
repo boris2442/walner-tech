@@ -61,13 +61,12 @@ const testimonials = [
         <div class="container mx-auto px-6 text-center">
             <!-- Titre -->
             <h2 class="mb-12 text-2xl font-bold text-[var(--primary-blue)] sm:text-3xl dark:text-[var(--dark-white)]">
-                <span class="text-[var(--highlight-gold)]">Les retours</span>   de nos clients
+                <span class="text-[var(--highlight-gold)]">Les retours</span> de nos clients
             </h2>
 
             <!-- Slider -->
-            <Swiper :modules="[ Autoplay]" :slides-per-view="1" :space-between="20"
-                :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: false }"
-                :breakpoints="{
+            <Swiper :modules="[Autoplay]" :slides-per-view="1" :space-between="20" :loop="true"
+                :autoplay="{ delay: 3000, disableOnInteraction: false }" :breakpoints="{
                     768: { slidesPerView: 2, spaceBetween: 20 },
                     1024: { slidesPerView: 3, spaceBetween: 30 }
                 }" class="pb-10">
