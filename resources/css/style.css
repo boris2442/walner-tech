@@ -10,7 +10,7 @@
 /* Couleurs principales */
 /* --primary-blue: #173366;      */
   /* Bleu profond, pour header, textes importants */
---primary-blue: #6997ee;       /* Bleu profond, pour header, textes importants */
+--primary-blue: #223CB9;       /* Bleu profond, pour header, textes importants */
 --primary-blue2: #9bb4e1;       /* Bleu profond, pour header, textes importants */
 --secondary-white: #FFFFFF;    /* Blanc pur, pour fonds et textes sur foncé */
 /* --highlight-gold: #E6C200;    */
@@ -21,7 +21,7 @@
 --text-dark: #000000;          /* Texte noir principal */
 
 /* Couleur d’accent */
---accent-cyan: #00BFFF;       /* Liens, boutons, hover */
+--accent-cyan: #233275;       /* Liens, boutons, hover */
 
 /* =====================
    VERSION SOMBRE
@@ -40,6 +40,7 @@
 
 --success-green:#22c55e;
 --error-red:#ef4444;
+--flash:#4FA740;
 /* --white-color:#ffffff; */
 
 }

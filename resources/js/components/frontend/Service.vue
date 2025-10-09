@@ -66,16 +66,13 @@ onMounted(() => {
 </script>
 <!-- ServicesSection.vue -->
 <template>
-    <section class="bg-[var(--background-light)] py-10 dark:bg-[var(--dark-background)]" id="services">
-            <!-- <LoginReminder /> -->
+    <section class="bg-[var(--background-light)] py-4 dark:bg-[var(--dark-background)]" id="services">
+        <!-- <LoginReminder /> -->
         <div class="container mx-auto px-6 text-center">
             <!-- Titre -->
             <h2 class="mb-12 text-2xl font-bold text-[var(--primary-blue)] sm:text-3xl dark:text-[var(--dark-white)]">
                 Pourquoi choisir <span class="text-[var(--highlight-gold)]">Walner Tech</span> ?
             </h2>
-
-
-
 
             <!-- Grid des services -->
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

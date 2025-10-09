@@ -17,7 +17,7 @@ const isPaused = ref(false)
 
 <template>
     <div class="fixed top-0 left-0 w-full z-50 overflow-hidden
-             bg-[var(--primary-blue)] text-[var(--secondary-white)]
+             bg-[var(--flash)] text-[var(--secondary-white)]
              dark:bg-[var(--dark-blue)] dark:text-[var(--dark-white)]
              h-10 md:h-12 flex items-center">
 

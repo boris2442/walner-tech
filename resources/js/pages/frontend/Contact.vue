@@ -108,7 +108,7 @@
                     </div>
 
                     <button type="submit"
-                        class="bg-[var(--primary-blue)] text-[var(--dark-blue)] px-4 py-2 rounded hover:opacity-90 transition"
+                        class="bg-[var(--primary-blue)] text-white px-4 py-2 rounded hover:opacity-90 transition"
                         :disabled="form.processing">
                         Envoyer
                     </button>

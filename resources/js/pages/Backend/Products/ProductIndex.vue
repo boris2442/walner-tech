@@ -1,19 +1,22 @@
 <template>
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
+
+    <!-- <ContactNav/> -->
     <!-- <FloatingAction /> -->
 
     <!-- Section Produits -->
     <section>
         <div
-            class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-4 min-h-screen transition-colors duration-300">
+            class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8  transition-colors duration-300">
 
-            <h1 class="text-2xl font-bold mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+            <!-- <h1 class="text-2xl font-bold mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                 Découvrez nos produits exclusifs
-            </h1>
+            </h1> -->
             <p class="text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400 mx-auto">
-                Explorez notre collection soigneusement sélectionnée d’appareils électroniques alliant performance,
-                design et fiabilité. Trouvez l’équipement parfait pour booster votre quotidien ou votre entreprise.
+                Faites confiance à Walner Tech pour vos achats en toute sérénité !
+                Découvrez une sélection haut de gamme d’appareils électroniques pensés pour allier puissance, élégance
+                et durabilité — tout ce qu’il faut pour propulser votre vie numérique.
             </p>
 
             <!-- Barre de recherche -->
@@ -31,7 +34,7 @@
                 </span>
                 <span v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
                     :class="categoryButtonClass(cat.id)"
-                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 text-[var(--dark-blue)]">
                     {{ cat.name }}
                 </span>
             </div>
@@ -147,6 +150,9 @@
             </div>
         </div>
     </section>
+    <HeroSection />
+    <Service />
+    <About2/>
     <LoginReminder />
     <Footer />
 </template>
@@ -157,18 +163,22 @@ import axios from 'axios';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
+import ContactNav from '@/components/frontend/ContactNav.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+import Service from '@/components/frontend/Service.vue';
 // import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
+import About2 from '@/components/frontend/About2.vue';
 import { Autoplay, Pagination } from "swiper/modules";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import HeroSection from '@/components/frontend/HeroSection.vue';
 library.add(faCartShopping, faHeart);
 
 const props = defineProps({
