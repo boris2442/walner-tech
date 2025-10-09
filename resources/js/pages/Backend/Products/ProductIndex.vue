@@ -152,7 +152,8 @@
     </section>
     <HeroSection />
     <Service />
-    <About2/>
+    <About2 />
+    <Testimony />
     <LoginReminder />
     <Footer />
 </template>
@@ -160,6 +161,9 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
+
+import Testimony from '@/components/frontend/Testimony.vue';
+
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';

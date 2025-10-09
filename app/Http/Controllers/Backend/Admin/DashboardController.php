@@ -70,21 +70,6 @@ class DashboardController extends Controller
 
 
         // Graphe : commandes par mois
-        // $ordersByMonth = OrderClick::select(
-        //     DB::raw('MONTH(created_at) as month'),
-        //     DB::raw('COUNT(*) as count')
-        // )
-        //     ->groupBy('month')
-        //     ->orderBy('month')
-        //     ->get()
-        //     ->map(function ($item) {
-        //         return [
-        //             'month' => Carbon::create()->month($item->month)->format('F'),
-        //             'count' => $item->count,
-        //         ];
-        //     });
-
-        // Graphe : commandes par mois
         $rawOrders = OrderClick::select(
             DB::raw('MONTH(created_at) as month'),
             DB::raw('COUNT(*) as count')
@@ -104,15 +89,7 @@ class DashboardController extends Controller
 
 
         // Graphe 6 : clics par jour de la semaine (7 derniers jours)
-        // $clicksByWeekday = collect();
-        // for ($i = 6; $i >= 0; $i--) {
-        //     $day = Carbon::today()->subDays($i);
-        //     $count = OrderClick::whereDate('created_at', $day)->count();
-        //     $clicksByWeekday->push([
-        //         'day' => $day->format('l'), // Lundi, Mardi, ...
-        //         'count' => $count,
-        //     ]);
-        // }
+       
 
         // Graphe 6 : clics par jour de la semaine (7 derniers jours)
         $clicksLast7Days = collect();

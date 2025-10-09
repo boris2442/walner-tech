@@ -61,10 +61,10 @@ onMounted(() => {
 <template>
     <section class="relative flex items-start bg-cover bg-center bg-no-repeat
             px-6 md:px-16 lg:px-32 pt-4 md:pt-32 lg:pt-40 overflow-hidden
-            dark:bg-[var(--dark-background)] dark:text-[#e0e7ff] bg-[#1e293b] pb-10"
+            dark:bg-[var(--dark-background)] dark:text-[#e0e7ff] bg-[#3b3975] pb-10"
         style="background-image: url('/herop2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
 
-        <div class="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
+        <div class="absolute inset-0 bg-blue-900/70 "></div>
 
         <div class="relative z-10 flex flex-col gap-6 max-w-4xl transform -translate-x-2 md:-translate-x-0">
             <h1 :class="[
@@ -83,14 +83,9 @@ onMounted(() => {
                     {{ showFullText ? fullText : fullText.substring(0, previewLength) + '...' }}
                     <!-- <span> -->
                     <button @click="showFullText = !showFullText"
-                        class=" gap-2  text-[#6998EE] font-semibold  hover:underline transition-transform duration-300">
+                        class=" gap-2  text-orange-500 font-semibold  hover:underline transition-transform duration-300">
                         {{ showFullText ? 'Voir moins' : 'Voir plus' }}
-                        <!-- <svg :class="{ 'rotate-180': showFullText }" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                class="w-4 h-4 transition-transform duration-300">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg> -->
+
                     </button>
                     <!-- </span> -->
                 </p>
