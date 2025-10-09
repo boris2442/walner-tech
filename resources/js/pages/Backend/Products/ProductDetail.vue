@@ -1,8 +1,8 @@
 <template>
-    <TopBanner/>
-    <NavbarFrontend :auth="$page.props.auth" />
+    <TopBanner />
+    <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <BackButton class="m-4" />
-       <LoginReminder />
+    <LoginReminder />
     <div class=" bg-background-light dark:bg-dark-background text-text-dark dark:text-dark-white p-4 md:p-8">
 
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">

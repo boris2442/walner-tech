@@ -146,7 +146,7 @@ import { Link } from '@inertiajs/vue3'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import ressources from '@/routes/ressources'
-
+import { about, contact, home, products } from '@/routes';
 // Brand icons
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 // Solid icons
@@ -186,7 +186,30 @@ const currentYear = new Date().getFullYear()
           </a>
         </div>
       </div>
+      <div>
+        <h3 class="font-bold text-lg md:text-xl mb-2">Liens Utiles</h3>
+        <ul class="space-y-2">
 
+          <li>
+            <Link :href="products()" prefetch
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
+            Produits
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" prefetch
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
+            À propos
+            </Link>
+          </li>
+          <li>
+            <Link :href="contact()" prefetch
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
+            Contact
+            </Link>
+          </li>
+        </ul>
+      </div>
       <!-- Ressources / Lien légaux -->
       <div>
         <h3 class="font-bold text-lg md:text-xl mb-2">Ressources</h3>
@@ -224,6 +247,19 @@ const currentYear = new Date().getFullYear()
         </ul>
       </div>
 
+
+
+    </div>
+
+    <!-- Ligne de séparation -->
+    <div class="border border-gray-300 dark:border-gray-600 mx-auto w-[90%] my-6"></div>
+
+    <!-- Bas du footer -->
+    <div class="flex justify-between flex-wrap items-center gap-4 px-4">
+      <div class="text-center w-full md:w-auto">
+        <p class="text-xs md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
+        <p class="text-xs md:text-sm">Propulsé avec ❤️ par Aubin Boris Simo</p>
+      </div>
       <!-- Réseaux sociaux -->
       <div>
         <h3 class="font-bold text-lg md:text-xl mb-2">Suivez-nous</h3>
@@ -245,17 +281,6 @@ const currentYear = new Date().getFullYear()
             <FontAwesomeIcon :icon="['fab', 'linkedin']" />
           </a>
         </div>
-      </div>
-    </div>
-
-    <!-- Ligne de séparation -->
-    <div class="border border-gray-300 dark:border-gray-600 mx-auto w-[90%] my-6"></div>
-
-    <!-- Bas du footer -->
-    <div class="flex justify-between flex-wrap items-center gap-4 px-4">
-      <div class="text-center w-full md:w-auto">
-        <p class="text-xs md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
-        <p class="text-xs md:text-sm">Propulsé avec ❤️ par Aubin Boris Simo</p>
       </div>
     </div>
   </footer>
