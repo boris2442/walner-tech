@@ -1,16 +1,11 @@
-
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { home, products, about, contact } from '@/routes';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import ContactNav from '@/components/frontend/ContactNav.vue';
-import {
-  faUserCircle,
-  faSignOutAlt,
-  faTachometerAlt
-} from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faUserCircle, faSignOutAlt, faTachometerAlt);
 
@@ -39,42 +34,45 @@ function toggleAccountMenu() {
 
         <!-- Menu desktop -->
         <div class="hidden md:flex space-x-6 flex-1 justify-center">
-          <Link prefetch :href="products()" class="nav-link">Produits</Link>
+          <!-- <Link prefetch :href="products()" class="nav-link">Produits</Link> -->
           <Link prefetch :href="about()" class="nav-link">À propos</Link>
           <Link prefetch :href="contact()" class="nav-link">Contact</Link>
         </div>
 
-        <!-- Actions (toujours visibles) -->
+        <!-- Actions -->
         <div class="flex items-center space-x-4">
 
-          <!-- Compte toujours visible -->
-          <div class="relative">
-            <button @click="toggleAccountMenu" class="text-white text-4xl">
-              <FontAwesomeIcon icon="user-circle" />
-              <!-- <span>MENU</span> -->
+          <!-- Compte utilisateur -->
+          <div class="relative flex items-center">
+            <button @click="toggleAccountMenu" class="text-white flex items-center space-x-1">
+              <FontAwesomeIcon icon="user-circle" class="text-3xl" />
+              <span class="hidden md:inline font-medium">Mon compte</span>
             </button>
-      
+
             <div v-if="openAccountMenu"
               class="absolute right-0 mt-2 w-44 bg-white dark:bg-[var(--dark-background)] rounded-xl shadow-xl py-2 z-50 flex flex-col border border-gray-200 dark:border-gray-700">
               <template v-if="isAuthenticated">
                 <Link prefetch href="/dashboard" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                Dashboard</Link>
+                Dashboard
+                </Link>
                 <Link prefetch href="/logout" method="post"
-                  class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Déconnexion</Link>
+                  class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                Déconnexion
+                </Link>
               </template>
               <template v-else>
-                <Link prefetch href="/login" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Se
-                connecter</Link>
+                <Link prefetch href="/login" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                Se connecter
+                </Link>
                 <Link prefetch href="/register" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 S’inscrire</Link>
               </template>
             </div>
-
           </div>
 
           <!-- Burger menu mobile -->
-          <div class="md:hidden">
-            <button @click="openMenu = !openMenu" class="text-white">
+          <div class="md:hidden flex items-center">
+            <button @click="openMenu = !openMenu" class="text-white flex items-center space-x-1">
               <svg v-if="!openMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -83,6 +81,7 @@ function toggleAccountMenu() {
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
+              <span class="font-medium">Menu</span>
             </button>
           </div>
 
@@ -93,10 +92,11 @@ function toggleAccountMenu() {
     <!-- Menu mobile -->
     <div v-if="openMenu"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)] flex flex-col">
-      <Link prefetch :href="products()" class="block nav-link">Produits</Link>
+      <!-- <Link prefetch :href="products()" class="block nav-link">Produits</Link> -->
       <Link prefetch :href="about()" class="block nav-link">À propos</Link>
       <Link prefetch :href="contact()" class="block nav-link">Contact</Link>
     </div>
+
     <ContactNav />
   </nav>
 </template>
