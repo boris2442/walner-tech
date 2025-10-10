@@ -1,5 +1,6 @@
 <template>
-    <section class="py-10 bg-gray-100">
+    <section class="py-6 bg-gray-100">
+        <h2 class="text-2xl text-center mb-6">Ou nous trouver</h2>
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <!-- Showroom Douala -->
@@ -8,9 +9,10 @@
                 <img src="/assets/walner.jpg" alt="Showroom Douala"
                     class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
                 <div class="flex-1">
-                    <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">WALNER TECH</h3>
+                    <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">WALNER TECH Bafoussam</h3>
                     <!-- <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">Walner Tech Bafoussam</h3> -->
-                    <p class="text-gray-600 mt-1 group-hover:text-gray-200">Marché A, Immeuble le Pelicant Ancien bureau
+                    <p class="text-gray-600 mt-1 group-hover:text-gray-200">Localisation : Marché A, Immeuble le
+                        Pelicant Ancien bureau
                         des transports;</p>
                     <p class="mt-2 group-hover:text-gray-200">
                         <span class="font-semibold group-hover:text-orange-500">Contact:</span> <a
@@ -38,7 +40,8 @@
                 <div class="flex-1">
                     <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">WALNER TECH Yaoundé</h3>
                     <!-- <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">Walner Tech Yaoundé</h3> -->
-                    <p class="text-gray-600 mt-1 group-hover:text-gray-200">Yaoundé, Terminus mimboman face sapeur
+                    <p class="text-gray-600 mt-1 group-hover:text-gray-200">Localisation : Yaoundé, Terminus mimboman
+                        face sapeur
                         pompier</p>
                     <p class="mt-2">
                         <span class="font-semibold group-hover:text-orange-500">Contact:</span> <a
@@ -61,11 +64,3 @@
         </div>
     </section>
 </template>
-
-<script setup>
-// Tu peux ici importer les images si elles sont locales
-</script>
-
-<style scoped>
-/* Tu peux ajouter ici des styles personnalisés si nécessaire */
-</style>

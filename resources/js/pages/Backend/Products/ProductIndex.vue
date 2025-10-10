@@ -3,7 +3,7 @@
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
 
     <!-- <ContactNav/> -->
-    <!-- <FloatingAction /> -->
+    <FloatingAction />
 
     <!-- Section Produits -->
     <section>
@@ -174,7 +174,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import Service from '@/components/frontend/Service.vue';
-// import FloatingAction from '@/components/frontend/FloatingAction.vue';
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import About2 from '@/components/frontend/About2.vue';
 import { Autoplay, Pagination } from "swiper/modules";

@@ -30,7 +30,7 @@ onUnmounted(() => {
         <div v-if="showButtons" class="fixed bottom-6 w-full flex justify-between px-6 z-50 pointer-events-none">
             <!-- WhatsApp à gauche -->
             <a href="https://wa.me/656894773" target="_blank"
-                class="pointer-events-auto bg-[var(--flash)] hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110"
+                class="pointer-events-auto bg-[var(--flash)] hover:bg-green-600 text-white p-2 rounded-full shadow-lg transition transform hover:scale-110"
                 title="Contactez-nous sur WhatsApp">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -42,9 +42,9 @@ onUnmounted(() => {
 
             <!-- Back to top à droite -->
             <button @click="scrollToTop"
-                class="pointer-events-auto bg-[var(--primary-blue)] hover:bg-[var(--highlight-gold)] text-white p-4 rounded-full shadow-lg transition transform hover:scale-110"
+                class="pointer-events-auto bg-[var(--primary-blue)] hover:bg-[var(--highlight-gold)] text-white p-2 rounded-full shadow-lg transition transform hover:scale-110 fixed bottom-20 right-6"
                 title="Remonter en haut">
-                <FontAwesomeIcon :icon="faArrowUp" class="h-6 w-6" />
+                <FontAwesomeIcon :icon="faArrowUp" class="h-4 w-4" />
             </button>
         </div>
     </transition>

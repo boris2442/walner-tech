@@ -16,9 +16,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\OrderClickController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome');
-// })->name('home');
+
 //Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/', [ProductController::class, 'index'])->name('home');
 // Redirection vers Google
