@@ -46,7 +46,7 @@ onUnmounted(() => {
         leave-to-class="translate-y-6 opacity-0">
         <div v-if="showBanner" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-md px-4 py-3 shadow-xl flex flex-row flex-wrap justify-between items-center gap-2 z-[9999]
                 bg-[var(--flash)] text-[var(--secondary-white)]
-                dark:bg-[var(--dark-blue)] dark:text-[var(--dark-white)] rounded-lg">
+                dark:bg-[var(--dark-blue)] dark:text-[var(--dark-white)] rounded-lg banner">
 
             <!-- Texte -->
             <span class="text-sm  flex-1 truncate">

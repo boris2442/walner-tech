@@ -19,7 +19,7 @@ const isPaused = ref(false)
     <div class="fixed top-0 left-0 w-full z-50 overflow-hidden
              bg-[var(--flash)] text-[var(--secondary-white)]
              dark:bg-[var(--dark-blue)] dark:text-[var(--dark-white)]
-             h-10 md:h-12 flex items-center">
+             h-10 md:h-12 flex items-center banner">
 
         <div class="whitespace-nowrap flex items-center gap-8 px-6" :class="{ 'animate-marquee': !isPaused }"
             @mouseenter="isPaused = true" @mouseleave="isPaused = false">
@@ -50,4 +50,6 @@ const isPaused = ref(false)
 .animate-marquee {
     animation: marquee 20s linear infinite;
 }
+
+
 </style>

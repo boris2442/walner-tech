@@ -10,20 +10,18 @@
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8  transition-colors duration-300">
 
-            <!-- <h1 class="text-2xl font-bold mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
-                Découvrez nos produits exclusifs
-            </h1> -->
-            <p class="text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400 mx-auto">
+
+            <!-- <p class="text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400 mx-auto">
                 Faites confiance à Walner Tech pour vos achats en toute sérénité !
                 Découvrez une sélection haut de gamme d’appareils électroniques pensés pour allier puissance, élégance
                 et durabilité — tout ce qu’il faut pour propulser votre vie numérique.
-            </p>
+            </p> -->
 
             <!-- Barre de recherche -->
             <div class="mb-6 flex justify-center">
                 <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
                     :class="darkMode ? 'border-dark-grey bg-dark-background text-dark-white placeholder-dark-grey focus:ring-dark-accent' : 'border-text-secondary bg-background-light text-text-dark placeholder-text-secondary focus:ring-accent-cyan'"
-                    class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300" />
+                    class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300 " />
             </div>
 
             <!-- Liste des catégories -->
@@ -140,7 +138,11 @@
                             <span class="text-[var(--dark-white)]">{{ cartTotal }} FCFA</span>
                         </div>
                         <div class="mt-3">
-                            <button @click="orderOnWhatsapp"
+                            <p v-if="cart.length === 0"
+                                class="text-sm text-gray-700 dark:text-dark-grey text-center mb-2">
+                                Le panier est vide. Ajoutez des produits avant de réserver.
+                            </p>
+                            <button @click="orderOnWhatsapp" :disabled="loading || cart.length === 0"
                                 class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] dark:text-dark-white py-2 rounded dark:hover:bg-[var(--dark-gold)]/80 transition">
                                 Reserver
                             </button>

@@ -11,13 +11,10 @@ import { Link } from '@inertiajs/vue3';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 
-
 // Loader : true si on doit afficher le loader
 const showLoading = ref(true);
-
 // Animation Hero : true si les animations doivent se jouer
 const animateHero = ref(false);
-
 onMounted(() => {
     if (!sessionStorage.getItem('hasVisited')) {
         // Affiche le loader 2s
@@ -36,7 +33,6 @@ onMounted(() => {
     }
 });
 </script>
-
 <template>
     <!-- Loader -->
     <Loading v-if="showLoading" />

@@ -34,7 +34,7 @@ function toggleAccountMenu() {
 
         <!-- Menu desktop -->
         <div class="hidden md:flex space-x-6 flex-1 justify-center">
-          <Link prefetch :href="products()" class="nav-link">Produits</Link>
+          <!-- <Link prefetch :href="products()" class="nav-link">Produits</Link> -->
           <Link prefetch :href="about()" class="nav-link">À propos</Link>
           <Link prefetch :href="contact()" class="nav-link">Contact</Link>
         </div>
@@ -92,7 +92,7 @@ function toggleAccountMenu() {
     <!-- Menu mobile -->
     <div v-if="openMenu"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)] flex flex-col">
-      <Link prefetch :href="products()" class="block nav-link">Produits</Link>
+      <!-- <Link prefetch :href="products()" class="block nav-link">Produits</Link> -->
       <Link prefetch :href="about()" class="block nav-link">À propos</Link>
       <Link prefetch :href="contact()" class="block nav-link">Contact</Link>
     </div>

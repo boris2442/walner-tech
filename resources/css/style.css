@@ -46,3 +46,14 @@
 }
 
 
+.banner {
+    background: #020024;
+    background: -webkit-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(26, 28, 150, 0.65) 23%, rgba(20, 67, 172, 1) 39%, rgba(14, 108, 195, 1) 56%, rgba(0, 212, 255, 1) 100%);
+    background: -moz-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(26, 28, 150, 0.65) 23%, rgba(20, 67, 172, 1) 39%, rgba(14, 108, 195, 1) 56%, rgba(0, 212, 255, 1) 100%);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(26, 28, 150, 0.65) 23%, rgba(20, 67, 172, 1) 39%, rgba(14, 108, 195, 1) 56%, rgba(0, 212, 255, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
+}
+
+body{
+   font-family: NeueHaasGrotesk, Helvetica, Arial, sans-serif;
+}
