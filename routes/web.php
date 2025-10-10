@@ -19,7 +19,8 @@ use App\Http\Controllers\Backend\Admin\DashboardController;
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
 // })->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+//Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [ProductController::class, 'index'])->name('home');
 // Redirection vers Google
 Route::get('auth/google', [GoogleController::class, 'redirect']);
 

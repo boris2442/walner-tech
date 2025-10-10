@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\OrderClick;
+use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
 
@@ -89,7 +90,7 @@ class DashboardController extends Controller
 
 
         // Graphe 6 : clics par jour de la semaine (7 derniers jours)
-       
+
 
         // Graphe 6 : clics par jour de la semaine (7 derniers jours)
         $clicksLast7Days = collect();
@@ -102,10 +103,24 @@ class DashboardController extends Controller
                 'count' => $count,
             ]);
         }
+        //Notifications
+        $user = Auth::user();
+        // Récupère les 10 dernières notifications
+        $notifications = \DB::table('notifications')
+            ->latest()
+            ->take(10)
+            ->get()
+            ->map(function ($n) {
+                return [
+                    'data' => json_decode($n->data, true),
+                    'created_at' => $n->created_at,
+                ];
+            })
+            ->toArray();
 
 
+        // dd(\DB::table('notifications')->latest()->take(10)->get());
 
-        // dd($productsByCategory);
         return Inertia::render('backend/admin/Administrateur', [
             'products_by_category' => $productsByCategory,
             'users_over_time' => $usersOverTime,
@@ -114,6 +129,16 @@ class DashboardController extends Controller
             'orders_by_product' => $ordersByProduct, // ✅ nouveau graphe
             'orders_by_month' => $ordersByMonth,
             'clicks_last_7_days' => $clicksLast7Days->toArray(),
+            'auth' => [
+                'user' => [
+                    'id' => Auth::user()->id,
+                    'name' => Auth::user()->name,
+                    'email' => Auth::user()->email,
+                    'phone' => Auth::user()->phone,
+                    'role' => Auth::user()->role, // <-- ici on ajoute le rôle
+                ],
+            ],
+            'notifications' => $notifications,
         ]);
     }
 

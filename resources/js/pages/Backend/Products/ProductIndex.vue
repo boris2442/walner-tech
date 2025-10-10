@@ -150,6 +150,7 @@
             </div>
         </div>
     </section>
+    <Map2 />
     <HeroSection />
     <Service />
     <About2 />
@@ -180,7 +181,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-
+import Map2 from '@/components/frontend/Map2.vue';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import HeroSection from '@/components/frontend/HeroSection.vue';
 library.add(faCartShopping, faHeart);

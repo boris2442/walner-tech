@@ -10,8 +10,11 @@ import ClicksByWeekdayChart from '@/components/charts/ClicksByWeekdayChart.vue';
 import { computed } from 'vue';
 import OrdersByProductChart from '@/components/charts/OrdersByProductChart.vue';
 import OrdersByMonthChart from '@/components/charts/OrdersByMonthChart.vue'
+import NotificationBell from '@/components/backend/notifications/NotificationBell.vue';
 // Props Inertia
 const page = usePage();
+
+const notifications = computed(() => page.props.notifications || []);
 const productsByCategory = computed(() => page.props.products_by_category || []);
 
 //utilisateurs au fil du temps
@@ -44,7 +47,13 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Dashboard Administrateur" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
+
+
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
+
+
+
+
 
             <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 
@@ -88,6 +97,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <p class="text-center p-4 text-gray-500">Graphique à venir</p>
                 </div> -->
             </div>
+
             <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 
                 <!-- Produits les plus commandés -->
@@ -118,7 +128,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <ClicksByWeekdayChart :data="clicksLast7Days" />
 
 
-                </div> 
+                </div>
 
 
                 <!-- Placeholders pour futurs graph -->
@@ -137,5 +147,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <p class="text-center p-4 text-gray-500">Zone d'activité / autres graphiques</p>
             </div>
         </div>
+
     </AppLayout>
 </template>
