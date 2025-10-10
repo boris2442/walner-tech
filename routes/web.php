@@ -8,7 +8,7 @@ use App\Http\Controllers\Frontend\RessourceController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Frontend\LikeController;
+use App\Http\Controllers\LikeProduitController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ContactBackendController;
@@ -26,11 +26,12 @@ Route::get('auth/google', [GoogleController::class, 'redirect']);
 Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 //Route::get('/home', [HomeController::class, 'index'])->name('home.page');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-
+Route::post('/like/{product}', [LikeProduitController::class, 'toggle'])->name('like.toggle')->middleware('auth');
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/ressources/cgu', [RessourceController::class, 'cgu'])->name('ressources.cgu');
+
 Route::get('/ressources/confidentialite', [RessourceController::class, 'politiqueDeConfidentialite'])->name('ressources.policy');
 Route::get('/ressources/legales', [RessourceController::class, 'mentionsLegales'])->name('ressources.notice');
 Route::get('/ressources/refundpolicy', [RessourceController::class, 'noRemboursement'])->name('ressources.noRemboursement');
