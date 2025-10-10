@@ -28,13 +28,13 @@ function toggleAccountMenu() {
         <!-- Logo -->
         <div class="flex-shrink-0">
           <Link prefetch :href="home()">
-          <img src="assets/walner.png" alt="Walner Tech" class="h-12 object-contain" />
+          <img src="/assets/walner.png" alt="Walner Tech" class="h-12 object-contain" />
           </Link>
         </div>
 
         <!-- Menu desktop -->
         <div class="hidden md:flex space-x-6 flex-1 justify-center">
-          <!-- <Link prefetch :href="products()" class="nav-link">Produits</Link> -->
+          <Link prefetch :href="products()" class="nav-link">Produits</Link>
           <Link prefetch :href="about()" class="nav-link">À propos</Link>
           <Link prefetch :href="contact()" class="nav-link">Contact</Link>
         </div>
@@ -44,13 +44,13 @@ function toggleAccountMenu() {
 
           <!-- Compte utilisateur -->
           <div class="relative flex items-center">
-            <button @click="toggleAccountMenu" class="text-white flex items-center space-x-1">
+            <button @click="toggleAccountMenu" class="text-white flex items-center space-x-1 z-10 relative">
               <FontAwesomeIcon icon="user-circle" class="text-3xl" />
               <span class="hidden md:inline font-medium">Mon compte</span>
             </button>
 
             <div v-if="openAccountMenu"
-              class="absolute right-0 mt-2 w-44 bg-white dark:bg-[var(--dark-background)] rounded-xl shadow-xl py-2 z-50 flex flex-col border border-gray-200 dark:border-gray-700">
+              class="absolute top-full right-0 mt-2 w-44 bg-white dark:bg-[var(--dark-background)] rounded-xl shadow-xl py-2 z-20 flex flex-col border border-gray-200 dark:border-gray-700">
               <template v-if="isAuthenticated">
                 <Link prefetch href="/dashboard" class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 Dashboard
@@ -92,7 +92,7 @@ function toggleAccountMenu() {
     <!-- Menu mobile -->
     <div v-if="openMenu"
       class="md:hidden px-4 pt-2 pb-4 space-y-2 bg-[var(--primary-blue)] dark:bg-[var(--dark-background)] flex flex-col">
-      <!-- <Link prefetch :href="products()" class="block nav-link">Produits</Link> -->
+      <Link prefetch :href="products()" class="block nav-link">Produits</Link>
       <Link prefetch :href="about()" class="block nav-link">À propos</Link>
       <Link prefetch :href="contact()" class="block nav-link">Contact</Link>
     </div>
