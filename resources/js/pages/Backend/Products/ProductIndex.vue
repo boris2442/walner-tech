@@ -327,7 +327,15 @@ function onSearchInput() {
 }
 
 // Obtenir URL image
-function getImageUrl(path) { return path ? `/storage/${path}` : '/fallback.png'; }
+// function getImageUrl(path) { return path ? `/storage/${path}` : '/fallback.png'; }
+
+function getImageUrl(path) {
+    if (!path) return '/fallback.png';
+    return path.startsWith('imageProducts/') ? `/storage/${path}` : `/storage/imageProducts/${path}`;
+}
+
+
+
 
 // Commander sur WhatsApp
 function orderOnWhatsapp() {
