@@ -345,7 +345,7 @@ function getImageUrl(path) {
 function orderOnWhatsapp() {
     const userName = props?.auth?.user?.name || 'Client';
     const userId = props.auth?.user?.id || null;
-    const entreprisePhone = "237679135177";
+    const entreprisePhone = "237656894773";
 
     cart.value.forEach(item => {
         axios.post('/api/track-order-click', {
