@@ -1,6 +1,6 @@
 <template>
     <div class="bg-orange-500 p-4 rounded-lg text-center shadow-md banner">
-  
+
         <h3 class="text-white font-bold mb-2 text-2xl">Reservez en toute secutite via</h3>
 
         <!-- Boutons -->
