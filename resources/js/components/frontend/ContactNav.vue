@@ -1,7 +1,13 @@
 <template>
     <div class="bg-orange-500 p-4 rounded-lg text-center shadow-md banner">
 
-        <h3 class="text-white font-bold mb-2 text-2xl">Reservez en toute secutite via</h3>
+        <h3 class="text-white font-extrabold mb-2 text-3xl md:text-4xl text-center 
+           bg-gradient-to-r from-yellow-300 via-red-400 to-pink-500 
+           bg-clip-text text-transparent 
+           drop-shadow-lg 
+           animate-pulse">Reservez en toute secutité via
+            <FontAwesomeIcon :icon="['fas', 'paper-plane']" class="text-white w-8 h-8 animate-bounce" />
+        </h3>
 
         <!-- Boutons -->
         <div class="flex  sm:flex-row gap-3 justify-center text-sm">
@@ -28,9 +34,10 @@
 // Import des icônes Lucide
 import { Phone, MessageCircle } from 'lucide-vue-next';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-library.add(faWhatsapp)
+library.add(faWhatsapp,faPaperPlane)
 </script>
 
 <style scoped>
