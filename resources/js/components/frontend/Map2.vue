@@ -6,7 +6,7 @@
             <!-- Showroom Douala -->
             <div
                 class="bg-white rounded-lg shadow p-6 flex  md:flex-row items-center group hover:bg-[var(--primary-blue)] gap-3">
-                <img src="/assets/walner.jpg" alt="Showroom Douala"
+                <img src="/assets/walner.png" alt="Showroom Douala"
                     class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
                 <div class="flex-1">
                     <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">WALNER TECH Bafoussam</h3>
@@ -35,7 +35,7 @@
             <!-- Showroom Yaoundé -->
             <div
                 class="bg-white rounded-lg shadow p-6 flex  md:flex-row items-center group hover:bg-[var(--primary-blue)] gap-3">
-                <img src="/assets/walner.jpg" alt="Showroom Yaoundé"
+                <img src="/assets/walner.png" alt="Showroom Yaoundé"
                     class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
                 <div class="flex-1">
                     <h3 class="text-lg font-bold mt-2 group-hover:text-orange-500">WALNER TECH Yaoundé</h3>
