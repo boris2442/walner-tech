@@ -1,4 +1,7 @@
 <template>
+
+  <!-- Loader -->
+    <Loading v-if="showLoading" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
 
@@ -164,9 +167,9 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
-
+import SeoHead from '@/components/frontend/seo/SeoHead.vue';
 import Testimony from '@/components/frontend/Testimony.vue';
-
+import { Head } from '@inertiajs/inertia-vue3'
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
@@ -177,6 +180,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import Service from '@/components/frontend/Service.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
+import Loading from '@/components/frontend/Loading.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import About2 from '@/components/frontend/About2.vue';
 import { Autoplay, Pagination } from "swiper/modules";
@@ -360,6 +364,25 @@ function orderOnWhatsapp() {
     const whatsappUrl = `https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 }
+
+// Loader : true si on doit afficher le loader
+const showLoading = ref(true);
+
+onMounted(() => {
+    if (!sessionStorage.getItem('hasVisited')) {
+        // Affiche le loader 2s
+        setTimeout(async () => {
+            showLoading.value = false;   // Fin du loader
+            await nextTick();             // attendre que le DOM soit mis à jour
+           
+            sessionStorage.setItem('hasVisited', 'true');
+        }, 2000);
+    } else {
+        // Pas la première visite → pas de loader
+        showLoading.value = false;
+   
+    }
+});
 </script>
 
 <style scoped>

@@ -5,38 +5,53 @@ const progress = ref(0);
 const show = ref(true);
 
 onMounted(() => {
-    // Simule le chargement
-    const interval = setInterval(() => {
-        if (progress.value < 100) {
-            progress.value += 1;
-        } else {
-            clearInterval(interval);
-            show.value = false; // cacher loader après 100%
-        }
-    }, 30); // vitesse du chargement
+  const interval = setInterval(() => {
+    if (progress.value < 100) {
+      progress.value += 1;
+    } else {
+      clearInterval(interval);
+      show.value = false; // cacher loader après 100%
+    }
+  }, 25); // vitesse du chargement (plus rapide pour effet puissant)
 });
 </script>
 
 <template>
-    <div v-if="show"
-        class="fixed inset-0 flex flex-col justify-center items-center bg-[var(--background-light)] dark:bg-[var(--dark-background)] z-10000">
-        <!-- Cercle rotatif -->
-        <div
-            class="w-16 h-16 border-4 border-[var(--primary-blue)] border-t-[var(--highlight-gold)] rounded-full animate-spin mb-6">
-        </div>
+  <div v-if="show"
+       class="fixed inset-0 flex flex-col justify-center items-center bg-[var(--background-light)] dark:bg-[var(--dark-background)] z-[9999] banner">
 
-        <!-- Barre de progression -->
-        <div class="w-64 h-4 border border-[var(--text-secondary)] rounded overflow-hidden mb-2">
-            <div class="h-full bg-[var(--primary-blue)] transition-all duration-300" :style="{ width: progress + '%' }">
-            </div>
-        </div>
-
-        <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)] font-semibold tracking-wide">
-            Loading... {{ progress }}%
-        </p>
+    <!-- Cercle rotatif dynamique -->
+    <div
+      class="w-20 h-20 rounded-full border-4 border-t-transparent border-b-[var(--highlight-gold)] border-l-[var(--primary-blue)] border-r-[var(--primary-blue)] animate-spin-scale mb-6">
     </div>
+
+    <!-- Barre de progression flashy -->
+    <div class="w-72 max-w-[90vw] h-5 rounded overflow-hidden mb-3 border border-[var(--text-secondary)]">
+      <div :style="{ width: progress + '%' }"
+           class="h-full bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 shadow-lg transition-all duration-300"></div>
+    </div>
+
+    <!-- Texte animé -->
+    <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)] font-bold tracking-wide text-lg md:text-xl animate-pulse">
+      Loading... {{ progress }}%
+    </p>
+
+  </div>
 </template>
 
 <style scoped>
+/* Cercle rotatif pulsé */
+@keyframes spin-scale {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.animate-spin-scale {
+  animation: spin-scale 1s linear infinite;
+}
 
+/* Optionnel : ajouter glow sur barre de progression */
+div > div {
+  box-shadow: 0 0 12px rgba(255, 200, 50, 0.6);
+}
 </style>

@@ -31,6 +31,9 @@ class ProductController extends Controller
         if ($request->has('category') && $request->category != '') {
             $query->where('category_id', $request->category);
         }
+        // SEO dynamique pour la page
+     
+
 
         // On récupère tous les produits (sans pagination)
         $products = $query->get()->map(function ($product) {
@@ -50,6 +53,7 @@ class ProductController extends Controller
             'auth' => [
                 'user' => auth()->user()
             ],
+        
         ]);
     }
 
