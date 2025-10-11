@@ -44,9 +44,9 @@ onUnmounted(() => {
         enter-from-class="translate-y-6 opacity-0" enter-to-class="translate-y-0 opacity-100"
         leave-active-class="transition ease-in duration-300 transform" leave-from-class="translate-y-0 opacity-100"
         leave-to-class="translate-y-6 opacity-0">
-        <div v-if="showBanner" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-md px-4 py-3 shadow-xl flex flex-row flex-wrap justify-between items-center gap-2 z-[9999]
-                bg-[var(--flash)] text-[var(--secondary-white)]
-                dark:bg-[var(--dark-blue)] dark:text-[var(--dark-white)] rounded-lg banner">
+        <div v-if="showBanner" class="fixed  bottom-4 left-1/2 transform -translate-x-1/2 w-full max-w-[95%] px-4 py-3 shadow-xl flex flex-row flex-wrap justify-between items-center gap-2 z-[9999]
+           bg-[var(--flash)] text-[var(--secondary-white)]
+           dark:bg-[var(--dark-blue)] dark:text-[var(--dark-white)] rounded-lg banner banner">
 
             <!-- Texte -->
             <span class="text-sm  flex-1 truncate">
@@ -87,4 +87,12 @@ onUnmounted(() => {
         opacity: 1;
     }
 }
+@media (max-width: 640px) {
+    .banner {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 </style>
