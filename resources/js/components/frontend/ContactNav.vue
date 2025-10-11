@@ -1,6 +1,6 @@
 <template>
     <div class="bg-orange-500 p-4 rounded-lg text-center shadow-md banner">
-        <!-- Titre -->
+  
         <h3 class="text-white font-bold mb-2">Reserver par téléphone</h3>
 
         <!-- Boutons -->
