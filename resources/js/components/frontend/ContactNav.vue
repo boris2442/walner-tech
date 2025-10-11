@@ -37,7 +37,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-library.add(faWhatsapp,faPaperPlane)
+library.add(faWhatsapp, faPaperPlane)
 </script>
 
 <style scoped>
