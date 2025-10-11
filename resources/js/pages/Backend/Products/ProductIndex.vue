@@ -25,7 +25,7 @@
             </div>
 
             <!-- Liste des catégories -->
-            <div class="flex gap-3 justify-center mb-4 overflow-x-auto whitespace-nowrap">
+            <div class="flex gap-3 justify-start mb-4 overflow-x-auto whitespace-nowrap px-2">
                 <span @click="filterByCategory('')" :class="categoryButtonClass('')"
                     class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
                     Tous
