@@ -226,6 +226,15 @@ const filteredProducts = computed(() => {
 
 // Like
 function toggleLike(product) {
+
+    // Vérifier si l'utilisateur est connecté
+    if (!props.auth?.user) {
+        if (confirm("Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?")) {
+            window.location.href = '/login';
+        }
+        return; // Stop la fonction
+    }
+
     axios.post(`/like/${product.id}`).then(res => {
         product.liked = res.data.liked;
         product.likes_count = res.data.likesCount;
@@ -234,6 +243,18 @@ function toggleLike(product) {
 
 // Ajouter au panier avec animation
 function addToCart(product, event) {
+
+
+    // Vérifier si l'utilisateur est connecté
+    if (!props.auth?.user) {
+        // Afficher une alerte ou un toast personnalisé
+        if (confirm("Vous devez être connecté pour ajouter un produit au panier.\nVoulez-vous vous connecter maintenant ?")) {
+            // Rediriger vers la page de login
+            window.location.href = '/login';
+        }
+        return; // Stop la fonction
+    }
+
     const item = cart.value.find(p => p.id === product.id);
     if (item) item.quantity += 1;
     else cart.value.push({ ...product, quantity: 1 });
