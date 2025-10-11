@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import ContactNav from '@/components/frontend/ContactNav.vue';
 import { faUserCircle, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
-
+const logoUrl = '/assets/walner.png';
 library.add(faUserCircle, faSignOutAlt, faTachometerAlt);
 
 const props = defineProps({ auth: Object });
@@ -28,7 +28,7 @@ function toggleAccountMenu() {
         <!-- Logo -->
         <div class="flex-shrink-0">
           <Link prefetch :href="home()">
-          <img src="/assets/walner.png" alt="Walner Tech" class="h-12 object-contain" />
+          <img :src="logoUrl" alt="Walner Tech" class="h-12 object-contain" />
           </Link>
         </div>
 
