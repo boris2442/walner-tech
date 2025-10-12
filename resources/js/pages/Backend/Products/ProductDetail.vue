@@ -68,8 +68,12 @@ onMounted(() => {
     selectedImage.value = props.product.images?.[0]?.url_image || '/fallback.png'
 })
 
+// function getImageUrl(path) {
+//     return path ? `/storage/${path}` : '/fallback.png'
+// }
 function getImageUrl(path) {
-    return path ? `/storage/${path}` : '/fallback.png'
+    if (!path) return '/fallback.png';
+    return `/${path}`;
 }
 
 function addToCart(product) {

@@ -1,6 +1,6 @@
 <template>
 
-  <!-- Loader -->
+    <!-- Loader -->
     <Loading v-if="showLoading" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
@@ -331,11 +331,14 @@ function onSearchInput() {
 }
 
 // Obtenir URL image
-// function getImageUrl(path) { return path ? `/storage/${path}` : '/fallback.png'; }
 
+// function getImageUrl(path) {
+//     if (!path) return '/fallback.png';
+//     return path.startsWith('imageProducts/') ? `/storage/${path}` : `/storage/imageProducts/${path}//`;
+// }
 function getImageUrl(path) {
     if (!path) return '/fallback.png';
-    return path.startsWith('imageProducts/') ? `/storage/${path}` : `/storage/imageProducts/${path}`;
+    return `/${path}`;
 }
 
 
@@ -374,13 +377,13 @@ onMounted(() => {
         setTimeout(async () => {
             showLoading.value = false;   // Fin du loader
             await nextTick();             // attendre que le DOM soit mis à jour
-           
+
             sessionStorage.setItem('hasVisited', 'true');
         }, 2000);
     } else {
         // Pas la première visite → pas de loader
         showLoading.value = false;
-   
+
     }
 });
 </script>

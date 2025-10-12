@@ -268,8 +268,11 @@ const search = ref(props.filters.search || '');
 const category = ref(props.filters.category || '');
 const showGlobalMenu = ref(false);
 
+// function getImageUrl(path: string) {
+//   return path ? `/storage/${path}` : '/fallback.png';
+// }
 function getImageUrl(path: string) {
-  return path ? `/storage/${path}` : '/fallback.png';
+  return path ? `/${path}` : '/fallback.png';
 }
 
 const productsWithImages = computed(() =>
