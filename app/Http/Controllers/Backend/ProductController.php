@@ -26,7 +26,8 @@ class ProductController extends Controller
         if ($request->has('search') && $request->search != '') {
             $query->where('title', 'like', "%{$request->search}%");
         }
-
+        // **Tri du plus récent au plus ancien**
+        $query->orderBy('created_at', 'desc');
         // Filtre par catégorie si demandé
         if ($request->has('category') && $request->category != '') {
             $query->where('category_id', $request->category);
@@ -187,8 +188,11 @@ class ProductController extends Controller
             $query->where('category_id', $request->category);
         }
 
+        // **Tri du plus récent au plus ancien**
+        $query->orderBy('created_at', 'desc');
+
         // Pagination
-        $products = $query->paginate(50)->withQueryString();
+        $products = $query->paginate(200)->withQueryString();
 
         // 📊 Statistiques globales
         $totalProducts = Product::count();
