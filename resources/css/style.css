@@ -1,61 +1,81 @@
-*{
-   scroll-behavior: smooth;
+* {
+    scroll-behavior: smooth;
 }
 
-:root{
-  /* =====================
+:root {
+    /* =====================
    VERSION CLAIRE
 ===================== */
 
-/* Couleurs principales */
-/* --primary-blue: #173366;      */
-  /* Bleu profond, pour header, textes importants */
---primary-blue: #223CB9;       /* Bleu profond, pour header, textes importants */
---primary-blue2: #9bb4e1;       /* Bleu profond, pour header, textes importants */
---secondary-white: #FFFFFF;    /* Blanc pur, pour fonds et textes sur foncé */
-/* --highlight-gold: #E6C200;    */
---highlight-gold: #090909;   
- /* Or doux, pour boutons, accents, call-to-action */
---background-light: #F5F5F5;  /* Fond clair secondaire */
---text-secondary: #4D4D4D;    /* Texte secondaire / icônes */
---text-dark: #000000;          /* Texte noir principal */
+    /* Couleurs principales */
+    /* --primary-blue: #173366;      */
+    /* Bleu profond, pour header, textes importants */
+    --primary-blue: #223cb9; /* Bleu profond, pour header, textes importants */
+    --primary-blue2: #9bb4e1; /* Bleu profond, pour header, textes importants */
+    --secondary-white: #ffffff; /* Blanc pur, pour fonds et textes sur foncé */
+    /* --highlight-gold: #E6C200;    */
+    --highlight-gold: #090909;
+    /* Or doux, pour boutons, accents, call-to-action */
+    --background-light: #f5f5f5; /* Fond clair secondaire */
+    --text-secondary: #4d4d4d; /* Texte secondaire / icônes */
+    --text-dark: #000000; /* Texte noir principal */
 
-/* Couleur d’accent */
---accent-cyan: #233275;       /* Liens, boutons, hover */
+    /* Couleur d’accent */
+    --accent-cyan: #233275; /* Liens, boutons, hover */
 
-/* =====================
+    /* =====================
    VERSION SOMBRE
 ===================== */
 
-/* Couleurs principales sombre */
---dark-background: #1E1E1E;    /* Fond général sombre */
---dark-blue: #003366;           /* Bleu foncé pour header ou boutons */
---dark-gold: #FFE600;           /* Or doux, pour accents sur sombre */
---dark-white: #FFFFFF;           /* Texte blanc sur sombre */
---dark-grey: #CCCCCC;            /* Texte secondaire clair */
---dark-grey2:#2A2A2A;            /* Texte secondaire clair */
---dark-black: #000000;           /* Noir pur */
-/* --dark-accent: #00BFFF;       */
+    /* Couleurs principales sombre */
+    --dark-background: #1e1e1e; /* Fond général sombre */
+    --dark-blue: #003366; /* Bleu foncé pour header ou boutons */
+    --dark-gold: #ffe600; /* Or doux, pour accents sur sombre */
+    --dark-white: #ffffff; /* Texte blanc sur sombre */
+    --dark-grey: #cccccc; /* Texte secondaire clair */
+    --dark-grey2: #2a2a2a; /* Texte secondaire clair */
+    --dark-black: #000000; /* Noir pur */
+    /* --dark-accent: #00BFFF;       */
     /* Accent cyan sur sombre */
---dark-accent: #c0dce65e;          /* Accent cyan sur sombre */
+    --dark-accent: #c0dce65e; /* Accent cyan sur sombre */
 
---success-green:#22c55e;
---error-red:#ef4444;
---flash:#4FA740;
-/* --white-color:#ffffff; */
---dark-map2:#1E1E1E;
-
+    --success-green: #22c55e;
+    --error-red: #ef4444;
+    --flash: #4fa740;
+    /* --white-color:#ffffff; */
+    --dark-map2: #1e1e1e;
+    --card-dark:#0A0A0A;
 }
-
 
 .banner {
     background: #020024;
-    background: -webkit-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(26, 28, 150, 0.65) 23%, rgba(20, 67, 172, 1) 39%, rgba(14, 108, 195, 1) 56%, rgba(0, 212, 255, 1) 100%);
-    background: -moz-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(26, 28, 150, 0.65) 23%, rgba(20, 67, 172, 1) 39%, rgba(14, 108, 195, 1) 56%, rgba(0, 212, 255, 1) 100%);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(26, 28, 150, 0.65) 23%, rgba(20, 67, 172, 1) 39%, rgba(14, 108, 195, 1) 56%, rgba(0, 212, 255, 1) 100%);
+    background: -webkit-linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(26, 28, 150, 0.65) 23%,
+        rgba(20, 67, 172, 1) 39%,
+        rgba(14, 108, 195, 1) 56%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    background: -moz-linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(26, 28, 150, 0.65) 23%,
+        rgba(20, 67, 172, 1) 39%,
+        rgba(14, 108, 195, 1) 56%,
+        rgba(0, 212, 255, 1) 100%
+    );
+    background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(26, 28, 150, 0.65) 23%,
+        rgba(20, 67, 172, 1) 39%,
+        rgba(14, 108, 195, 1) 56%,
+        rgba(0, 212, 255, 1) 100%
+    );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
 }
 
-body{
-   font-family: NeueHaasGrotesk, Helvetica, Arial, sans-serif;
+body {
+    font-family: NeueHaasGrotesk, Helvetica, Arial, sans-serif;
 }

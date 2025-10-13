@@ -77,7 +77,7 @@ onMounted(() => {
             <!-- Grid des services -->
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 <div v-for="(service, index) in services" :key="index"
-                    class="service-card rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)]  hover:text-white group "
+                    class="service-card rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)]  hover:text-white group dark:hover:bg-[var(--card-dark)]"
                     :class="{
                         'animate-fade-in-up': visible[index],
                     }" :data-index="index">

@@ -102,22 +102,22 @@ onMounted(() => {
 
             <!-- Bloc 1 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px] dark:bg-[var(--dark-grey2)]">
+                class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px] dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
                 <Truck class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
                 <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Livraison rapide à partir de 3h</span>
             </div>
 
             <!-- Bloc 2 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)]">
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
                 <Shield class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Produits authentiques 100%
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] ">Produits authentiques 100%
                     garantis</span>
             </div>
 
             <!-- Bloc 3 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)]">
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
                 <Headphones class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
                 <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Service après vente walnertech - SAV
                     agréé</span>
@@ -125,7 +125,7 @@ onMounted(() => {
 
             <!-- Bloc 4 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)]">
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
                 <RotateCcw class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
                 <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Retour rapide et facile sur 7
                     jours</span>
