@@ -34,16 +34,16 @@ onMounted(async () => {
 <template>
     <Card>
         <CardHeader>
-            <CardTitle class="flex gap-3"> <LockKeyhole class="size-4" />2FA Recovery Codes </CardTitle>
+            <CardTitle class="flex gap-3"> <LockKeyhole class="size-4" />Codes de récupération 2FA </CardTitle>
             <CardDescription>
-                Recovery codes let you regain access if you lose your 2FA device. Store them in a secure password manager.
+              Les codes de récupération vous permettent de récupérer l'accès à votre appareil 2FA en cas de perte. Conservez-les dans un gestionnaire de mots de passe sécurisé.
             </CardDescription>
         </CardHeader>
         <CardContent>
             <div class="flex flex-col gap-3 select-none sm:flex-row sm:items-center sm:justify-between">
                 <Button @click="toggleRecoveryCodesVisibility" class="w-fit">
                     <component :is="isRecoveryCodesVisible ? EyeOff : Eye" class="size-4" />
-                    {{ isRecoveryCodesVisible ? 'Hide' : 'View' }} Recovery Codes
+                    {{ isRecoveryCodesVisible ? 'Hide' : 'View' }} Codes de récupération
                 </Button>
 
                 <Form
@@ -54,7 +54,7 @@ onMounted(async () => {
                     @success="fetchRecoveryCodes"
                     #default="{ processing }"
                 >
-                    <Button variant="secondary" type="submit" :disabled="processing"> <RefreshCw /> Regenerate Codes </Button>
+                    <Button variant="secondary" type="submit" :disabled="processing"> <RefreshCw /> Régénérer les codes </Button>
                 </Form>
             </div>
             <div :class="['relative overflow-hidden transition-all duration-300', isRecoveryCodesVisible ? 'h-auto opacity-100' : 'h-0 opacity-0']">
@@ -68,8 +68,8 @@ onMounted(async () => {
                         </div>
                     </div>
                     <p class="text-xs text-muted-foreground select-none">
-                        Each recovery code can be used once to access your account and will be removed after use. If you need more, click
-                        <span class="font-bold">Regenerate Codes</span> above.
+                      Chaque code de récupération est utilisable une fois pour accéder à votre compte et sera supprimé après utilisation. Pour en utiliser plusieurs, cliquez sur
+                        <span class="font-bold">Régénérer les codes</span> au-dessus de.
                     </p>
                 </div>
             </div>

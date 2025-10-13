@@ -17,81 +17,6 @@ import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 const page = usePage();
 const user = computed(() => page.props.auth?.user);
-// const mainNavItems: NavItem[] = [
-//     {
-//         title: 'Accueil',
-//         href: '/',
-//         icon: Home,
-//     },
-//     {
-//         title: 'Dashboard',
-//         href: dashboard(),
-//         icon: LayoutGrid,
-//     },
-//     {
-//         title: 'Contacts',
-//         href: contacts.index().url,
-//         icon: MessageCircleMore,
-//     },
-
-//     {
-//         title: 'Products',
-//         href: products.index().url,
-//         icon: Store,
-//     },
-//     {
-//         title: 'Categories',
-//         href: categories.index().url,
-//         icon: Grid,
-//     },
-
-//     {
-//         title: 'users',
-//         href: users.index().url,
-//         icon: BookOpen,
-//     }
-//     ,
-
-//     {
-//         title: 'Administrateurs',
-//         href: dashboardAdmin.admin().url,
-//         icon: LayoutGrid,
-//     },
-//     ...(user.value?.role === 'admin' ? [
-//         {
-//             title: 'users',
-//             href: users.index().url,
-//             icon: BookOpen,
-//         },
-//         {
-//             title: 'Administrateurs',
-//             href: dashboardAdmin.admin().url,
-//             icon: LayoutGrid,
-//         }, {
-//             title: 'Contacts',
-//             href: contacts.index().url,
-//             icon: MessageCircleMore,
-//         },
-
-//         {
-//             title: 'Products',
-//             href: products.index().url,
-//             icon: Store,
-//         },
-//         {
-//             title: 'Categories',
-//             href: categories.index().url,
-//             icon: Grid,
-//         },
-
-//         {
-//             title: 'users',
-//             href: users.index().url,
-//             icon: BookOpen,
-//         }
-//     ] : []),
-//     //Afficher certains liens si c'est un administrateur
-// ];
 
 const mainNavItems: NavItem[] = [
     // Liens visibles pour tous
@@ -140,16 +65,7 @@ const mainNavItems: NavItem[] = [
 
 
 const footerNavItems: NavItem[] = [
-    // {
-    //     title: 'Github Repo',
-    //     href: 'https://github.com/laravel/vue-starter-kit',
-    //     icon: Folder,
-    // },
-    // {
-    //     title: 'Documentation',
-    //     href: 'https://laravel.com/docs/starter-kits#vue',
-    //     icon: BookOpen,
-    // },
+    
 ];
 </script>
 

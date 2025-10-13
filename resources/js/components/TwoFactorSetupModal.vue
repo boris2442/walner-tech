@@ -31,22 +31,22 @@ const modalConfig = computed<{ title: string; description: string; buttonText: s
     if (props.twoFactorEnabled) {
         return {
             title: 'Two-Factor Authentication Enabled',
-            description: 'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
-            buttonText: 'Close',
+            description: "L'authentification à deux facteurs est désormais activée. Scannez le code QR ou saisissez la clé de configuration dans votre application d'authentification.",
+            buttonText: 'Fermer',
         };
     }
 
     if (showVerificationStep.value) {
         return {
-            title: 'Verify Authentication Code',
-            description: 'Enter the 6-digit code from your authenticator app',
+            title: "Vérifier le code d'authentification",
+            description: 'Saisissez le code à 6 chiffres de votre application d\'authentification',
             buttonText: 'Continue',
         };
     }
 
     return {
         title: 'Enable Two-Factor Authentication',
-        description: 'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
+        description: ' Pour terminer l\'activation de l\'authentification à deux facteurs, scannez le code QR ou saisissez la clé de configuration dans votre application d\'authentification',
         buttonText: 'Continue',
     };
 });
@@ -135,7 +135,7 @@ watch(
 
                     <div class="relative flex w-full items-center justify-center">
                         <div class="absolute inset-0 top-1/2 h-px w-full bg-border" />
-                        <span class="relative bg-card px-2 py-1">or, enter the code manually</span>
+                        <span class="relative bg-card px-2 py-1">ou, entrez le code manuellement</span>
                     </div>
 
                     <div class="flex w-full items-center justify-center space-x-2">
