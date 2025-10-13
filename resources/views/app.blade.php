@@ -39,9 +39,7 @@
     <meta name="author" content="Walner Tech">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
-
-  
-    <meta property="og:title" content="Walner Tech - Votre expert en équipements informatiques au Cameroun">
+ <meta property="og:title" content="Walner Tech - Votre expert en équipements informatiques au Cameroun">
     <meta property="og:description"
         content="Commandez vos ordinateurs, accessoires et produits high-tech chez Walner Tech. Livraison rapide à Bafoussam, Yaoundé et partout au Cameroun. Service professionnel et fiable.">
     <meta property="og:image" content="{{ asset('assets/walner.jpg') }}">
@@ -59,8 +57,7 @@
     <meta name="twitter:description"
         content="Walner Tech, boutique high-tech à Bafoussam et Yaoundé. Ordinateurs, accessoires, composants PC. Livraison rapide au Cameroun et à l’international.">
     <meta name="twitter:image" content="{{ asset('assets/walner.jpg') }}">
-
-    <link rel="canonical" href="{{ url()->current() }}">
+ <link rel="canonical" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="fr" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="en" href="{{ url()->current() }}">
   <link rel="preconnect" href="https://fonts.bunny.net">
