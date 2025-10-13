@@ -142,7 +142,7 @@
                         </div>
                         <div class="mt-3">
                             <p v-if="cart.length === 0"
-                                class="text-sm text-gray-700 dark:text-dark-grey text-center mb-2">
+                                class="text-sm text-gray-400 dark:text-dark-grey text-center mb-2">
                                 Le panier est vide. Ajoutez des produits avant de réserver.
                             </p>
                             <button @click="orderOnWhatsapp" :disabled="loading || cart.length === 0"
@@ -386,6 +386,9 @@ onMounted(() => {
 
     }
 });
+
+
+
 </script>
 
 <style scoped>

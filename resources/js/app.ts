@@ -10,7 +10,7 @@ import { createApp, h } from 'vue';
 import { initializeTheme } from './composables/useAppearance';
 import NProgress from './plugins/nprogress'; // notre fichier
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Walner Tech';
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
