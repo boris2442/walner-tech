@@ -32,11 +32,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                 <h2 class="text-2xl font-bold mb-2">Content de vous revoir!</h2>
                 <p class="text-center mb-4">Saisissez vos informations personnelles pour vous connecter à votre compte
                 </p>
-                <!-- <div class="">
-                    <Link variant="outline" class="w-full md:w-auto bg-white text-indigo-600 hover:bg-gray-100">
-                    Log In
-                    </Link>
-                </div> -->
+               
             </div>
 
             <div class="w-full md:w-1/2 p-8 dark:bg-[var(--dark-background)]">
@@ -55,7 +51,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                             <InputError :message="errors.name" />
                         </div>
                         <div class="grid gap-2">
-                            <Label for="phone" class="text-[var(--primary-blue)]">Phone</Label>
+                            <Label for="phone" class="text-[var(--primary-blue)]">Téléphone</Label>
                             <Input
                                 class="border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "
                                 id="phone" type="tel" required autofocus :tabindex="1" autocomplete="phone" name="phone"

@@ -49,24 +49,22 @@ onUnmounted(() => {
                     <Badge variant="destructive">Disabled</Badge>
 
                     <p class="text-muted-foreground">
-                        When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from
-                        a TOTP-supported application on your phone.
+                        Lorsque vous activez l'authentification à deux facteurs, un code PIN sécurisé vous sera demandé lors de la connexion. Ce code PIN peut être récupéré depuis une application compatible TOTP sur votre téléphone.
                     </p>
 
                     <div>
-                        <Button v-if="hasSetupData" @click="showSetupModal = true"> <ShieldCheck />Continue Setup </Button>
+                        <Button v-if="hasSetupData" @click="showSetupModal = true"> <ShieldCheck />Continuer la configuration </Button>
                         <Form v-else v-bind="enable.form()" @success="showSetupModal = true" #default="{ processing }">
-                            <Button type="submit" :disabled="processing"> <ShieldCheck />Enable 2FA</Button></Form
+                            <Button type="submit" :disabled="processing"> <ShieldCheck />Activer 2FA</Button></Form
                         >
                     </div>
                 </div>
 
                 <div v-else class="flex flex-col items-start justify-start space-y-4">
-                    <Badge variant="default">Enabled</Badge>
+                    <Badge variant="default">Activé</Badge>
 
                     <p class="text-muted-foreground">
-                        With two-factor authentication enabled, you will be prompted for a secure, random pin during login, which you can retrieve
-                        from the TOTP-supported application on your phone.
+                    Lorsque l'authentification à deux facteurs est activée, un code PIN aléatoire et sécurisé vous sera demandé lors de la connexion, que vous pourrez récupérer à partir de l'application compatible TOTP sur votre téléphone.
                     </p>
 
                     <TwoFactorRecoveryCodes />
@@ -75,7 +73,7 @@ onUnmounted(() => {
                         <Form v-bind="disable.form()" #default="{ processing }">
                             <Button variant="destructive" type="submit" :disabled="processing">
                                 <ShieldBan />
-                                Disable 2FA
+                               Désactiver 2FA
                             </Button>
                         </Form>
                     </div>

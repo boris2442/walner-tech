@@ -19,6 +19,8 @@ interface Props {
     status?: string;
 }
 
+
+
 defineProps<Props>();
 
 const breadcrumbItems: BreadcrumbItem[] = [
@@ -27,76 +29,69 @@ const breadcrumbItems: BreadcrumbItem[] = [
         href: edit().url,
     },
 ];
-
+interface AuthUser {
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at?: string | null;
+    phone?: string | null; // <-- ajouté
+}
 const page = usePage();
-const user = page.props.auth.user;
+const user = page.props.auth.user as AuthUser;
 </script>
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
+
         <Head title="Profile settings" />
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <HeadingSmall title="Profile information" description="Update your name and email address" />
+                <HeadingSmall title="Profile information"
+                    description="Mettez à jour votre nom et votre adresse e-mail" />
 
-                <Form v-bind="ProfileController.update.form()" class="space-y-6" v-slot="{ errors, processing, recentlySuccessful }">
+                <Form v-bind="ProfileController.update.form()" class="space-y-6"
+                    v-slot="{ errors, processing, recentlySuccessful }">
                     <div class="grid gap-2">
-                        <Label for="name">Name</Label>
-                        <Input
-                            id="name"
-                            class="mt-1 block w-full"
-                            name="name"
-                            :default-value="user.name"
-                            required
-                            autocomplete="name"
-                            placeholder="Full name"
-                        />
+                        <Label for="name">Nom</Label>
+                        <Input id="name" class="mt-1 block w-full" name="name" :default-value="user.name" required
+                            autocomplete="name" placeholder="Full name" />
                         <InputError class="mt-2" :message="errors.name" />
                     </div>
 
                     <div class="grid gap-2">
                         <Label for="email">Email address</Label>
-                        <Input
-                            id="email"
-                            type="email"
-                            class="mt-1 block w-full"
-                            name="email"
-                            :default-value="user.email"
-                            required
-                            autocomplete="username"
-                            placeholder="Email address"
-                        />
+                        <Input id="email" type="email" class="mt-1 block w-full" name="email"
+                            :default-value="user.email" required autocomplete="username" placeholder="Email address" />
                         <InputError class="mt-2" :message="errors.email" />
+                    </div>
+                    <div class="grid gap-2">
+                        <Label for="phone">Téléphone</Label>
+                        <Input id="phone" type="text" class="mt-1 block w-full" name="phone" :default-value="user.phone??''"
+                            required autocomplete="username" placeholder="phone number" />
+                        <InputError class="mt-2" :message="errors.phone" />
                     </div>
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">
                         <p class="-mt-4 text-sm text-muted-foreground">
                             Your email address is unverified.
-                            <Link
-                                :href="send()"
-                                as="button"
-                                class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
-                            >
-                                Click here to resend the verification email.
+                            <Link :href="send()" as="button"
+                                class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500">
+                            Cliquez ici pour renvoyer l'e-mail de vérification.
                             </Link>
                         </p>
 
                         <div v-if="status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
-                            A new verification link has been sent to your email address.
+                            Un nouveau lien de vérification a été envoyé à votre adresse e-mail.
                         </div>
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="processing">Save</Button>
+                        <Button :disabled="processing">Enregistrer</Button>
 
-                        <Transition
-                            enter-active-class="transition ease-in-out"
-                            enter-from-class="opacity-0"
-                            leave-active-class="transition ease-in-out"
-                            leave-to-class="opacity-0"
-                        >
-                            <p v-show="recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                        <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
+                            leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
+                            <p v-show="recentlySuccessful" class="text-sm text-neutral-600">Enregistré.</p>
                         </Transition>
                     </div>
                 </Form>

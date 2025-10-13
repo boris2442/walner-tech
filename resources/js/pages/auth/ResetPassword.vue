@@ -18,7 +18,7 @@ const inputEmail = ref(props.email);
 </script>
 
 <template>
-    <AuthLayout title="Reset password" description="Please enter your new password below">
+    <AuthLayout title="Reset password" description="Veuillez saisir votre nouveau mot de passe ci-dessous">
         <Head title="Reset password" />
 
         <Form
@@ -35,7 +35,7 @@ const inputEmail = ref(props.email);
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password">Password</Label>
+                    <Label for="password">Mot de passe</Label>
                     <Input
                         id="password"
                         type="password"
@@ -49,7 +49,7 @@ const inputEmail = ref(props.email);
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password_confirmation"> Confirm Password </Label>
+                    <Label for="password_confirmation"> Confirmation mot de passe </Label>
                     <Input
                         id="password_confirmation"
                         type="password"
@@ -63,7 +63,7 @@ const inputEmail = ref(props.email);
 
                 <Button type="submit" class="mt-4 w-full" :disabled="processing">
                     <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
-                    Reset password
+                   Réinitialiser le mot de passe
                 </Button>
             </div>
         </Form>

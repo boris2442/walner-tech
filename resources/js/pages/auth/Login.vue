@@ -1,92 +1,3 @@
-<!-- <script setup lang="ts">
-import AuthenticatedSessionController from '@/actions/App/Http/Controllers/Auth/AuthenticatedSessionController';
-import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthBase from '@/layouts/AuthLayout.vue';
-import { register } from '@/routes';
-import { request } from '@/routes/password';
-import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
-
-defineProps<{
-    status?: string;
-    canResetPassword: boolean;
-}>();
-</script>
-
-<template>
-    <AuthBase title="Log in to your account" description="Enter your email and password below to log in">
-        <Head title="Log in" />
-
-        <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
-            {{ status }}
-        </div>
-
-        <Form
-            v-bind="AuthenticatedSessionController.store.form()"
-            :reset-on-success="['password']"
-            v-slot="{ errors, processing }"
-            class="flex flex-col gap-6"
-        >
-            <div class="grid gap-6">
-                <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        name="email"
-                        required
-                        autofocus
-                        :tabindex="1"
-                        autocomplete="email"
-                        placeholder="email@example.com"
-                    />
-                    <InputError :message="errors.email" />
-                </div>
-
-                <div class="grid gap-2">
-                    <div class="flex items-center justify-between">
-                        <Label for="password">Password</Label>
-                        <TextLink v-if="canResetPassword" :href="request()" class="text-sm" :tabindex="5"> Forgot password? </TextLink>
-                    </div>
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        required
-                        :tabindex="2"
-                        autocomplete="current-password"
-                        placeholder="Password"
-                    />
-                    <InputError :message="errors.password" />
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <Label for="remember" class="flex items-center space-x-3">
-                        <Checkbox id="remember" name="remember" :tabindex="3" />
-                        <span>Remember me</span>
-                    </Label>
-                </div>
-
-                <Button type="submit" class="mt-4 w-full" :tabindex="4" :disabled="processing">
-                    <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
-                    Log in
-                </Button>
-            </div>
-
-            <div class="text-center text-sm text-muted-foreground">
-                Don't have an account?
-                <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
-            </div>
-        </Form>
-    </AuthBase>
-</template> -->
-
-
 
 <script setup lang="ts">
 import AuthenticatedSessionController from '@/actions/App/Http/Controllers/Auth/AuthenticatedSessionController';
@@ -113,7 +24,7 @@ const loginWithGoogle = () => {
 </script>
 
 <template>
-    <AuthBase title="Connectez-vous à votre compte" description="Entrez votre email et votre mot de passe ci-dessous pour vous connecter">
+    <AuthBase title="Connectez-vous à votre compte walner tech" description="Entrez votre email et votre mot de passe ci-dessous pour vous connecter">
 
         <Head title="Log in" />
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
@@ -124,17 +35,9 @@ const loginWithGoogle = () => {
                 class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
                 <!-- Left Section (Sign In Form) -->
                 <div class="w-full md:w-1/2 p-6 md:p-8">
-                    <!-- <h2 class="text-xl font-semibold mb-6 text-[var(--primary-blue)]">Se connecter</h2> -->
-                    <!-- Google login button -->
-                    <!-- <Button type="button"
-                        class="w-full bg-red-500 text-white hover:bg-red-600 flex items-center justify-center gap-2"
-                        @click="loginWithGoogle">
-                        <LogIn class="h-5 w-5" />
-                        Se connecter avec Google
-                    </Button> -->
+                    
                     <div class="py-4 text-center text-gray-400 ">
-                        <!-- <p>
-                            OU CONNECTEZ-VOUS AVEC ADRESSE E-MAIL</p> -->
+             
                     </div>
                     <Form v-bind="AuthenticatedSessionController.store.form()" :reset-on-success="['password']"
                         v-slot="{ errors, processing }" class="space-y-6">
@@ -179,7 +82,7 @@ const loginWithGoogle = () => {
                         </div>
                     </Form>
                 </div>
-                <!-- Right Section (Welcome Message) class="text-[var(--primary-blue)]"-->
+             
                 <div
                     class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-6 md:p-8 flex flex-col justify-center items-center sm:rounded-tl-[90px] sm:rounded-bl-[90px] dark:bg-[var(--text-secondary)]">
                     <h2 class="text-2xl font-bold mb-4">Hello, Friend!</h2>
@@ -192,10 +95,3 @@ const loginWithGoogle = () => {
     </AuthBase>
 </template>
 
-<style scoped>
-/* @media (max-width: 767px) {
-  .w-full.md\:w-1/2 {
-    width: 100%;
-  }
-} */
-</style>

@@ -30,7 +30,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall title="Update password" description="Ensure your account is using a long, random password to stay secure" />
+                <HeadingSmall title="Modifier mot de passe" description="Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé" />
 
                 <Form
                     v-bind="PasswordController.update.form()"
@@ -43,7 +43,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                     v-slot="{ errors, processing, recentlySuccessful }"
                 >
                     <div class="grid gap-2">
-                        <Label for="current_password">Current password</Label>
+                        <Label for="current_password">Mot de passe actuel</Label>
                         <Input
                             id="current_password"
                             ref="currentPasswordInput"
@@ -57,7 +57,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password">New password</Label>
+                        <Label for="password">Nouveau mot de passe</Label>
                         <Input
                             id="password"
                             ref="passwordInput"
@@ -71,7 +71,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password_confirmation">Confirm password</Label>
+                        <Label for="password_confirmation">Confirm mot de passe</Label>
                         <Input
                             id="password_confirmation"
                             name="password_confirmation"
@@ -84,7 +84,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="processing">Save password</Button>
+                        <Button :disabled="processing">Enregistrer mot de passe</Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"
@@ -92,7 +92,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                             leave-active-class="transition ease-in-out"
                             leave-to-class="opacity-0"
                         >
-                            <p v-show="recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                            <p v-show="recentlySuccessful" class="text-sm text-neutral-600">Enregistré.</p>
                         </Transition>
                     </div>
                 </Form>

@@ -17,16 +17,16 @@ defineProps<{
         <Head title="Email verification" />
 
         <div v-if="status === 'verification-link-sent'" class="mb-4 text-center text-sm font-medium text-green-600">
-            A new verification link has been sent to the email address you provided during registration.
+Un nouveau lien de vérification a été envoyé à l'adresse e-mail que vous avez fournie lors de votre inscription.
         </div>
 
         <Form v-bind="EmailVerificationNotificationController.store.form()" class="space-y-6 text-center" v-slot="{ processing }">
             <Button :disabled="processing" variant="secondary">
                 <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
-                Resend verification email
+              Renvoyer l'e-mail de vérification
             </Button>
 
-            <TextLink :href="logout()" as="button" class="mx-auto block text-sm"> Log out </TextLink>
+            <TextLink :href="logout()" as="button" class="mx-auto block text-sm"> Se déconnecter </TextLink>
         </Form>
     </AuthLayout>
 </template>
