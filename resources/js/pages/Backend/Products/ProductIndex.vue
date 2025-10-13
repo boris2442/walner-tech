@@ -66,10 +66,12 @@
                             :autoplay="{ delay: 3000 }" pagination loop>
                             <swiper-slide v-for="img in product.images" :key="img.id">
                                 <img :src="getImageUrl(img.url_image)" :alt="product.title"
+                                  loading="lazy"
                                     class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                             </swiper-slide>
                         </swiper>
                         <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title"
+                          loading="lazy"
                             class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                         </Link>
                     </div>
@@ -121,6 +123,7 @@
                         class="mt-2 w-72 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll">
                         <div v-for="item in cart" :key="item.id" class="flex items-center mb-2">
                             <img :src="getImageUrl(item.images[0]?.url_image)"
+                              loading="lazy"
                                 class="w-12 h-12 object-cover rounded mr-2" />
                             <div class="flex-1">
                                 <p class="text-sm font-medium truncate">{{ item.title }}</p>

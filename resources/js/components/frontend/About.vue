@@ -42,7 +42,8 @@ import about from '@/routes'
 
             <!-- Image -->
             <div class="w-full md:w-1/2">
-                <img src="assets/about3.jpg" alt="Walner Tech - À propos"
+                <img src="assets/about3.jpg"
+                  loading="lazy" alt="Walner Tech - À propos"
                     class="max-h-[450px] w-full rounded-lg object-cover shadow-lg" />
             </div>
         </div>

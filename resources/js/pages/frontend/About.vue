@@ -69,6 +69,7 @@
                 <div class="lg:w-1/2 flex justify-center">
                     <div class="overflow-hidden rounded-xl shadow-xl">
                         <img src="assets/about1.jpg" alt="Équipe Walner Tech"
+                          loading="lazy"
                             class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
                 </div>
@@ -79,6 +80,7 @@
                 <div class="lg:w-1/2 flex justify-center">
                     <div class="overflow-hidden rounded-xl shadow-xl">
                         <img src="assets/homepage.jpg" alt="Valeurs Walner Tech"
+                          loading="lazy"
                             class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
                 </div>
@@ -151,6 +153,7 @@
                 <div class="lg:w-1/2 flex justify-center">
                     <div class="overflow-hidden rounded-xl shadow-xl">
                         <img src="assets/about2.jpg" alt="Contact Walner Tech"
+                          loading="lazy"
                             class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
                 </div>
