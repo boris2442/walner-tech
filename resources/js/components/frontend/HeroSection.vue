@@ -97,31 +97,38 @@ onMounted(() => {
     </section>
 
 
-    <section class="bg-gray-100 pt-8 pb-2 mx-auto w-full">
+    <section class="bg-gray-100 pt-8 pb-2 mx-auto w-full dark:bg-[var(--dark-map2)]">
         <div class="flex flex-wrap gap-4 p-2 items-center justify-center ">
 
             <!-- Bloc 1 -->
-            <div class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px]">
+            <div
+                class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px] dark:bg-[var(--dark-grey2)]">
                 <Truck class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800">Livraison rapide à partir de 3h</span>
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Livraison rapide à partir de 3h</span>
             </div>
 
             <!-- Bloc 2 -->
-            <div class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md">
+            <div
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)]">
                 <Shield class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800">Produits authentiques 100% garantis</span>
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Produits authentiques 100%
+                    garantis</span>
             </div>
 
             <!-- Bloc 3 -->
-            <div class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md">
+            <div
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)]">
                 <Headphones class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800">Service après vente walnertech - SAV agréé</span>
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Service après vente walnertech - SAV
+                    agréé</span>
             </div>
 
             <!-- Bloc 4 -->
-            <div class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md">
+            <div
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)]">
                 <RotateCcw class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800">Retour rapide et facile sur 7 jours</span>
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Retour rapide et facile sur 7
+                    jours</span>
             </div>
 
         </div>

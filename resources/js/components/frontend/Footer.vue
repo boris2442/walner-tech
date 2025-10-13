@@ -18,7 +18,7 @@ const currentYear = new Date().getFullYear()
 <template>
 
   <footer
-    class="bg-[var(--primary-blue)] text-[var(--secondary-white)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)] py-8">
+    class="bg-[var(--primary-blue)] text-[var(--secondary-white)] dark:bg-[var(--dark-black)] dark:text-[var(--dark-white)] py-8">
     <div class="flex justify-between flex-wrap items-start gap-6 px-6">
 
       <!-- Contact -->

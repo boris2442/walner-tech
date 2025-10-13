@@ -28,14 +28,13 @@ function toggleAccountMenu() {
         <!-- Logo -->
         <div class="flex-shrink-0">
           <Link prefetch :href="home()">
-          <img src="/assets/walner.png" 
-            loading="lazy" alt="Walner Tech" class="h-12 object-contain" />
+          <img src="/assets/walner.png" loading="lazy" alt="Walner Tech" class="h-12 object-contain" />
           </Link>
         </div>
 
         <!-- Menu desktop -->
         <div class="hidden md:flex space-x-6 flex-1 justify-center">
-          <!-- <Link prefetch :href="products()" class="nav-link">Produits</Link> -->
+
           <Link prefetch :href="about()" class="nav-link">À propos</Link>
           <Link prefetch :href="contact()" class="nav-link">Contact</Link>
         </div>

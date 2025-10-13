@@ -114,15 +114,15 @@ watch(
             <div class="relative flex w-auto flex-col items-center justify-center space-y-5">
                 <template v-if="!showVerificationStep">
                     <div class="relative mx-auto flex max-w-md items-center overflow-hidden">
-                        <div class="relative mx-auto aspect-square w-64 overflow-hidden rounded-lg border border-border">
-                            <div
-                                v-if="!qrCodeSvg"
-                                class="absolute inset-0 z-10 flex aspect-square h-auto w-full animate-pulse items-center justify-center bg-background"
-                            >
+                        <div
+                            class="relative mx-auto aspect-square w-64 overflow-hidden rounded-lg border border-border">
+                            <div v-if="!qrCodeSvg"
+                                class="absolute inset-0 z-10 flex aspect-square h-auto w-full animate-pulse items-center justify-center bg-background">
                                 <Loader2 class="size-6 animate-spin" />
                             </div>
                             <div v-else class="relative z-10 overflow-hidden border p-5">
-                                <div v-html="qrCodeSvg" class="flex aspect-square size-full items-center justify-center" />
+                                <div v-html="qrCodeSvg"
+                                    class="flex aspect-square size-full items-center justify-center" />
                             </div>
                         </div>
                     </div>
@@ -140,12 +140,15 @@ watch(
 
                     <div class="flex w-full items-center justify-center space-x-2">
                         <div class="flex w-full items-stretch overflow-hidden rounded-xl border border-border">
-                            <div v-if="!manualSetupKey" class="flex h-full w-full items-center justify-center bg-muted p-3">
+                            <div v-if="!manualSetupKey"
+                                class="flex h-full w-full items-center justify-center bg-muted p-3">
                                 <Loader2 class="size-4 animate-spin" />
                             </div>
                             <template v-else>
-                                <input type="text" readonly :value="manualSetupKey" class="h-full w-full bg-background p-3 text-foreground" />
-                                <button @click="copy(manualSetupKey || '')" class="relative block h-auto border-l border-border px-3 hover:bg-muted">
+                                <input type="text" readonly :value="manualSetupKey"
+                                    class="h-full w-full bg-background p-3 text-foreground" />
+                                <button @click="copy(manualSetupKey || '')"
+                                    class="relative block h-auto border-l border-border px-3 hover:bg-muted">
                                     <Check v-if="copied" class="w-4 text-green-500" />
                                     <Copy v-else class="w-4" />
                                 </button>
@@ -155,29 +158,27 @@ watch(
                 </template>
 
                 <template v-else>
-                    <Form v-bind="confirm.form()" reset-on-error @finish="code = []" @success="isOpen = false" v-slot="{ errors, processing }">
+                    <Form v-bind="confirm.form()" reset-on-error @finish="code = []" @success="isOpen = false"
+                        v-slot="{ errors, processing }">
                         <input type="hidden" name="code" :value="codeValue" />
                         <div ref="pinInputContainerRef" class="relative w-full space-y-3">
                             <div class="flex w-full flex-col items-center justify-center space-y-3 py-2">
                                 <PinInput id="otp" placeholder="○" v-model="code" type="number" otp>
                                     <PinInputGroup>
-                                        <PinInputSlot autofocus v-for="(id, index) in 6" :key="id" :index="index" :disabled="processing" />
+                                        <PinInputSlot autofocus v-for="(id, index) in 6" :key="id" :index="index"
+                                            :disabled="processing" />
                                     </PinInputGroup>
                                 </PinInput>
                                 <InputError :message="errors?.confirmTwoFactorAuthentication?.code" />
                             </div>
 
                             <div class="flex w-full items-center space-x-5">
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    class="w-auto flex-1"
-                                    @click="showVerificationStep = false"
-                                    :disabled="processing"
-                                >
+                                <Button type="button" variant="outline" class="w-auto flex-1"
+                                    @click="showVerificationStep = false" :disabled="processing">
                                     Back
                                 </Button>
-                                <Button type="submit" class="w-auto flex-1" :disabled="processing || codeValue.length < 6"> Confirm </Button>
+                                <Button type="submit" class="w-auto flex-1"
+                                    :disabled="processing || codeValue.length < 6"> Confirm </Button>
                             </div>
                         </div>
                     </Form>

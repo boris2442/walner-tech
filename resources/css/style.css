@@ -33,6 +33,7 @@
 --dark-gold: #FFE600;           /* Or doux, pour accents sur sombre */
 --dark-white: #FFFFFF;           /* Texte blanc sur sombre */
 --dark-grey: #CCCCCC;            /* Texte secondaire clair */
+--dark-grey2:#2A2A2A;            /* Texte secondaire clair */
 --dark-black: #000000;           /* Noir pur */
 /* --dark-accent: #00BFFF;       */
     /* Accent cyan sur sombre */
@@ -42,6 +43,7 @@
 --error-red:#ef4444;
 --flash:#4FA740;
 /* --white-color:#ffffff; */
+--dark-map2:#1E1E1E;
 
 }
 

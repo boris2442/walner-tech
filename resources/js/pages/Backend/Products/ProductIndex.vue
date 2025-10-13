@@ -30,12 +30,12 @@
             <!-- Liste des catégories -->
             <div class="flex gap-3 justify-start mb-4 overflow-x-auto whitespace-nowrap px-2">
                 <span @click="filterByCategory('')" :class="categoryButtonClass('')"
-                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300">
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 dark:text-[var(--dark-grey)]">
                     Tous
                 </span>
                 <span v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
                     :class="categoryButtonClass(cat.id)"
-                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 text-[var(--dark-blue)]">
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 text-[var(--dark-blue)] dark:text-[var(--dark-grey)]">
                     {{ cat.name }}
                 </span>
             </div>
@@ -65,13 +65,11 @@
                         <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
                             :autoplay="{ delay: 3000 }" pagination loop>
                             <swiper-slide v-for="img in product.images" :key="img.id">
-                                <img :src="getImageUrl(img.url_image)" :alt="product.title"
-                                  loading="lazy"
+                                <img :src="getImageUrl(img.url_image)" :alt="product.title" loading="lazy"
                                     class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                             </swiper-slide>
                         </swiper>
-                        <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title"
-                          loading="lazy"
+                        <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title" loading="lazy"
                             class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                         </Link>
                     </div>
@@ -94,7 +92,7 @@
                         <button @click="toggleLike(product)"
                             :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
                             <font-awesome-icon :icon="['far', 'heart']" />
-                            <span class="ml-1 text-sm">{{ product.likes_count }}</span>
+                            <span class="ml-1 text-sm dark:text-[var(--dark-grey)]">{{ product.likes_count }}</span>
                         </button>
                     </div>
                 </div>
@@ -122,8 +120,7 @@
                     <div v-if="showCart"
                         class="mt-2 w-72 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll">
                         <div v-for="item in cart" :key="item.id" class="flex items-center mb-2">
-                            <img :src="getImageUrl(item.images[0]?.url_image)"
-                              loading="lazy"
+                            <img :src="getImageUrl(item.images[0]?.url_image)" loading="lazy"
                                 class="w-12 h-12 object-cover rounded mr-2" />
                             <div class="flex-1">
                                 <p class="text-sm font-medium truncate">{{ item.title }}</p>

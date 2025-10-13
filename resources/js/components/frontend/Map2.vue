@@ -1,11 +1,11 @@
 <template>
-    <section class="py-6 bg-gray-100">
-        <h2 class="text-2xl text-center mb-6">Ou nous trouver</h2>
+    <section class="py-6 bg-gray-100 dark:bg-[var(--text-dark)]">
+        <h2 class="text-2xl text-center mb-6">Ou nous trouver ?</h2>
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <!-- Showroom Douala -->
             <div
-                class="bg-white rounded-lg shadow p-6 flex  md:flex-row items-center group hover:bg-[var(--primary-blue)] gap-3">
+                class="bg-white rounded-lg shadow p-6 flex  md:flex-row items-center group hover:bg-[var(--primary-blue)] gap-3 dark:bg-[var(--dark-map2)]">
                 <img src="/assets/walner.png" alt="Showroom Douala"
                     class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
                 <div class="flex-1">
@@ -34,7 +34,7 @@
 
             <!-- Showroom Yaoundé -->
             <div
-                class="bg-white rounded-lg shadow p-6 flex  md:flex-row items-center group hover:bg-[var(--primary-blue)] gap-3">
+                class="bg-white rounded-lg shadow p-6 flex  md:flex-row items-center group hover:bg-[var(--primary-blue)] gap-3 dark:bg-[var(--dark-map2)]">
                 <img src="/assets/walner.png" alt="Showroom Yaoundé"
                     class="w-32 h-32 object-cover rounded-lg mb-4 md:mb-0 md:mr-6" />
                 <div class="flex-1">
