@@ -28,7 +28,7 @@
                     <li>✔️ Innovation constante et vision orientée vers la satisfaction totale</li>
                 </ul>
                 <Link :href="about().url" prefetch aria-label="En savoir plus sur Walner Tech"
-                    class="inline-block rounded-lg bg-[var(--highlight-gold)] px-5 py-3 text-sm sm:text-sm md:text-base font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
+                    class="inline-block rounded-lg bg-[var(--highlight-gold)] px-5 py-3 text-sm sm:text-sm md:text-base font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var#E2BC45] dark:hover:bg-[#1E1E1E] dark:shadow-lg">
                 En savoir plus
                 </Link>
             </div>
@@ -44,5 +44,5 @@
 </template>
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
-import {  about } from '@/routes';
+import { about } from '@/routes';
 </script>

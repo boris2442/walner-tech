@@ -35,15 +35,14 @@ import about from '@/routes'
 
                 <!-- Bouton "En savoir plus" -->
                 <Link :href=about().url aria-label="En savoir plus sur Walner Tech"
-                    class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[var(--dark-gold)] dark:hover:bg-[var(--dark-accent)]">
+                    class="inline-block rounded-lg bg-[var(--highlight-gold)] px-6 py-3 font-semibold text-[var(--secondary-white)] shadow-md transition-transform hover:-translate-y-1 hover:bg-[var(--accent-cyan)] dark:bg-[#E2BC45] dark:hover:bg-[var(--dark-accent)]">
                 En savoir plus
                 </Link>
             </div>
 
             <!-- Image -->
             <div class="w-full md:w-1/2">
-                <img src="assets/about3.jpg"
-                  loading="lazy" alt="Walner Tech - À propos"
+                <img src="assets/about3.jpg" loading="lazy" alt="Walner Tech - À propos"
                     class="max-h-[450px] w-full rounded-lg object-cover shadow-lg" />
             </div>
         </div>

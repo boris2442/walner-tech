@@ -14,12 +14,6 @@
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8  transition-colors duration-300">
 
 
-            <!-- <p class="text-sm md:text-base mb-8 text-gray-600 dark:text-gray-400 mx-auto">
-                Faites confiance à Walner Tech pour vos achats en toute sérénité !
-                Découvrez une sélection haut de gamme d’appareils électroniques pensés pour allier puissance, élégance
-                et durabilité — tout ce qu’il faut pour propulser votre vie numérique.
-            </p> -->
-
             <!-- Barre de recherche -->
             <div class="mb-6 flex justify-center">
                 <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."

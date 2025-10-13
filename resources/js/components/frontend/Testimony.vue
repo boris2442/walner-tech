@@ -72,7 +72,7 @@ const testimonials = [
                 }" class="pb-10">
                 <SwiperSlide v-for="(t, index) in testimonials" :key="index">
                     <div
-                        class="group rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white h-full flex flex-col">
+                        class="group rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white h-full flex flex-col dark:hover:bg-[var(--card-dark)]">
                         <!-- Image + nom + role -->
                         <div class="flex items-center gap-4 mb-4">
                             <img :src="t.image" alt="testimonial"
