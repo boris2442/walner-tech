@@ -44,8 +44,6 @@
     <meta name="author" content="Walner Tech">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
-
-
     <meta property="og:title" content="Walner Tech - Votre expert en équipements informatiques au Cameroun">
     <meta property="og:description"
         content="Commandez vos ordinateurs, accessoires et produits high-tech chez Walner Tech. Livraison rapide à Bafoussam, Yaoundé et partout au Cameroun. Service professionnel et fiable.">

@@ -60,13 +60,10 @@
         content="Walner Tech, boutique high-tech à Bafoussam et Yaoundé. Ordinateurs, accessoires, composants PC. Livraison rapide au Cameroun et à l’international.">
     <meta name="twitter:image" content="{{ asset('assets/walner.jpg') }}">
 
-
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="fr" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="en" href="{{ url()->current() }}">
-
-
-    <link rel="preconnect" href="https://fonts.bunny.net">
+  <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
     @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
