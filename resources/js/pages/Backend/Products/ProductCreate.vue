@@ -68,7 +68,7 @@ const handleFiles = (event: Event) => {
     <Head title="Créer un Produit" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4">
-              <BackButton class="m-4" />
+            <BackButton class="m-4" />
             <div
                 class="relative min-h-[80vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border p-6">
                 <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
@@ -91,7 +91,7 @@ const handleFiles = (event: Event) => {
                             <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                         </select>
                         <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id
-                        }}</p>
+                            }}</p>
                     </div>
 
                     <div>

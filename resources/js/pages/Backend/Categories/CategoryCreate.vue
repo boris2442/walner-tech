@@ -33,7 +33,6 @@ const submitForm = () => {
 </script>
 
 <template>
-
     <Head title="Category create" />
     <!-- <Head title="Dashboard" /> -->
 

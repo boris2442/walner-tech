@@ -9,19 +9,19 @@
     <FloatingAction />
 
     <!-- Section Produits -->
-    <section>
+    <!-- <section>
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8  transition-colors duration-300">
 
 
-            <!-- Barre de recherche -->
+          
             <div class="mb-6 flex justify-center">
                 <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
                     :class="darkMode ? 'border-dark-grey bg-dark-background text-dark-white placeholder-dark-grey focus:ring-dark-accent' : 'border-text-secondary bg-background-light text-text-dark placeholder-text-secondary focus:ring-accent-cyan'"
                     class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300 " />
             </div>
 
-            <!-- Liste des catégories -->
+           
             <div class="flex gap-3 justify-start mb-4 overflow-x-auto whitespace-nowrap px-2">
                 <span @click="filterByCategory('')" :class="categoryButtonClass('')"
                     class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 dark:text-[var(--dark-grey)]">
@@ -36,7 +36,7 @@
 
             <hr class="border-t border-gray-300 dark:border-[var(--dark-grey)] mb-6" />
 
-            <!-- Skeleton Loader -->
+          
             <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div v-for="n in 5" :key="n"
                     class="animate-pulse rounded p-3 bg-gray-200 dark:bg-[var(--dark-grey)] flex flex-col">
@@ -47,13 +47,13 @@
                 </div>
             </div>
 
-            <!-- Produits -->
+      
             <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 flex-wrap">
                 <div v-for="product in filteredProducts" :key="product.id"
                     class="product-card rounded flex flex-col transition-transform duration-300 hover:scale-105"
                     :class="darkMode ? 'bg-[var(--dark-background)] shadow-md border border-[var(--dark-grey)]' : 'bg-background-light shadow-md'">
 
-                    <!-- Images -->
+                   
                     <div class="overflow-hidden rounded">
                         <Link :href="`/products/${product.uuid}`" prefetch class="hover:underline">
                         <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
@@ -67,7 +67,7 @@
                             class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                         </Link>
                     </div>
-                    <!-- Infos produit -->
+                    
                     <div class="p-3 flex flex-col flex-1">
 
                         <h3 class="text-sm font-medium truncate mt-2">{{ product.title }}</h3>
@@ -76,7 +76,7 @@
                             {{ product.prix }} FCFA</p>
                     </div>
 
-                    <!-- Boutons -->
+               
                     <div class="mt-auto flex justify-between items-center">
                         <button @click="addToCart(product, $event)"
                             class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
@@ -92,13 +92,13 @@
                 </div>
             </div>
 
-            <!-- Aucun produit -->
+       
             <div v-if="!loading && filteredProducts.length === 0"
                 class="text-center mt-6 text-gray-500 dark:text-dark-grey">
                 Aucun produit trouvé
             </div>
 
-            <!-- Panier flottant -->
+            
             <div class="fixed bottom-6 right-6 z-50">
                 <button ref="cartButton" @click="toggleCart"
                     class="relative bg-[var(--primary-blue)] rounded-full w-12 h-12 flex items-center justify-center text-[var(--dark-gold)] shadow-lg">
@@ -109,7 +109,7 @@
                     </span>
                 </button>
 
-                <!-- Mini panier -->
+             
                 <transition name="fade-slide">
                     <div v-if="showCart"
                         class="mt-2 w-72 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll">
@@ -148,7 +148,115 @@
                 </transition>
             </div>
         </div>
+    </section> -->
+
+    <section>
+        <div
+            class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8 transition-colors duration-300">
+
+            <!-- Barre de recherche -->
+            <div class="mb-6 flex justify-center">
+                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
+                    :class="darkMode ? 'border-dark-grey bg-dark-background text-dark-white placeholder-dark-grey focus:ring-dark-accent' : 'border-text-secondary bg-background-light text-text-dark placeholder-text-secondary focus:ring-accent-cyan'"
+                    class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300 " />
+            </div>
+
+            <!-- Liste des catégories -->
+            <div class="flex gap-3 justify-start mb-4 overflow-x-auto whitespace-nowrap px-2">
+                <span @click="filterByCategory('')" :class="categoryButtonClass('')"
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 dark:text-[var(--dark-grey)]">
+                    Tous
+                </span>
+                <span v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
+                    :class="categoryButtonClass(cat.id)"
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 text-[var(--dark-blue)] dark:text-[var(--dark-grey)]">
+                    {{ cat.name }}
+                </span>
+            </div>
+
+            <hr class="border-t border-gray-300 dark:border-[var(--dark-grey)] mb-6" />
+
+            <!-- Skeleton / Produits -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+
+                <!-- Skeleton loader -->
+                <template v-if="loading">
+                    <div v-for="n in skeletonCount" :key="n"
+                        class="product-card rounded flex flex-col shadow-md overflow-hidden">
+
+                        <!-- Image -->
+                        <div class="h-40 w-full rounded mb-3 skeleton"></div>
+
+                        <!-- Infos produit -->
+                        <div class="p-3 flex flex-col flex-1">
+                            <div class="h-4 rounded w-3/4 mb-2 skeleton"></div>
+                            <div class="h-3 rounded w-1/2 skeleton"></div>
+                        </div>
+
+                        <!-- Boutons placeholder -->
+                        <div class="mt-auto flex justify-between items-center p-3">
+                            <div class="h-6 w-6 rounded-full skeleton"></div>
+                            <div class="h-6 w-6 rounded-full skeleton"></div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Produits réels -->
+                <template v-else>
+                    <div v-for="product in filteredProducts" :key="product.id"
+                        class="product-card rounded flex flex-col transition-transform duration-300 hover:scale-105"
+                        :class="darkMode ? 'bg-[var(--dark-background)] shadow-md border border-[var(--dark-grey)]' : 'bg-background-light shadow-md'">
+
+                        <!-- Images -->
+                        <div class="overflow-hidden rounded">
+                            <Link :href="`/products/${product.uuid}`" prefetch class="hover:underline">
+                            <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
+                                :autoplay="{ delay: 3000 }" pagination loop>
+                                <swiper-slide v-for="img in product.images" :key="img.id">
+                                    <img :src="getImageUrl(img.url_image)" :alt="product.title" loading="lazy"
+                                        class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
+                                </swiper-slide>
+                            </swiper>
+                            <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title"
+                                loading="lazy"
+                                class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
+                            </Link>
+                        </div>
+
+                        <!-- Infos produit -->
+                        <div class="p-3 flex flex-col flex-1">
+                            <h3 class="text-sm font-medium truncate mt-2">{{ product.title }}</h3>
+                            <p class="text-sm font-semibold mt-2"
+                                :class="darkMode ? 'text-dark-white' : 'text-text-dark'">
+                                {{ product.prix }} FCFA
+                            </p>
+                        </div>
+
+                        <!-- Boutons -->
+                        <div class="mt-auto flex justify-between items-center p-3">
+                            <button @click="addToCart(product, $event)"
+                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
+                                <font-awesome-icon :icon="['fas', 'cart-shopping']" />
+                            </button>
+
+                            <button @click="toggleLike(product)"
+                                :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
+                                <font-awesome-icon :icon="['far', 'heart']" />
+                                <span class="ml-1 text-sm dark:text-[var(--dark-grey)]">{{ product.likes_count }}</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </template>
+            </div>
+
+        </div>
     </section>
+
+
+
+
+
     <Map2 />
     <HeroSection />
     <Service />
@@ -197,6 +305,18 @@ const search = ref(props.filters.search || '');
 const selectedCategory = ref(props.filters.category || '');
 const darkMode = ref(false);
 const loading = ref(true);
+
+
+const skeletonCount = computed(() => {
+    if (window.innerWidth >= 1024) return 20; // lg
+    if (window.innerWidth >= 768) return 12;  // md
+    if (window.innerWidth >= 640) return 8;   // sm
+    return 4;                                  // xs
+});
+
+
+
+
 
 // Panier
 const cart = ref([]);
@@ -433,5 +553,25 @@ onMounted(() => {
 .cart-scroll {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -450px 0;
+    }
+
+    100% {
+        background-position: 450px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(to right, #3d3939 0%, #351717 50%, #583838 100%);
+    background-size: 450px 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+.dark .skeleton {
+    background: linear-gradient(to right, #333 0%, #444 50%, #333 100%);
 }
 </style>
