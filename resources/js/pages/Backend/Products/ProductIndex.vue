@@ -93,6 +93,7 @@
                                 :class="darkMode ? 'text-dark-white' : 'text-text-dark'">
                                 {{ product.prix }} FCFA
                             </p>
+                          
                         </div>
 
                         <!-- Boutons -->
