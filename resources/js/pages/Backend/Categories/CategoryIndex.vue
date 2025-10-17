@@ -115,7 +115,7 @@ document.addEventListener('click', handleClickOutside);
                             <ul>
                                 <li>
                                     <Link :href="categoriesRoutes.create().url"
-                                        class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
                                     Créer une catégorie
                                     </Link>
                                 </li>

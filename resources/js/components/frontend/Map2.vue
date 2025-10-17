@@ -50,7 +50,8 @@
                         WALNER TECH Yaoundé</h3>
 
                     <p class="text-gray-600 mt-1 group-hover:text-gray-200 text-sm"><span
-                            class="group-hover:text-[var(--dark-gold)] font-bold">Localisation </span> : Yaoundé,
+                            class="group-hover:text-[var(--dark-gold)] font-bold">Localisation </span>
+                             : Yaoundé,
                         Terminus
                         mimboman
                         face sapeur

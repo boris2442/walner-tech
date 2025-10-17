@@ -95,7 +95,7 @@ const handleFiles = (event: Event) => {
                             <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                         </select>
                         <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id
-                            }}</p>
+                        }}</p>
                     </div>
 
                     <div>
@@ -107,7 +107,7 @@ const handleFiles = (event: Event) => {
                                 class="h-20 w-20 object-cover rounded border" />
                         </div>
                         <span v-if="form.errors.images" class="text-red-500 text-sm mt-1">{{ form.errors.images
-                            }}</span>
+                        }}</span>
 
 
 
