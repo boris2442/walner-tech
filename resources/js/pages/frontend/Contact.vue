@@ -9,7 +9,7 @@
 
     <section
         class="contact-page min-h-screen bg-[var(--background-light)] dark:bg-[var(--dark-background)] p-6 md:p-16">
-
+        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">Contactez Walner Tech</h1>
         <div class="max-w-6xl mx-auto space-y-12">
             <!-- 🔹 Bouton retour -->
             <BackButton />

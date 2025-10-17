@@ -16,8 +16,8 @@ import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
      
       <BackButton /> 
       
-      <h1 class="text-3xl font-bold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mb-6">
-        Politique de Non-Remboursement
+      <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+        Politique de Non-Remboursement Walner Tech
       </h1>
 
 
@@ -64,8 +64,8 @@ import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
         </h2>
         <p>
           Pour toute réclamation, veuillez nous écrire à
-          <a href="mailto:support@walnertech.com"
-            class="text-[var(--accent-cyan)] hover:underline">support@walnertech.com</a>.
+          <a href="mailto:contact@walnertech.com"
+            class="text-[var(--accent-cyan)] hover:underline">contact@walnertech.com</a>.
         </p>
       </div>
 

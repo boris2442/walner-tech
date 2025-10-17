@@ -130,7 +130,7 @@ const totalLikes = computed(() =>
         </div>
         <div class="kpi-card">
           <h3>Total Likes</h3>
-          <p  >{{ totalLikes }}</p>
+          <p>{{ totalLikes }}</p>
         </div>
 
       </div>
@@ -235,5 +235,4 @@ const totalLikes = computed(() =>
   font-weight: 700;
   /* color: #111827; */
 }
-
 </style>

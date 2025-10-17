@@ -30,7 +30,7 @@ function toggle(index) {
     <LoginReminder />
     <section class="faq-container max-w-3xl mx-auto px-4 py-12">
         <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
-            Foire Aux Questions (F.A.Q)
+            Foire Aux Questions (F.A.Q) Walner Tech
         </h1>
         <div class="space-y-4">
             <div v-for="(item, index) in faqs" :key="index" class="border-b border-gray-300 dark:border-gray-600 pb-2">

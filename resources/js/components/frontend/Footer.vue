@@ -26,14 +26,16 @@ const currentYear = new Date().getFullYear()
         <h3 class="font-bold text-lg md:text-xl mb-2">Nous contacter</h3>
         <div class="flex items-start gap-2 mb-2">
           <FontAwesomeIcon :icon="['fas', 'map-marker-alt']" class="mt-1" />
-          <span>
+          <span class="text-[var(--background-light)]
+dark:text-[var(--dark-accent)]">
             Bafoussam: Immeuble le Pelicant Ancien bureau des transports;<br />
             Yaoundé Terminus mimboman face sapeur pompier
           </span>
         </div>
         <div class="flex items-center gap-2 mb-2">
           <FontAwesomeIcon :icon="['fas', 'phone']" />
-          <span>656 89 47 73 / 651 70 97 52</span>
+          <span class="text-[var(--background-light)]
+dark:text-[var(--dark-accent)]">656 89 47 73 / 651 70 97 52</span>
         </div>
         <div class="flex items-center gap-2">
           <FontAwesomeIcon :icon="['fas', 'envelope']" />
@@ -73,31 +75,31 @@ const currentYear = new Date().getFullYear()
         <ul class="space-y-2">
           <li>
             <Link prefetch :href="ressources.notice().url"
-              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
             Mentions Légales
             </Link>
           </li>
           <li>
             <Link prefetch :href="ressources.policy().url"
-              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
             Politique de confidentialité
             </Link>
           </li>
           <li>
             <Link prefetch :href="ressources.cgu().url"
-              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
             Conditions générales d'utilisation
             </Link>
           </li>
           <li>
             <Link prefetch :href="ressources.noRemboursement().url"
-              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)]">
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link">
             Politique de Non-Remboursement
             </Link>
           </li>
           <li>
             <Link prefetch :href="ressources.faq().url"
-              class="hover:text-[var(--dark-gold)] dark:hover:text-[var(--dark-accent)] font-semibold">
+              class="block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-[var(--dark-accent)] dark:hover:text-[var(--dark-gold)] nav-link font-semibold">
             F.A.Q
             </Link>
           </li>
@@ -112,7 +114,7 @@ const currentYear = new Date().getFullYear()
     <div class="border border-gray-300 dark:border-gray-600 mx-auto w-[90%] my-6"></div>
 
     <!-- Bas du footer -->
-    <div class="flex justify-between  items-center gap-4 px-4 flex-wrap-inverse">
+    <div class="flex justify-between  items-center gap-4 px-4 flex-wrap-reverse">
       <div class=" w-full md:w-auto">
         <p class=" md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
         <p class=" md:text-sm">Propulsé avec ❤️ par<span> <a href="https://borisaubin.vercel.app/" target="_blank"

@@ -5,7 +5,7 @@
     <LoginReminder />
     <section
         class="about min-h-screen px-6 py-6 text-[var(--text-dark)] md:px-20 lg:px-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-
+        <h1 class="text-3xl">A propos de Walner Tech</h1>
         <div class="mx-auto max-w-6xl space-y-10">
 
             <!-- Notre mission -->
@@ -68,8 +68,7 @@
 
                 <div class="lg:w-1/2 flex justify-center">
                     <div class="overflow-hidden rounded-xl shadow-xl">
-                        <img src="assets/about1.jpg" alt="Équipe Walner Tech"
-                          loading="lazy"
+                        <img src="assets/about1.jpg" alt="Équipe Walner Tech" loading="lazy"
                             class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
                 </div>
@@ -79,8 +78,7 @@
             <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 max-w-6xl mx-auto p-6">
                 <div class="lg:w-1/2 flex justify-center">
                     <div class="overflow-hidden rounded-xl shadow-xl">
-                        <img src="assets/homepage.jpg" alt="Valeurs Walner Tech"
-                          loading="lazy"
+                        <img src="assets/homepage.jpg" alt="Valeurs Walner Tech" loading="lazy"
                             class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
                 </div>
@@ -152,8 +150,7 @@
 
                 <div class="lg:w-1/2 flex justify-center">
                     <div class="overflow-hidden rounded-xl shadow-xl">
-                        <img src="assets/about2.jpg" alt="Contact Walner Tech"
-                          loading="lazy"
+                        <img src="assets/about2.jpg" alt="Contact Walner Tech" loading="lazy"
                             class="w-full max-w-sm lg:max-w-md h-auto object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
                 </div>
