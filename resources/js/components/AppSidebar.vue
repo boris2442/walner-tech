@@ -39,13 +39,13 @@ const mainNavItems: NavItem[] = [
             icon: BookOpen,
         },
         {
-            title: 'Administrateurs',
+            title: 'Graphiques ++',
             href: dashboardAdmin.admin().url,
             icon: LayoutGrid,
         },
 
         {
-            title: 'Contacts',
+            title: 'Messages ',
             href: contacts.index().url,
             icon: MessageCircleMore,
         },
@@ -65,7 +65,7 @@ const mainNavItems: NavItem[] = [
 
 
 const footerNavItems: NavItem[] = [
-    
+
 ];
 </script>
 

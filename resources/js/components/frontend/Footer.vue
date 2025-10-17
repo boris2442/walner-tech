@@ -112,10 +112,11 @@ const currentYear = new Date().getFullYear()
     <div class="border border-gray-300 dark:border-gray-600 mx-auto w-[90%] my-6"></div>
 
     <!-- Bas du footer -->
-    <div class="flex justify-between  items-center gap-4 px-4">
+    <div class="flex justify-between  items-center gap-4 px-4 flex-wrap-inverse">
       <div class=" w-full md:w-auto">
-        <p class="text-xs md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
-        <p class="text-xs md:text-sm">Propulsé avec ❤️ par Aubin Boris Simo</p>
+        <p class=" md:text-sm">&copy; {{ currentYear }} Walner Tech. Tous droits réservés.</p>
+        <p class=" md:text-sm">Propulsé avec ❤️ par<span> <a href="https://borisaubin.vercel.app/" target="_blank"
+              class="underline"> Aubin Boris Simo</a></span> </p>
       </div>
       <!-- Réseaux sociaux -->
       <div>

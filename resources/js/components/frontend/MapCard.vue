@@ -1,15 +1,13 @@
 <template>
-  <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden dark:bg-[var(--card-dark)]">
     <div class="p-4">
       <h3 class="text-lg font-semibold mb-2 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
         {{ title }}
       </h3>
     </div>
     <l-map :zoom="zoom" :center="center" class="w-full h-64 rounded">
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; OpenStreetMap contributors"
-      />
+      <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution="&copy; OpenStreetMap contributors" />
       <l-marker :lat-lng="center" />
     </l-map>
   </div>

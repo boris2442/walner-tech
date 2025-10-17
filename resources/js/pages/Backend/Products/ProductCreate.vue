@@ -109,19 +109,6 @@ const handleFiles = (event: Event) => {
                         <span v-if="form.errors.images" class="text-red-500 text-sm mt-1">{{ form.errors.images
                         }}</span>
 
-
-
-
-                    </div>
-
-                    <div>
-                        <label
-                            class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Statut</label>
-                        <select v-model="form.status"
-                            class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue)] dark:bg-[#2A2A2A] dark:border-gray-600 dark:focus:ring-[var(--dark-gold)]">
-                            <option value="disponible">Disponible</option>
-                            <option value="indisponible">Indisponible</option>
-                        </select>
                     </div>
 
                     <SubmitButton :processing="form.processing" label="Enregistrer" />
