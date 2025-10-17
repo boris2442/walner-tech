@@ -98,11 +98,18 @@ function handleTouchEnd(id: number) {
 }
 
 const breadcrumbs = [{ title: 'Produits', href: '/admin/products' }];
+
+
+const totalLikes = computed(() =>
+  props.products.data.reduce((sum, p) => sum + p.likes_count, 0)
+);
+
 </script>
 
 <template>
-<FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
-            :link="$page.props.flash.link" />
+  <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
+    :link="$page.props.flash.link" />
+
   <Head title="Produits" />
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="flex flex-col gap-4 p-4">
@@ -121,10 +128,11 @@ const breadcrumbs = [{ title: 'Produits', href: '/admin/products' }];
           <h3>{{ item.category?.name || 'Non catégorisé' }}</h3>
           <p>{{ item.count }}</p>
         </div>
-        <div v-for="item in props.stats.byCategory" :key="item.category?.id" class="kpi-card">
+        <div class="kpi-card">
           <h3>Total Likes</h3>
-          <p>{{props.products.data.reduce((sum, p) => sum + p.likes_count, 0)}}</p>
+          <p  >{{ totalLikes }}</p>
         </div>
+
       </div>
 
       <!-- Filtres -->
@@ -225,6 +233,7 @@ const breadcrumbs = [{ title: 'Produits', href: '/admin/products' }];
 .kpi-card p {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  /* color: #111827; */
 }
+
 </style>
