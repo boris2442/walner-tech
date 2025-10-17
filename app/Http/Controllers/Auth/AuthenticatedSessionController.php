@@ -45,7 +45,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        //return redirect()->intended(route('dashboard', absolute: false));
+
+        return to_route('dashboard')->with('flash', [
+            'message' => '👋 Hey ' . $user->name . '!',
+            'link' => [
+                'text' => '🔙 Retour à l’accueil',
+                'href' => route('home')
+            ]
+        ]);
+
     }
 
     /**
@@ -58,6 +67,13 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        //return redirect('/');
+        return to_route('home')->with('flash', [
+            'message' => 'Deconnexion effectuée avec success',
+            'link' => [
+                'text' => '🚀 Rejoins la team Walner Tech ! Je me connecte',
+                'href' => route('login')
+            ]
+        ]);
     }
 }

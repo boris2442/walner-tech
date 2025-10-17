@@ -4,6 +4,7 @@ import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
+import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,10 +16,18 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
+
+
     <Head title="Dashboard" />
     <!-- <Head title="Dashboard" /> -->
 
     <AppLayout :breadcrumbs="breadcrumbs">
+        <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
+            :link="$page.props.flash.link" />
+
+
+
+
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <div

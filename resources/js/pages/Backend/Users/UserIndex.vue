@@ -6,6 +6,7 @@ import { ref, computed } from 'vue';
 import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import { Inertia } from '@inertiajs/inertia';
+import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
 
 // Props envoyés depuis UserController@index
 const props = defineProps<{
@@ -74,7 +75,7 @@ const deleteUser = (id: number) => {
         Inertia.delete(`/admin/users/${id}`, {
             onSuccess: () => {
                 // Optionnel : afficher message ou rafraîchir
-                console.log('Supprimé avec succès')
+                
             },
             preserveScroll: true
         })
@@ -85,17 +86,18 @@ function changeRole(userId: number, newRole: string) {
     Inertia.put(`/admin/users/${userId}/role`, { role: newRole }, {
         preserveScroll: true,
         onSuccess: () => {
-            console.log(`Rôle de l'utilisateur ${userId} mis à jour : ${newRole}`);
+            //console.log(`Rôle de l'utilisateur ${userId} mis à jour : ${newRole}`);
         },
         onError: (errors) => {
-            console.error(errors);
+           // console.error(errors);
         }
     });
 }
 </script>
 
 <template>
-
+ <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
+            :link="$page.props.flash.link" />
     <Head title="Users" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">

@@ -6,6 +6,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
+import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
 // import FlashMessage from '@/components/frontend/flash/FlashMessage.vue';
 // const flashMessage = ref("");
 
@@ -52,7 +53,7 @@ const deleteCategory = (id: number) => {
         Inertia.delete(`/admin/categories/${id}`, {
             onSuccess: () => {
                 // Optionnel : afficher message ou rafraîchir
-                console.log('Supprimé avec succès')
+                // console.log('Supprimé avec succès')
             },
             preserveScroll: true
         })
@@ -71,6 +72,8 @@ document.addEventListener('click', handleClickOutside);
 </script>
 
 <template>
+    <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
+        :link="$page.props.flash.link" />
 
     <Head title="Categories" />
     <AppLayout :breadcrumbs="breadcrumbs">
@@ -144,9 +147,7 @@ document.addEventListener('click', handleClickOutside);
                                 <td class="p-2">{{ formatDate(cat.created_at) }}</td>
                                 <td class="p-2">{{ formatDate(cat.updated_at) }}</td>
                                 <td class="p-2 flex gap-2">
-                                    <Link
-                                    prefetch
-                                    :href="`/admin/categories/${cat.id}/edit`"
+                                    <Link prefetch :href="`/admin/categories/${cat.id}/edit`"
                                         class="text-blue-500 hover:text-blue-700" title="Éditer">
                                     <Pencil class="w-4 h-4 md:w-5 md:h-5" />
                                     </Link>

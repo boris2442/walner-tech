@@ -21,10 +21,29 @@ class CategoryController extends Controller
             Category::create($request->validated());
 
             return redirect()->route('categories.index')
-                ->with('success', 'Catégorie ajoutée avec succès !');
+                //  ->with('success', 'Catégorie ajoutée avec succès !');
+                ->with(
+                    'flash',
+                    [
+                        'message' => 'Catégorie ajoutée avec succès !',
+                        'text' => 'Ajouter un autre',
+                        'href' => route('categories.create')
+                    ]
+                );
+
+
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Une erreur est survenue !');
+                // ->with('error', 'Une erreur est survenue !');
+
+                ->with(
+                    'flash',
+                    [
+                        'message' => 'Une erreur est survenue !',
+                        // 'text' => '',
+                        //'href' => route('')
+                    ]
+                );
         }
     }
 
@@ -110,7 +129,16 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if (!$category) {
-            return redirect()->back()->with('error', 'Catégorie introuvable.');
+            return redirect()->back()
+                //->with('error', 'Catégorie introuvable.');
+                ->with(
+                    'flash',
+                    [
+                        'message' => 'Catégorie introuvable.',
+                        //'text' => 'Ajouter un autre',
+                        //'href' => route('admin.products.create')
+                    ]
+                );
         }
 
         $category->delete();
@@ -137,7 +165,16 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update($request->all());
 
-        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès.');
+        return redirect()->route('categories.index')
+            //->with('success', 'Catégorie mise à jour avec succès.');
+            ->with(
+                'flash',
+                [
+                    'message' => 'Catégorie mise à jour avec succès.',
+                    //'text' => 'Ajouter un autre',
+                    //'href' => route('admin.products.create')
+                ]
+            );
     }
 
 }

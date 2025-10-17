@@ -58,9 +58,7 @@ class ProductController extends Controller
         ]);
     }
 
-
-
-
+    
     public function create()
     {
         $categories = Category::all();
@@ -161,11 +159,32 @@ class ProductController extends Controller
             }
 
             return redirect()->route('products.index')
-                ->with('success', 'Produit ajouté avec succès !');
+                //->with('success', 'Produit ajouté avec succès !');
+
+                ->with(
+                    'flash',
+                    [
+                        'message' => 'Produit ajouté avec succès !',
+                        'text' => 'ajoutez un autre',
+                        'href' => route('products.create')
+                    ]
+                );
+
+
 
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Erreur lors de l\'ajout du produit : ' . $e->getMessage());
+                // ->with('error', 'Erreur lors de l\'ajout du produit : ' . $e->getMessage());
+                ->with(
+                    'flash',
+                    [
+                        'message' => 'Erreur lors de l\'ajout du produit',
+                        'text' => 'Essayez encore',
+                        'href' => route('products.create')
+                    ]
+                );
+
+
         }
     }
 
@@ -173,7 +192,8 @@ class ProductController extends Controller
     public function indexBackend(Request $request)
     {
         // Requête de base
-        $query = Product::with(['category:id,name', 'images']);
+        $query = Product::with(['category:id,name', 'images'])
+            ->withCount('likes'); // 💙 Ajout du compteur de likes;
 
         // 🔍 Filtre recherche
         if ($request->filled('search')) {
@@ -203,11 +223,8 @@ class ProductController extends Controller
             ->groupBy('category_id')
             ->with('category:id,name')
             ->get();
-
-        // 🔹 Toutes les catégories pour le filtre
         $categories = Category::select('id', 'name')->get();
-        // $product = Product::with('images')->first();
-        // dd($product->images->toArray());
+
 
 
         return Inertia::render('backend/produits/Index', [
@@ -227,7 +244,19 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (!$product) {
-            return redirect()->back()->with('error', 'produits introuvable.');
+            return redirect()->back()
+
+                ->with('error', 'produits introuvable.');
+
+            // ->with(
+            // 'flash',
+            // [
+            // 'message' => 'produits introuvable.',
+            // 'text' => '',
+            //'href' => route('')
+            // ]
+            // );
+
         }
 
         $product->delete();
@@ -271,8 +300,23 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index', $product->id)
-            ->with('success', 'Produit mis à jour avec succès');
+            // ->with('success', 'Produit mis à jour avec succès');
+            ->with(
+                'flash',
+                [
+                    'message' => 'Produit mis à jour avec succès',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
     }
+    //  return to_route('dashboard')->with('flash', [
+    //     'message' => '👋 Bienvenue ' . $user->name . '!',
+    //      'link' => [
+    //         'text' => '🔙 Retour à l’accueil',
+    //        'href' => route('home')
+    //    ]
+    // ]);
 
 
     public function show(Product $product)

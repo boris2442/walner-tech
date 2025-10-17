@@ -14,6 +14,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewUserRegistered;
+//importatation des logs
+
 
 class RegisteredUserController extends Controller
 {
@@ -60,7 +62,14 @@ class RegisteredUserController extends Controller
 
         // Connecter l'utilisateur automatiquement
         Auth::login($user);
+        
+        return to_route('dashboard')->with('flash', [
+            'message' => '👋 Bienvenue ' . $user->name . '!',
+            'link' => [
+                'text' => '🔙 Retour à l’accueil',
+                'href' => route('home')
+            ]
+        ]);
 
-        return to_route('dashboard');
     }
 }

@@ -87,7 +87,17 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->back()->with('success', 'Rôle mis à jour avec succès');
+        return redirect()->back()
+            //->with('success', 'Rôle mis à jour avec succès');
+
+            ->with(
+                'flash',
+                [
+                    'message' => 'Rôle mis à jour avec succès',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
     }
 
 
@@ -149,7 +159,20 @@ class UserController extends Controller
         // TODO : Envoi email avec identifiants
         // Mail::to($user->email)->send(new NewUserCreatedMail($user, $password));
 
-        return redirect()->route('users.index')->with('success', 'Utilisateur créé avec succès');
+        return redirect()->route('users.index')
+
+            //->with('success', 'Utilisateur créé avec succès');
+            ->with(
+                'flash',
+                [
+                    'message' => 'Utilisateur créé avec succès',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
+
+
+
     }
 
     /**
@@ -181,7 +204,17 @@ class UserController extends Controller
 
         $user->update($request->only('name', 'prenom', 'email', 'telephone', 'role'));
 
-        return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès');
+        return redirect()->route('users.index')
+            // ->with('success', 'Utilisateur mis à jour avec succès');
+
+            ->with(
+                'flash',
+                [
+                    'message' => 'Utilisateur mis à jour avec succès',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
     }
 
     /**
@@ -192,6 +225,15 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'users mise à jour avec succès.');
+        return redirect()->route('users.index')
+            //->with('success', 'users mise à jour avec succès.');
+            ->with(
+                'flash',
+                [
+                    'message' => 'Utilisateur supprimé avec succès',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
     }
 }
