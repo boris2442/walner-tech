@@ -258,9 +258,24 @@ class ProductController extends Controller
     }
 
 
-    public function showByUuid($uuid)
+    // public function showByUuid($uuid)
+    // {
+    //     $product = Product::where('uuid', $uuid)->with('images')->firstOrFail();
+    //     return Inertia::render('backend/products/ProductDetail', [
+    //         'product' => $product,
+    //         'auth' => [
+    //             'user' => auth()->user(),
+    //         ],
+    //     ]);
+    // }
+
+
+
+
+    public function showBySlug($slug)
     {
-        $product = Product::where('uuid', $uuid)->with('images')->firstOrFail();
+        $product = Product::where('slug', $slug)->with('images')->firstOrFail();
+
         return Inertia::render('backend/products/ProductDetail', [
             'product' => $product,
             'auth' => [
@@ -268,5 +283,6 @@ class ProductController extends Controller
             ],
         ]);
     }
+
 
 }

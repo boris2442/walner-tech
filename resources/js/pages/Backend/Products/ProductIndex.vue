@@ -72,7 +72,7 @@
 
                         <!-- Images -->
                         <div class="overflow-hidden rounded">
-                            <Link :href="`/products/${product.uuid}`" prefetch class="hover:underline">
+                            <Link :href="`/products/${product.slug}`" prefetch class="hover:underline">
                             <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
                                 :autoplay="{ delay: 3000 }" pagination loop>
                                 <swiper-slide v-for="img in product.images" :key="img.id">
@@ -93,7 +93,7 @@
                                 :class="darkMode ? 'text-dark-white' : 'text-text-dark'">
                                 {{ product.prix }} FCFA
                             </p>
-                          
+
                         </div>
 
                         <!-- Boutons -->

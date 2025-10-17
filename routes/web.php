@@ -48,7 +48,8 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 // Liste tous les produits
 Route::get('products', [ProductController::class, 'index'])->name('products');
 //Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/products/{uuid}', [ProductController::class, 'showByUuid'])->name('products.show');
+//Route::get('/products/{uuid}', [ProductController::class, 'showByUuid'])->name('products.show');
+Route::get('/products/{slug}', [ProductController::class, 'showBySlug'])->name('products.show');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::middleware(['auth', 'isAdmin'])->group(function () {
 

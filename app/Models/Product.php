@@ -55,4 +55,22 @@ class Product extends Model
             $product->uuid = (string) Str::uuid();
         });
     }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($product) {
+            // On génère d'abord un slug temporaire
+            $product->slug = Str::slug($product->title);
+        });
+
+        static::created(function ($product) {
+            // Une fois l'ID connu, on le met à jour avec l’ID à la fin
+            $product->slug = Str::slug($product->title) . '-' . $product->id;
+            $product->saveQuietly(); // évite une boucle infinie
+        });
+    }
+
 }
