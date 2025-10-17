@@ -58,84 +58,12 @@ class ProductController extends Controller
         ]);
     }
 
-    
+
     public function create()
     {
         $categories = Category::all();
         return Inertia::render('backend/products/ProductCreate', compact('categories'));
     }
-
-
-    // public function store(ProductRequest $request)
-    // {
-    //     try {
-    //         $product = Product::create($request->validated());
-
-    //         if ($request->hasFile('images')) {
-    //             foreach ($request->file('images') as $image) {
-    //                 // Stocker l'image dans storage/app/public/imageProducts
-    //                 $path = $image->store('imageProducts', 'public');
-
-    //                 // Vérifier que le fichier existe physiquement
-    //                 if (!file_exists(storage_path('app/public/' . $path))) {
-    //                     throw new \Exception("Le fichier n'a pas été stocké correctement");
-    //                 }
-
-    //                 // Enregistrer le chemin dans la DB
-    //                 $product->images()->create(['url_image' => $path]);
-    //             }
-    //         }
-
-    //         return redirect()->route('products.index')
-    //             ->with('success', 'Produit ajouté avec succès !');
-
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()
-    //             ->with('error', 'Erreur lors de l\'ajout du produit : ' . $e->getMessage());
-    //     }
-    // }
-
-
-    // public function indexBackend(Request $request)
-    // {
-    //     $query = Product::with(['category', 'images']);
-
-    //     if ($request->filled('search')) {
-    //         $query->where(function ($q) use ($request) {
-    //             $q->where('title', 'like', "%{$request->search}%")
-    //                 ->orWhere('description', 'like', "%{$request->search}%");
-    //         });
-    //     }
-
-    //     if ($request->filled('category')) {
-    //         $query->where('category_id', $request->category);
-    //     }
-
-    //     $products = $query->paginate(50)->withQueryString();
-
-    //     // Stats
-    //     $totalProducts = Product::count();
-    //     $addedThisWeek = Product::where('created_at', '>=', now()->startOfWeek())->count();
-    //     $productsByCategory = Product::select('category_id')
-    //         ->selectRaw('count(*) as count')
-    //         ->groupBy('category_id')
-    //         ->with('category')
-    //         ->get();
-
-    //     // Toutes les catégories pour le filtre
-    //     $categories = Category::all();
-
-    //     return Inertia::render('backend/produits/Index', [
-    //         'products' => $products,
-    //         'stats' => [
-    //             'total' => $totalProducts,
-    //             'addedThisWeek' => $addedThisWeek,
-    //             'byCategory' => $productsByCategory,
-    //         ],
-    //         'filters' => $request->only(['search', 'category']),
-    //         'categories' => $categories, // 🔑 On envoie cette prop
-    //     ]);
-    // }
 
 
     public function store(ProductRequest $request)

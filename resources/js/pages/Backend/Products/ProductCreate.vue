@@ -50,6 +50,8 @@ const submitForm = () => {
         onSuccess: () => {
             form.reset();
             imagePreviews.value = [];
+        }, onError: (errors) => {
+
         }
     });
 };
@@ -77,10 +79,12 @@ const handleFiles = (event: Event) => {
 
                 <form @submit.prevent="submitForm" enctype="multipart/form-data" class="flex flex-col gap-4">
                     <Input label="Titre du produit" v-model="form.title" :error="form.errors.title" />
+                    <span v-if="form.errors.title" class="text-sm">{{ form.errors.title }}</span>
                     <Textarea label="Description" v-model="form.description" :error="form.errors.description" />
+                    <span v-if="form.errors.description" class="text-sm">{{ form.errors.description }}</span>
                     <Input label="Prix" v-model="form.prix" type="number" :error="form.errors.prix" />
                     <Input label="Stock" v-model="form.stock" type="number" :error="form.errors.stock" />
-
+                    <span v-if="form.errors.stock" class="text-sm">{{ form.errors.stock }}</span>
                     <div>
                         <label class="block mb-1 font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                             Catégorie
@@ -102,7 +106,12 @@ const handleFiles = (event: Event) => {
                             <img v-for="(img, index) in imagePreviews" :key="index" :src="img"
                                 class="h-20 w-20 object-cover rounded border" />
                         </div>
-                        <p v-if="form.errors.images" class="text-red-500 text-sm mt-1">{{ form.errors.images }}</p>
+                        <span v-if="form.errors.images" class="text-red-500 text-sm mt-1">{{ form.errors.images
+                            }}</span>
+
+
+
+
                     </div>
 
                     <div>

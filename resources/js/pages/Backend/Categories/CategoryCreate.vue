@@ -29,10 +29,13 @@ const submitForm = () => {
     // form.post("/categories/store");
     form.post("/admin/categories");
 
+
 };
+
 </script>
 
 <template>
+
     <Head title="Category create" />
     <!-- <Head title="Dashboard" /> -->
 
@@ -43,7 +46,6 @@ const submitForm = () => {
                 class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                 <!-- <PlaceholderPattern /> -->
 
-                <!-- <FlashMessage v-if="flashMessage" :message="flashMessage" type="success" /> -->
                 <div class="m-3">
                     <h2 class="text-xl font-bold mb-4 ">
                         Ajouter une Catégorie
