@@ -12,9 +12,10 @@
                     <h3
                         class="text-base md:text-lg font-bold mb-1 group-hover:text-[var(--dark-gold)] dark:group-hover:text-[var(--primary-blue)]">
                         WALNER TECH Bafoussam</h3>
-                  
+
                     <p class="text-gray-600 mt-1 group-hover:text-gray-200 text-sm "><span
-                            class="group-hover:text-[var(--dark-gold)] font-bold">Localisation </span> : Marché A, Immeuble le
+                            class="group-hover:text-[var(--dark-gold)] font-bold">Localisation </span> : Marché A,
+                        Immeuble le
                         Pelicant Ancien bureau
                         des transports;</p>
                     <p class="mt-2 group-hover:text-gray-200 text-sm">
@@ -47,9 +48,10 @@
                     <h3
                         class="text-base md:text-lg font-bold mb-1 group-hover:text-[var(--dark-gold)] dark:group-hover:text-[var(--primary-blue)]">
                         WALNER TECH Yaoundé</h3>
-                 
+
                     <p class="text-gray-600 mt-1 group-hover:text-gray-200 text-sm"><span
-                            class="group-hover:text-[var(--dark-gold)] font-bold">Localisation </span> : Yaoundé, Terminus
+                            class="group-hover:text-[var(--dark-gold)] font-bold">Localisation </span> : Yaoundé,
+                        Terminus
                         mimboman
                         face sapeur
                         pompier</p>
