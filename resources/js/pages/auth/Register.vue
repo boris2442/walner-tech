@@ -26,7 +26,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                 <!-- Logo assets/walner.png -->
                 <!-- <div class="mb-6 text-center">
                     <Link href="/home" class="nav-link">
-                    <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 object-cover w-[200px]" />
+                    <img src="assets/walner.png" alt="Walner Tech" class="max-h-14 object-cover w-[200px] z-1000" />
                     </Link>
                 </div> -->
                 <h2 class="text-2xl font-bold mb-2">Content de vous revoir!</h2>

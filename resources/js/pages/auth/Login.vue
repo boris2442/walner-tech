@@ -76,7 +76,7 @@ const loginWithGoogle = () => {
                         </div>
                         <div class="text-center text-sm text-gray-500">
                             Vous n'avez pas de compte ?
-                            <TextLink :href="register()" class="text-[var(--primary-blue)] hover:underline"
+                            <TextLink :href="register()" class="text-[var(--primary-blue)] hover:underline text-2xl"
                                 :tabindex="5">S'inscrire
                             </TextLink>
                         </div>

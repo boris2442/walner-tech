@@ -89,7 +89,7 @@
                         <!-- Infos produit -->
                         <div class="p-3 flex flex-col flex-1">
                             <h3 class="text-sm font-medium truncate mt-2">{{ product.title }}</h3>
-                            <p class="text-sm font-semibold mt-2"
+                            <p class="text-sm font-semibold mt-2 "
                                 :class="darkMode ? 'text-dark-white' : 'text-text-dark'">
                                 {{ product.prix }} FCFA
                             </p>
@@ -113,16 +113,10 @@
                 </template>
             </div>
 
-
-
-
-
-
             <div v-if="!loading && filteredProducts.length === 0"
                 class="text-center mt-6 text-gray-500 dark:text-dark-grey">
                 Aucun produit trouvé
             </div>
-
 
             <div class="fixed bottom-6 right-6 z-50">
                 <button ref="cartButton" @click="toggleCart"
@@ -142,8 +136,8 @@
                             <img :src="getImageUrl(item.images[0]?.url_image)" loading="lazy"
                                 class="w-12 h-12 object-cover rounded mr-2" />
                             <div class="flex-1">
-                                <p class="text-sm font-medium truncate">{{ item.title }}</p>
-                                <p class="text-xs text-gray-500 dark:text-dark-grey">{{ item.prix }} FCFA x {{
+                                <p class="text-sm font-medium truncate text-gray-100">{{ item.title }}</p>
+                                <p class="text-xs text-[var(--dark-gold)] dark:text-dark-grey">{{ item.prix }} FCFA x {{
                                     item.quantity }}</p>
                                 <div class="flex items-center mt-1 gap-1">
                                     <button @click="decreaseQuantity(item)"
@@ -156,8 +150,8 @@
                         </div>
                         <hr class="my-2 border-gray-300 dark:border-[var(--dark-grey)]" />
                         <div class="flex justify-between font-semibold">
-                            <span>Total :</span>
-                            <span class="text-[var(--dark-white)]">{{ cartTotal }} FCFA</span>
+                            <span class="text-[var(--dark-gold)]">Total :</span>
+                            <span class="text-[var(--dark-white)] underline">{{ cartTotal }} FCFA</span>
                         </div>
                         <div class="mt-3">
                             <p v-if="cart.length === 0"
@@ -172,21 +166,9 @@
                     </div>
                 </transition>
             </div>
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </section>
 
-   
     <Map2 />
     <HeroSection />
     <Service />

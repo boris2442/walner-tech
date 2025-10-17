@@ -26,7 +26,7 @@ const closeBanner = () => {
 }
 
 const goToLogin = () => {
-    router.visit('/register')
+    router.visit('/login')
 }
 
 onMounted(() => {
