@@ -74,25 +74,6 @@ class CategoryController extends Controller
         ]);
     }
 
-
-    // public function indexBackend()
-
-    // {
-    //     $stats = [
-    //         'total' => Category::count(),
-    //     ];
-    //     $categories = Category::query()
-    //         ->when(request('search'), fn($q) => $q->where('name', 'like', '%' . request('search') . '%'))
-    //         ->orderBy('created_at', 'desc')
-    //         ->get(); 
-
-    //     return Inertia::render('Backend/Categories/CategoryIndex', [
-    //         'stats' => $stats,
-    //         'categories' => $categories,
-    //     ]);
-    // }
-
-
     public function indexBackend()
     {
         $stats = [
@@ -109,20 +90,7 @@ class CategoryController extends Controller
             'categories' => $categories,
         ]);
     }
-    // public function destroy($id)
-    // {
-    //     $category = Category::find($id);
-
-    //     if (!$category) {
-    //         return redirect()->back()->with('error', 'Catégorie introuvable.');
-    //     }
-
-    //     $category->delete();
-
-
-    //     return redirect()->route('categories.index');
-    // }
-
+ 
 
     public function destroy($id)
     {

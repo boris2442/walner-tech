@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Footer from '@/components/frontend/Footer.vue';
@@ -6,6 +6,44 @@ import { reactive } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import BackButton from '@/components/frontend/BackButton.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
+import { Head } from '@inertiajs/inertia-vue3';
+
+import { useHead } from '@vueuse/head';
+import { computed } from 'vue';
+
+interface Seo {
+    title: string;
+    description: string;
+    image: string;
+    url: string;
+    robots?: string;
+}
+
+const props = defineProps<{ seo: Seo }>();
+
+useHead({
+    title: computed(() => props.seo.title),
+    meta: [
+        { name: 'description', content: computed(() => props.seo.description) },
+        { name: 'robots', content: props.seo.robots || 'index, follow' },
+        { property: 'og:title', content: computed(() => props.seo.title) },
+        { property: 'og:description', content: computed(() => props.seo.description) },
+        { property: 'og:image', content: computed(() => props.seo.image) },
+        { property: 'og:url', content: computed(() => props.seo.url) },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: computed(() => props.seo.title) },
+        { name: 'twitter:description', content: computed(() => props.seo.description) },
+        { name: 'twitter:image', content: computed(() => props.seo.image) },
+    ],
+});
+
+
+
+
+
+
+
 // Sections dynamiques
 const sections = reactive([
   {
@@ -43,6 +81,9 @@ const sections = reactive([
 </script>
 
 <template>
+    <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
+
+    <Head :title="seo.title" />
   <NavbarFrontend :auth="$page.props.auth"/>
    <FloatingAction/>
       <LoginReminder />

@@ -1,4 +1,5 @@
 <template>
+     <Head :title="seo.title" />
     <!-- flash Logout -->
 
 
@@ -185,6 +186,8 @@ import axios from 'axios';
 import SeoHead from '@/components/frontend/seo/SeoHead.vue';
 import Testimony from '@/components/frontend/Testimony.vue';
 import { Head } from '@inertiajs/inertia-vue3'
+import { useHead } from '@vueuse/head';
+
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Inertia } from '@inertiajs/inertia';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
@@ -208,12 +211,41 @@ import HeroSection from '@/components/frontend/HeroSection.vue';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
 library.add(faCartShopping, faHeart);
 
+// interface Seo {
+//     title: string;
+//     description: string;
+//     image: string;
+//     url: string;
+//     robots?: string;
+// }
+
+
 const props = defineProps({
     products: Array,
     categories: Array,
     filters: Object,
-    auth: Object
+    auth: Object,
+    seo: Object,
 });
+
+
+// const props = defineProps<{
+//     products: Array<any>,
+//     categories: Array<any>,
+//     filters: Record<string, any>,
+//     auth: Record<string, any>,
+//     seo: {
+//         title: string,
+//         description: string,
+//         image: string,
+//         url: string,
+//         robots?: string
+//     }
+// }>();
+
+
+
+
 
 const search = ref(props.filters.search || '');
 const selectedCategory = ref(props.filters.category || '');
@@ -415,7 +447,22 @@ onMounted(() => {
     }
 });
 
-
+useHead({
+    title: computed(() => props.seo.title),
+    meta: [
+        { name: 'description', content: computed(() => props.seo.description) },
+        { name: 'robots', content: props.seo.robots || 'index, follow' },
+        { property: 'og:title', content: computed(() => props.seo.title) },
+        { property: 'og:description', content: computed(() => props.seo.description) },
+        { property: 'og:image', content: computed(() => props.seo.image) },
+        { property: 'og:url', content: computed(() => props.seo.url) },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: computed(() => props.seo.title) },
+        { name: 'twitter:description', content: computed(() => props.seo.description) },
+        { name: 'twitter:image', content: computed(() => props.seo.image) },
+    ],
+});
 
 </script>
 

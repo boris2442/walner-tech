@@ -42,6 +42,7 @@
         "@inertiajs/vue3": "^2.1.10",
         "@vue-leaflet/vue-leaflet": "^0.10.1",
         "@vueuse/core": "^12.8.2",
+        "@vueuse/head": "^2.0.0",
         "axios": "^1.12.2",
         "chart.js": "^4.5.0",
         "chartjs-plugin-datalabels": "^2.2.0",

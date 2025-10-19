@@ -54,6 +54,16 @@ class ProductController extends Controller
             'auth' => [
                 'user' => auth()->user()
             ],
+            'seo' => [
+                'title' => 'Walner Tech – Marketplace d’ordinateurs, smartphones et accessoires au Cameroun
+
+',
+                'description' => 'Walner Tech, votre marketplace à Bafoussam et Yaoundé : achetez ordinateurs portables, PC, smartphones et accessoires informatiques de qualité au meilleur prix.
+',
+                'image' => asset('walner.jpg'), // image OG principale pour le partage social
+                'url' => url('/'),
+                'robots' => 'index, follow',
+            ],
 
         ]);
     }
@@ -238,14 +248,6 @@ class ProductController extends Controller
                 ]
             );
     }
-    //  return to_route('dashboard')->with('flash', [
-    //     'message' => '👋 Bienvenue ' . $user->name . '!',
-    //      'link' => [
-    //         'text' => '🔙 Retour à l’accueil',
-    //        'href' => route('home')
-    //    ]
-    // ]);
-
 
     public function show(Product $product)
     {
@@ -256,21 +258,6 @@ class ProductController extends Controller
             'auth' => auth()->user()
         ]);
     }
-
-
-    // public function showByUuid($uuid)
-    // {
-    //     $product = Product::where('uuid', $uuid)->with('images')->firstOrFail();
-    //     return Inertia::render('backend/products/ProductDetail', [
-    //         'product' => $product,
-    //         'auth' => [
-    //             'user' => auth()->user(),
-    //         ],
-    //     ]);
-    // }
-
-
-
 
     public function showBySlug($slug)
     {

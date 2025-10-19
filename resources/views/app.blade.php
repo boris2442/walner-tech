@@ -9,7 +9,7 @@
 
     {{-- 2️⃣ Apparence : mode sombre --}}
     <script>
-        (function() {
+        (function () {
             const appearance = '{{ $appearance ?? 'system' }}';
             if (appearance === 'system') {
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -19,14 +19,19 @@
     </script>
 
     <style>
-        html { background-color: oklch(1 0 0); }
-        html.dark { background-color: oklch(0.145 0 0); }
+        html {
+            background-color: oklch(1 0 0);
+        }
+
+        html.dark {
+            background-color: oklch(0.145 0 0);
+        }
     </style>
 
 
     <title inertia>{{ config('app.name', 'Walner Tech - Expert en équipements informatiques') }}</title>
 
-    
+
     <link rel="icon" href="/walner.svg" sizes="any" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/walner.svg">
     <link rel="icon" type="image/png" href="{{ asset('assets/walner.png') }}">
@@ -39,7 +44,7 @@
     <meta name="author" content="Walner Tech">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
- <meta property="og:title" content="Walner Tech - Votre expert en équipements informatiques au Cameroun">
+    <meta property="og:title" content="Walner Tech - Votre expert en équipements informatiques au Cameroun">
     <meta property="og:description"
         content="Commandez vos ordinateurs, accessoires et produits high-tech chez Walner Tech. Livraison rapide à Bafoussam, Yaoundé et partout au Cameroun. Service professionnel et fiable.">
     <meta property="og:image" content="{{ asset('assets/walner.jpg') }}">
@@ -51,17 +56,17 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
- 
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Walner Tech - Équipements informatiques & accessoires high-tech">
     <meta name="twitter:description"
         content="Walner Tech, boutique high-tech à Bafoussam et Yaoundé. Ordinateurs, accessoires, composants PC. Livraison rapide au Cameroun et à l’international.">
     <meta name="twitter:image" content="{{ asset('assets/walner.jpg') }}">
- <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="fr" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="en" href="{{ url()->current() }}">
-  <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" /> --}}
 
     @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
     @inertiaHead

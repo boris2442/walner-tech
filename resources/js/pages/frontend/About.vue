@@ -1,4 +1,7 @@
 <template>
+    <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
+
+    <Head :title="seo.title" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />
@@ -161,10 +164,10 @@
     <Footer />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
-import { Link } from '@inertiajs/vue3'
+import { Link, Head } from '@inertiajs/vue3'
 import Footer from '@/components/frontend/Footer.vue';
 import { contact } from '@/routes';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
@@ -179,8 +182,43 @@ import {
     faHandshake
 } from '@fortawesome/free-solid-svg-icons'
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import { useHead } from '@vueuse/head';
+import { computed } from 'vue';
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
+interface Seo {
+    title: string;
+    description: string;
+    image: string;
+    url: string;
+    robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+
+}
+const props = defineProps<{ seo: Seo }>();
+
+// --- SEO avec @vueuse/head ---
+useHead({
+    title: computed(() => props.seo.title),
+    meta: [
+        { name: 'description', content: computed(() => props.seo.description) },
+        { property: 'og:title', content: computed(() => props.seo.title) },
+        { property: 'og:description', content: computed(() => props.seo.description) },
+        { name: 'robots', content: computed(() => props.seo.robots || 'index, follow') },
+
+        { property: 'og:image', content: computed(() => props.seo.image) },
+        { property: 'og:url', content: computed(() => props.seo.url) },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: computed(() => props.seo.title) },
+        { name: 'twitter:description', content: computed(() => props.seo.description) },
+        { name: 'twitter:image', content: computed(() => props.seo.image) },
+    ],
+});
+
+
+
+
+
 
 const products = [
     {

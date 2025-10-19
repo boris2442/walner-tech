@@ -8,11 +8,19 @@ use Inertia\Inertia;
 
 class AboutController extends Controller
 {
-   public function index()
+    public function index()
     {
 
-        return Inertia::render('frontend/About')
-      
-            ;
+        return Inertia::render('frontend/About', [
+            'seo' => [
+                'title' => 'A propos de Walner Tech – Boutique PC, ',
+                'description' => 'Découvrez Walner Tech à Bafoussam et Yaoundé : ordinateurs portables, PC de bureau, smartphones et accessoires informatiques de qualité au meilleur prix au Cameroun.',
+                 'image' => asset('walner.jpg'),
+                'url' => url('/about'),
+                'robots' => 'index, follow',
+            ],
+        ])
+
+        ;
     }
 }

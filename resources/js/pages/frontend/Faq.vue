@@ -1,9 +1,43 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Footer from '@/components/frontend/Footer.vue';
+import { Head } from '@inertiajs/inertia-vue3';
+
+import { useHead } from '@vueuse/head';
+import { computed } from 'vue';
+
+interface Seo {
+    title: string;
+    description: string;
+    image: string;
+    url: string;
+    robots?: string;
+}
+
+const props = defineProps<{ seo: Seo }>();
+
+useHead({
+    title: computed(() => props.seo.title),
+    meta: [
+        { name: 'description', content: computed(() => props.seo.description) },
+        { name: 'robots', content: props.seo.robots || 'index, follow' },
+        { property: 'og:title', content: computed(() => props.seo.title) },
+        { property: 'og:description', content: computed(() => props.seo.description) },
+        { property: 'og:image', content: computed(() => props.seo.image) },
+        { property: 'og:url', content: computed(() => props.seo.url) },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: computed(() => props.seo.title) },
+        { name: 'twitter:description', content: computed(() => props.seo.description) },
+        { name: 'twitter:image', content: computed(() => props.seo.image) },
+    ],
+});
+
+
+
 
 const faqs = [
     { question: "Comment passer une commande ?", answer: "Pour passer une commande, rendez-vous sur la page produits et cliquez sur 'Ajouter au panier'..." },
@@ -24,6 +58,7 @@ function toggle(index) {
 </script>
 
 <template>
+       <Head :title="seo.title" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />

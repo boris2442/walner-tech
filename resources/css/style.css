@@ -76,6 +76,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
 }
 
-body {
+*, ::after, ::before, body {
     font-family: NeueHaasGrotesk, Helvetica, Arial, sans-serif;
 }

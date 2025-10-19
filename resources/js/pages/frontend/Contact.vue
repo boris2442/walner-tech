@@ -1,4 +1,7 @@
 <template>
+    <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
+
+    <Head :title="seo.title" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" /><br /><br />
     <FloatingAction />
@@ -9,7 +12,8 @@
 
     <section
         class="contact-page min-h-screen bg-[var(--background-light)] dark:bg-[var(--dark-background)] p-6 md:p-16">
-        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">Contactez Walner Tech</h1>
+        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+            Contactez Walner Tech</h1>
         <div class="max-w-6xl mx-auto space-y-12">
             <!-- 🔹 Bouton retour -->
             <BackButton />
@@ -129,8 +133,11 @@
     <Footer />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import { computed } from 'vue'
+import { Head } from '@inertiajs/vue3'
+import { useHead } from '@vueuse/head'
 import { useForm } from '@inertiajs/inertia-vue3'
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import Footer from '@/components/frontend/Footer.vue'
@@ -173,4 +180,38 @@ const submit = () => {
         }
     })
 }
+
+
+
+
+interface Seo {
+    title: string;
+    description: string;
+    image: string;
+    url: string;
+    robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+
+
+}
+const props = defineProps<{ seo: Seo }>();
+
+// --- SEO avec @vueuse/head ---
+useHead({
+    title: computed(() => props.seo.title),
+    meta: [
+        { name: 'description', content: computed(() => props.seo.description) },
+        { property: 'og:title', content: computed(() => props.seo.title) },
+        { property: 'og:description', content: computed(() => props.seo.description) },
+        { name: 'robots', content: computed(() => props.seo.robots || 'index, follow') },
+
+        { property: 'og:image', content: computed(() => props.seo.image) },
+        { property: 'og:url', content: computed(() => props.seo.url) },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: computed(() => props.seo.title) },
+        { name: 'twitter:description', content: computed(() => props.seo.description) },
+        { name: 'twitter:image', content: computed(() => props.seo.image) },
+    ],
+});
+
 </script>
