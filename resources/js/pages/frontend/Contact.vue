@@ -193,25 +193,24 @@ interface Seo {
 
 
 }
-const props = defineProps<{ seo: Seo }>();
+const props = defineProps<{ seo?: Seo }>();
 
-// --- SEO avec @vueuse/head ---
 useHead({
-    title: computed(() => props.seo.title),
+    title: computed(() => props.seo?.title || 'Walner Tech'),
     meta: [
-        { name: 'description', content: computed(() => props.seo.description) },
-        { property: 'og:title', content: computed(() => props.seo.title) },
-        { property: 'og:description', content: computed(() => props.seo.description) },
-        { name: 'robots', content: computed(() => props.seo.robots || 'index, follow') },
-
-        { property: 'og:image', content: computed(() => props.seo.image) },
-        { property: 'og:url', content: computed(() => props.seo.url) },
+        { name: 'description', content: computed(() => props.seo?.description || 'Contactez Walner Tech au Cameroun') },
+        { name: 'robots', content: computed(() => props.seo?.robots || 'index, follow') },
+        { property: 'og:title', content: computed(() => props.seo?.title || 'Walner Tech') },
+        { property: 'og:description', content: computed(() => props.seo?.description || 'Contactez Walner Tech au Cameroun') },
+        { property: 'og:image', content: computed(() => props.seo?.image || '/walner.jpg') },
+        { property: 'og:url', content: computed(() => props.seo?.url || window.location.href) },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.seo.title) },
-        { name: 'twitter:description', content: computed(() => props.seo.description) },
-        { name: 'twitter:image', content: computed(() => props.seo.image) },
+        { name: 'twitter:title', content: computed(() => props.seo?.title || 'Walner Tech') },
+        { name: 'twitter:description', content: computed(() => props.seo?.description || 'Contactez Walner Tech au Cameroun') },
+        { name: 'twitter:image', content: computed(() => props.seo?.image || '/walner.jpg') },
     ],
 });
+
 
 </script>
