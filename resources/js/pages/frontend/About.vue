@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head :title="seo.title" />
+    <Head :title="props.data.title" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />
@@ -187,36 +187,39 @@ import { computed } from 'vue';
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
 interface Seo {
-    title: string;
-    description: string;
-    image: string;
-    url: string;
-    robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+    data: {
+
+        title: string;
+        description: string;
+        image: string;
+        url: string;
+        robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+    }
 
 }
-const props = defineProps<{ seo: Seo }>();
+const props = defineProps<Seo>();
 
 // --- SEO avec @vueuse/head ---
 useHead({
-    title: computed(() => props.seo.title),
+    title: computed(() => props.data.title),
     meta: [
-        { name: 'description', content: computed(() => props.seo.description) },
-        { property: 'og:title', content: computed(() => props.seo.title) },
-        { property: 'og:description', content: computed(() => props.seo.description) },
-        { name: 'robots', content: computed(() => props.seo.robots || 'index, follow') },
+        { name: 'description', content: computed(() => props.data.description) },
+        { property: 'og:title', content: computed(() => props.data.title) },
+        { property: 'og:description', content: computed(() => props.data.description) },
+        { name: 'robots', content: computed(() => props.data.robots || 'index, follow') },
 
-        { property: 'og:image', content: computed(() => props.seo.image) },
-        { property: 'og:url', content: computed(() => props.seo.url) },
+        { property: 'og:image', content: computed(() => props.data.image) },
+        { property: 'og:url', content: computed(() => props.data.url) },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.seo.title) },
-        { name: 'twitter:description', content: computed(() => props.seo.description) },
-        { name: 'twitter:image', content: computed(() => props.seo.image) },
+        { name: 'twitter:title', content: computed(() => props.data.title) },
+        { name: 'twitter:description', content: computed(() => props.data.description) },
+        { name: 'twitter:image', content: computed(() => props.data.image) },
     ],
 });
 
 
-
+//console.log(props.data.title)
 
 
 

@@ -24,7 +24,7 @@
 
     <!-- Bouton unique vers l'accueil -->
     <Link href="/" 
-      class="px-6 py-3 bg-var(--highlight-gold) text-var(--text-dark) font-semibold rounded shadow-lg hover:brightness-110 transition">
+      class="px-6 py-3 bg-var(--highlight-gold) text-[#f3f3f3] font-semibold rounded shadow-lg hover:brightness-110 transition">
       Accueil
     </Link>
        <LoginReminder />

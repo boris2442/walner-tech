@@ -10,14 +10,17 @@ import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
 interface Seo {
+  seo:{
+
     title: string;
     description: string;
     image: string;
     url: string;
     robots?: string;
+  }
 }
 
-const props = defineProps<{ seo: Seo }>();
+const props = defineProps< Seo >();
 
 useHead({
     title: computed(() => props.seo.title),

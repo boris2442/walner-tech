@@ -463,6 +463,7 @@ useHead({
         { name: 'twitter:image', content: computed(() => props.seo.image) },
     ],
 });
+console.log(props.seo.robots)
 
 </script>
 

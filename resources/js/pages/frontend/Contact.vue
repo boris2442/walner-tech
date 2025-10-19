@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-   <Head :title="pageTitle.value"/>
+    <Head :title="props.seo.title" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" /><br /><br />
     <FloatingAction />
@@ -166,15 +166,15 @@ const submit = () => {
     form.post('/contact', {
         onSuccess: (page) => {
             // afficher le flash envoyé par le backend
-            const status = page.props.flash?.status
-            if (status) {
-                alertMessage.value = status
+            // const status = page.props.flash?.status
+            // if (status) {
+            //     alertMessage.value = status
 
-                // disparaît après 4 secondes
-                setTimeout(() => {
-                    alertMessage.value = ''
-                }, 4000)
-            }
+            //     // disparaît après 4 secondes
+            //     setTimeout(() => {
+            //         alertMessage.value = ''
+            //     }, 4000)
+            // }
 
             form.reset()
         }
@@ -185,16 +185,19 @@ const submit = () => {
 
 
 interface Seo {
-    title: string;
-    description: string;
-    image: string;
-    url: string;
-    robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+    seo: {
+        title: string;
+        description: string;
+        image: string;
+        url: string;
+        robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+    }
+
 
 
 }
-const props = defineProps<{ seo?: Seo }>();
-const pageTitle = computed(() => props.seo?.title || 'Walner Tech')
+const props = defineProps< Seo >();
+//const pageTitle = computed(() => props.seo?.title || 'Walner Tech')
 // console.log(pageTitle)
 useHead({
     title: computed(() => props.seo?.title || 'Walner Tech'),

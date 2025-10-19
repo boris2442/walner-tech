@@ -12,7 +12,7 @@ class AboutController extends Controller
     {
 
         return Inertia::render('frontend/About', [
-            'seo' => [
+            'data' => [
                 'title' => 'A propos de Walner Tech – Boutique PC, ',
                 'description' => 'Découvrez Walner Tech à Bafoussam et Yaoundé : ordinateurs portables, PC de bureau, smartphones et accessoires informatiques de qualité au meilleur prix au Cameroun.',
                  'image' => asset('walner.jpg'),

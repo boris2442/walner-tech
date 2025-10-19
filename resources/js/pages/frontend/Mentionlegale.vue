@@ -12,14 +12,17 @@ import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
 interface Seo {
+  seo:{
+
     title: string;
     description: string;
     image: string;
     url: string;
     robots?: string;
+  }
 }
 
-const props = defineProps<{ seo: Seo }>();
+const props = defineProps< Seo >();
 
 useHead({
     title: computed(() => props.seo.title),
@@ -83,7 +86,7 @@ const sections = reactive([
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head :title="seo.title" />
+    <Head :title="props.seo.title" />
   <NavbarFrontend :auth="$page.props.auth"/>
    <FloatingAction/>
       <LoginReminder />

@@ -11,14 +11,17 @@ import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
 interface Seo {
-    title: string;
-    description: string;
-    image: string;
-    url: string;
-    robots?: string;
+    seo:{
+
+        title: string;
+        description: string;
+        image: string;
+        url: string;
+        robots?: string;
+    }
 }
 
-const props = defineProps<{ seo: Seo }>();
+const props = defineProps< Seo >();
 
 useHead({
     title: computed(() => props.seo.title),
@@ -84,7 +87,7 @@ const sections = reactive([
 </script>
 
 <template>
-       <Head :title="seo.title" />
+       <Head :title="props.seo.title" />
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction /> <br>
        <LoginReminder />
