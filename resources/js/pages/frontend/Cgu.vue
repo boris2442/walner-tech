@@ -9,6 +9,8 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
+
+
 interface Seo {
     title: string;
     description: string;

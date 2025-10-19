@@ -5,6 +5,7 @@ import TopBanner from '@/components/frontend/TopBanner.vue';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 
 import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
