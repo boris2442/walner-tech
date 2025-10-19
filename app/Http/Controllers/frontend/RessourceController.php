@@ -24,7 +24,7 @@ class RessourceController extends Controller
    {
       return Inertia::render('frontend/Privacy', [
          'seo' => [
-            'title' => '– Walner Tech-Politique de confidentialité ',
+            'title' => ' Politique de confidentialité -Walner Tech',
             'description' => 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.',
             'image' => asset('walner.jpg'),
             'url' => url('/ressources/confidentialite'),

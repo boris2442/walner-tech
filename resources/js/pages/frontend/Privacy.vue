@@ -11,7 +11,7 @@ import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
 interface Seo {
-    seo:{
+    seo: {
 
         title: string;
         description: string;
@@ -21,21 +21,21 @@ interface Seo {
     }
 }
 
-const props = defineProps< Seo >();
+const props = defineProps<Seo>();
 
 useHead({
-    title: computed(() => props.seo.title),
+    title: computed(() => props.seo.title ?? ' Politique de confidentialité -Walner Tech'),
     meta: [
-        { name: 'description', content: computed(() => props.seo.description) },
+        { name: 'description', content: computed(() => props.seo.description ?? 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.') },
         { name: 'robots', content: props.seo.robots || 'index, follow' },
-        { property: 'og:title', content: computed(() => props.seo.title) },
-        { property: 'og:description', content: computed(() => props.seo.description) },
+        { property: 'og:title', content: computed(() => props.seo.title ?? ' Politique de confidentialité -Walner Tech') },
+        { property: 'og:description', content: computed(() => props.seo.description ?? 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.') },
         { property: 'og:image', content: computed(() => props.seo.image) },
         { property: 'og:url', content: computed(() => props.seo.url) },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.seo.title) },
-        { name: 'twitter:description', content: computed(() => props.seo.description) },
+        { name: 'twitter:title', content: computed(() => props.seo.title ?? ' Politique de confidentialité -Walner Tech') },
+        { name: 'twitter:description', content: computed(() => props.seo.description ?? 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.') },
         { name: 'twitter:image', content: computed(() => props.seo.image) },
     ],
 });
@@ -87,15 +87,17 @@ const sections = reactive([
 </script>
 
 <template>
-       <Head :title="props.seo.title" />
+
+    <Head :title="props.seo.title ?? 'Politique de confidentialité-Walner Tech'" />
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction /> <br>
-       <LoginReminder />
+    <LoginReminder />
     <section class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]
                     dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <!-- 🔹 Bouton retour -->
         <BackButton />
-        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">Politique de Confidentialité Walner Tech</h1>
+        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+            Politique de Confidentialité Walner Tech</h1>
 
         <p class="mb-6">
             Chez <strong>Walner Tech</strong>, la confidentialité de nos utilisateurs est une priorité absolue.
