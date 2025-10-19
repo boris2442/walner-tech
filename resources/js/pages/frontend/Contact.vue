@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head :title="seo.title" />
+   <Head :title="pageTitle.value"/>
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" /><br /><br />
     <FloatingAction />
@@ -194,7 +194,8 @@ interface Seo {
 
 }
 const props = defineProps<{ seo?: Seo }>();
-
+const pageTitle = computed(() => props.seo?.title || 'Walner Tech')
+// console.log(pageTitle)
 useHead({
     title: computed(() => props.seo?.title || 'Walner Tech'),
     meta: [
