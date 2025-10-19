@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head :title="props.data.title" />
+    <Head :title="props.data?.title ?? 'Walner Tech'" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />
@@ -186,40 +186,71 @@ import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
-interface Seo {
+// interface Seo {
+//     data: {
+
+//         title: string;
+//         description: string;
+//         image: string;
+//         url: string;
+//         robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+//     }
+
+// }
+// const props = defineProps<Seo>();
+
+// // --- SEO avec @vueuse/head ---
+// useHead({
+//     title: computed(() => props.data.title),
+//     meta: [
+//         { name: 'description', content: computed(() => props.data.description) },
+//         { property: 'og:title', content: computed(() => props.data.title) },
+//         { property: 'og:description', content: computed(() => props.data.description) },
+//         { name: 'robots', content: computed(() => props.data.robots || 'index, follow') },
+
+//         { property: 'og:image', content: computed(() => props.data.image) },
+//         { property: 'og:url', content: computed(() => props.data.url) },
+//         { property: 'og:type', content: 'website' },
+//         { name: 'twitter:card', content: 'summary_large_image' },
+//         { name: 'twitter:title', content: computed(() => props.data.title) },
+//         { name: 'twitter:description', content: computed(() => props.data.description) },
+//         { name: 'twitter:image', content: computed(() => props.data.image) },
+//     ],
+// });
+
+// Props sécurisées avec fallback
+const props = defineProps({
     data: {
-
-        title: string;
-        description: string;
-        image: string;
-        url: string;
-        robots?: string; // <- optionnel si certaines pages n’ont pas de robots
+        type: Object,
+        default: () => ({
+            title: 'Walner Tech',
+            description: '',
+            image: '',
+            url: window.location.href,
+            robots: 'index, follow'
+        })
     }
+})
 
-}
-const props = defineProps<Seo>();
-
-// --- SEO avec @vueuse/head ---
+// SEO sécurisé
 useHead({
-    title: computed(() => props.data.title),
+    title: computed(() => props.data?.title ?? 'Walner Tech'),
     meta: [
-        { name: 'description', content: computed(() => props.data.description) },
-        { property: 'og:title', content: computed(() => props.data.title) },
-        { property: 'og:description', content: computed(() => props.data.description) },
-        { name: 'robots', content: computed(() => props.data.robots || 'index, follow') },
-
-        { property: 'og:image', content: computed(() => props.data.image) },
-        { property: 'og:url', content: computed(() => props.data.url) },
+        { name: 'description', content: computed(() => props.data?.description ?? '') },
+        { property: 'og:title', content: computed(() => props.data?.title ?? 'Walner Tech') },
+        { property: 'og:description', content: computed(() => props.data?.description ?? '') },
+        { name: 'robots', content: computed(() => props.data?.robots ?? 'index, follow') },
+        { property: 'og:image', content: computed(() => props.data?.image ?? '') },
+        { property: 'og:url', content: computed(() => props.data?.url ?? window.location.href) },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.data.title) },
-        { name: 'twitter:description', content: computed(() => props.data.description) },
-        { name: 'twitter:image', content: computed(() => props.data.image) },
-    ],
-});
+        { name: 'twitter:title', content: computed(() => props.data?.title ?? 'Walner Tech') },
+        { name: 'twitter:description', content: computed(() => props.data?.description ?? '') },
+        { name: 'twitter:image', content: computed(() => props.data?.image ?? '') }
+    ]
+})
 
 
-//console.log(props.data.title)
 
 
 

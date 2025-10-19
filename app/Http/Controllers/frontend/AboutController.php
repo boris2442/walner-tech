@@ -19,8 +19,8 @@ class AboutController extends Controller
                 'url' => url('/about'),
                 'robots' => 'index, follow',
             ],
-        ])
+        ])  ;
 
-        ;
+      
     }
 }
