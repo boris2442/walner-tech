@@ -74,18 +74,20 @@
 
                         <!-- Images -->
                         <div class="overflow-hidden rounded">
-                            <Link :href="`/products/${product.slug}`" prefetch class="hover:underline">
                             <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
                                 :autoplay="{ delay: 3000 }" pagination loop>
                                 <swiper-slide v-for="img in product.images" :key="img.id">
+                                    <Link :href="`/products/${product.slug}`" prefetch="intent" class="hover:underline">
                                     <img :src="getImageUrl(img.url_image)" :alt="product.title" loading="lazy"
                                         class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
+                                    </Link>
                                 </swiper-slide>
                             </swiper>
-                            <img v-else :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title"
-                                loading="lazy"
+                            <Link v-else :href="`/products/${product.slug}`" prefetch="intent" class="hover:underline">
+                            <img :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title" loading="lazy"
                                 class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
                             </Link>
+
                         </div>
 
                         <!-- Infos produit -->
@@ -281,6 +283,13 @@ onMounted(() => {
 });
 
 // Filtrage product
+// const filteredProducts = computed(() => {
+//     return props.products.filter(product => {
+//         const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase());
+//         const matchCategory = selectedCategory.value === '' || product.category_id === selectedCategory.value;
+//         return matchSearch && matchCategory;
+//     });
+// });
 const filteredProducts = computed(() => {
     return props.products.filter(product => {
         const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase());
@@ -288,6 +297,9 @@ const filteredProducts = computed(() => {
         return matchSearch && matchCategory;
     });
 });
+
+
+
 
 // Like
 function toggleLike(product) {
@@ -382,7 +394,7 @@ function updateFilters() {
 }
 function filterByCategory(id) {
     selectedCategory.value = id;
-    updateFilters();
+    //updateFilters();
 }
 
 // Debounce recherche

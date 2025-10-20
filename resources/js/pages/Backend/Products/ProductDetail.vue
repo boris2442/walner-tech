@@ -51,7 +51,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div v-for="sp in similarProducts" :key="sp.id"
                     class="bg-white dark:bg-dark-card rounded-lg shadow-md hover:scale-105 transition-transform   product-card  flex flex-col  overflow-hidden">
-                    <Link :href="`/products/${sp.slug}`">
+                    <Link prefetch="" :href="`/products/${sp.slug}`">
                     <img :src="getImageUrl(sp.images?.[0]?.url_image)" :alt="sp.title"
                         class="w-full h-40 object-cover rounded-md mb-4">
 
