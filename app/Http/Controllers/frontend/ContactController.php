@@ -16,15 +16,7 @@ class ContactController extends Controller
 {
   public function index()
   {
-    return Inertia::render('frontend/Contact', [
-      'seo' => [
-        'title' => 'Contactez Walner Tech – PC, smartphones et accessoires au Cameroun  ',
-        'description' => 'Contactez Walner Tech à Bafoussam et Yaoundé pour toute question sur nos PC, ordinateurs portables, smartphones et accessoires. Support rapide et conseils personnalisés.',
-        'image' => asset('walner.jpg'),
-        'url' => url('/contact'),
-        'robots' => 'index, follow',
-      ],
-    ]);
+    return Inertia::render('frontend/Contact');
   }
   public function store(ContactRequest $request)
   {

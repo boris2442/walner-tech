@@ -45,7 +45,7 @@ const sections = [
 
 <template>
 
-    <Head title="Conditions Générales d’Utilisation (CGU) – Walner Tech" />
+    <Head title="Conditions Générales d’Utilisation (CGU) " />
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction /> <br>
     <section

@@ -9,7 +9,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 
 </script>
 <template>
-   <Head title="Condition de non remboursement walner TEch" />
+   <Head title="Condition de non remboursement " />
   <NavbarFrontend :auth="$page.props.auth"/>
     <FloatingAction/>
        <LoginReminder />

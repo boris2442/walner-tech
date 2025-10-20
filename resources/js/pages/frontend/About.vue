@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head  title="A propos de Walner Tech – " />
+    <Head  title="A propos de " />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />

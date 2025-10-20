@@ -1,4 +1,6 @@
 <template>
+
+    <Head :title="product.title + ' - Détails du produit'" />
     <TopBanner />
     <FloatingAction />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
@@ -56,7 +58,7 @@ import Footer from '@/components/frontend/Footer.vue'
 import BackButton from '@/components/frontend/BackButton.vue'
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
-
+import { Head } from '@inertiajs/vue3'
 const props = defineProps({
     product: Object,
     auth: Object

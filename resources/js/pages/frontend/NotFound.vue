@@ -1,5 +1,5 @@
 <template>
-  <Head title="Walner tech page not found"/>
+  <Head title="Page not found"/>
   <div
     class="flex flex-col items-center justify-center min-h-screen text-center p-4"
     style="background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue))">

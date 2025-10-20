@@ -27,7 +27,7 @@ function toggle(index) {
 
 <template>
 
-    <Head title="  Foire Aux Questions (F.A.Q) Walner Tech" />
+    <Head title="  Foire Aux Questions (F.A.Q) " />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />

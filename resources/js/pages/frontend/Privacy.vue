@@ -56,7 +56,7 @@ const sections = reactive([
 </script>
 <template>
 
-    <Head title="Politique de confidentialité-Walner Tech" />
+    <Head title="Politique de confidentialité" />
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction /> <br>
     <LoginReminder />

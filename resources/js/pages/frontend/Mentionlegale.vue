@@ -48,7 +48,7 @@ const sections = reactive([
 <template>
   <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-  <Head title="Mention legales Walner TEch" />
+  <Head title="Mention legales " />
   <NavbarFrontend :auth="$page.props.auth" />
   <FloatingAction />
   <LoginReminder />
