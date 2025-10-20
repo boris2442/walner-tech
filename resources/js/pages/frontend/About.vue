@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head :title="props.data?.title ?? 'A propos de Walner Tech – '" />
+    <Head  title="A propos de Walner Tech – " />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />
@@ -182,76 +182,9 @@ import {
     faHandshake
 } from '@fortawesome/free-solid-svg-icons'
 import TopBanner from '@/components/frontend/TopBanner.vue';
-import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
+
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)
-// interface Seo {
-//     data: {
-
-//         title: string;
-//         description: string;
-//         image: string;
-//         url: string;
-//         robots?: string; // <- optionnel si certaines pages n’ont pas de robots
-//     }
-
-// }
-// const props = defineProps<Seo>();
-
-// // --- SEO avec @vueuse/head ---
-// useHead({
-//     title: computed(() => props.data.title),
-//     meta: [
-//         { name: 'description', content: computed(() => props.data.description) },
-//         { property: 'og:title', content: computed(() => props.data.title) },
-//         { property: 'og:description', content: computed(() => props.data.description) },
-//         { name: 'robots', content: computed(() => props.data.robots || 'index, follow') },
-
-//         { property: 'og:image', content: computed(() => props.data.image) },
-//         { property: 'og:url', content: computed(() => props.data.url) },
-//         { property: 'og:type', content: 'website' },
-//         { name: 'twitter:card', content: 'summary_large_image' },
-//         { name: 'twitter:title', content: computed(() => props.data.title) },
-//         { name: 'twitter:description', content: computed(() => props.data.description) },
-//         { name: 'twitter:image', content: computed(() => props.data.image) },
-//     ],
-// });
-
-// Props sécurisées avec fallback
-const props = defineProps({
-    data: {
-        type: Object,
-        default: () => ({
-            title: 'A propos de Walner Tech',
-            description: '',
-            image: '',
-            url: window.location.href,
-            robots: 'index, follow'
-        })
-    }
-})
-
-// SEO sécurisé
-useHead({
-    title: computed(() => props.data?.title ?? 'A propos de Walner Tech'),
-    meta: [
-        { name: 'description', content: computed(() => props.data?.description ?? 'Découvrez Walner Tech à Bafoussam et Yaoundé : ordinateurs portables, PC de bureau, smartphones et accessoires informatiques de qualité au meilleur prix au Cameroun.') },
-        { property: 'og:title', content: computed(() => props.data?.title ?? 'A propos de Walner Tech') },
-        { property: 'og:description', content: computed(() => props.data?.description ?? 'Découvrez Walner Tech à Bafoussam et Yaoundé : ordinateurs portables, PC de bureau, smartphones et accessoires informatiques de qualité au meilleur prix au Cameroun.') },
-        { name: 'robots', content: computed(() => props.data?.robots ?? 'index, follow') },
-        { property: 'og:image', content: computed(() => props.data?.image ?? 'walner.jpg') },
-        { property: 'og:url', content: computed(() => props.data?.url ?? window.location.href) },
-        { property: 'og:type', content: 'website' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.data?.title ?? 'A propos de Walner Tech') },
-        { name: 'twitter:description', content: computed(() => props.data?.description ?? 'Découvrez Walner Tech à Bafoussam et Yaoundé : ordinateurs portables, PC de bureau, smartphones et accessoires informatiques de qualité au meilleur prix au Cameroun.') },
-        { name: 'twitter:image', content: computed(() => props.data?.image ?? 'walner.jpg') }
-    ]
-})
-
-
-
 
 
 const products = [

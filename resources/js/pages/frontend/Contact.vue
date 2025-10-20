@@ -1,7 +1,7 @@
 <template>
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head :title="props.seo.title" />
+    <Head title="Contactez Walner TEch" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" /><br /><br />
     <FloatingAction />
@@ -135,9 +135,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { computed } from 'vue'
+
 import { Head } from '@inertiajs/vue3'
-import { useHead } from '@vueuse/head'
+
 import { useForm } from '@inertiajs/inertia-vue3'
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import Footer from '@/components/frontend/Footer.vue'
@@ -180,41 +180,6 @@ const submit = () => {
         }
     })
 }
-
-
-
-
-interface Seo {
-    seo: {
-        title: string;
-        description: string;
-        image: string;
-        url: string;
-        robots?: string; // <- optionnel si certaines pages n’ont pas de robots
-    }
-
-
-
-}
-const props = defineProps< Seo >();
-//const pageTitle = computed(() => props.seo?.title || 'Walner Tech')
-// console.log(pageTitle)
-useHead({
-    title: computed(() => props.seo?.title || 'Walner Tech'),
-    meta: [
-        { name: 'description', content: computed(() => props.seo?.description || 'Contactez Walner Tech au Cameroun') },
-        { name: 'robots', content: computed(() => props.seo?.robots || 'index, follow') },
-        { property: 'og:title', content: computed(() => props.seo?.title || 'Walner Tech') },
-        { property: 'og:description', content: computed(() => props.seo?.description || 'Contactez Walner Tech au Cameroun') },
-        { property: 'og:image', content: computed(() => props.seo?.image || '/walner.jpg') },
-        { property: 'og:url', content: computed(() => props.seo?.url || window.location.href) },
-        { property: 'og:type', content: 'website' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.seo?.title || 'Walner Tech') },
-        { name: 'twitter:description', content: computed(() => props.seo?.description || 'Contactez Walner Tech au Cameroun') },
-        { name: 'twitter:image', content: computed(() => props.seo?.image || '/walner.jpg') },
-    ],
-});
 
 
 </script>

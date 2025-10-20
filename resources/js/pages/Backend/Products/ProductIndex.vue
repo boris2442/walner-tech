@@ -279,7 +279,7 @@ onMounted(() => {
     loading.value = false;
 });
 
-// Filtrage produit
+// Filtrage product
 const filteredProducts = computed(() => {
     return props.products.filter(product => {
         const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase());

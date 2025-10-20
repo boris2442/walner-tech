@@ -27,7 +27,7 @@ class DashboardController extends Controller
                     'count' => (int) $c->products_count,
                 ];
             });
-        // Graphe 3 : évolution des utilisateurs (par jour)
+        // Graphe 3 : Progression users (by day)
         $usersOverTime = User::select(
             DB::raw('DATE(created_at) as date'),
             DB::raw('COUNT(*) as count')
@@ -41,7 +41,7 @@ class DashboardController extends Controller
             ]);
 
 
-        // Graphe 4 : messages reçus récemment (7 derniers jours)
+        // Graphe 4 : messages receives currently (7 last days)
         // Messages reçus sur les 7 derniers jours
         $last7Days = collect();
         for ($i = 6; $i >= 0; $i--) {
@@ -54,11 +54,7 @@ class DashboardController extends Controller
         }
         $totalMessages = $last7Days->sum('count');
 
-
-
-
-
-        // Graphe 4 : clics sur "Commander" par produit
+        // Graphe 5 : clics sur "Commander" par produit
         $ordersByProduct = Product::withCount('orderClicks')
             ->orderBy('order_clicks_count', 'desc')
             ->get()

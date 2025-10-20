@@ -20,9 +20,9 @@ import {
     Legend,
     LineElement,
     PointElement,
-    LineController,  // <-- ajouter
-    CategoryScale,   // <-- ajouter
-    LinearScale,Filler 
+    LineController,
+    CategoryScale,
+    LinearScale, Filler
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
@@ -32,7 +32,6 @@ ChartJS.register(
     LineElement, PointElement, LineController, CategoryScale, LinearScale,
     ChartDataLabels
 );
-
 
 // Props
 const props = defineProps({

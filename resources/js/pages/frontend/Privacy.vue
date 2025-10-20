@@ -7,38 +7,6 @@ import BackButton from '@/components/frontend/BackButton.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 
-import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
-
-interface Seo {
-    seo: {
-
-        title: string;
-        description: string;
-        image: string;
-        url: string;
-        robots?: string;
-    }
-}
-
-const props = defineProps<Seo>();
-
-useHead({
-    title: computed(() => props.seo.title ?? ' Politique de confidentialité -Walner Tech'),
-    meta: [
-        { name: 'description', content: computed(() => props.seo.description ?? 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.') },
-        { name: 'robots', content: props.seo.robots || 'index, follow' },
-        { property: 'og:title', content: computed(() => props.seo.title ?? ' Politique de confidentialité -Walner Tech') },
-        { property: 'og:description', content: computed(() => props.seo.description ?? 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.') },
-        { property: 'og:image', content: computed(() => props.seo.image) },
-        { property: 'og:url', content: computed(() => props.seo.url) },
-        { property: 'og:type', content: 'website' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.seo.title ?? ' Politique de confidentialité -Walner Tech') },
-        { name: 'twitter:description', content: computed(() => props.seo.description ?? 'Découvrez comment Walner Tech protège vos données personnelles et votre vie privée lorsque vous utilisez nos services et notre site.') },
-        { name: 'twitter:image', content: computed(() => props.seo.image) },
-    ],
-});
 
 // Définition des sections pour v-for
 const sections = reactive([
@@ -84,11 +52,11 @@ const sections = reactive([
         content: '📧 Email : <a href="mailto:WalnerTech99@gmail.com" class="text-blue-500">WalnerTech99@gmail.com</a><br/>📍 Adresse : Walner Tech, Bafoussam - Yaoundé, Cameroun'
     }
 ]);
-</script>
 
+</script>
 <template>
 
-    <Head :title="props.seo.title ?? 'Politique de confidentialité-Walner Tech'" />
+    <Head title="Politique de confidentialité-Walner Tech" />
     <NavbarFrontend :auth="$page.props.auth" />
     <FloatingAction /> <br>
     <LoginReminder />

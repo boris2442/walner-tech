@@ -7,42 +7,6 @@ import Footer from '@/components/frontend/Footer.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 
-import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
-
-interface Seo {
-    seo:{
-
-        title: string;
-        description: string;
-        image: string;
-        url: string;
-        robots?: string;
-    }
-}
-
-const props = defineProps<  Seo >();
-
-useHead({
-    title: computed(() => props.seo.title),
-    meta: [
-        { name: 'description', content: computed(() => props.seo.description) },
-        { name: 'robots', content: props.seo.robots || 'index, follow' },
-        { property: 'og:title', content: computed(() => props.seo.title) },
-        { property: 'og:description', content: computed(() => props.seo.description) },
-        { property: 'og:image', content: computed(() => props.seo.image) },
-        { property: 'og:url', content: computed(() => props.seo.url) },
-        { property: 'og:type', content: 'website' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: computed(() => props.seo.title) },
-        { name: 'twitter:description', content: computed(() => props.seo.description) },
-        { name: 'twitter:image', content: computed(() => props.seo.image) },
-    ],
-});
-
-
-
-
 const faqs = [
     { question: "Comment passer une commande ?", answer: "Pour passer une commande, rendez-vous sur la page produits et cliquez sur 'Ajouter au panier'..." },
     { question: "Quels moyens de paiement acceptez-vous ?", answer: "Nous acceptons Orange Money, Mobile Money, PayPal et les cartes bancaires." },
@@ -62,7 +26,8 @@ function toggle(index) {
 </script>
 
 <template>
-       <Head :title="props.seo.title" />
+
+    <Head title="  Foire Aux Questions (F.A.Q) Walner Tech" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <FloatingAction />
@@ -82,5 +47,5 @@ function toggle(index) {
             </div>
         </div>
     </section>
-    <Footer/>
+    <Footer />
 </template>
