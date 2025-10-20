@@ -1,5 +1,6 @@
 <template>
-     <Head :title="seo.title" />
+
+    <Head :title="seo.title" />
     <!-- flash Logout -->
 
 

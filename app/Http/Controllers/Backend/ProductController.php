@@ -259,17 +259,41 @@ class ProductController extends Controller
         ]);
     }
 
+    // public function showBySlug($slug)
+    // {
+    //     $product = Product::where('slug', $slug)->with('images')->firstOrFail();
+
+    //     return Inertia::render('backend/products/ProductDetail', [
+    //         'product' => $product,
+    //         'auth' => [
+    //             'user' => auth()->user(),
+    //         ],
+    //     ]);
+    // }
+
+
     public function showBySlug($slug)
     {
-        $product = Product::where('slug', $slug)->with('images')->firstOrFail();
-
+        $product = Product::where('slug', $slug)
+            ->with('images', 'category') // charger les catégories aussi
+            ->firstOrFail();
+        // Récupérer des produits similaires dans les mêmes catégories
+        $similarProducts = Product::whereHas('category', function ($query) use ($product) {
+            $query->whereIn('id', $product->category->pluck('id'));
+        })
+            ->where('id', '!=', $product->id) // exclure le produit courant
+            ->with('images')
+            ->take(10) // limiter à 4 produits similaires
+            ->get();
         return Inertia::render('backend/products/ProductDetail', [
             'product' => $product,
+            'similarProducts' => $similarProducts,
             'auth' => [
                 'user' => auth()->user(),
             ],
         ]);
     }
+
 
 
 }

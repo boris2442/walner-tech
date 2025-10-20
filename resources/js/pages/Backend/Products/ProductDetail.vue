@@ -6,8 +6,7 @@
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
     <BackButton class="m-4" />
     <LoginReminder />
-    <section
-        class="bg-background-light dark:bg-dark-background text-text-dark dark:text-dark-white p-4 md:p-8 min-h-screen">
+    <section class="bg-background-light dark:bg-dark-background text-text-dark dark:text-dark-white p-4 md:p-8 ">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Images -->
             <div class="flex flex-col md:flex-row gap-4">
@@ -46,6 +45,24 @@
             </div>
         </div>
     </section>
+    <section class="bg-gray-100 dark:bg-dark-background py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Produits similaires</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div v-for="sp in similarProducts" :key="sp.id"
+                    class="bg-white dark:bg-dark-card rounded-lg shadow-md hover:scale-105 transition-transform   product-card  flex flex-col  overflow-hidden">
+                    <Link :href="`/products/${sp.slug}`">
+                    <img :src="getImageUrl(sp.images?.[0]?.url_image)" :alt="sp.title"
+                        class="w-full h-40 object-cover rounded-md mb-4">
+
+                    <h3 class="font-semibold mb-2 pl-2">{{ sp.title }}</h3>
+                    </Link>
+                    <p class="text-[var(--primary-blue)] font-bold mb-2 pl-2">{{ sp.prix }} FCFA</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <Footer />
 </template>
@@ -58,10 +75,12 @@ import Footer from '@/components/frontend/Footer.vue'
 import BackButton from '@/components/frontend/BackButton.vue'
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
+import { Link } from '@inertiajs/vue3'
 import { Head } from '@inertiajs/vue3'
 const props = defineProps({
     product: Object,
-    auth: Object
+    auth: Object,
+    similarProducts: Array,
 })
 
 const selectedImage = ref(null)
