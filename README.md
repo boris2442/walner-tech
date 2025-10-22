@@ -8,7 +8,7 @@ Site e‑commerce / vitrine & dashboard d'administration pour Walner Tech — co
 ## Aperçu
 
 <p align="center">
-  <img src="assets/image.png" alt="Accueil Walner Tech" width="900" />
+  <img src="https://github.com/boris2442/walner-tech/blob/main/public/assets/image.png" alt="Accueil Walner Tech" width="900" />
 </p>
 
 ---
