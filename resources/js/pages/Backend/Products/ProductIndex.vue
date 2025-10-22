@@ -273,7 +273,7 @@ const showCart = ref(false);
 const cartButton = ref(null);
 
 // Debounce recherche
-let searchTimeout = null;
+//let searchTimeout = null;
 
 onMounted(() => {
     darkMode.value = localStorage.getItem('darkMode') === 'true';
@@ -389,19 +389,19 @@ function categoryButtonClass(id) {
 }
 
 // Filtrage et recherche
-function updateFilters() {
-    Inertia.get('/products', { search: search.value, category: selectedCategory.value }, { preserveState: true, replace: true });
-}
+// function updateFilters() {
+//     Inertia.get('/products', { search: search.value, category: selectedCategory.value }, { preserveState: true, replace: true });
+// }
 function filterByCategory(id) {
     selectedCategory.value = id;
     //updateFilters();
 }
 
 // Debounce recherche
-function onSearchInput() {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(updateFilters, 300);
-}
+// function onSearchInput() {
+//     clearTimeout(searchTimeout);
+//     searchTimeout = setTimeout(updateFilters, 300);
+// }
 
 // Obtenir URL image
 
@@ -413,9 +413,6 @@ function getImageUrl(path) {
     if (!path) return '/fallback.png';
     return `/${path}`;
 }
-
-
-
 
 // Commander sur WhatsApp
 function orderOnWhatsapp() {
