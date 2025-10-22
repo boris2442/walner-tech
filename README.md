@@ -5,6 +5,13 @@
 # Walner Tech — Application Web
 
 Site e‑commerce / vitrine & dashboard d'administration pour Walner Tech — construit avec Laravel, Inertia.js + Vue 3, Vite et Tailwind CSS.
+## Aperçu
+
+<p align="center">
+  <img src="assets/image.png" alt="Accueil Walner Tech" width="900" />
+</p>
+
+---
 
 ## Fonctionnalités principales
 
