@@ -45,12 +45,12 @@
             </div>
         </div>
     </section>
-    <section class="bg-gray-100 dark:bg-dark-background py-8">
+    <section class="bg-background-light  py-8 shadow-inner dark:bg-[var(--highlight-gold)] ">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-2xl font-bold mb-6">Produits similaires</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <div v-for="sp in similarProducts" :key="sp.id"
-                    class="bg-white dark:bg-dark-card rounded-lg shadow-md hover:scale-105 transition-transform   product-card  flex flex-col  overflow-hidden">
+                    class="bg-white dark:bg-[var(--card-dark)] rounded-lg shadow-md hover:scale-105 transition-transform   product-card  flex flex-col  overflow-hidden">
                     <Link prefetch="" :href="`/products/${sp.slug}`">
                     <img :src="getImageUrl(sp.images?.[0]?.url_image)" :alt="sp.title"
                         class="w-full h-40 object-cover rounded-md mb-4">

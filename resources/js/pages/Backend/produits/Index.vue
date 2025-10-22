@@ -18,7 +18,14 @@ interface Product {
 }
 
 const props = defineProps<{
-  products: { data: Product[]; links: any[] };
+  //products: { data: Product[]; links: any[] };
+  products: {
+    data: Product[];
+    links: any[];
+    current_page: number;
+    last_page: number;
+  };
+
   stats: any;
   filters: { search?: string; category?: string };
   categories: { id: number; name: string }[];
@@ -104,6 +111,35 @@ const totalLikes = computed(() =>
   props.products.data.reduce((sum, p) => sum + p.likes_count, 0)
 );
 
+import { router } from '@inertiajs/vue3';
+import { watch } from 'vue';
+
+// 🔄 Quand on change de page
+
+const goToPage = (url) => {
+  if (!url) return;
+  router.visit(url, {
+    preserveScroll: true,
+    preserveState: true,
+    only: ['products'], // recharge uniquement les produits
+  });
+}
+
+// 🔍 Quand on modifie les filtres
+watch([search, category], ([newSearch, newCategory]) => {
+  Inertia.get('/admin/products',
+    { search: newSearch, category: newCategory },
+    { preserveState: true, replace: true }
+  );
+});
+
+// Fonction pour effacer la recherche
+function clearSearch() {
+  search.value = '';
+  router.get('/admin/products', {}, { preserveState: true, replace: true });
+}
+
+
 </script>
 
 <template>
@@ -137,8 +173,15 @@ const totalLikes = computed(() =>
 
       <!-- Filtres -->
       <div class="flex flex-wrap gap-4 mb-4 p-2 items-center">
-        <input v-model="search" placeholder="Rechercher un produit..."
-          class="border p-2 rounded flex-1 min-w-[200px]" />
+        <div class="relative flex-1 min-w-[400px]">
+          <input v-model="search" placeholder="Rechercher un produit..."
+            class="border p-2 rounded flex-1 min-w-[200px]" />
+          <!-- Croix pour effacer -->
+          <button v-if="search" @click="clearSearch"
+            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600" type="button">
+            ✕
+          </button>
+        </div>
         <select v-model="category" class="border p-2 rounded min-w-[160px]">
           <option value="">Toutes les catégories</option>
           <option v-for="cat in props.categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
@@ -203,6 +246,22 @@ const totalLikes = computed(() =>
           </div>
         </div>
       </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-center mt-6 mb-10">
+        <nav class="inline-flex gap-2">
+          <button v-for="link in props.products.links" :key="link.label" v-html="link.label" @click="goToPage(link.url)"
+            class="px-3 py-1 border rounded text-sm transition" :class="{
+              'bg-blue-600 text-white border-blue-600': link.active,
+              'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700': !link.active,
+              'opacity-50 cursor-not-allowed': !link.url
+            }"></button>
+        </nav>
+      </div>
+
+
+
+
     </div>
   </AppLayout>
 </template>

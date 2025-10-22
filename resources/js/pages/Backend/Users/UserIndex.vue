@@ -2,7 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import { Inertia } from '@inertiajs/inertia';
@@ -38,6 +38,11 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 // Recherche côté client
 const search = ref(props.filters.search || '');
+// Watch pour envoyer la requête à chaque changement
+watch(search, (value) => {
+    router.get('/admin/users', { search: value }, { preserveState: true, replace: true });
+});
+
 
 // Filtrage client (si besoin, mais le mieux c'est via backend)
 
@@ -75,7 +80,7 @@ const deleteUser = (id: number) => {
         Inertia.delete(`/admin/users/${id}`, {
             onSuccess: () => {
                 // Optionnel : afficher message ou rafraîchir
-                
+
             },
             preserveScroll: true
         })
@@ -89,15 +94,22 @@ function changeRole(userId: number, newRole: string) {
             //console.log(`Rôle de l'utilisateur ${userId} mis à jour : ${newRole}`);
         },
         onError: (errors) => {
-           // console.error(errors);
+            // console.error(errors);
         }
     });
 }
+import { router } from '@inertiajs/vue3';
+function goToPage(url: string | null) {
+    if (!url) return; // pas de lien → on ne fait rien
+    router.get(url, {}, { preserveState: true, preserveScroll: true });
+}
+
 </script>
 
 <template>
- <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
-            :link="$page.props.flash.link" />
+    <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
+        :link="$page.props.flash.link" />
+
     <Head title="Users" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">
@@ -157,12 +169,13 @@ function changeRole(userId: number, newRole: string) {
                         <div v-if="showActions"
                             class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border rounded shadow-lg z-50">
                             <ul>
-                                <li>
+                                <!-- <li>
                                     <Link href="/admin/users/create"
                                         class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
                                     Créer un utilisateur
                                     </Link>
-                                </li>
+                                </li> -->
+                                <li>Rien.A.Signaler</li>
                             </ul>
                         </div>
                     </div>
@@ -232,6 +245,17 @@ function changeRole(userId: number, newRole: string) {
 
 
                 </div>
+                <!-- Pagination -->
+                <div class="flex justify-center mt-6 mb-4">
+                    <nav class="flex gap-2 mt-4 justify-end">
+                        <button v-for="link in props.users.links" :key="link.label" v-html="link.label"
+                            :disabled="!link.url"
+                            @click.prevent="link.url && router.get(link.url, {}, { preserveState: true })"
+                            class="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-100 dark:hover:bg-gray-700"></button>
+                    </nav>
+
+                </div>
+
             </div>
         </div>
     </AppLayout>

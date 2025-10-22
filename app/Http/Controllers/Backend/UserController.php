@@ -62,8 +62,8 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->latest()->paginate(70);
-        // dd($roles);
+        $users = $query->latest()->paginate(10)->withQueryString();;
+    
 
         return inertia('backend/users/UserIndex', [
             'auth' => [

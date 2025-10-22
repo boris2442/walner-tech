@@ -150,7 +150,7 @@ class ProductController extends Controller
         $query->orderBy('created_at', 'desc');
 
         // Pagination
-        $products = $query->paginate(200)->withQueryString();
+        $products = $query->paginate(5)->withQueryString();
 
         // 📊 Statistiques globales
         $totalProducts = Product::count();
