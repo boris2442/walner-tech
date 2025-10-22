@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 bg-white dark:bg-dark-background rounded shadow overflow-x-auto">
+    <div class="p-4 bg-white dark:bg-[var(--dark-background)] rounded shadow overflow-x-auto">
         <h3 class="text-lg font-semibold mb-3 text-text-dark dark:text-dark-white">
             Jour le plus actif (clics “Commander”)
         </h3>
