@@ -23,9 +23,9 @@ class ContactController extends Controller
     // Création du contact
     $contact = Contact::create($request->validated());
 
-    // Enregistrement de la notification directement dans la base
+   
     Notification::sendNow($contact, new NewContactMessageNotification($contact));
-    // Here you can handle the form submission, e.g., save to database or send an email
+   
 
     return redirect()->back()->with('status', 'Votre message a été envoyé avec succès !');
 
