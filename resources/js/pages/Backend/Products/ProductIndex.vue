@@ -266,41 +266,17 @@ function decreaseQuantity(item) {
 }
 
 // Image volante
-// function flyToCart(event, product) {
-//   const img = event.currentTarget.closest('.product-card').querySelector('img')
-//   const cartEl = document.querySelector('.fixed.bottom-6.right-6 button')
-//   if (!img || !cartEl) return
 
-//   const imgRect = img.getBoundingClientRect()
-//   const cartRect = cartEl.getBoundingClientRect()
-//   const dx = cartRect.left + cartRect.width/2 - (imgRect.left + imgRect.width/2)
-//   const dy = cartRect.top + cartRect.height/2 - (imgRect.top + imgRect.height/2)
-
-//   flyingImage.value = { show: true, src: img.src, x: imgRect.left, y: imgRect.top, dx, dy }
-
-//   addToCart(product)
-//   setTimeout(() => { flyingImage.value.show = false }, 800)
-// }
-
-// function flyToCart(event, product) {
-//     const img = event.currentTarget.closest('.product-card').querySelector('img')
-//     const cartEl = document.querySelector('.fixed.bottom-6.right-6 button')
-//     if (!img || !cartEl) return
-
-//     const imgRect = img.getBoundingClientRect()
-//     const cartRect = cartEl.getBoundingClientRect()
-//     const dx = cartRect.left + cartRect.width / 2 - (imgRect.left + imgRect.width / 2)
-//     const dy = cartRect.top + cartRect.height / 2 - (imgRect.top + imgRect.height / 2)
-
-//     flyingImage.value = { show: true, src: img.src, x: imgRect.left, y: imgRect.top, dx, dy }
-
-//     cartStore.add(product)   // ← ajoute directement au store
-//     setTimeout(() => { flyingImage.value.show = false }, 800)
-// }
-
-
-// ...
 function flyToCart(event, product) {
+    // Vérifier si l'utilisateur est connecté
+    if (!props.auth?.user) {
+        // Afficher un alert ou confirmer la connexion
+        if (confirm("Vous devez être connecté pour ajouter un produit au panier.\nVoulez-vous vous connecter maintenant ?")) {
+            window.location.href = '/login';
+        }
+        return; // arrêter la fonction si pas connecté
+    }
+
     const img = event.currentTarget.closest('.product-card').querySelector('img')
     const cartEl = document.querySelector('.fixed.bottom-6.right-6 button')
     if (!img || !cartEl) return
