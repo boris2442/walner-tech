@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import type { BreadcrumbItemType } from '@/types';
 
 interface Props {
@@ -13,6 +14,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
+        <CartWidget /> <!-- ✅ Panier global -->
         <slot />
     </AppLayout>
 </template>

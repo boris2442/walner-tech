@@ -5,6 +5,8 @@ import Footer from '@/components/frontend/Footer.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 
 const sections = [
     {
@@ -44,9 +46,12 @@ const sections = [
 </script>
 
 <template>
+    <CartWidget />
 
     <Head title="Conditions Générales d’Utilisation (CGU) " />
-    <NavbarFrontend :auth="$page.props.auth" />
+  
+    <TopBanner/>
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12"/>
     <FloatingAction /> <br>
     <section
         class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">

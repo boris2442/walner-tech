@@ -5,12 +5,16 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 
 
 </script>
 <template>
+  <CartWidget/>
    <Head title="Condition de non remboursement " />
-  <NavbarFrontend :auth="$page.props.auth"/>
+   <TopBanner/>
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12"/>
     <FloatingAction/>
        <LoginReminder />
   <section>

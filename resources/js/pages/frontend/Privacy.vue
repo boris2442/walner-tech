@@ -6,6 +6,8 @@ import { reactive } from 'vue';
 import BackButton from '@/components/frontend/BackButton.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 
 
 // Définition des sections pour v-for
@@ -55,9 +57,11 @@ const sections = reactive([
 
 </script>
 <template>
+    <CartWidget />
 
     <Head title="Politique de confidentialité" />
-    <NavbarFrontend :auth="$page.props.auth" />
+    <TopBanner />
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" />
     <FloatingAction /> <br>
     <LoginReminder />
     <section class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)]

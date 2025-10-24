@@ -76,6 +76,37 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
 }
 
-*, ::after, ::before, body {
+*,
+::after,
+::before,
+body {
     font-family: NeueHaasGrotesk, Helvetica, Arial, sans-serif;
+}
+
+/* Scrollbar personnalisé - Walner Tech */
+::-webkit-scrollbar {
+    width: 5px; /* largeur de la barre */
+    height: 20px;
+}
+
+/* Couleur de fond de la piste */
+::-webkit-scrollbar-track {
+    background: #0a1b9e; /* bleu foncé */
+    height: 20px;
+}
+
+/* Curseur du scroll */
+::-webkit-scrollbar-thumb {
+    background: #ffe600; /* jaune vif */
+    border-radius: 10px;
+}
+
+/* Au survol */
+::-webkit-scrollbar-thumb:hover {
+    background: #ffd000; /* jaune un peu plus chaud */
+}
+/* Scrollbar Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ffe600 #0a1b9e;
 }

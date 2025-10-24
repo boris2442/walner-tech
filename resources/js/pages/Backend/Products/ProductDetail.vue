@@ -1,4 +1,5 @@
 <template>
+    <CartWidget />
 
     <Head :title="product.title + ' - Détails du produit'" />
     <TopBanner />
@@ -71,6 +72,9 @@
 import { ref, onMounted } from 'vue'
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import TopBanner from '@/components/frontend/TopBanner.vue'
+import { cartStore } from '@/components/frontend/panier/stores/cart'
+
+import CartWidget from '@/components/frontend/panier/CartWidget.vue'
 import Footer from '@/components/frontend/Footer.vue'
 import BackButton from '@/components/frontend/BackButton.vue'
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
@@ -97,14 +101,20 @@ function getImageUrl(path) {
     return `/${path}`;
 }
 
+// function addToCart(product) {
+//     let cart = JSON.parse(localStorage.getItem('cart') || '[]')
+//     const item = cart.find(p => p.id === product.id)
+//     if (item) item.quantity += 1
+//     else cart.push({ ...product, quantity: 1 })
+//     localStorage.setItem('cart', JSON.stringify(cart))
+//     alert('✅ Produit ajouté au panier !')
+// }
 function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]')
-    const item = cart.find(p => p.id === product.id)
-    if (item) item.quantity += 1
-    else cart.push({ ...product, quantity: 1 })
-    localStorage.setItem('cart', JSON.stringify(cart))
-    alert('✅ Produit ajouté au panier !')
+    cartStore.add(product)
 }
+
+
+
 </script>
 
 <style scoped>

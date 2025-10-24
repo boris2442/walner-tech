@@ -15,10 +15,11 @@ use App\Http\Controllers\Backend\ContactBackendController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\OrderClickController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
+use App\Http\Controllers\Frontend\ProduitFrontendController;
 
 
 //Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/', [ProductController::class, 'index'])->name('home');
+Route::get('/', [ProduitFrontendController::class, 'index'])->name('home');
 // Redirection vers Google
 Route::get('auth/google', [GoogleController::class, 'redirect']);
 
@@ -46,10 +47,10 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 
 // Products routes
 // Liste tous les produits
-Route::get('products', [ProductController::class, 'index'])->name('products');
+Route::get('products', [ProduitFrontendController::class, 'index'])->name('products');
 //Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 //Route::get('/products/{uuid}', [ProductController::class, 'showByUuid'])->name('products.show');
-Route::get('/products/{slug}', [ProductController::class, 'showBySlug'])->name('products.show');
+Route::get('/products/{slug}', [ProduitFrontendController::class, 'showBySlug'])->name('products.show');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::middleware(['auth', 'isAdmin'])->group(function () {
 

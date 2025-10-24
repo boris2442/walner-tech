@@ -6,6 +6,14 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+
+// Ajout des icônes à la librairie
+library.add(faCartShopping, faHeart);
 
 import { initializeTheme } from './composables/useAppearance';
 import NProgress from './plugins/nprogress'; // notre fichier
@@ -19,6 +27,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .component('font-awesome-icon', FontAwesomeIcon)
             //  .component('Link', Link)
             // ✅ On ajoute simplement notre plugin head
             .use(head)

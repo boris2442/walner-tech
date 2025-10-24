@@ -7,6 +7,8 @@ import { Link } from '@inertiajs/vue3';
 import BackButton from '@/components/frontend/BackButton.vue';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
 
 
 // Sections dynamiques
@@ -46,10 +48,12 @@ const sections = reactive([
 </script>
 
 <template>
+  <CartWidget/>
   <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
   <Head title="Mention legales " />
-  <NavbarFrontend :auth="$page.props.auth" />
+  <TopBanner/>
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12"/>
   <FloatingAction />
   <LoginReminder />
   <section

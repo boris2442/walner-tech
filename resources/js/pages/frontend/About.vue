@@ -1,9 +1,15 @@
 <template>
+
+    <CartWidget />
+
+
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
-    <Head  title="A propos de " />
+    <Head title="A propos de " />
     <TopBanner />
-    <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
+
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" />
+
     <FloatingAction />
     <LoginReminder />
     <section
@@ -181,6 +187,7 @@ import {
     faUsers,
     faHandshake
 } from '@fortawesome/free-solid-svg-icons'
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 
 

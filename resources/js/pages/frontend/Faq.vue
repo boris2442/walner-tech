@@ -6,6 +6,7 @@ import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import Footer from '@/components/frontend/Footer.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 
 const faqs = [
     { question: "Comment passer une commande ?", answer: "Pour passer une commande, rendez-vous sur la page produits et cliquez sur 'Ajouter au panier'..." },
@@ -26,10 +27,11 @@ function toggle(index) {
 </script>
 
 <template>
+    <CartWidget />
 
     <Head title="  Foire Aux Questions (F.A.Q) " />
     <TopBanner />
-    <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" />
     <FloatingAction />
     <LoginReminder />
     <section class="faq-container max-w-3xl mx-auto px-4 py-12">

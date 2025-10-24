@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import ContactNav from '@/components/frontend/ContactNav.vue';
 import { faUserCircle, faSignOutAlt, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+
 const logoUrl = '/walner.jpg';
 library.add(faUserCircle, faSignOutAlt, faTachometerAlt);
 
@@ -99,6 +100,7 @@ function toggleAccountMenu() {
 
     <ContactNav />
   </nav>
+
 </template>
 
 <style scoped>
