@@ -9,7 +9,7 @@
 
     {{-- 2️⃣ Apparence : mode sombre --}}
     <script>
-        (function() {
+        (function () {
             const appearance = '{{ $appearance ?? 'system' }}';
             if (appearance === 'system') {
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -38,7 +38,7 @@
 
 
     <meta name="description"
-        content="Walner Tech est votre boutique informatique de référence à Bafoussam et Yaoundé, Cameroun. Découvrez nos ordinateurs portables, accessoires high-tech, composants PC et périphériques. Livraison rapide dans tout le Cameroun et à l’international. Service professionnel, produits garantis et assistance personnalisée.">
+        content="Walner Tech est votre marketplace  ()boutique informatique) de référence à Bafoussam et Yaoundé, Cameroun. Découvrez nos ordinateurs portables, accessoires high-tech, composants PC et périphériques. Livraison rapide dans tout le Cameroun et à l’international. Service professionnel, produits garantis et assistance personnalisée.">
     <meta name="keywords"
         content="Walner Tech, boutique informatique Cameroun, ordinateurs portables, accessoires PC, high-tech, Bafoussam, Yaoundé, matériel informatique, composants PC, livraison Cameroun, boutique technologique, vente ordinateur, accessoires informatiques, technologie, innovation, électronique">
     <meta name="author" content="Walner Tech">
@@ -47,12 +47,12 @@
     <meta property="og:title" content="Walner Tech - Votre expert en équipements informatiques au Cameroun">
     <meta property="og:description"
         content="Commandez vos ordinateurs, accessoires et produits high-tech chez Walner Tech. Livraison rapide à Bafoussam, Yaoundé et partout au Cameroun. Service professionnel et fiable.">
-    <meta property="og:image" content="{{ asset('assets/walner.jpg') }}">
+    <meta property="og:image" content="{{ asset('assets/walner.png') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Walner Tech">
     <meta property="og:locale" content="fr_FR">
-    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -61,13 +61,10 @@
     <meta name="twitter:title" content="Walner Tech - Équipements informatiques & accessoires high-tech">
     <meta name="twitter:description"
         content="Walner Tech, boutique high-tech à Bafoussam et Yaoundé. Ordinateurs, accessoires, composants PC. Livraison rapide au Cameroun et à l’international.">
-    <meta name="twitter:image" content="{{ asset('assets/walner.jpg') }}">
-
-
+    <meta name="twitter:image" content="{{ asset('assets/walner.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="fr" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="en" href="{{ url()->current() }}">
-
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

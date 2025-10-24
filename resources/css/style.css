@@ -80,7 +80,7 @@
 ::after,
 ::before,
 body {
-    font-family: NeueHaasGrotesk, Helvetica, Arial, sans-serif;
+    font-family:'Instrument Sans', NeueHaasGrotesk, Helvetica, Arial, sans-serif;
 }
 
 /* Scrollbar personnalisé - Walner Tech */
