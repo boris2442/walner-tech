@@ -19,12 +19,27 @@
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8 transition-colors duration-300">
 
             <!-- Barre de recherche -->
-            <div class="mb-6 flex justify-center">
+            <!-- <div class="mb-6 flex justify-center">
                 <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
                     :class="darkMode ? 'border-dark-grey bg-dark-background text-dark-white placeholder-dark-grey focus:ring-dark-accent'
                         : 'border-text-secondary bg-background-light text-text-dark placeholder-text-secondary focus:ring-accent-cyan'"
                     class="border rounded px-3 py-1 w-full max-w-md focus:outline-none focus:ring-2 transition-colors duration-300" />
+            </div> -->
+
+            <div class="relative w-full max-w-md mx-auto">
+                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..." class="w-full pl-10 pr-4 py-2 rounded-2xl border border-gray-300 dark:border-gray-700
+           bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+           transition-all duration-300 shadow-sm hover:shadow-md" />
+                <font-awesome-icon icon="magnifying-glass"
+                    class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
             </div>
+
+
+
+
+
 
             <!-- Liste des catégories -->
             <div class="flex gap-3 justify-start mb-4 overflow-x-auto whitespace-nowrap px-2">

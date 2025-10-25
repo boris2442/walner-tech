@@ -7,13 +7,13 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 // Ajout des icônes à la librairie
-library.add(faCartShopping, faHeart);
+library.add(faCartShopping, faHeart,faMagnifyingGlass);
 
 import { initializeTheme } from './composables/useAppearance';
 import NProgress from './plugins/nprogress'; // notre fichier
