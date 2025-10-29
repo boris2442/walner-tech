@@ -29,11 +29,37 @@
             </div>
 
             <!-- Infos produit -->
-            <div class="flex flex-col justify-start md:justify-between">
+            <div class="flex flex-col justify-start md:justify-between relative">
+
+                <!-- <div class="mt-4 flex items-center gap-3"> -->
+                <button @click="showShare = true"
+                    class="flex items-center gap-2 border px-3 py-2 rounded-lg hover:shadow absolute top-4 right-2  text-text-dark dark:text-dark-white hover:bg-[var(--primary-blue)] hover:text-white transition">
+                    <!-- icône share -->
+                    <FontAwesomeIcon :icon="['fas', 'share-alt']" class="h-4 w-4 text-gray-500 text-2xl" />
+                    <!-- <span>Transférer</span> -->
+                </button>
+                <!-- </div> -->
+
+
+                <!-- Share modal -->
+                <ShareModal :show="showShare" :product="product" @close="showShare = false" />
                 <div>
-                    <h1 class="text-3xl font-bold mb-4">{{ product.title }}</h1>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{{ product.description }}</p>
-                    <p class="text-2xl font-semibold text-[var(--primary-blue)] mb-6">{{ product.prix }} FCFA</p>
+                    <h1 class="text-3xl font-bold mb-2">{{ product.title }}</h1>
+                    <p class="text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">{{ product.description }}</p>
+                    <p class="text-md font-semibold text-[var(--primary-blue)] flex justify-between "> <span>{{
+                        product.prix }} FCFA </span>
+                        <span>
+                            <a href="https://wa.me/237656894773" target="_blank" rel="noopener noreferrer"
+                                class='bg-[var(--primary-blue)] w-[100px] h-8 flex items-center justify-center text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition ease-in-out duration-200 '>
+
+                                <FontAwesomeIcon :icon="['fab', 'whatsapp']" class="h-5 w-5 ml-2 text-xl text-white" />
+                            </a>
+                        </span>
+                    </p>
+                    <p class="text-sm font-semibold text-[var(--primary-blue)] mb-6"> <span
+                            class="border  border-solid border-[var(--primary-blue)] py-[2px] px-1 rounded">En stock :
+                            {{
+                                product.stock }} !</span></p>
                 </div>
 
                 <!-- Bouton Ajouter au panier -->
@@ -73,43 +99,47 @@ import { ref, onMounted } from 'vue'
 import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import TopBanner from '@/components/frontend/TopBanner.vue'
 import { cartStore } from '@/components/frontend/panier/stores/cart'
-
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import CartWidget from '@/components/frontend/panier/CartWidget.vue'
 import Footer from '@/components/frontend/Footer.vue'
 import BackButton from '@/components/frontend/BackButton.vue'
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
+import ShareModal from '@/components/frontend/ShareModal.vue'
 import { Link } from '@inertiajs/vue3'
 import { Head } from '@inertiajs/vue3'
+//import { faShareAlt } from '@fortawesome/free-solid-svg-icons'
+//import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+//library.add(faWhatsapp, faShareAlt)
 const props = defineProps({
     product: Object,
     auth: Object,
     similarProducts: Array,
 })
-
+const showShare = ref(false)
 const selectedImage = ref(null)
 
 onMounted(() => {
     selectedImage.value = props.product.images?.[0]?.url_image || '/fallback.png'
 })
 
-// function getImageUrl(path) {
-//     return path ? `/storage/${path}` : '/fallback.png'
-// }
+
 function getImageUrl(path) {
     if (!path) return '/fallback.png';
     return `/${path}`;
 }
 
-// function addToCart(product) {
-//     let cart = JSON.parse(localStorage.getItem('cart') || '[]')
-//     const item = cart.find(p => p.id === product.id)
-//     if (item) item.quantity += 1
-//     else cart.push({ ...product, quantity: 1 })
-//     localStorage.setItem('cart', JSON.stringify(cart))
-//     alert('✅ Produit ajouté au panier !')
-// }
+
 function addToCart(product) {
+    if (!props.auth?.user) {
+        if (confirm("Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?")) {
+            window.location.href = '/login'
+        }
+        return
+    }
+
+
     cartStore.add(product)
 }
 

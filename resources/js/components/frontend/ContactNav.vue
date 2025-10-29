@@ -41,5 +41,6 @@ library.add(faWhatsapp, faPaperPlane)
 </script>
 
 <style scoped>
-/* Optionnel : style personnalisé si besoin */
+/* Optionnel : style personnalisé si besoin      */
+
 </style>

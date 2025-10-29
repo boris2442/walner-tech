@@ -3,17 +3,19 @@ import '../css/app.css';
 import { Inertia } from '@inertiajs/inertia';
 import { createInertiaApp } from '@inertiajs/vue3';
 //import { Link } from '@inertiajs/inertia-vue3'; // <-- important !
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { faFacebook, faLinkedin, faTelegram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCartShopping, faEnvelope, faMagnifyingGlass, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
+library.add(faWhatsapp, faFacebook, faTelegram, faTwitter, faLinkedin, faEnvelope);
 // Ajout des icônes à la librairie
-library.add(faCartShopping, faHeart,faMagnifyingGlass);
+library.add(faCartShopping, faHeart, faMagnifyingGlass, faWhatsapp, faShareAlt);
 
 import { initializeTheme } from './composables/useAppearance';
 import NProgress from './plugins/nprogress'; // notre fichier

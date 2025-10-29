@@ -38,9 +38,9 @@
 
 
     <meta name="description"
-        content="Walner Tech est votre marketplace  ()boutique informatique) de référence à Bafoussam et Yaoundé, Cameroun. Découvrez nos ordinateurs portables, accessoires high-tech, composants PC et périphériques. Livraison rapide dans tout le Cameroun et à l’international. Service professionnel, produits garantis et assistance personnalisée.">
+        content="Walner Tech est votre marketplace e-commerce  (boutique informatique) de référence à Bafoussam et Yaoundé, Cameroun. Découvrez nos ordinateurs portables, accessoires high-tech, composants PC et périphériques. Livraison rapide dans tout le Cameroun et à l’international. Service professionnel, produits garantis et assistance personnalisée.">
     <meta name="keywords"
-        content="Walner Tech, boutique informatique Cameroun, ordinateurs portables, accessoires PC, high-tech, Bafoussam, Yaoundé, matériel informatique, composants PC, livraison Cameroun, boutique technologique, vente ordinateur, accessoires informatiques, technologie, innovation, électronique">
+        content="Walner Tech, e-commerce, marketplace, boutique informatique Cameroun, ordinateurs portables, accessoires PC, high-tech, Bafoussam, Yaoundé, matériel informatique, composants PC, livraison Cameroun, boutique technologique, vente ordinateur, accessoires informatiques, technologie, innovation, électronique">
     <meta name="author" content="Walner Tech">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">

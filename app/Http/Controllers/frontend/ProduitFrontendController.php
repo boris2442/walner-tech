@@ -46,7 +46,7 @@ class ProduitFrontendController extends Controller
                 'user' => auth()->user()
             ],
             'seo' => [
-                'title' => 'Walner Tech – Marketplace d’ordinateurs, smartphones et accessoires au Cameroun
+                'title' => 'Walner Tech e-commerce - Marketplace d’ordinateurs, smartphones et accessoires au Cameroun
 
 ',
                 'description' => 'Walner Tech, votre marketplace à Bafoussam et Yaoundé : achetez ordinateurs portables, PC, smartphones et accessoires informatiques de qualité au meilleur prix.

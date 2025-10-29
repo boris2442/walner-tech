@@ -10,7 +10,6 @@ import { Head } from '@inertiajs/inertia-vue3';
 import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 
-
 // Sections dynamiques
 const sections = reactive([
   {
@@ -32,7 +31,7 @@ const sections = reactive([
   {
     title: "5. Données personnelles",
     text: "Pour plus d’informations sur vos données personnelles, consultez notre",
-    link: { url: '/confidentialite', label: 'Politique de Confidentialité' }
+    link: { url: '/ressources/confidentialite', label: 'Politique de Confidentialité' }
   },
   {
     title: "6. Responsabilité",
