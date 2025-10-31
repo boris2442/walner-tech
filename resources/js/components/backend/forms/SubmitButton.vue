@@ -12,7 +12,9 @@ defineProps({
 </script>
 
 <template>
-    <button type="submit"
+    <button
+     type="submit"
+    
         class="flex items-center justify-center gap-2 bg-[var(--primary-blue)] text-[var(--dark-white)] px-4 py-2 rounded hover:opacity-90 transition disabled:opacity-50"
         :disabled="processing">
         <!-- Loader qui tourne -->

@@ -97,11 +97,15 @@
                         <!-- Boutons -->
                         <div class="mt-auto flex justify-between items-center p-3">
                             <button @click="flyToCart($event, product)"
+                            aria-label="Bouton ajout au panier"
+                            title="ajout au panier"
                                 class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
                                 <font-awesome-icon :icon="['fas', 'cart-shopping']" />
                             </button>
 
                             <button @click="toggleLike(product)"
+                             aria-label="Bouton liker le produit"
+                            title="Liker le produit"
                                 :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
                                 <font-awesome-icon :icon="['far', 'heart']" />
                                 <span class="ml-1 text-sm dark:text-[var(--dark-grey)]">{{ product.likes_count }}</span>

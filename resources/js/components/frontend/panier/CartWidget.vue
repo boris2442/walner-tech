@@ -1,7 +1,8 @@
 <template>
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <!-- Bouton Panier -->
-        <button @click="toggleCart" ref="cartButton"
+        <button @click="toggleCart" type="button" title="Ouvrir le panier" aria-label="Bouton ouvrir le panier"
+            ref="cartButton"
             class="relative bg-[var(--primary-blue)] rounded-full w-12 h-12 flex items-center justify-center text-[var(--dark-gold)] shadow-lg hover:scale-110 transition-transform">
             <font-awesome-icon :icon="['fas', 'cart-shopping']" class="text-2xl" />
             <span v-if="totalItems > 0"
@@ -31,10 +32,12 @@
                         <p class="text-sm font-medium truncate text-gray-100">{{ item.title }}</p>
                         <p class="text-xs text-[var(--dark-gold)]">{{ item.prix }} FCFA x {{ item.quantity }}</p>
                         <div class="flex items-center mt-1 gap-1">
-                            <button @click="decrease(item)"
+                            <button @click="decrease(item)" type="button" aria-label="Diminuer la quantité"
+                                title="Diminuer la quantité"
                                 class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300">-</button>
                             <span class="px-2">{{ item.quantity }}</span>
-                            <button @click="increase(item)"
+                            <button @click="increase(item)" type="button" aria-label="Augmenter la quantité"
+                                title="Augmenter la quantité"
                                 class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300">+</button>
                         </div>
                     </div>
@@ -47,7 +50,9 @@
                     <span class="text-[var(--dark-white)] underline">{{ cartTotal }} FCFA</span>
                 </div>
 
-                <button @click="orderOnWhatsapp" :disabled="cart.length === 0"
+                <button type="button" title="Regler la commande sur WhatsApp"
+                    aria-label="Bouton regler la commande sur WhatsApp" @click="orderOnWhatsapp"
+                    :disabled="cart.length === 0"
                     class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] py-2 rounded hover:bg-gray-100 transition mt-3">
                     Commander sur WhatsApp
                 </button>
@@ -60,7 +65,7 @@
 import { ref, computed, watch } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { cartStore } from '@/components/frontend/panier/stores/cart'
-
+import { usePage } from '@inertiajs/vue3'  // ✅ Import obligatoire
 const showCart = ref(false)
 function toggleCart() { showCart.value = !showCart.value }
 
@@ -73,15 +78,51 @@ function decrease(item) { cartStore.decrease(item) }
 
 function getImageUrl(path) { return path ? `/${path}` : '/fallback.png' }
 
+// function orderOnWhatsapp() {
+//     const entreprisePhone = "237656894773"
+//     let message = `Hello Walner Tech 👋,\nJe souhaite passer la commande suivante :\n\n`
+//     cart.value.forEach(item => {
+//         message += `• ${item.title} (x${item.quantity}) = ${item.prix * item.quantity} FCFA\n`
+//     })
+//     message += `\nMontant total : ${cartTotal.value} FCFA\n\nMerci !`
+//     window.open(`https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`, "_blank")
+// }
 function orderOnWhatsapp() {
-    const entreprisePhone = "237656894773"
-    let message = `Bonjour Walner Tech 👋,\nJe souhaite passer la commande suivante :\n\n`
-    cart.forEach(item => {
-        message += `• ${item.title} (x${item.quantity}) = ${item.prix * item.quantity} FCFA\n`
+    const page = usePage() // ✅ On récupère les props Inertia ici
+    const user = page.props.auth?.user
+    const userName = user?.name || "Client Walner Tech"
+
+    const entreprisePhone = "237657961059"
+
+    let message =
+        `*Bonjour équipe Walner Tech 👋,*
+Je souhaite confirmer ma commande. Voici le récapitulatif :
+
+`
+
+    cart.value.forEach(item => {
+        message += `• ${item.title} (x${item.quantity}) — ${item.prix * item.quantity} FCFA\n`
     })
-    message += `\nMontant total : ${cartTotal.value} FCFA\n\nMerci !`
+
+    // Ajout de la date de commande
+    const date = new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' })
+
+    message += `
+*Montant total :* ${cartTotal.value} FCFA
+🕒 *Date de commande :* ${date}
+
+Merci de bien vouloir me confirmer la disponibilité et les modalités de livraison.
+
+👤 *Nom du client :* ${userName}
+
+Cordialement,
+${userName}
+`
+
     window.open(`https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`, "_blank")
 }
+
+
 
 // Animation bouton vide
 const cartButton = ref(null)

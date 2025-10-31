@@ -56,10 +56,10 @@
                             </a>
                         </span>
                     </p>
-                    <p class="text-sm font-semibold text-[var(--primary-blue)] mb-6"> <span
-                            class="border  border-solid border-[var(--primary-blue)] py-[2px] px-1 rounded">En stock :
+                    <p class="text-sm font-semibold text-[var(--primary-blue)] mb-6 dark:text-gray-300"> <span
+                            class="border  border-solid border-[var(--primary-blue)] py-[2px] px-1 rounded dark:border-gray-300">En stock :
                             {{
-                                product.stock }} !</span></p>
+                                product.stock }} </span></p>
                 </div>
 
                 <!-- Bouton Ajouter au panier -->

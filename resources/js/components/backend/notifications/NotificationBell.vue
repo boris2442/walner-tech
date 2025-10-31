@@ -1,7 +1,8 @@
 <template>
     <div class="relative">
         <!-- Icône de cloche -->
-        <button @click="toggleDropdown" class="relative">
+        <button type="button" title="Ouvrir les notifications" aria-label="Bouton ouvrir les notifications"
+            @click="toggleDropdown" class="relative">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-700 dark:text-white" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,7 +34,9 @@
                     </div>
 
                     <!-- Croix pour supprimer -->
-                    <button @click="dismiss(index)" class="text-gray-400 hover:text-gray-600 dark:hover:text-white">
+                    <button type="button" title="Supprimer la notification"
+                        aria-label="Bouton supprimer la notification" @click="dismiss(index)"
+                        class="text-gray-400 hover:text-gray-600 dark:hover:text-white">
                         ✕
                     </button>
                 </li>

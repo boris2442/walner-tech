@@ -19,11 +19,11 @@
             </a>
 
             <!-- Bouton WhatsApp (vert) -->
-            <a href="https://wa.me/237656894773" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/237657961059" target="_blank" rel="noopener noreferrer"
                 class="flex items-center justify-center bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition ease-in-out duration-200 ">
                 <!-- <MessageCircle class="h-5 w-5 ml-2" /> -->
                 <FontAwesomeIcon :icon="['fab', 'whatsapp']" class="h-5 w-5 ml-2 text-xl" />
-                <span class="text-sm">+237 656 89 47 73</span>
+                <span class="text-sm">+237 657 96 10 59</span>
 
             </a>
         </div>
