@@ -59,10 +59,11 @@
                     <!-- {{
                                 product.stock }}  -->
 
-                    <p class="text-sm font-semibold text-[var(--primary-blue)] mb-6 dark:text-gray-300">
+                    <p v-if="product.stock >= 3"
+                        class="text-sm font-semibold text-[var(--primary-blue)] mb-6 dark:text-gray-300">
                         <span
                             class="border border-solid border-[var(--primary-blue)] py-[2px] px-1 rounded dark:border-gray-300">
-                            <span v-if="product.stock >= 3">En stock </span>
+                            <span>En stock </span>
                         </span>
                     </p>
 
@@ -82,8 +83,7 @@
     </section>
 
     <!-- Dans ton ProductDetail.vue -->
-    <div class="max-w-6xl mx-auto px-4"
-        v-if="product.descriptionProduct && product.descriptionProduct.content">
+    <div class="max-w-6xl mx-auto px-4" v-if="product.descriptionProduct && product.descriptionProduct.content">
         <ProductDescriptions :description-product="product.descriptionProduct" />
     </div>
 
