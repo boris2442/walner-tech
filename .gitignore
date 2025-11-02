@@ -1,8 +1,11 @@
 /.phpunit.cache
 /bootstrap/ssr
 /node_modules
-
+/public/storage
+!public/imageProducts/
+!public/imageProducts/**
 /public/hot
+
 
 /storage/*.key
 /storage/pail
@@ -26,3 +29,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
