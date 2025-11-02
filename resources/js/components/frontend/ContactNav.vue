@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-orange-500 p-4 rounded-lg text-center shadow-md banner">
+    <div class="bg-orange-500 p-4 rounded-lg text-center shadow-md banner ">
 
         <h3 class="text-white font-extrabold mb-2 text-3xl md:text-4xl text-center 
            bg-gradient-to-r from-yellow-300 via-red-400 to-pink-500 

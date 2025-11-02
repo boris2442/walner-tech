@@ -30,13 +30,8 @@
 
 
     <title inertia>{{ config('app.name', 'Walner Tech - Expert en équipements informatiques') }}</title>
-
-
-    <link rel="icon" href="/walner.svg" sizes="any" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/walner.svg">
+    <link rel="apple-touch-icon" href="{{ asset('assets/walner.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/walner.png') }}">
-
-
     <meta name="description"
         content="Walner Tech est votre marketplace  ()boutique informatique) de référence à Bafoussam et Yaoundé, Cameroun. Découvrez nos ordinateurs portables, accessoires high-tech, composants PC et périphériques. Livraison rapide dans tout le Cameroun et à l’international. Service professionnel, produits garantis et assistance personnalisée.">
     <meta name="keywords"

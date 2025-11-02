@@ -31,9 +31,7 @@
 
     <title inertia>{{ config('app.name', 'Walner Tech - Expert en équipements informatiques') }}</title>
 
-
-    <link rel="icon" href="/walner.svg" sizes="any" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/walner.svg">
+    <link rel="apple-touch-icon" href="{{ asset('assets/walner.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/walner.png') }}">
 
 
