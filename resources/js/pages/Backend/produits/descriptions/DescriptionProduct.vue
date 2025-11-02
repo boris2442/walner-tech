@@ -20,7 +20,7 @@ const selectedProduct = ref("");
 
 const form = useForm({
     content: "",
-     product_id: "", // <-- ajouter ici
+    product_id: "", // <-- ajouter ici
 });
 
 
@@ -35,8 +35,8 @@ const addDescription = () => {
     form.product_id = selectedProduct.value;
 
     form.post(`/admin/products/${selectedProduct.value}/description`, {
-        onError: (errors) => console.log("Erreurs validation :", errors),
-        onSuccess: (page) => console.log("Réponse succès :", page),
+        // onError: (errors) => console.log("Erreurs validation :", errors),
+        // onSuccess: (page) => console.log("Réponse succès :", page),
     });
 };
 
