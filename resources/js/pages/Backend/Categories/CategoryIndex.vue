@@ -78,7 +78,7 @@ document.addEventListener('click', handleClickOutside);
     <Head title="Categories" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">
-            <!-- <FlashMessage v-if="flashMessage" :message="flashMessage" type="success" /> -->
+
             <!-- KPI Cards -->
 
             <div class="grid gap-4 md:grid-cols-5 sm:grid-cols-2 ">
@@ -99,9 +99,21 @@ document.addEventListener('click', handleClickOutside);
             </div>
             <!-- Recherche + Tableau -->
             <div class="relative rounded-xl border border-sidebar-border/70 dark:border-sidebar-border min-h-[50vh]">
-                <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-4 p-2">
-                    <input type="text" v-model="search" placeholder="Rechercher par nom"
-                        class="border p-2 rounded flex-1 text-xs sm:text-sm md:text-base" />
+                <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-4 p-2 ">
+                    <!-- <input type="text" v-model="search" placeholder="Rechercher par nom"
+                        class="border p-2 rounded flex-1 text-xs sm:text-sm md:text-base" /> -->
+                    <div class="relative w-full">
+
+                        <input v-model="search" type="text" placeholder="Search..." class="custom-input" />
+                        <font-awesome-icon icon="magnifying-glass" class="custom-icon" />
+                        <!-- Croix pour vider l'input, seulement si search n'est pas vide -->
+                        <button v-if="search" @click="search = ''" type="button" class="clear-btn">
+                            ✕
+                        </button>
+                    </div>
+
+
+
 
                     <!-- Menu Actions -->
                     <div class="relative">

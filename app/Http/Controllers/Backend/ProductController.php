@@ -15,10 +15,6 @@ class ProductController extends Controller
 {
 
 
-
-   
-
-
     public function create()
     {
         $categories = Category::all();
@@ -209,7 +205,7 @@ class ProductController extends Controller
         ]);
     }
 
-    
-  
+
+
 
 }

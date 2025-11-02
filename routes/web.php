@@ -16,7 +16,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\OrderClickController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Frontend\ProduitFrontendController;
-
+use App\Http\Controllers\Backend\Admin\DescriptionProductController;
 
 //Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/', [ProduitFrontendController::class, 'index'])->name('home');
@@ -53,6 +53,23 @@ Route::get('products', [ProduitFrontendController::class, 'index'])->name('produ
 Route::get('/products/{slug}', [ProduitFrontendController::class, 'showBySlug'])->name('products.show');
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+
+    Route::prefix('admin')->group(function () {
+        // Afficher le formulaire d’ajout d’une description
+        Route::get('/products/descriptions/create', [DescriptionProductController::class, 'create'])
+            ->name('admin.description.create');
+
+        // Enregistrer la description d’un produit
+        Route::post('/products/{product}/description', [DescriptionProductController::class, 'store'])
+            ->name('admin.description.store');
+
+        // (Optionnel) afficher la liste des descriptions si tu veux
+        Route::get('/products/descriptions', [DescriptionProductController::class, 'index'])
+            ->name('admin.description.index');
+
+    });
+
+
 
     //categorys 
     Route::prefix('admin')->group(function () {
@@ -106,6 +123,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('contact', [ContactBackendController::class, 'index'])->name('contacts.index');
 
     });
+
+
+
+
 });
 
 

@@ -39,10 +39,7 @@ class Product extends Model
     }
 
 
-    // public function isLikedBy($user)
-// {
-//     return $this->likes()->where('user_id', $user->id)->exists();
-// }
+
 
     public function orderClicks()
     {
@@ -72,5 +69,11 @@ class Product extends Model
             $product->saveQuietly(); // évite une boucle infinie
         });
     }
+
+    public function descriptionProduct()
+    {
+        return $this->hasOne(DescriptionProduct::class);
+    }
+
 
 }

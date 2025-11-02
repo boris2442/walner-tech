@@ -174,8 +174,16 @@ function clearSearch() {
       <!-- Filtres -->
       <div class="flex flex-wrap gap-4 mb-4 p-2 items-center">
         <div class="relative flex-1 min-w-[400px]">
-          <input v-model="search" placeholder="Rechercher un produit..."
-            class="border p-2 rounded flex-1 min-w-[200px]" />
+          <!-- <input v-model="search" placeholder="Rechercher un produit..."
+            class="border p-2 rounded flex-1 min-w-[200px]" /> -->
+
+          <div class="relative">
+
+            <input v-model="search" type="text" placeholder="Search..." class="custom-input" />
+            <font-awesome-icon icon="magnifying-glass"
+              class="custom-icon" />
+          </div>
+
           <!-- Croix pour effacer -->
           <button v-if="search" @click="clearSearch"
             class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600" type="button">

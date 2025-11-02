@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\Product;;
+use App\Models\Product;
+;
 use App\Models\Category;
 class ProduitFrontendController extends Controller
 {
-  public function index(Request $request)
+    public function index(Request $request)
     {
         // On récupère tous les produits avec leurs images, catégorie et compteur de likes
         $query = Product::with(['category', 'images'])
@@ -25,7 +26,7 @@ class ProduitFrontendController extends Controller
         if ($request->has('category') && $request->category != '') {
             $query->where('category_id', $request->category);
         }
-      
+
 
         // On récupère tous les produits (sans pagination)
         $products = $query->get()->map(function ($product) {
@@ -59,25 +60,61 @@ class ProduitFrontendController extends Controller
         ]);
     }
 
-      public function showBySlug($slug)
+    // public function showBySlug($slug)
+    // {
+    //     $product = Product::with('images', 'category', 'descriptionProduct') // charger les images et la catégorie
+    //         ->where('slug', $slug)
+    //         ->firstOrFail();
+
+
+    //     //     // Récupérer des produits similaires dans la même catégorie
+    //     $similarProducts = Product::where('category_id', $product->category_id) // utiliser category_id directement
+    //         ->where('id', '!=', $product->id) // exclure le produit courant
+    //         ->with('images')
+    //         ->take(10)
+    //         ->get();
+
+    //     return Inertia::render('backend/products/ProductDetail', [
+    //         'product' => $product,
+    //         'similarProducts' => $similarProducts,
+    //         'auth' => [
+    //             'user' => auth()->user(),
+    //         ],
+    //     ]);
+    // }
+
+
+    public function showBySlug($slug)
     {
-        $product = Product::with('images', 'category') // charger les images et la catégorie
+        $product = Product::with('images', 'category', 'descriptionProduct')
             ->where('slug', $slug)
             ->firstOrFail();
 
-        // Récupérer des produits similaires dans la même catégorie
-        $similarProducts = Product::where('category_id', $product->category_id) // utiliser category_id directement
-            ->where('id', '!=', $product->id) // exclure le produit courant
+        // Transformer le modèle en tableau et la relation descriptionProduct aussi
+        $productArray = $product->toArray();
+
+        // Si descriptionProduct existe, garder le contenu, sinon null
+        $productArray['descriptionProduct'] = $product->descriptionProduct
+            ? $product->descriptionProduct->toArray()
+            : null;
+
+        // Produits similaires
+        $similarProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
             ->with('images')
             ->take(10)
-            ->get();
+            ->get()
+            ->toArray(); // transformer en tableau
 
         return Inertia::render('backend/products/ProductDetail', [
-            'product' => $product,
+            'product' => $productArray,
             'similarProducts' => $similarProducts,
             'auth' => [
                 'user' => auth()->user(),
             ],
         ]);
     }
+
+
+
 }

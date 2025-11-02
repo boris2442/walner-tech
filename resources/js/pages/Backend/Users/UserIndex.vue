@@ -156,8 +156,18 @@ function goToPage(url: string | null) {
             <!-- Table -->
             <div class="relative rounded-xl border border-sidebar-border/70 dark:border-sidebar-border min-h-[50vh]">
                 <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-4 p-2">
-                    <input type="text" v-model="search" placeholder="Rechercher par nom ou contact ou email"
-                        class="border p-2 rounded flex-1 text-xs sm:text-sm md:text-base" />
+                    <!-- <input type="text" v-model="search" placeholder="Rechercher par nom ou contact ou email"
+                        class="border p-2 rounded flex-1 text-xs sm:text-sm md:text-base" /> -->
+
+                    <div class="relative w-full">
+
+                        <input v-model="search" type="text" placeholder="Search..." class="custom-input" />
+                        <font-awesome-icon icon="magnifying-glass" class="custom-icon" />
+                        <!-- Croix pour vider l'input, seulement si search n'est pas vide -->
+                        <button v-if="search" @click="search = ''" type="button" class="clear-btn">
+                            ✕
+                        </button>
+                    </div>
 
                     <!-- Menu Actions -->
                     <div class="relative">

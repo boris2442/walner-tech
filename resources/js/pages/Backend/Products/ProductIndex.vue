@@ -22,13 +22,13 @@
 
 
             <div class="relative w-full max-w-md mx-auto">
-                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..." class="w-full pl-10 pr-4 py-2 rounded-2xl border border-gray-300 dark:border-gray-700
-           bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-           placeholder-gray-400 dark:placeholder-gray-500
-           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-           transition-all duration-300 shadow-sm hover:shadow-md" />
-                <font-awesome-icon icon="magnifying-glass"
-                    class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
+                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
+                    class="custom-input" />
+                <font-awesome-icon icon="magnifying-glass" class="custom-icon" />
+                <!-- Croix pour vider l'input, seulement si search n'est pas vide -->
+                <button v-if="search" @click="search = ''" type="button" class="clear-btn">
+                    ✕
+                </button>
             </div>
 
 
@@ -96,16 +96,14 @@
 
                         <!-- Boutons -->
                         <div class="mt-auto flex justify-between items-center p-3">
-                            <button @click="flyToCart($event, product)"
-                            aria-label="Bouton ajout au panier"
-                            title="ajout au panier"
+                            <button @click="flyToCart($event, product)" aria-label="Bouton ajout au panier"
+                                title="ajout au panier"
                                 class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
                                 <font-awesome-icon :icon="['fas', 'cart-shopping']" />
                             </button>
 
-                            <button @click="toggleLike(product)"
-                             aria-label="Bouton liker le produit"
-                            title="Liker le produit"
+                            <button @click="toggleLike(product)" aria-label="Bouton liker le produit"
+                                title="Liker le produit"
                                 :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
                                 <font-awesome-icon :icon="['far', 'heart']" />
                                 <span class="ml-1 text-sm dark:text-[var(--dark-grey)]">{{ product.likes_count }}</span>

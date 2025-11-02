@@ -13,6 +13,7 @@ import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, MessageCircleMore, Store, Grid, Home } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import products from '@/routes/products';
+import description from '@/routes/admin/description';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 const page = usePage();
@@ -57,6 +58,12 @@ const mainNavItems: NavItem[] = [
         {
             title: 'Categories',
             href: categories.index().url,
+            icon: Grid,
+        },
+       
+        {
+            title: 'Descriptions',
+            href: description.index().url,
             icon: Grid,
         },
     ] : []),

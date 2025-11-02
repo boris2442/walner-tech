@@ -76,26 +76,20 @@
                     </button>
                 </div>
             </div>
+
+
         </div>
     </section>
-    <section class="bg-background-light  py-8 shadow-inner dark:bg-[var(--highlight-gold)] ">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-2xl font-bold mb-6">Produits similaires</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <div v-for="sp in similarProducts" :key="sp.id"
-                    class="bg-white dark:bg-[var(--card-dark)] rounded-lg shadow-md hover:scale-105 transition-transform   product-card  flex flex-col  overflow-hidden">
-                    <Link prefetch="" :href="`/products/${sp.slug}`">
-                    <img :src="getImageUrl(sp.images?.[0]?.url_image)" :alt="sp.title"
-                        class="w-full h-40 object-cover rounded-md mb-4">
 
-                    <h3 class="font-semibold mb-2 pl-2">{{ sp.title }}</h3>
-                    </Link>
-                    <p class="text-[var(--primary-blue)] font-bold mb-2 pl-2">{{ sp.prix }} FCFA</p>
+    <!-- Dans ton ProductDetail.vue -->
+    <div class="max-w-6xl mx-auto px-4"
+        v-if="product.descriptionProduct && product.descriptionProduct.content">
+        <ProductDescriptions :description-product="product.descriptionProduct" />
+    </div>
 
-                </div>
-            </div>
-        </div>
-    </section>
+
+    <!-- SimilarProducts components -->
+    <SimilarProducts :products="similarProducts" />
 
     <Footer />
 </template>
@@ -106,18 +100,18 @@ import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import TopBanner from '@/components/frontend/TopBanner.vue'
 import { cartStore } from '@/components/frontend/panier/stores/cart'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
+
 import CartWidget from '@/components/frontend/panier/CartWidget.vue'
 import Footer from '@/components/frontend/Footer.vue'
 import BackButton from '@/components/frontend/BackButton.vue'
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import ShareModal from '@/components/frontend/ShareModal.vue'
-import { Link } from '@inertiajs/vue3'
+
 import { Head } from '@inertiajs/vue3'
-//import { faShareAlt } from '@fortawesome/free-solid-svg-icons'
-//import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-//library.add(faWhatsapp, faShareAlt)
+import SimilarProducts from '@/components/frontend/products/SimilarProducts.vue'
+import ProductDescriptions from '@/components/frontend/products/ProductDescriptions.vue'
+
 const props = defineProps({
     product: Object,
     auth: Object,
