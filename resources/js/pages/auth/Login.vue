@@ -12,7 +12,7 @@ import { register } from '@/routes';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle, LogIn } from 'lucide-vue-next';
-
+import BackButton from '@/components/frontend/BackButton.vue';
 defineProps<{
     status?: string;
     canResetPassword: boolean;
@@ -24,8 +24,8 @@ const loginWithGoogle = () => {
 </script>
 
 <template>
+    <BackButton class="m-4" />
     <AuthBase title="Connectez-vous à votre compte walner tech" description="Entrez votre email et votre mot de passe ci-dessous pour vous connecter">
-
         <Head title="Log in" />
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}

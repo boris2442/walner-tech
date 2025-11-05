@@ -7,6 +7,7 @@ import { type BreadcrumbItem } from '@/types';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
+import BackButton from '@/components/frontend/BackButton.vue';
 import { appearance } from '@/routes';
 
 const breadcrumbItems: BreadcrumbItem[] = [
@@ -19,7 +20,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
-
+  <BackButton class="m-4" />
         <Head title="Parametre d'apparence" />
 
         <SettingsLayout>

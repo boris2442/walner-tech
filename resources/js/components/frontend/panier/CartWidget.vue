@@ -50,12 +50,26 @@
                     <span class="text-[var(--dark-white)] underline">{{ cartTotal }} FCFA</span>
                 </div>
 
-                <button type="button" title="Regler la commande sur WhatsApp"
+                <!-- <button type="button" title="Regler la commande sur WhatsApp"
                     aria-label="Bouton regler la commande sur WhatsApp" @click="orderOnWhatsapp"
                     :disabled="cart.length === 0"
                     class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] py-2 rounded hover:bg-gray-100 transition mt-3">
                     Commander sur WhatsApp
+                 
+                </button> -->
+                <button type="button" title="Régler la commande sur WhatsApp"
+                    aria-label="Bouton régler la commande sur WhatsApp" @click="orderOnWhatsapp"
+                    :disabled="cart.length === 0" class="w-full flex items-center justify-center gap-2 
+           bg-white dark:bg-[var(--dark-gold)] 
+           text-[var(--accent-cyan)] py-2 rounded 
+           transition mt-3 shadow-md hover:scale-[1.02] active:scale-95">
+
+                    <!-- Icône animée -->
+                    <MessageCircle class="w-5 h-5 animate-pulse-glow" />
+
+                    Commander sur WhatsApp
                 </button>
+
             </div>
         </transition>
     </div>
@@ -63,9 +77,11 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue'
+import { router } from '@inertiajs/vue3'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { cartStore } from '@/components/frontend/panier/stores/cart'
 import { usePage } from '@inertiajs/vue3'  // ✅ Import obligatoire
+import { MessageCircle } from 'lucide-vue-next'
 const showCart = ref(false)
 function toggleCart() { showCart.value = !showCart.value }
 
@@ -78,19 +94,19 @@ function decrease(item) { cartStore.decrease(item) }
 
 function getImageUrl(path) { return path ? `/${path}` : '/fallback.png' }
 
-// function orderOnWhatsapp() {
-//     const entreprisePhone = "237656894773"
-//     let message = `Hello Walner Tech 👋,\nJe souhaite passer la commande suivante :\n\n`
-//     cart.value.forEach(item => {
-//         message += `• ${item.title} (x${item.quantity}) = ${item.prix * item.quantity} FCFA\n`
-//     })
-//     message += `\nMontant total : ${cartTotal.value} FCFA\n\nMerci !`
-//     window.open(`https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`, "_blank")
-// }
+
 function orderOnWhatsapp() {
     const page = usePage() // ✅ On récupère les props Inertia ici
     const user = page.props.auth?.user
     const userName = user?.name || "Client Walner Tech"
+
+    // Vérifie la connexion
+    if (!user) {
+        if (confirm("⚠️ Vous devez être connecté pour pouvoir effectuer une commande.\nSouhaitez-vous vous connecter maintenant ?")) {
+            router.visit('/login') // redirige vers la page de connexion
+        }
+        return
+    }
 
     const entreprisePhone = "237657961059"
 
@@ -199,5 +215,28 @@ watch(totalItems, (newVal) => {
 
 .animate-shake {
     animation: shake 0.8s ease-in-out;
+}
+
+
+/* animation button  commander*/
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px var(--accent-cyan));
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px var(--accent-cyan));
+    }
+
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px var(--accent-cyan));
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
 }
 </style>

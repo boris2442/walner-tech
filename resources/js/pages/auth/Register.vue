@@ -10,12 +10,13 @@ import AuthBase from '@/layouts/AuthLayout.vue';
 import { login } from '@/routes';
 import { Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import BackButton from '@/components/frontend/BackButton.vue';
 // import FloatingAction from '@/components/frontend/FloatingAction.vue';
 </script>
 
 <template>
     <FloatingAction />
-
+  <BackButton class="m-4" />
     <Head title="Register" />
     <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4 dark:bg-[var(--dark-background)]">
         <div

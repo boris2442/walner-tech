@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { type BreadcrumbItem } from '@/types';
+import BackButton from '@/components/frontend/BackButton.vue';
 
 const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -26,72 +27,47 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
+        <BackButton class="m-4" />
+
         <Head title="Password settings" />
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall title="Modifier mot de passe" description="Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé" />
+                <HeadingSmall title="Modifier mot de passe"
+                    description="Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé" />
 
-                <Form
-                    v-bind="PasswordController.update.form()"
-                    :options="{
-                        preserveScroll: true,
-                    }"
-                    reset-on-success
-                    :reset-on-error="['password', 'password_confirmation', 'current_password']"
-                    class="space-y-6"
-                    v-slot="{ errors, processing, recentlySuccessful }"
-                >
+                <Form v-bind="PasswordController.update.form()" :options="{
+                    preserveScroll: true,
+                }" reset-on-success :reset-on-error="['password', 'password_confirmation', 'current_password']"
+                    class="space-y-6" v-slot="{ errors, processing, recentlySuccessful }">
                     <div class="grid gap-2">
                         <Label for="current_password">Mot de passe actuel</Label>
-                        <Input
-                            id="current_password"
-                            ref="currentPasswordInput"
-                            name="current_password"
-                            type="password"
-                            class="mt-1 block w-full"
-                            autocomplete="current-password"
-                            placeholder="Current password"
-                        />
+                        <Input id="current_password" ref="currentPasswordInput" name="current_password" type="password"
+                            class="mt-1 block w-full" autocomplete="current-password" placeholder="Current password" />
                         <InputError :message="errors.current_password" />
                     </div>
 
                     <div class="grid gap-2">
                         <Label for="password">Nouveau mot de passe</Label>
-                        <Input
-                            id="password"
-                            ref="passwordInput"
-                            name="password"
-                            type="password"
-                            class="mt-1 block w-full"
-                            autocomplete="new-password"
-                            placeholder="New password"
-                        />
+                        <Input id="password" ref="passwordInput" name="password" type="password"
+                            class="mt-1 block w-full" autocomplete="new-password" placeholder="New password" />
                         <InputError :message="errors.password" />
                     </div>
 
                     <div class="grid gap-2">
                         <Label for="password_confirmation">Confirm mot de passe</Label>
-                        <Input
-                            id="password_confirmation"
-                            name="password_confirmation"
-                            type="password"
-                            class="mt-1 block w-full"
-                            autocomplete="new-password"
-                            placeholder="Confirm password"
-                        />
+                        <Input id="password_confirmation" name="password_confirmation" type="password"
+                            class="mt-1 block w-full" autocomplete="new-password" placeholder="Confirm password" />
                         <InputError :message="errors.password_confirmation" />
                     </div>
 
-                    <div class="flex items-center gap-4">
-                        <Button :disabled="processing">Enregistrer mot de passe</Button>
+                    <div class="flex items-center gap-4 ">
+                        <Button :disabled="processing"
+                            class="bg-[var(--primary-blue)] text-[var(--dark-white)] px-4 py-2 rounded hover:opacity-90 hover:bg-blue-600 dark:bg-[var(--button-dark)]">Enregistrer
+                            mot de passe</Button>
 
-                        <Transition
-                            enter-active-class="transition ease-in-out"
-                            enter-from-class="opacity-0"
-                            leave-active-class="transition ease-in-out"
-                            leave-to-class="opacity-0"
-                        >
+                        <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
+                            leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
                             <p v-show="recentlySuccessful" class="text-sm text-neutral-600">Enregistré.</p>
                         </Transition>
                     </div>

@@ -9,13 +9,14 @@ import AuthLayout from '@/layouts/AuthLayout.vue';
 import { login } from '@/routes';
 import { Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-
+import BackButton from '@/components/frontend/BackButton.vue';
 defineProps<{
     status?: string;
 }>();
 </script>
 
 <template>
+     <BackButton class="m-4" />
     <AuthLayout title="Forgot password" description="Entrez votre email pour recevoir un lien de réinitialisation de mot de passe">
         <Head title="Forgot password" />
 

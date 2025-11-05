@@ -52,7 +52,9 @@ class DescriptionProductController extends Controller
 
     public function index()
     {
-        $descriptions = DescriptionProduct::with('product')->get();
+        $descriptions = DescriptionProduct::with('product')
+            ->orderBy('created_at', 'desc') // du plus récent au plus ancien 🔥
+            ->get();
 
         return Inertia::render('backend/produits/descriptions/DescriptionProductIndex', [
             'descriptions' => $descriptions,

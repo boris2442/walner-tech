@@ -146,7 +146,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import axios from 'axios'
 import { cartStore } from '@/components/frontend/panier/stores/cart'
 import TopBanner from '@/components/frontend/TopBanner.vue'
@@ -233,7 +233,8 @@ const filteredProducts = computed(() => {
 function toggleLike(product) {
     if (!props.auth?.user) {
         if (confirm("Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?")) {
-            window.location.href = '/login'
+
+            router.visit('/login')
         }
         return
     }
@@ -279,7 +280,7 @@ function flyToCart(event, product) {
     if (!props.auth?.user) {
         // Afficher un alert ou confirmer la connexion
         if (confirm("Vous devez être connecté pour ajouter un produit au panier.\nVoulez-vous vous connecter maintenant ?")) {
-            window.location.href = '/login';
+            router.visit('/login')
         }
         return; // arrêter la fonction si pas connecté
     }

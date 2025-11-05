@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
+import BackButton from '@/components/frontend/BackButton.vue';
 import { type BreadcrumbItem } from '@/types';
 
 interface Props {
@@ -42,6 +43,7 @@ const user = page.props.auth.user as AuthUser;
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
+        <BackButton class="m-4" />
 
         <Head title="Profile settings" />
 
@@ -67,8 +69,9 @@ const user = page.props.auth.user as AuthUser;
                     </div>
                     <div class="grid gap-2">
                         <Label for="phone">Téléphone</Label>
-                        <Input id="phone" type="text" class="mt-1 block w-full" name="phone" :default-value="user.phone??''"
-                            required autocomplete="username" placeholder="phone number" />
+                        <Input id="phone" type="text" class="mt-1 block w-full" name="phone"
+                            :default-value="user.phone ?? ''" required autocomplete="username"
+                            placeholder="phone number" />
                         <InputError class="mt-2" :message="errors.phone" />
                     </div>
 
@@ -87,7 +90,7 @@ const user = page.props.auth.user as AuthUser;
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="processing">Enregistrer</Button>
+                        <Button :disabled="processing" class="bg-[var(--primary-blue)] text-[var(--dark-white)] px-4 py-2 rounded hover:opacity-90 hover:bg-blue-600 dark:bg-[var(--button-dark)]">Enregistrer</Button>
 
                         <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
                             leave-active-class="transition ease-in-out" leave-to-class="opacity-0">

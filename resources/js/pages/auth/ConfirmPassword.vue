@@ -7,31 +7,32 @@ import AuthLayout from '@/layouts/AuthLayout.vue';
 import { store } from '@/routes/password/confirm';
 import { Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import BackButton from '@/components/frontend/BackButton.vue';
 </script>
 
 <template>
-    <AuthLayout title="Confirm your password" description="Ceci est un espace sécurisé de l'application. Veuillez confirmer votre mot de passe avant de continuer.">
+    <BackButton class="m-4" />
+    <AuthLayout title="Confirm your password"
+        description="Ceci est un espace sécurisé de l'application. Veuillez confirmer votre mot de passe avant de continuer."
+        >
+
         <Head title="Confirm password" />
 
-        <Form v-bind="store.form()" reset-on-success v-slot="{ errors, processing }">
+        <Form v-bind="store.form()" reset-on-success v-slot="{ errors, processing }"
+        class="flex justify-center items-center">
             <div class="space-y-6">
                 <div class="grid gap-2">
                     <Label htmlFor="password">Mot de passe</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        class="mt-1 block w-full"
-                        required
-                        autocomplete="current-password"
-                        autofocus
-                    />
+                    <Input id="password" type="password" name="password" class="mt-1 block max-w-[220px]" required
+                        autocomplete="current-password" autofocus />
 
                     <InputError :message="errors.password" />
                 </div>
 
                 <div class="flex items-center">
-                    <Button class="w-full" :disabled="processing">
+                    <Button
+                        class=" bg-[var(--primary-blue)] text-[var(--dark-white)] px-4 py-2 rounded hover:opacity-90 hover:bg-blue-600 dark:bg-[var(--button-dark)]"
+                        :disabled="processing">
                         <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
                         Confirmation de mot de passe
                     </Button>

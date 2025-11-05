@@ -31,6 +31,7 @@
     --dark-background: #1e1e1e; /* Fond général sombre */
     --dark-blue: #003366; /* Bleu foncé pour header ou boutons */
     --dark-gold: #ffe600; /* Or doux, pour accents sur sombre */
+    --dark-button-back: #ffe6009b; /* Or doux, pour accents sur sombre */
     --dark-white: #ffffff; /* Texte blanc sur sombre */
     --dark-grey: #cccccc; /* Texte secondaire clair */
     --dark-grey2: #2a2a2a; /* Texte secondaire clair */
@@ -45,6 +46,7 @@
     /* --white-color:#ffffff; */
     --dark-map2: #1e1e1e;
     --card-dark: #0a0a0a;
+    --button-dark:#121212;
 }
 *,
 ::after,

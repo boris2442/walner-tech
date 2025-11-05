@@ -7,8 +7,8 @@ import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import BackButton from '@/components/frontend/BackButton.vue';
 import { ref } from 'vue';
-
 const props = defineProps<{
     token: string;
     email: string;
@@ -18,6 +18,7 @@ const inputEmail = ref(props.email);
 </script>
 
 <template>
+     <BackButton class="m-4" />
     <AuthLayout title="Reset password" description="Veuillez saisir votre nouveau mot de passe ci-dessous">
         <Head title="Reset password" />
 

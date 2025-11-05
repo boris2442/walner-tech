@@ -7,7 +7,7 @@ import AuthLayout from '@/layouts/AuthLayout.vue';
 import { store } from '@/routes/two-factor/login';
 import { Form, Head } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-
+import BackButton from '@/components/frontend/BackButton.vue';
 interface AuthConfigContent {
     title: string;
     description: string;
@@ -43,6 +43,7 @@ const codeValue = computed<string>(() => code.value.join(''));
 </script>
 
 <template>
+     <BackButton class="m-4" />
     <AuthLayout :title="authConfigContent.title" :description="authConfigContent.description">
         <Head title="Two-Factor Authentication" />
 

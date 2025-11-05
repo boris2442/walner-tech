@@ -108,7 +108,7 @@ import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import ShareModal from '@/components/frontend/ShareModal.vue'
 
-import { Head } from '@inertiajs/vue3'
+import { Head, router } from '@inertiajs/vue3'
 import SimilarProducts from '@/components/frontend/products/SimilarProducts.vue'
 import ProductDescriptions from '@/components/frontend/products/ProductDescriptions.vue'
 
@@ -134,7 +134,8 @@ function getImageUrl(path) {
 function addToCart(product) {
     if (!props.auth?.user) {
         if (confirm("Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?")) {
-            window.location.href = '/login'
+            // window.location.href = '/login'
+              router.visit('/login')
         }
         return
     }
