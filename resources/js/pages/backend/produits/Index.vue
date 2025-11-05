@@ -6,7 +6,7 @@ import createProducts from '@/routes/products';
 import { Inertia } from '@inertiajs/inertia';
 import { Edit, Trash } from 'lucide-vue-next';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
-
+ import BackButton from '@/components/frontend/BackButton.vue';
 interface Product {
   id: number;
   title: string;
@@ -149,8 +149,9 @@ function clearSearch() {
   <Head title="Produits" />
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="flex flex-col gap-4 p-4">
-
-      <!-- KPI Cards -->
+ 
+      
+    <BackButton class="m-4" /><!-- KPI Cards -->
       <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5">
         <div class="kpi-card">
           <h3>Total Produits</h3>
@@ -170,7 +171,9 @@ function clearSearch() {
         </div>
 
       </div>
-
+      <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)] my-2">
+        Produits
+      </h1>
       <!-- Filtres -->
       <div class="flex flex-wrap gap-4 mb-4 p-2 items-center">
         <div class="relative flex-1 min-w-[400px]">
@@ -180,8 +183,7 @@ function clearSearch() {
           <div class="relative">
 
             <input v-model="search" type="text" placeholder="Search..." class="custom-input" />
-            <font-awesome-icon icon="magnifying-glass"
-              class="custom-icon" />
+            <font-awesome-icon icon="magnifying-glass" class="custom-icon" />
           </div>
 
           <!-- Croix pour effacer -->
@@ -273,33 +275,3 @@ function clearSearch() {
     </div>
   </AppLayout>
 </template>
-
-<style>
-.kpi-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.75rem;
-  transition: transform 0.2s;
-}
-
-.kpi-card:hover {
-  transform: translateY(-0.25rem);
-}
-
-.kpi-card h3 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #4b5563;
-}
-
-.kpi-card p {
-  font-size: 1.25rem;
-  font-weight: 700;
-  /* color: #111827; */
-}
-</style>

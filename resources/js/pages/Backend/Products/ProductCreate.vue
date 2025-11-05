@@ -73,9 +73,9 @@ const handleFiles = (event: Event) => {
             <BackButton class="m-4" />
             <div
                 class="relative min-h-[80vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border p-6">
-                <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                     Ajouter un Produit
-                </h2>
+                </h1>
 
                 <form @submit.prevent="submitForm" enctype="multipart/form-data" class="flex flex-col gap-4">
                     <Input label="Titre du produit" v-model="form.title" :error="form.errors.title" />
@@ -95,7 +95,7 @@ const handleFiles = (event: Event) => {
                             <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                         </select>
                         <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id
-                        }}</p>
+                            }}</p>
                     </div>
 
                     <div>
@@ -107,7 +107,7 @@ const handleFiles = (event: Event) => {
                                 class="h-20 w-20 object-cover rounded border" />
                         </div>
                         <span v-if="form.errors.images" class="text-red-500 text-sm mt-1">{{ form.errors.images
-                        }}</span>
+                            }}</span>
 
                     </div>
 

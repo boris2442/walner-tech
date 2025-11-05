@@ -7,10 +7,12 @@ import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
 
 
 </script>
 <template>
+  <FlashMessageNewsletter/>
   <CartWidget/>
    <Head title="Condition de non remboursement " />
    <TopBanner/>

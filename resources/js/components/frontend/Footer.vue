@@ -8,6 +8,7 @@ import { about, contact, home, products } from '@/routes';
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 // Solid icons
 import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import Newsletter from './Newsletter.vue';
 
 // Ajouter les icônes
 library.add(faFacebook, faTwitter, faInstagram, faLinkedin, faPhone, faEnvelope, faMapMarkerAlt)
@@ -16,7 +17,7 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-
+  <Newsletter />
   <footer
     class="bg-[var(--primary-blue)] text-[var(--secondary-white)] dark:bg-[var(--dark-black)] dark:text-[var(--dark-white)] py-8">
     <div class="flex justify-between flex-wrap items-start gap-6 px-6">

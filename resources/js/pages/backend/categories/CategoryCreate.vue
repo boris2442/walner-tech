@@ -47,9 +47,9 @@ const submitForm = () => {
                 <!-- <PlaceholderPattern /> -->
 
                 <div class="m-3">
-                    <h2 class="text-xl font-bold mb-4 ">
+                    <h1 class="text-xl font-bold mb-4 ">
                         Ajouter une Catégorie
-                    </h2>
+                    </h1>
 
                     <form @submit.prevent="submitForm">
                         <Input :required="true" id="name" label="Nom de la catégorie" v-model="form.name"

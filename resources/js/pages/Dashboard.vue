@@ -25,9 +25,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
             :link="$page.props.flash.link" />
 
-
-
-
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <div

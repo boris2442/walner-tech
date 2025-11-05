@@ -9,6 +9,7 @@ import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
 
 // Sections dynamiques
 const sections = reactive([
@@ -47,12 +48,13 @@ const sections = reactive([
 </script>
 
 <template>
-  <CartWidget/>
+  <CartWidget />
   <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
+  <FlashMessageNewsletter />
 
   <Head title="Mention legales " />
-  <TopBanner/>
-    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12"/>
+  <TopBanner />
+  <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" />
   <FloatingAction />
   <LoginReminder />
   <section

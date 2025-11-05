@@ -36,7 +36,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
-            <h2 class="text-xl font-bold mb-4">Modifier un Utilisateur</h2>
+            <h1 class="text-xl font-bold mb-4">Modifier un Utilisateur</h1>
             <form @submit.prevent="submitForm">
                 <Input id="name" label="Nom de la catégorie" v-model="form.name" :error="form.errors.name" required />
                 <Textarea label="Description" v-model="form.description" :error="form.errors.description" :rows="4" />

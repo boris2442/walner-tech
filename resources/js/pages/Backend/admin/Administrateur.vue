@@ -85,17 +85,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 
                 </div>
-
-
-                <!-- Placeholders pour futurs graph -->
-                <!-- <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <p class="text-center p-4 text-gray-500">Graphique à venir</p>
-                </div> -->
-                <!-- <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                    <p class="text-center p-4 text-gray-500">Graphique à venir</p>
-                </div> -->
             </div>
 
             <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -140,6 +129,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <p class="text-center p-4 text-gray-500">Graphique à venir</p>
                 </div> -->
+
             </div>
 
             <div

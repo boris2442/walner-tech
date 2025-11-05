@@ -1,5 +1,5 @@
-
 <script setup lang="ts">
+import { ref } from 'vue'
 import AuthenticatedSessionController from '@/actions/App/Http/Controllers/Auth/AuthenticatedSessionController';
 import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
@@ -11,8 +11,10 @@ import AuthBase from '@/layouts/AuthLayout.vue';
 import { register } from '@/routes';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle, LogIn } from 'lucide-vue-next';
+import { LoaderCircle, LogIn, Eye, EyeOff } from 'lucide-vue-next';
 import BackButton from '@/components/frontend/BackButton.vue';
+const showPassword = ref(false);
+const showConfirmPassword = ref(false);
 defineProps<{
     status?: string;
     canResetPassword: boolean;
@@ -25,7 +27,9 @@ const loginWithGoogle = () => {
 
 <template>
     <BackButton class="m-4" />
-    <AuthBase title="Connectez-vous à votre compte walner tech" description="Entrez votre email et votre mot de passe ci-dessous pour vous connecter">
+    <AuthBase title="Connectez-vous à votre compte walner tech"
+        description="Entrez votre email et votre mot de passe ci-dessous pour vous connecter">
+
         <Head title="Log in" />
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
@@ -35,9 +39,9 @@ const loginWithGoogle = () => {
                 class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden dark:bg-[var(--dark-background)]">
                 <!-- Left Section (Sign In Form) -->
                 <div class="w-full md:w-1/2 p-6 md:p-8">
-                    
+
                     <div class="py-4 text-center text-gray-400 ">
-             
+
                     </div>
                     <Form v-bind="AuthenticatedSessionController.store.form()" :reset-on-success="['password']"
                         v-slot="{ errors, processing }" class="space-y-6">
@@ -48,15 +52,23 @@ const loginWithGoogle = () => {
                                     autocomplete="email" placeholder="email@example.com" />
                                 <InputError :message="errors.email" />
                             </div>
-                            <div class="grid gap-2">
+                            <div class="grid gap-2 relative">
                                 <div class="flex items-center justify-between">
                                     <Label for="password" class="text-[var(--primary-blue)]">Mot de passe</Label>
                                     <TextLink v-if="canResetPassword" :href="request()"
-                                        class="text-sm text-[var(--primary-blue)] hover:underline" :tabindex="5"> Mot de passe oublié?
+                                        class="text-sm text-[var(--primary-blue)] hover:underline" :tabindex="5"> Mot de
+                                        passe oublié?
                                     </TextLink>
                                 </div>
-                                <Input id="password" type="password" name="password" required :tabindex="2"
-                                    autocomplete="current-password" placeholder="Password" />
+                                <Input id="password" :type="showPassword ? 'text' : 'password'" name="password" required
+                                    :tabindex="2" autocomplete="current-password" placeholder="Password" />
+
+                                <button type="button"
+                                    class="absolute right-3 top-9 text-gray-500 hover:text-[var(--primary-blue)] transition"
+                                    @click="showPassword = !showPassword">
+                                    <Eye v-if="!showPassword" class="w-5 h-5" />
+                                    <EyeOff v-else class="w-5 h-5" />
+                                </button>
                                 <InputError :message="errors.password" />
                             </div>
                             <div class="flex items-center justify-between">
@@ -82,7 +94,7 @@ const loginWithGoogle = () => {
                         </div>
                     </Form>
                 </div>
-             
+
                 <div
                     class="w-full md:w-1/2 bg-[var(--primary-blue)] text-white p-6 md:p-8 flex flex-col justify-center items-center sm:rounded-tl-[90px] sm:rounded-bl-[90px] dark:bg-[var(--text-secondary)]">
                     <h2 class="text-2xl font-bold mb-4">Hello, Friend!</h2>
@@ -94,4 +106,3 @@ const loginWithGoogle = () => {
         </div>
     </AuthBase>
 </template>
-

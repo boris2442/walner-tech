@@ -10,6 +10,7 @@ import { products, about } from '@/routes';
 import { Link } from '@inertiajs/vue3';
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
 
 // Loader : true si on doit afficher le loader
 const showLoading = ref(true);
@@ -43,7 +44,7 @@ onMounted(() => {
         <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
         <FloatingAction />
         <LoginReminder />
-
+<FlashMessageNewsletter/>
         <!-- Hero Section Premium -->
         <section class="relative flex items-start min-h-screen bg-cover bg-center bg-no-repeat
             px-6 md:px-16 lg:px-32 pt-24 md:pt-32 lg:pt-40 overflow-hidden

@@ -7,8 +7,7 @@ import { ref, computed } from 'vue';
 import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
-// import FlashMessage from '@/components/frontend/flash/FlashMessage.vue';
-// const flashMessage = ref("");
+import BackButton from '@/components/frontend/BackButton.vue';
 
 import { Inertia } from '@inertiajs/inertia';
 interface Category {
@@ -78,7 +77,7 @@ document.addEventListener('click', handleClickOutside);
     <Head title="Categories" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">
-
+            <BackButton class="m-4" />
             <!-- KPI Cards -->
 
             <div class="grid gap-4 md:grid-cols-5 sm:grid-cols-2 ">
@@ -97,6 +96,9 @@ document.addEventListener('click', handleClickOutside);
                     </div>
                 </div>
             </div>
+            <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)] my-2">
+                Categories List
+            </h1>
             <!-- Recherche + Tableau -->
             <div class="relative rounded-xl border border-sidebar-border/70 dark:border-sidebar-border min-h-[50vh]">
                 <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-4 p-2 ">
@@ -180,48 +182,3 @@ document.addEventListener('click', handleClickOutside);
         </div>
     </AppLayout>
 </template>
-
-<style scoped>
-.kpi-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    border-radius: 0.75rem;
-    border: 1px solid #cbd5e1;
-    /* équivalent border-sidebar-border/70 */
-
-    /* clair, mode clair */
-    min-height: 80px;
-    transition: transform 0.2s;
-}
-
-.kpi-card:hover {
-    transform: translateY(-2px);
-}
-
-.kpi-icon {
-    flex-shrink: 0;
-}
-
-.kpi-text h3 {
-    font-size: 0.875rem;
-    font-weight: 600;
-
-    margin-bottom: 0.25rem;
-}
-
-.kpi-text p {
-    font-size: 1.25rem;
-    font-weight: 700;
-    /* color: #0f172a; */
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .kpi-card {
-        justify-content: flex-start;
-        width: 100%;
-    }
-}
-</style>

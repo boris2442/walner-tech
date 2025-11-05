@@ -7,6 +7,7 @@ import BackButton from '@/components/frontend/BackButton.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
 
 const sections = [
     {
@@ -47,11 +48,12 @@ const sections = [
 
 <template>
     <CartWidget />
+    <FlashMessageNewsletter />
 
     <Head title="Conditions Générales d’Utilisation (CGU) " />
-  
-    <TopBanner/>
-    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12"/>
+
+    <TopBanner />
+    <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" />
     <FloatingAction /> <br>
     <section
         class="px-6  antialiased bg-[var(--secondary-white)] text-[var(--text-dark)] dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">

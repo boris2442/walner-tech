@@ -8,6 +8,7 @@ import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
 
 
 // Définition des sections pour v-for
@@ -58,7 +59,7 @@ const sections = reactive([
 </script>
 <template>
     <CartWidget />
-
+<FlashMessageNewsletter/>
     <Head title="Politique de confidentialité" />
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" />

@@ -1,5 +1,5 @@
 <template>
-
+ <FlashMessageNewsletter/>
     <CartWidget />
 
 
@@ -12,6 +12,9 @@
 
     <FloatingAction />
     <LoginReminder />
+
+    <!-- 💥 Notification flash visible sur TOUTES les pages -->
+
     <section
         class="about min-h-screen px-6 py-6 text-[var(--text-dark)] md:px-20 lg:px-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <h1 class="text-3xl">A propos de Walner Tech</h1>
@@ -189,6 +192,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import CartWidget from '@/components/frontend/panier/CartWidget.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
+// import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
 
 
 library.add(faLaptop, faMobileAlt, faHeadphones, faBolt, faUsers, faHandshake)

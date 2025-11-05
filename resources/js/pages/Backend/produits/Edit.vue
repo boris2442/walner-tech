@@ -76,7 +76,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
             <BackButton class="m-4" />
-            <h2 class="text-xl font-bold mb-4">Modifier le produit</h2>
+            <h1 class="text-xl font-bold mb-4">Modifier le produit</h1>
             <form @submit.prevent="submitForm" class="flex flex-col gap-4">
                 <Input label="Titre du produit" v-model="form.title" :error="form.errors.title" required />
                 <Textarea label="Description" v-model="form.description" :error="form.errors.description" :rows="4" />

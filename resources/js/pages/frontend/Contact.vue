@@ -1,11 +1,11 @@
 <template>
-  
-     <CartWidget />
+    <FlashMessageNewsletter />
+    <CartWidget />
 
     <!-- Le composant Inertia Head assure aussi le rendu côté serveur -->
 
     <Head title="Contactez " />
-     <TopBanner />
+    <TopBanner />
     <NavbarFrontend :auth="$page.props.auth as Record<string, any> | undefined" class="mt-10 md:mt-12" /><br /><br />
     <FloatingAction />
     <LoginReminder />
@@ -154,6 +154,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPhone, faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons'
 import CartWidget from '@/components/frontend/panier/CartWidget.vue'
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue'
 
 library.add(faPhone, faEnvelope, faMapMarkerAlt, faClock)
 

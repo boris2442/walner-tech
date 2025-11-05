@@ -12,14 +12,12 @@
 
     <!-- Floating Action -->
     <FloatingAction />
-
+    <FlashMessageNewsletter />
     <!-- Section Produits -->
     <section>
         <div
             class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8 transition-colors duration-300">
-
             <!-- Barre de recherche -->
-
 
             <div class="relative w-full max-w-md mx-auto">
                 <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
@@ -171,6 +169,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue'
 library.add(faCartShopping, faHeart)
 
 const props = defineProps({

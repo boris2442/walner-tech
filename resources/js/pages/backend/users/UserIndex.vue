@@ -7,7 +7,7 @@ import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import { Inertia } from '@inertiajs/inertia';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
-
+import BackButton from '@/components/frontend/BackButton.vue';
 // Props envoyés depuis UserController@index
 const props = defineProps<{
     stats: {
@@ -114,6 +114,8 @@ function goToPage(url: string | null) {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">
 
+
+            <BackButton class="m-4" />
             <!-- KPI Cards -->
             <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                 <div class="kpi-card">
@@ -152,7 +154,9 @@ function goToPage(url: string | null) {
                     </div>
                 </div>
             </div>
-
+            <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)] my-2">
+                Listes des utilisateurs
+            </h1>
             <!-- Table -->
             <div class="relative rounded-xl border border-sidebar-border/70 dark:border-sidebar-border min-h-[50vh]">
                 <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-4 p-2">
@@ -241,18 +245,6 @@ function goToPage(url: string | null) {
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <div class="mt-4 flex justify-end">
-                        <nav class="flex items-center gap-1">
-                            <button v-for="link in props.users.links" :key="link.label" v-html="link.label"
-                                :disabled="!link.url"
-                                @click.prevent="link.url && Inertia.get(link.url, {}, { preserveState: true })"
-                                class="px-3 py-1 rounded border bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"></button>
-                        </nav>
-                    </div> -->
-
-
-
-
 
                 </div>
                 <!-- Pagination -->
@@ -270,39 +262,3 @@ function goToPage(url: string | null) {
         </div>
     </AppLayout>
 </template>
-<style scoped>
-.kpi-card {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 1rem;
-    /* plus compact que before */
-    border-radius: 0.5rem;
-    border: 1px solid #cbd5e1;
-    min-height: 60px;
-    /* un peu plus petit */
-    transition: transform 0.2s;
-    font-size: 0.875rem;
-    /* taille de texte plus petite */
-}
-
-.kpi-card:hover {
-    transform: translateY(-1px);
-}
-
-.kpi-icon {
-    font-size: 1.25rem;
-    /* icône plus petite */
-}
-
-.kpi-text h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 0.1rem;
-}
-
-.kpi-text p {
-    font-size: 1rem;
-    font-weight: 700;
-}
-</style>

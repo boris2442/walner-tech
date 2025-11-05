@@ -1,31 +1,24 @@
 <template>
   <transition name="fade-slide">
-    <div
-      v-if="visible"
+    <div v-if="visible"
       class="fixed top-6 right-6 z-[9999] shadow-xl rounded-xl px-5 py-4 flex items-start w-80 border-l-4 backdrop-blur-md"
-      :class="typeClass"
-    >
+      :class="typeClass">
       <!-- Texte -->
       <div class="flex-1">
         <p class="text-sm font-medium text-gray-100 leading-relaxed">
           {{ message }}
           <br />
           <span v-if="link">
-            <Link
-              :href="link.href"
-              class="underline text-gray-200 hover:text-white transition"
-            >
-              {{ link.text }}
+            <Link :href="link.href" class="underline text-gray-200 hover:text-white transition">
+            {{ link.text }}
             </Link>
           </span>
         </p>
       </div>
 
       <!-- Bouton fermeture -->
-      <button
-        @click="close"
-        class="ml-3 text-gray-300 hover:text-white transition-transform hover:rotate-90 duration-300"
-      >
+      <button @click="close"
+        class="ml-3 text-gray-300 hover:text-white transition-transform hover:rotate-90 duration-300">
         ✕
       </button>
     </div>

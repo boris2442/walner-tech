@@ -18,6 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const props = defineProps({
     descriptions: Array,
+    stats: Object,
 });
 
 const search = ref("");
@@ -54,11 +55,37 @@ function toggleExpand(id: number) {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4">
             <BackButton class="m-4" />
-
+          
             <div class="relative min-h-[80vh] flex-1 rounded-xl border p-6">
-                <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
-                    Listes des descriptions des produits
-                </h2>
+
+                <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="kpi-card">
+                        <div class="kpi-icon">🆕</div>
+                        <div class="kpi-text">
+                            <h3>Total produit à décrire</h3>
+                            <p> {{ props.stats.totalADecrit }}</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">🆕</div>
+                        <div class="kpi-text">
+                            <h3>Descriptions deja effectuée</h3>
+                            <p> {{ props.stats.totalDescriptions }}</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">🆕</div>
+                        <div class="kpi-text">
+                            <h3>Produits sans description</h3>
+                            <p> {{ props.stats.totalWithoutDescription }}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)] my-2">
+                    Descriptions des produits
+                </h1>
 
                 <div class="relative border rounded-xl min-h-[50vh]">
                     <div class="flex flex-col md:flex-row gap-4 mb-4 p-2">
@@ -78,7 +105,7 @@ function toggleExpand(id: number) {
                                     <li>
                                         <Link href="/admin/products/descriptions/create"
                                             class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
-                                            Créer une description
+                                        Créer une description
                                         </Link>
                                     </li>
                                 </ul>
@@ -103,11 +130,8 @@ function toggleExpand(id: number) {
                                             : truncateText(desc.content)
                                     }}
                                 </span>
-                                <button
-                                    v-if="desc.content.length > 100"
-                                    @click="toggleExpand(desc.id)"
-                                    class="text-blue-600 hover:underline ml-2"
-                                >
+                                <button v-if="desc.content.length > 100" @click="toggleExpand(desc.id)"
+                                    class="text-blue-600 hover:underline ml-2">
                                     {{ expandedItems.includes(desc.id) ? 'Voir moins' : 'Voir plus' }}
                                 </button>
                             </p>

@@ -41,9 +41,9 @@ const addDescription = () => {
             <BackButton class="m-4" />
 
             <div class="relative min-h-[80vh] flex-1 rounded-xl border p-6">
-                <h2 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
                     Ajouter une description de produit
-                </h2>
+                </h1>
 
                 <!-- Formulaire -->
                 <form @submit.prevent="addDescription" class="flex flex-col gap-4">

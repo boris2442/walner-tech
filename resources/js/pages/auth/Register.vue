@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import RegisteredUserController from '@/actions/App/Http/Controllers/Auth/RegisteredUserController';
 import FloatingAction from '@/components/frontend/FloatingAction.vue';
 import InputError from '@/components/InputError.vue';
@@ -9,14 +10,17 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { login } from '@/routes';
 import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import { LoaderCircle, Eye, EyeOff } from 'lucide-vue-next';
 import BackButton from '@/components/frontend/BackButton.vue';
-// import FloatingAction from '@/components/frontend/FloatingAction.vue';
+const showPassword = ref(false);
+const showConfirmPassword = ref(false);
+
 </script>
 
 <template>
     <FloatingAction />
-  <BackButton class="m-4" />
+    <BackButton class="m-4" />
+
     <Head title="Register" />
     <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4 dark:bg-[var(--dark-background)]">
         <div
@@ -33,7 +37,7 @@ import BackButton from '@/components/frontend/BackButton.vue';
                 <h2 class="text-2xl font-bold mb-2">Content de vous revoir!</h2>
                 <p class="text-center mb-4">Saisissez vos informations personnelles pour vous connecter à votre compte
                 </p>
-               
+
             </div>
 
             <div class="w-full md:w-1/2 p-8 dark:bg-[var(--dark-background)]">
@@ -65,7 +69,7 @@ import BackButton from '@/components/frontend/BackButton.vue';
                                 placeholder="email@example.com" />
                             <InputError :message="errors.email" />
                         </div>
-                        <div class="grid gap-2">
+                        <!-- <div class="grid gap-2">
                             <Label for="password" class="text-[var(--primary-blue)]">Mot de passe</Label>
                             <Input id="password" type="password" required :tabindex="3" autocomplete="new-password"
                                 name="password" placeholder="Password" />
@@ -78,7 +82,38 @@ import BackButton from '@/components/frontend/BackButton.vue';
                                 autocomplete="new-password" name="password_confirmation"
                                 placeholder="Confirm password" />
                             <InputError :message="errors.password_confirmation" />
+                        </div> -->
+
+                        <!-- Champ Mot de passe -->
+                        <div class="grid gap-2 relative">
+                            <Label for="password" class="text-[var(--primary-blue)]">Mot de passe</Label>
+                            <Input :type="showPassword ? 'text' : 'password'" id="password" name="password"
+                                placeholder="********" required class="pr-10" />
+                            <button type="button"
+                                class="absolute right-3 top-9 text-gray-500 hover:text-[var(--primary-blue)] transition"
+                                @click="showPassword = !showPassword">
+                                <Eye v-if="!showPassword" class="w-5 h-5" />
+                                <EyeOff v-else class="w-5 h-5" />
+                            </button>
+                            <InputError :message="errors.password" />
                         </div>
+
+                        <!-- Confirmation mot de passe -->
+                        <div class="grid gap-2 relative">
+                            <Label for="password_confirmation" class="text-[var(--primary-blue)]">Confirmer le mot de
+                                passe</Label>
+                            <Input :type="showConfirmPassword ? 'text' : 'password'" id="password_confirmation"
+                                name="password_confirmation" placeholder="********" required class="pr-10" />
+                            <button type="button"
+                                class="absolute right-3 top-9 text-gray-500 hover:text-[var(--primary-blue)] transition"
+                                @click="showConfirmPassword = !showConfirmPassword">
+                                <Eye v-if="!showConfirmPassword" class="w-5 h-5" />
+                                <EyeOff v-else class="w-5 h-5" />
+                            </button>
+                            <InputError :message="errors.password_confirmation" />
+                        </div>
+
+
                         <Button type="submit"
                             class="w-full bg-[var(--primary-blue)] text-white hover:bg-[var(--primary-blue2)] dark:bg-[var(--dark-black)] dark:hover:bg-gray-900 "
                             :disabled="processing">

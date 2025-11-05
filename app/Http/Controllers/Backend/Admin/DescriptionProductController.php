@@ -55,9 +55,19 @@ class DescriptionProductController extends Controller
         $descriptions = DescriptionProduct::with('product')
             ->orderBy('created_at', 'desc') // du plus récent au plus ancien 🔥
             ->get();
+        // Nombre total de descriptions existantes
+        $totalDescriptions = DescriptionProduct::count();
 
+        // Nombre de produits qui n'ont pas encore de description
+        $totalWithoutDescription = Product::doesntHave('descriptionProduct')->count();
+        $totalADecrit = $totalWithoutDescription + $totalDescriptions;
         return Inertia::render('backend/produits/descriptions/DescriptionProductIndex', [
             'descriptions' => $descriptions,
+            'stats' => [
+                'totalDescriptions' => $totalDescriptions,
+                'totalWithoutDescription' => $totalWithoutDescription,
+                'totalADecrit' => $totalADecrit
+            ],
         ]);
     }
 

@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-
+  import BackButton from '@/components/frontend/BackButton.vue';
 defineProps<{
     messages: Array<{
         id: number
@@ -31,6 +31,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
+          
+
+  <BackButton class="m-4" />
             <!-- KPI Cards -->
             <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
 
@@ -54,7 +57,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             <!-- Section Messages -->
             <div
                 class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border p-6">
-                <h2 class="text-lg font-semibold mb-4">📩 Liste des messages</h2>
+                <h1 class="text-lg font-semibold mb-4">📩 Liste des messages</h1>
 
                 <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     <div v-for="msg in messages" :key="msg.id"
@@ -72,38 +75,5 @@ const breadcrumbs: BreadcrumbItem[] = [
     </AppLayout>
 </template>
 <style scoped>
-.kpi-card {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 1rem;
-    /* plus compact que before */
-    border-radius: 0.5rem;
-    border: 1px solid #cbd5e1;
-    min-height: 60px;
-    /* un peu plus petit */
-    transition: transform 0.2s;
-    font-size: 0.875rem;
-    /* taille de texte plus petite */
-}
 
-.kpi-card:hover {
-    transform: translateY(-1px);
-}
-
-.kpi-icon {
-    font-size: 1.25rem;
-    /* icône plus petite */
-}
-
-.kpi-text h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 0.1rem;
-}
-
-.kpi-text p {
-    font-size: 1rem;
-    font-weight: 700;
-}
 </style>

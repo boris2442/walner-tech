@@ -17,12 +17,14 @@ use App\Http\Controllers\OrderClickController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Frontend\ProduitFrontendController;
 use App\Http\Controllers\Backend\Admin\DescriptionProductController;
-
+use App\Http\Controllers\NewsletterController;
 //Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/', [ProduitFrontendController::class, 'index'])->name('home');
 // Redirection vers Google
 Route::get('auth/google', [GoogleController::class, 'redirect']);
 
+
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 // Callback après login Google
 Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 //Route::get('/home', [HomeController::class, 'index'])->name('home.page');
