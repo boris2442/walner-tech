@@ -16,7 +16,7 @@ export default defineConfig({
         wayfinder({
             formVariants: true,
         }),
-         svgLoader(), // <-- Ajouté ici
+        svgLoader(), // <-- Ajouté ici
         vue({
             template: {
                 transformAssetUrls: {
