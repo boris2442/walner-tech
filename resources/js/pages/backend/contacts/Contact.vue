@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-  import BackButton from '@/components/frontend/BackButton.vue';
+import BackButton from '@/components/frontend/BackButton.vue';
 defineProps<{
     messages: Array<{
         id: number
@@ -31,9 +31,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-          
 
-  <BackButton class="m-4" />
+
+            <BackButton class="m-4" />
             <!-- KPI Cards -->
             <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
 
@@ -66,7 +66,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <p class="text-sm text-gray-500">{{ msg.email }}</p>
                         <p class="mt-2 text-sm font-medium">Sujet : {{ msg.subject }}</p>
                         <p class="mt-2 text-gray-700 dark:text-gray-300">{{ msg.message }}</p>
-                        <p class="mt-3 text-xs text-gray-400">Reçu le : {{ new Date(msg.created_at).toLocaleString() }}
+                        <p class="mt-3 text-xs text-gray-400"><i> Reçu le : {{ new Date(msg.created_at).toLocaleString()
+                                }}</i>
                         </p>
                     </div>
                 </div>
@@ -74,6 +75,4 @@ const breadcrumbs: BreadcrumbItem[] = [
         </div>
     </AppLayout>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>

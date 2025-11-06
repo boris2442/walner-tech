@@ -68,6 +68,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         // (Optionnel) afficher la liste des descriptions si tu veux
         Route::get('/products/descriptions', [DescriptionProductController::class, 'index'])
             ->name('admin.description.index');
+        Route::delete('description/{id}', [DescriptionProductController::class, 'destroy'])->name('admin.description.destroy');
 
     });
 

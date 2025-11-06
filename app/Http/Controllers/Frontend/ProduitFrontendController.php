@@ -38,7 +38,7 @@ class ProduitFrontendController extends Controller
         // Récupération des catégories
         $categories = Category::all();
 
-        return Inertia::render('backend/Products/ProductIndex', [
+        return Inertia::render('backend/products/ProductIndex', [
             'products' => $products,          // renvoie tous les produits avec likes_count + liked
             'categories' => $categories,      // toutes les catégories
             'filters' => $request->only(['search', 'category']),
@@ -58,29 +58,6 @@ class ProduitFrontendController extends Controller
 
         ]);
     }
-
-    // public function showBySlug($slug)
-    // {
-    //     $product = Product::with('images', 'category', 'descriptionProduct') // charger les images et la catégorie
-    //         ->where('slug', $slug)
-    //         ->firstOrFail();
-
-
-    //     //     // Récupérer des produits similaires dans la même catégorie
-    //     $similarProducts = Product::where('category_id', $product->category_id) // utiliser category_id directement
-    //         ->where('id', '!=', $product->id) // exclure le produit courant
-    //         ->with('images')
-    //         ->take(10)
-    //         ->get();
-
-    //     return Inertia::render('backend/products/ProductDetail', [
-    //         'product' => $product,
-    //         'similarProducts' => $similarProducts,
-    //         'auth' => [
-    //             'user' => auth()->user(),
-    //         ],
-    //     ]);
-    // }
 
 
     public function showBySlug($slug)

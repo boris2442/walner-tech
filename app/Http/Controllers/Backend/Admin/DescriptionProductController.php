@@ -23,10 +23,6 @@ class DescriptionProductController extends Controller
         ]);
     }
 
-
-
-
-
     // Ajouter une description à un produit
     public function store(DescriptionRequest $request, $productId)
     {
@@ -69,6 +65,28 @@ class DescriptionProductController extends Controller
                 'totalADecrit' => $totalADecrit
             ],
         ]);
+    }
+    //Delete description
+    public function destroy($id)
+    {
+        $description = DescriptionProduct::findOrFail($id);
+        if (!$description) {
+            return redirect()->back()
+                ->with('flash', [
+                    'message' => 'Description introuvable',
+                ]);
+
+        }
+        $description->delete();
+        return redirect()->route('admin.description.index')
+            ->with(
+                'flash',
+                [
+                    'message' => 'description supprimé avec succès',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
     }
 
 }

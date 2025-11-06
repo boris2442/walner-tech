@@ -65,7 +65,7 @@ class CategoryController extends Controller
         $inactiveCategories = Category::where('status', false)->count();
 
         // Retour via Inertia
-        return Inertia::render('Admin/Categories/Stats', [
+        return Inertia::render('Admin/categories/Stats', [
             'stats' => [
                 'total' => $totalCategories,
                 'active' => $activeCategories,

@@ -62,8 +62,9 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->latest()->paginate(10)->withQueryString();;
-    
+        $users = $query->latest()->paginate(10)->withQueryString();
+
+
 
         return inertia('backend/users/UserIndex', [
             'auth' => [
@@ -101,23 +102,6 @@ class UserController extends Controller
     }
 
 
-
-    // public function updateRole(Request $request, User $user)
-    // {
-    //     $roles = $this->getRolesEnum();
-
-    //     $request->validate([
-    //         'role' => 'required|in:' . implode(',', $roles),
-    //     ]);
-
-    //     $user->role = $request->role;
-    //     $user->save();
-
-    //     return response()->json([
-    //         'message' => 'Rôle mis à jour avec succès',
-    //         'user' => $user,
-    //     ]);
-    // }
 
     /**
      * Formulaire création utilisateur

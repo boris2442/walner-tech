@@ -6,7 +6,7 @@ import createProducts from '@/routes/products';
 import { Inertia } from '@inertiajs/inertia';
 import { Edit, Trash } from 'lucide-vue-next';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
- import BackButton from '@/components/frontend/BackButton.vue';
+import BackButton from '@/components/frontend/BackButton.vue';
 interface Product {
   id: number;
   title: string;
@@ -149,9 +149,9 @@ function clearSearch() {
   <Head title="Produits" />
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="flex flex-col gap-4 p-4">
- 
-      
-    <BackButton class="m-4" /><!-- KPI Cards -->
+
+
+      <BackButton class="m-4" /><!-- KPI Cards -->
       <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5">
         <div class="kpi-card">
           <h3>Total Produits</h3>
