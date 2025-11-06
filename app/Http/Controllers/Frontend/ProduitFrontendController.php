@@ -38,7 +38,7 @@ class ProduitFrontendController extends Controller
         // Récupération des catégories
         $categories = Category::all();
 
-        return Inertia::render('backend/products/ProductIndex', [
+        return Inertia::render('backend/Products/ProductIndex', [
             'products' => $products,          // renvoie tous les produits avec likes_count + liked
             'categories' => $categories,      // toutes les catégories
             'filters' => $request->only(['search', 'category']),
