@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\DescriptionRequest;
-
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\DescriptionProduct;
@@ -82,7 +82,44 @@ class DescriptionProductController extends Controller
             ->with(
                 'flash',
                 [
-                    'message' => 'description supprimé avec succès',
+                    'message' => 'description supprimée avec succès ✅',
+                    // 'text' => '',
+                    //'href' => route('')
+                ]
+            );
+    }
+    //Edit
+    public function edit($id)
+    {
+        $description = DescriptionProduct::with('product')->findOrFail($id);
+        $products = Product::all(); // pour permettre à l’utilisateur de changer le produit si besoin
+
+        return Inertia::render('backend/produits/descriptions/DescriptionProductEdit', [
+            'description' => $description,
+            'products' => $products,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'content' => 'required|string',
+        ]);
+
+        $description = DescriptionProduct::findOrFail($id);
+        $description->update([
+            'product_id' => $request->product_id,
+            'content' => $request->content,
+        ]);
+
+        return redirect()
+            ->route('admin.description.index')
+
+            ->with(
+                'flash',
+                [
+                    'message' => 'Description mise à jour avec succès ✅',
                     // 'text' => '',
                     //'href' => route('')
                 ]

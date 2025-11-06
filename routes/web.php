@@ -56,26 +56,56 @@ Route::get('/products/{slug}', [ProduitFrontendController::class, 'showBySlug'])
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::middleware(['auth', 'isAdmin'])->group(function () {
 
+    // Route::prefix('admin')->group(function () {
+    //     // Afficher le formulaire d’ajout d’une description
+    //     Route::get('/products/descriptions/create', [DescriptionProductController::class, 'create'])
+    //         ->name('admin.description.create');
+
+    //     // Enregistrer la description d’un produit
+    //     Route::post('/products/{product}/description', [DescriptionProductController::class, 'store'])
+    //         ->name('admin.description.store');
+
+    //     // (Optionnel) afficher la liste des descriptions si tu veux
+    //     Route::get('/products/descriptions', [DescriptionProductController::class, 'index'])
+    //         ->name('admin.description.index');
+    //     Route::delete('description/{id}', [DescriptionProductController::class, 'destroy'])->name('admin.description.destroy');
+    //     Route::get('/products/description/{id}/edit', [CategoryController::class, 'edit'])->name('admin.description.edit');
+    // });
     Route::prefix('admin')->group(function () {
-        // Afficher le formulaire d’ajout d’une description
+        // ➕ Créer une nouvelle description
         Route::get('/products/descriptions/create', [DescriptionProductController::class, 'create'])
             ->name('admin.description.create');
 
-        // Enregistrer la description d’un produit
+        // 💾 Enregistrer une nouvelle description
         Route::post('/products/{product}/description', [DescriptionProductController::class, 'store'])
             ->name('admin.description.store');
 
-        // (Optionnel) afficher la liste des descriptions si tu veux
+        // 📋 Liste des descriptions
         Route::get('/products/descriptions', [DescriptionProductController::class, 'index'])
             ->name('admin.description.index');
+
+        // ✏️ Éditer une description
+        Route::get('/products/description/{id}/edit', [DescriptionProductController::class, 'edit'])
+            ->name('admin.description.edit');
+
+        // 🔁 Mettre à jour une description
+        Route::put('/products/description/{id}', [DescriptionProductController::class, 'update'])
+            ->name('admin.description.update');
+
+        // 🗑️ Supprimer une description
+        // Route::delete('description/{id}', [DescriptionProductController::class, 'destroy'])
+        //     ->name('admin.description.destroy');
+
         Route::delete('description/{id}', [DescriptionProductController::class, 'destroy'])->name('admin.description.destroy');
-
     });
-
 
 
     //categorys 
     Route::prefix('admin')->group(function () {
+
+
+
+
         Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
         Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
         Route::get('categories', [CategoryController::class, 'indexBackend'])->name('categories.index');

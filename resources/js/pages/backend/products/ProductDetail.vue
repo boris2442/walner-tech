@@ -1,4 +1,5 @@
 <template>
+     <FlashMessageNewsletter />
     <CartWidget />
 
     <Head :title="product.title + ' - Détails du produit'" />
@@ -100,7 +101,7 @@ import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
 import TopBanner from '@/components/frontend/TopBanner.vue'
 import { cartStore } from '@/components/frontend/panier/stores/cart'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue'
 import CartWidget from '@/components/frontend/panier/CartWidget.vue'
 import Footer from '@/components/frontend/Footer.vue'
 import BackButton from '@/components/frontend/BackButton.vue'

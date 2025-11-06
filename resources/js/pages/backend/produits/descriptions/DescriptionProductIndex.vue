@@ -155,9 +155,13 @@ const deleteDescription = (id: number) => {
                             <p>
                                 <i class="text-xs">Créé le {{ formatDate(desc.created_at) }}</i>
                             </p>
+                            <p>
+                                <i class="text-xs">Modifier le {{ formatDate(desc.updated_at) }}</i>
+                            </p>
 
                             <div class="absolute bottom-2 right-2 flex gap-2 z-50">
-                                <Link class="p-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                <Link :href="`/admin/products/description/${desc.id}/edit`"
+                                    class="p-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 <Edit class="w-4 h-4" />
                                 </Link>
                                 <button type="button" aria-label="Supprimer" title="Supprimer"

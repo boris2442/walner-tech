@@ -1,11 +1,11 @@
 <template>
   <transition name="fade-slide">
     <div v-if="visible"
-      class="fixed top-6 right-6 z-[9999] shadow-xl rounded-xl px-5 py-4 flex items-start w-80 border-l-4 backdrop-blur-md"
+      class="fixed top-6 right-6 z-[9999] shadow-xl rounded-xl px-5 py-4 flex flex-col w-80 border-l-4 backdrop-blur-md overflow-hidden"
       :class="typeClass">
       <!-- Texte -->
-      <div class="flex-1">
-        <p class="text-sm font-medium text-gray-100 leading-relaxed">
+      <div class="flex items-start justify-between gap-3">
+        <p class="text-sm font-medium text-gray-100 leading-relaxed flex-1">
           {{ message }}
           <br />
           <span v-if="link">
@@ -14,13 +14,18 @@
             </Link>
           </span>
         </p>
+
+        <!-- Bouton fermeture -->
+        <button @click="close" class="text-gray-300 hover:text-white transition-transform hover:rotate-90 duration-300">
+          ✕
+        </button>
       </div>
 
-      <!-- Bouton fermeture -->
-      <button @click="close"
-        class="ml-3 text-gray-300 hover:text-white transition-transform hover:rotate-90 duration-300">
-        ✕
-      </button>
+      <!-- Barre de progression -->
+      <div class="h-1 w-full bg-white/20 mt-3 rounded-full overflow-hidden">
+        <div class="h-full bg-white/70 transition-[width] duration-[linear]" :style="{ width: progressWidth + '%' }">
+        </div>
+      </div>
     </div>
   </transition>
 </template>
@@ -32,20 +37,36 @@ import { Link } from '@inertiajs/vue3'
 const props = defineProps({
   message: { type: String, default: '' },
   link: { type: Object, default: null }, // { text: string, href: string }
-  duration: { type: Number, default: 9000 },
+  duration: { type: Number, default: 6000 },
   type: { type: String, default: 'info' } // 'success', 'error', 'info'
 })
 
 const visible = ref(false)
+const progressWidth = ref(100)
+let interval: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
   if (props.message) {
     visible.value = true
-    setTimeout(() => (visible.value = false), props.duration)
+
+    const start = Date.now()
+    const end = start + props.duration
+
+    interval = setInterval(() => {
+      const now = Date.now()
+      const percent = ((end - now) / props.duration) * 100
+      progressWidth.value = Math.max(percent, 0)
+      if (percent <= 0) {
+        close()
+      }
+    }, 30)
   }
 })
 
-const close = () => (visible.value = false)
+const close = () => {
+  visible.value = false
+  if (interval) clearInterval(interval)
+}
 
 const typeClass = computed(() => {
   switch (props.type) {

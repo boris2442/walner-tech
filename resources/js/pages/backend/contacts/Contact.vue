@@ -67,7 +67,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <p class="mt-2 text-sm font-medium">Sujet : {{ msg.subject }}</p>
                         <p class="mt-2 text-gray-700 dark:text-gray-300">{{ msg.message }}</p>
                         <p class="mt-3 text-xs text-gray-400"><i> Reçu le : {{ new Date(msg.created_at).toLocaleString()
-                                }}</i>
+                        }}</i>
                         </p>
                     </div>
                 </div>

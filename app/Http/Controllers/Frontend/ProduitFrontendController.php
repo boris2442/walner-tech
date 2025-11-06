@@ -9,55 +9,107 @@ use App\Models\Product;
 use App\Models\Category;
 class ProduitFrontendController extends Controller
 {
+    //     public function index(Request $request)
+//     {
+//         // On récupère tous les produits avec leurs images, catégorie et compteur de likes
+//         $query = Product::with(['category', 'images'])
+//             ->withCount('likes');
+
+    //         // Filtre par recherche si rempli
+//         if ($request->has('search') && $request->search != '') {
+//             $query->where('title', 'like', "%{$request->search}%");
+//         }
+//         // **Tri du plus récent au plus ancien**
+//         $query->orderBy('created_at', 'desc');
+//         // Filtre par catégorie si demandé
+//         if ($request->has('category') && $request->category != '') {
+//             $query->where('category_id', $request->category);
+//         }
+
+
+    //         // On récupère tous les produits (sans pagination)
+//         $products = $query->get()->map(function ($product) {
+//             $product->liked = auth()->check()
+//                 ? $product->likes()->where('user_id', auth()->id())->exists()
+//                 : false;
+//             return $product;
+//         });
+
+    //         // Récupération des catégories
+//         $categories = Category::all();
+
+    //         return Inertia::render('backend/products/ProductIndex', [
+//             'products' => $products,          // renvoie tous les produits avec likes_count + liked
+//             'categories' => $categories,      // toutes les catégories
+//             'filters' => $request->only(['search', 'category']),
+//             'auth' => [
+//                 'user' => auth()->user()
+//             ],
+//             'seo' => [
+//                 'title' => 'Walner Tech e-commerce - Marketplace d’ordinateurs, smartphones et accessoires au Cameroun
+
+    // ',
+//                 'description' => 'Walner Tech, votre marketplace à Bafoussam et Yaoundé : achetez ordinateurs portables, PC, smartphones et accessoires informatiques de qualité au meilleur prix.
+// ',
+//                 'image' => asset('walner.jpg'), // image OG principale pour le partage social
+//                 'url' => url('/'),
+//                 'robots' => 'index, follow',
+//             ],
+
+    //         ]);
+//     }
+
+
+
     public function index(Request $request)
     {
-        // On récupère tous les produits avec leurs images, catégorie et compteur de likes
-        $query = Product::with(['category', 'images'])
-            ->withCount('likes');
+        $userId = auth()->id();
 
-        // Filtre par recherche si rempli
-        if ($request->has('search') && $request->search != '') {
+        $query = Product::with(['category', 'images'])
+            ->withCount('likes')
+            ->when($userId, function ($q) use ($userId) {
+                $q->withExists([
+                    'likes as liked' => function ($likeQuery) use ($userId) {
+                        $likeQuery->where('user_id', $userId);
+                    }
+                ]);
+            });
+
+        // 🔍 Filtre recherche
+        if ($request->filled('search')) {
             $query->where('title', 'like', "%{$request->search}%");
         }
-        // **Tri du plus récent au plus ancien**
-        $query->orderBy('created_at', 'desc');
-        // Filtre par catégorie si demandé
-        if ($request->has('category') && $request->category != '') {
+
+        // 🏷️ Filtre catégorie
+        if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
 
+        // ⏰ Tri du plus récent
+        $query->orderBy('created_at', 'desc');
 
-        // On récupère tous les produits (sans pagination)
-        $products = $query->get()->map(function ($product) {
-            $product->liked = auth()->check()
-                ? $product->likes()->where('user_id', auth()->id())->exists()
-                : false;
-            return $product;
-        });
+        // ⚡ Récupération produits optimisée
+        $products = $query->get();
 
-        // Récupération des catégories
+        // 🧩 Récupération des catégories
         $categories = Category::all();
 
         return Inertia::render('backend/products/ProductIndex', [
-            'products' => $products,          // renvoie tous les produits avec likes_count + liked
-            'categories' => $categories,      // toutes les catégories
+            'products' => $products,
+            'categories' => $categories,
             'filters' => $request->only(['search', 'category']),
-            'auth' => [
-                'user' => auth()->user()
-            ],
+            'auth' => ['user' => auth()->user()],
             'seo' => [
-                'title' => 'Walner Tech e-commerce - Marketplace d’ordinateurs, smartphones et accessoires au Cameroun
-
-',
-                'description' => 'Walner Tech, votre marketplace à Bafoussam et Yaoundé : achetez ordinateurs portables, PC, smartphones et accessoires informatiques de qualité au meilleur prix.
-',
-                'image' => asset('walner.jpg'), // image OG principale pour le partage social
+                'title' => 'Walner Tech e-commerce - Marketplace d’ordinateurs, smartphones et accessoires au Cameroun',
+                'description' => 'Walner Tech, votre marketplace à Bafoussam et Yaoundé : achetez ordinateurs portables, PC, smartphones et accessoires informatiques de qualité au meilleur prix.',
+                'image' => asset('walner.jpg'),
                 'url' => url('/'),
                 'robots' => 'index, follow',
             ],
-
         ]);
     }
+
+
 
 
     public function showBySlug($slug)
