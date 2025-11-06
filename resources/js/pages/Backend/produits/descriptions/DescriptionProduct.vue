@@ -63,7 +63,7 @@ const addDescription = () => {
                             rows="4"></textarea>
 
                         <!-- Bouton fixe style ChatGPT -->
-                        <button type="submit"
+                        <button type="submit" title="Submit" aria-label="Submit"
                             class="absolute bottom-2 right-2 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-lg w-9 h-9 transition-all duration-200 shadow-sm disabled:opacity-50"
                             :disabled="form.processing || !form.content.trim()">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"

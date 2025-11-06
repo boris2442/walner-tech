@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Inertia } from '@inertiajs/inertia';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { ref, computed } from "vue";
@@ -7,7 +8,7 @@ import { type BreadcrumbItem } from '@/types';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
 import { dashboard } from '@/routes';
 import dayjs from 'dayjs';
-
+import { Edit, Trash } from 'lucide-vue-next';
 function formatDate(date: string) {
     return dayjs(date).format('DD/MM/YYYY HH:mm');
 }
@@ -45,6 +46,21 @@ function toggleExpand(id: number) {
         expandedItems.value.push(id);
     }
 }
+
+//delete
+//Supprimer un user
+const deleteDescription = (id: number) => {
+    if (confirm('Voulez-vous vraiment supprimer cette description ?')) {
+        Inertia.delete(`/admin/description/${id}`, {
+            onSuccess: () => {
+                // Optionnel : afficher message ou rafraîchir
+
+            },
+            preserveScroll: true
+        })
+    }
+}
+
 </script>
 
 <template>
@@ -55,7 +71,7 @@ function toggleExpand(id: number) {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4">
             <BackButton class="m-4" />
-          
+
             <div class="relative min-h-[80vh] flex-1 rounded-xl border p-6">
 
                 <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
@@ -115,7 +131,7 @@ function toggleExpand(id: number) {
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div v-for="desc in filteredDescriptions" :key="desc.id"
-                            class="border p-4 rounded shadow hover:shadow-lg transition">
+                            class="border p-4 rounded shadow hover:shadow-lg transition relative">
                             <h3 class="font-bold text-lg mb-2">
                                 Produit : {{ desc.product.title }}
                             </h3>
@@ -139,6 +155,23 @@ function toggleExpand(id: number) {
                             <p>
                                 <i class="text-xs">Créé le {{ formatDate(desc.created_at) }}</i>
                             </p>
+                            <p>
+                                <i class="text-xs">Modifier le {{ formatDate(desc.updated_at) }}</i>
+                            </p>
+
+                            <div class="absolute bottom-2 right-2 flex gap-2 z-50">
+                                <Link :href="`/admin/products/description/${desc.id}/edit`"
+                                    class="p-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                <Edit class="w-4 h-4" />
+                                </Link>
+                                <button type="button" aria-label="Supprimer" title="Supprimer"
+                                    @click="deleteDescription(desc.id)"
+                                    class="p-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                    <Trash class="w-4 h-4" />
+                                </button>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
