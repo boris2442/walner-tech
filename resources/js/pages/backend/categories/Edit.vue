@@ -6,7 +6,8 @@ import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import BackButton from '@/components/frontend/BackButton.vue';
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
-
+import categories from '@/routes/categories';
+import { dashboard } from '@/routes';
 const props = defineProps<{
     category: {
         id: number;
@@ -25,7 +26,15 @@ const submitForm = () => {
 };
 
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Categories', href: '/admin/categories' },
+    {
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    {
+        title: 'Categories List',
+        href: categories.index().url,
+
+    },
     { title: 'Modifier', href: `/admin/categories/${props.category.id}/edit` },
 ];
 </script>

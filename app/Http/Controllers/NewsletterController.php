@@ -1,38 +1,9 @@
 <?php
-// namespace App\Http\Controllers;
-
-// use Illuminate\Http\Request;
-// use App\Models\Newsletter;
-// use Illuminate\Support\Facades\Validator;
-
-// class NewsletterController extends Controller
-// {
-//  public function store(Request $request)
-// {
-//     $validator = Validator::make($request->all(), [
-//         'email' => 'required|email|unique:newsletters,email',
-//     ]);
-
-//     if ($validator->fails()) {
-//         return back()->withErrors($validator)->with('error', 'Adresse email invalide ou déjà utilisée.');
-//     }
-
-//     Newsletter::create(['email' => $request->email]);
-
-//     return back()->with('success', 'Merci pour votre abonnement 🎉');
-// }
-
-
-// }
-
-
-
-
 namespace App\Http\Controllers;
-
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\Newsletter;
 class NewsletterController extends Controller
 {
     public function store(Request $request)
@@ -58,6 +29,20 @@ class NewsletterController extends Controller
         return back()->with('flash', [
             'type' => 'success',
             'message' => 'Merci pour votre abonnement ! 🎉',
+        ]);
+    }
+
+    public function index()
+    {
+        // $newsletterList = NewsLetter::all();
+        $newsletterList = NewsLetter::query()
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $totalEmailNewsletter = NewsLetter::count();
+
+        return Inertia::render('backend/newsletters/NewsLetter', [
+            'newsletterList' => $newsletterList,
+            'totalEmailNewsletter' => $totalEmailNewsletter,
         ]);
     }
 }

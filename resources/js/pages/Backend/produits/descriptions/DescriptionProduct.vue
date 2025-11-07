@@ -5,9 +5,16 @@ import { ref } from "vue";
 import BackButton from '@/components/frontend/BackButton.vue';
 import { type BreadcrumbItem } from '@/types';
 import { dashboard } from '@/routes';
-
+import description from '@/routes/admin/description';
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Create Category', href: dashboard().url },
+    {
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    {
+        title: 'List descriptions', href: description.index().url,
+    },
+    { title: 'Create description', href: description.create().url },
 ];
 
 const props = defineProps({

@@ -7,7 +7,10 @@ import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import { Inertia } from '@inertiajs/inertia';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
+import { router } from '@inertiajs/vue3';
 import BackButton from '@/components/frontend/BackButton.vue';
+import { dashboard } from '@/routes';
+import users from '@/routes/users';
 // Props envoyés depuis UserController@index
 const props = defineProps<{
     stats: {
@@ -31,8 +34,12 @@ const props = defineProps<{
 // Breadcrumb
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Users',
-        href: '/admin/users',
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    {
+        title: 'Users List',
+        href: users.index().url,
     },
 ];
 
@@ -98,7 +105,6 @@ function changeRole(userId: number, newRole: string) {
         }
     });
 }
-import { router } from '@inertiajs/vue3';
 function goToPage(url: string | null) {
     if (!url) return; // pas de lien → on ne fait rien
     router.get(url, {}, { preserveState: true, preserveScroll: true });
@@ -110,7 +116,7 @@ function goToPage(url: string | null) {
     <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
         :link="$page.props.flash.link" />
 
-    <Head title="Users" />
+    <Head title="Users List" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-col gap-4 p-4 overflow-x-auto">
 
@@ -226,7 +232,7 @@ function goToPage(url: string | null) {
                                 </td>
 
 
-                                <td class="p-2">{{ formatDate(user.created_at) }}</td>
+                                <td class="p-2"><i class="text-xs"> {{ formatDate(user.created_at) }}</i></td>
                                 <td class="p-2 flex gap-2">
                                     <!-- <Link :href="`/admin/users/${user.id}/edit`"
                                         class="text-blue-500 hover:text-blue-700" title="Éditer">

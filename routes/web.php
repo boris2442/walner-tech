@@ -56,22 +56,9 @@ Route::get('/products/{slug}', [ProduitFrontendController::class, 'showBySlug'])
 // Groupe pour le backend (optionnel : middleware auth + admin)
 Route::middleware(['auth', 'isAdmin'])->group(function () {
 
-    // Route::prefix('admin')->group(function () {
-    //     // Afficher le formulaire d’ajout d’une description
-    //     Route::get('/products/descriptions/create', [DescriptionProductController::class, 'create'])
-    //         ->name('admin.description.create');
 
-    //     // Enregistrer la description d’un produit
-    //     Route::post('/products/{product}/description', [DescriptionProductController::class, 'store'])
-    //         ->name('admin.description.store');
-
-    //     // (Optionnel) afficher la liste des descriptions si tu veux
-    //     Route::get('/products/descriptions', [DescriptionProductController::class, 'index'])
-    //         ->name('admin.description.index');
-    //     Route::delete('description/{id}', [DescriptionProductController::class, 'destroy'])->name('admin.description.destroy');
-    //     Route::get('/products/description/{id}/edit', [CategoryController::class, 'edit'])->name('admin.description.edit');
-    // });
     Route::prefix('admin')->group(function () {
+
         // ➕ Créer une nouvelle description
         Route::get('/products/descriptions/create', [DescriptionProductController::class, 'create'])
             ->name('admin.description.create');
@@ -164,7 +151,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin')->middleware(['auth', 'isAdmin']);
-
+Route::get('/admin/newsletters', [NewsLetterController::class, 'index'])->name('admin.newsletter.index')
+;
 Route::post('/api/track-order-click', [OrderClickController::class, 'store'])->middleware('auth');
 
 // Page 404 personnalisée

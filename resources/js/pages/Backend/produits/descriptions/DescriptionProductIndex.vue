@@ -6,6 +6,7 @@ import { ref, computed } from "vue";
 import BackButton from '@/components/frontend/BackButton.vue';
 import { type BreadcrumbItem } from '@/types';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
+import description from '@/routes/admin/description';
 import { dashboard } from '@/routes';
 import dayjs from 'dayjs';
 import { Edit, Trash } from 'lucide-vue-next';
@@ -14,7 +15,11 @@ function formatDate(date: string) {
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Create Category', href: dashboard().url },
+    {
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    { title: 'List description', href: description.index().url, },
 ];
 
 const props = defineProps({
@@ -119,7 +124,7 @@ const deleteDescription = (id: number) => {
                                 class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border rounded shadow-lg z-50">
                                 <ul>
                                     <li>
-                                        <Link href="/admin/products/descriptions/create"
+                                        <Link prefetch :href="description.create.url()"
                                             class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
                                         Créer une description
                                         </Link>
@@ -160,7 +165,7 @@ const deleteDescription = (id: number) => {
                             </p>
 
                             <div class="absolute bottom-2 right-2 flex gap-2 z-50">
-                                <Link :href="`/admin/products/description/${desc.id}/edit`"
+                                <Link prefetch :href="`/admin/products/description/${desc.id}/edit`"
                                     class="p-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 <Edit class="w-4 h-4" />
                                 </Link>

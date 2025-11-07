@@ -4,9 +4,10 @@ import { Head, useForm } from '@inertiajs/vue3';
 import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
+import description from '@/routes/admin/description';
 import BackButton from '@/components/frontend/BackButton.vue';
 import { type BreadcrumbItem } from '@/types';
-
+import { dashboard } from '@/routes';
 // ✅ Props venant du contrôleur
 const props = defineProps<{
     description: {
@@ -34,8 +35,12 @@ const submitForm = () => {
 
 // ✅ Fil d’Ariane
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Descriptions produits', href: '/admin/description' },
-    { title: 'Modifier', href: `/admin/products/description/${props.description.id}/edit` },
+    {
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    { title: ' List Descriptions ', href: description.index().url, },
+    { title: 'Modifier descriptions products', href: `/admin/products/description/${props.description.id}/edit` },
 ];
 </script>
 
@@ -72,7 +77,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     :rows="6" required />
 
                 <SubmitButton :processing="form.processing" label="Mettre à jour la description"
-                class="max-w-[300px] " />
+                    class="max-w-[300px] " />
             </form>
         </div>
     </AppLayout>

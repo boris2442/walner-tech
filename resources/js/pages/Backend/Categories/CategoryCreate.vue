@@ -4,21 +4,28 @@ import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import BackButton from '@/components/frontend/BackButton.vue';
-
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Create Category',
-        href: dashboard().url,
-    },
-];
-
+import categories from '@/routes/categories';
 import { ref } from "vue";
 import Input from "@/components/backend/forms/Input.vue";
 import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
 // import FlashMessage from "@/components/frontend/flash/FlashMessage.vue";
 import { useForm } from "@inertiajs/vue3";
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    {
+        title: 'List categories', href: categories.index().url,
+    },
+    {
+        title: 'Create Category',
+        href: categories.create().url
+    },
+];
+
+
 const flashMessage = ref("");
 const form = useForm({
     name: "",
@@ -28,8 +35,6 @@ const form = useForm({
 const submitForm = () => {
     // form.post("/categories/store");
     form.post("/admin/categories");
-
-
 };
 
 </script>
@@ -38,7 +43,6 @@ const submitForm = () => {
 
     <Head title="Category create" />
     <!-- <Head title="Dashboard" /> -->
-
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
             <BackButton class="m-4" />

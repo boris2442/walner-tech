@@ -6,6 +6,9 @@ import createProducts from '@/routes/products';
 import { Inertia } from '@inertiajs/inertia';
 import { Edit, Trash } from 'lucide-vue-next';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
+import products from '@/routes/products';
+import { dashboard } from '@/routes';
+import dayjs from 'dayjs';
 import BackButton from '@/components/frontend/BackButton.vue';
 interface Product {
   id: number;
@@ -104,7 +107,16 @@ function handleTouchEnd(id: number) {
   touchEndX.value[id] = 0;
 }
 
-const breadcrumbs = [{ title: 'Produits', href: '/admin/products' }];
+const breadcrumbs = [
+  {
+    title: 'dashboard',
+    href: dashboard().url,
+  },
+  {
+    title: 'Products List',
+    href: products.index().url,
+  }
+];
 
 
 const totalLikes = computed(() =>
@@ -139,7 +151,10 @@ function clearSearch() {
   router.get('/admin/products', {}, { preserveState: true, replace: true });
 }
 
-
+// Formatage date
+function formatDate(date: string) {
+    return dayjs(date).format('DD/MM/YYYY HH:mm');
+}
 </script>
 
 <template>
@@ -231,7 +246,7 @@ function clearSearch() {
             </div>
 
             <div class="absolute bottom-2 right-2 flex gap-2 z-50">
-              <Link :href="`/admin/products/${prod.id}/edit`"
+              <Link :href="`/admin/products/${prod.id}/edit`" prefetch
                 class="p-1 bg-blue-500 text-white rounded hover:bg-blue-600">
               <Edit class="w-4 h-4" />
               </Link>
@@ -252,8 +267,9 @@ function clearSearch() {
                 ❤️ {{ prod.likes_count }}
               </div>
             </div>
-
+            
           </div>
+          <p><i class="text-xs">creer le {{formatDate(prod.created_at)  }}</i></p>
         </div>
       </div>
 

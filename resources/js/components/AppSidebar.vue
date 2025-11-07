@@ -17,6 +17,7 @@ import description from '@/routes/admin/description';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 const page = usePage();
+import newsletter from '@/routes/admin/newsletter';
 const user = computed(() => page.props.auth?.user);
 
 const mainNavItems: NavItem[] = [
@@ -64,6 +65,11 @@ const mainNavItems: NavItem[] = [
         {
             title: 'Descriptions',
             href: description.index().url,
+            icon: Grid,
+        },
+        {
+            title: 'NewsLetters',
+            href: newsletter.index().url,
             icon: Grid,
         },
     ] : []),

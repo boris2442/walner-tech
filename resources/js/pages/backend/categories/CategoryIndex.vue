@@ -8,7 +8,7 @@ import { Pencil, Trash2 } from 'lucide-vue-next';
 import dayjs from 'dayjs';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
 import BackButton from '@/components/frontend/BackButton.vue';
-
+import { dashboard } from '@/routes';
 import { Inertia } from '@inertiajs/inertia';
 interface Category {
     id: number;
@@ -27,8 +27,14 @@ const props = defineProps<{
 
 // Breadcrumb
 const breadcrumbs: BreadcrumbItem[] = [
+
     {
-        title: 'Categories',
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+
+    {
+        title: 'Categories List',
         href: categoriesRoutes.index().url
     }
 ];
@@ -80,21 +86,16 @@ document.addEventListener('click', handleClickOutside);
             <BackButton class="m-4" />
             <!-- KPI Cards -->
 
-            <div class="grid gap-4 md:grid-cols-5 sm:grid-cols-2 ">
-                <div class="kpi-card max-w-[200px] dark:border-sidebar-border ">
-                    <div class="kpi-icon">
-                        <!-- Exemple d'icône, tu peux mettre Lucide ou FontAwesome -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 7h18M3 12h18M3 17h18" />
-                        </svg>
-                    </div>
+            <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+
+                <div class="kpi-card">
+                    <div class="kpi-icon">🆕</div>
                     <div class="kpi-text">
-                        <h3>Total Catégories</h3>
-                        <p>{{ stats.total }}</p>
+                        <h3 class="text-2xl">Total Catégories</h3>
+                        <p> {{ stats.total }}</p>
                     </div>
                 </div>
+
             </div>
             <h1 class="text-xl font-bold mb-4 text-[var(--primary-blue)] dark:text-[var(--dark-gold)] my-2">
                 Categories List
@@ -128,7 +129,7 @@ document.addEventListener('click', handleClickOutside);
                             class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border rounded shadow-lg z-50">
                             <ul>
                                 <li>
-                                    <Link :href="categoriesRoutes.create().url"
+                                    <Link :href="categoriesRoutes.create().url" prefetch
                                         class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm">
                                     Créer une catégorie
                                     </Link>
@@ -158,8 +159,8 @@ document.addEventListener('click', handleClickOutside);
                                 class="border-b hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td class="p-2 truncate max-w-[150px]">{{ cat.name }}</td>
                                 <td class="p-2 truncate max-w-[250px]">{{ cat.description }}</td>
-                                <td class="p-2">{{ formatDate(cat.created_at) }}</td>
-                                <td class="p-2">{{ formatDate(cat.updated_at) }}</td>
+                                <td class="p-2"><i class="text-xs">{{ formatDate(cat.created_at) }}</i></td>
+                                <td class="p-2"><i class="text-xs">{{ formatDate(cat.updated_at) }}</i></td>
                                 <td class="p-2 flex gap-2">
                                     <Link prefetch :href="`/admin/categories/${cat.id}/edit`"
                                         class="text-blue-500 hover:text-blue-700" title="Éditer">

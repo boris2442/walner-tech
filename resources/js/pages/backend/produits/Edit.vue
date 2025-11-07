@@ -7,6 +7,8 @@ import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
 import BackButton from '@/components/frontend/BackButton.vue';
 import { ref } from 'vue';
+import products from '@/routes/products';
+import { dashboard } from '@/routes';
 // Props venant du controller
 const props = defineProps<{
     product: {
@@ -64,8 +66,16 @@ const handleFiles = (event: Event) => {
 
 // Breadcrumbs
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Produits', href: '/admin/products' },
-    { title: 'Modifier', href: `/admin/products/${props.product.id}/edit` },
+    {
+        title: 'dashboard',
+        href: dashboard().url,
+    },
+    {
+        title: 'Products List',
+        href: products.index().url,
+
+    },
+    { title: 'Modifier produit', href: `/admin/products/${props.product.id}/edit` },
 ];
 </script>
 

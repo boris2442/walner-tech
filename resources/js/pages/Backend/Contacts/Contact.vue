@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
+import contacts from '@/routes/contacts';
 import BackButton from '@/components/frontend/BackButton.vue';
 defineProps<{
     messages: Array<{
@@ -19,15 +20,19 @@ defineProps<{
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Contacts',
+        title: 'dashboard',
         href: dashboard().url,
+    },
+    {
+        title: 'Messages List ',
+        href: contacts.index().url,
     },
 ];
 </script>
 
 <template>
 
-    <Head title="Messages" />
+    <Head title="Messages List" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
@@ -67,7 +72,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <p class="mt-2 text-sm font-medium">Sujet : {{ msg.subject }}</p>
                         <p class="mt-2 text-gray-700 dark:text-gray-300">{{ msg.message }}</p>
                         <p class="mt-3 text-xs text-gray-400"><i> Reçu le : {{ new Date(msg.created_at).toLocaleString()
-                        }}</i>
+                                }}</i>
                         </p>
                     </div>
                 </div>
