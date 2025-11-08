@@ -77,6 +77,7 @@ const rightNavItems: NavItem[] = [
                             <div class="flex h-full flex-1 flex-col justify-between space-y-4 py-6">
                                 <nav class="-mx-3 space-y-1">
                                     <Link
+                                    prefetch
                                         v-for="item in mainNavItems"
                                         :key="item.title"
                                         :href="item.href"

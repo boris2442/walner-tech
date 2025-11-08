@@ -153,7 +153,7 @@ function clearSearch() {
 
 // Formatage date
 function formatDate(date: string) {
-    return dayjs(date).format('DD/MM/YYYY HH:mm');
+  return dayjs(date).format('DD/MM/YYYY HH:mm');
 }
 </script>
 
@@ -169,20 +169,32 @@ function formatDate(date: string) {
       <BackButton class="m-4" /><!-- KPI Cards -->
       <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5">
         <div class="kpi-card">
-          <h3>Total Produits</h3>
-          <p>{{ props.stats.total }}</p>
+          <div class="kpi-icon">🆕</div>
+          <div class="kpi-text">
+            <h3>Total Produits</h3>
+            <p>{{ props.stats.total }}</p>
+          </div>
         </div>
         <div class="kpi-card">
-          <h3>Ajoutés cette semaine</h3>
-          <p>{{ props.stats.addedThisWeek }}</p>
+          <div class="kpi-icon">🆕</div>
+          <div class="kpi-text">
+            <h3>Ajoutés cette semaine</h3>
+            <p>{{ props.stats.addedThisWeek }}</p>
+          </div>
         </div>
         <div v-for="item in props.stats.byCategory" :key="item.category?.id" class="kpi-card">
+             <div class="kpi-icon">🆕</div>
+             <div class="kpi-text">
           <h3>{{ item.category?.name || 'Non catégorisé' }}</h3>
           <p>{{ item.count }}</p>
+          </div>
         </div>
         <div class="kpi-card">
+            <div class="kpi-icon">🆕</div>
+             <div class="kpi-text">
           <h3>Total Likes</h3>
           <p>{{ totalLikes }}</p>
+          </div>
         </div>
 
       </div>
@@ -267,9 +279,9 @@ function formatDate(date: string) {
                 ❤️ {{ prod.likes_count }}
               </div>
             </div>
-            
+
           </div>
-          <p><i class="text-xs">creer le {{formatDate(prod.created_at)  }}</i></p>
+          <p><i class="text-xs">creer le {{ formatDate(prod.created_at) }}</i></p>
         </div>
       </div>
 
@@ -284,9 +296,6 @@ function formatDate(date: string) {
             }"></button>
         </nav>
       </div>
-
-
-
 
     </div>
   </AppLayout>

@@ -1,1 +1,0 @@
-import{d as a,a as t,m as o,o as r}from"./app-CKkDLC8m.js";const l=a({inheritAttrs:!1,__name:"AppLogoIcon",props:{className:{}},setup(e){return(s,n)=>(r(),t("img",o({src:"/walner.jpg",class:e.className},s.$attrs,{alt:"Walner Logo",class:"text-white"}),null,16))}});export{l as _};

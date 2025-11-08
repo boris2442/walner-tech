@@ -52,7 +52,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="kpi-card">
                     <div class="kpi-icon">🆕</div>
                     <div class="kpi-text">
-                        <h3>Total Messages semaine </h3>
+                        <h3>Reçu cette semaine </h3>
                         <p>{{ messagesThisWeek }}</p>
                     </div>
                 </div>

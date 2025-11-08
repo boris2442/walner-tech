@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
-import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import BackButton from '@/components/frontend/BackButton.vue';
 import categories from '@/routes/categories';
@@ -11,6 +10,7 @@ import Textarea from "@/components/backend/forms/Textarea.vue";
 import SubmitButton from "@/components/backend/forms/SubmitButton.vue";
 // import FlashMessage from "@/components/frontend/flash/FlashMessage.vue";
 import { useForm } from "@inertiajs/vue3";
+import { type BreadcrumbItem } from '@/types';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'dashboard',

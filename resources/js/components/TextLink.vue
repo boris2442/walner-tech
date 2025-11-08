@@ -14,6 +14,7 @@ defineProps<Props>();
 
 <template>
     <Link
+    prefetch
         :href="href"
         :tabindex="tabindex"
         :method="method"
