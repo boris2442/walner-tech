@@ -17,7 +17,7 @@
 
     <section
         class="about min-h-screen px-6 py-6 text-[var(--text-dark)] md:px-20 lg:px-32 dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
-        <h1 class="text-3xl">A propos de Walner Tech</h1>
+        <h1 class="text-2xl space-x-10">A propos de Walner Tech</h1>
         <div class="mx-auto max-w-6xl space-y-10">
 
             <!-- Notre mission -->

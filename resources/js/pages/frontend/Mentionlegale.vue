@@ -63,8 +63,8 @@ const sections = reactive([
     <BackButton />
 
 
-    <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
-      Mentions Légales Walner Tech
+    <h1 class="text-3xl font-bold mb-8 text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+      Mentions Légales 
     </h1>
 
     <div v-for="(section, index) in sections" :key="index" class="mb-6">

@@ -69,8 +69,8 @@ const sections = reactive([
                     dark:bg-[var(--dark-background)] dark:text-[var(--dark-white)]">
         <!-- 🔹 Bouton retour -->
         <BackButton />
-        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
-            Politique de Confidentialité Walner Tech</h1>
+        <h1 class="text-2xl font-bold mb-8 text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+            Politique de Confidentialité </h1>
 
         <p class="mb-6">
             Chez <strong>Walner Tech</strong>, la confidentialité de nos utilisateurs est une priorité absolue.

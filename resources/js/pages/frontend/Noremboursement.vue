@@ -26,8 +26,8 @@ import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
      
       <BackButton /> 
       
-      <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
-        Politique de Non-Remboursement Walner Tech
+      <h1 class="text-3xl font-bold mb-8  text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+        Politique de Non-Remboursement 
       </h1>
 
 

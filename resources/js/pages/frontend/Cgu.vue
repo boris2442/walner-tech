@@ -61,8 +61,8 @@ const sections = [
             <LoginReminder />
             <!-- 🔹 Bouton retour -->
             <BackButton />
-            <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
-                Conditions Générales d’Utilisation Walner Tech
+            <h1 class="text-2xl font-bold mb-8  text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+                Conditions Générales d’Utilisation 
             </h1>
 
 

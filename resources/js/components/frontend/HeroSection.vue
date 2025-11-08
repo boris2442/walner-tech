@@ -102,32 +102,32 @@ onMounted(() => {
 
             <!-- Bloc 1 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px] dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
-                <Truck class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Livraison rapide à partir de 3h</span>
+                class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px] dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]  hover:bg-[var(--primary-blue)] hover:text-white group transition">
+                <Truck class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Livraison rapide à partir de 3h</span>
             </div>
 
             <!-- Bloc 2 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
-                <Shield class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] ">Produits authentiques 100%
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)] hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group transition">
+                <Shield class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Produits authentiques 100%
                     garantis</span>
             </div>
 
             <!-- Bloc 3 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
-                <Headphones class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Service après vente walnertech - SAV
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)] hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group transition">
+                <Headphones class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Service après vente Walner Tech - SAV
                     agréé</span>
             </div>
 
             <!-- Bloc 4 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]">
-                <RotateCcw class="w-6 h-6 md:w-8 md:h-8 text-yellow-600" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)]">Retour rapide et facile sur 7
+                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)] transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group">
+                <RotateCcw class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
+                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Retour rapide et facile sur 7
                     jours</span>
             </div>
 

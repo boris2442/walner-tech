@@ -14,60 +14,74 @@
     <FlashMessage v-if="alertMessage" :message="alertMessage" type="success" />
 
     <section
-        class="contact-page min-h-screen bg-[var(--background-light)] dark:bg-[var(--dark-background)] p-6 md:p-16">
-        <h1 class="text-3xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
+        class="contact-page min-h-screen bg-[var(--background-light)] dark:bg-[var(--dark-background)] px-6 md:px-16 md:pb-16">
+        <!-- 🔹 Bouton retour -->
+        <BackButton class="my-0 py-0"/>
+        <h1 class="text-2xl font-bold mb-8 text-center text-[var(--primary-blue)] dark:text-[var(--dark-accent)]">
             Contactez Walner Tech</h1>
         <div class="max-w-6xl mx-auto space-y-12">
-            <!-- 🔹 Bouton retour -->
-            <BackButton />
 
             <!-- Contact Infos + Formulaire -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Infos -->
                 <div class="space-y-4">
-                    <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                    <div class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)] group  hover:shadow-lg
+hover:bg-[var(--primary-blue)] hover:text-white">
                         <font-awesome-icon :icon="['fas', 'phone']"
-                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
+                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]" />
                         <div>
-                            <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Phone
+                            <h3
+                                class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]">
+                                Phone
                                 Number</h3>
-                            <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">656 89 47 73 / 651 70
+                            <p
+                                class="text-[var(--text-secondary)] dark:text-[var(--dark-white)] group-hover:text-gray-300">
+                                656 89 47 73 / 651 70
                                 97 52</p>
                         </div>
                     </div>
-                    <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                    <div class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)] group  hover:shadow-lg
+hover:bg-[var(--primary-blue)] hover:text-white">
                         <font-awesome-icon :icon="['fas', 'envelope']"
-                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
+                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]" />
                         <div>
-                            <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Contact
+                            <h3
+                                class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]">
+                                Contact
                             </h3>
-                            <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">Walnertech@gmail.com
+                            <p
+                                class="text-[var(--text-secondary)] dark:text-[var(--dark-white)] group-hover:text-gray-300">
+                                Walnertech@gmail.com
                             </p>
                         </div>
                     </div>
-                    <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                    <div class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)] group  hover:shadow-lg
+hover:bg-[var(--primary-blue)] hover:text-white">
                         <font-awesome-icon :icon="['fas', 'map-marker-alt']"
-                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
+                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]" />
                         <div>
-                            <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">
+                            <h3
+                                class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]">
                                 Localisation</h3>
-                            <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">
+                            <p
+                                class="text-[var(--text-secondary)] dark:text-[var(--dark-white)] group-hover:text-gray-300">
                                 Bafoussam: Immeuble le Pelicant Ancien bureau des transports<br />
                                 Yaoundé: Terminus mimboman en face, sapeur pompier
                             </p>
                         </div>
                     </div>
                     <div
-                        class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)]">
+                        class="flex items-center gap-3 bg-[var(--secondary-white)] p-4 rounded shadow dark:bg-[var(--dark-black)] hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group">
                         <font-awesome-icon :icon="['fas', 'clock']"
-                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)]" />
+                            class="text-[var(--highlight-gold)] text-xl dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]" />
                         <div>
-                            <h3 class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Horaires
+                            <h3
+                                class="font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] group-hover:text-[#FFE600]">
+                                Horaires
                                 d'ouverture</h3>
-                            <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">Lundi-Samedi: 08h -
+                            <p
+                                class="text-[var(--text-secondary)] dark:text-[var(--dark-white)] group-hover:text-gray-300">
+                                Lundi-Samedi: 08h -
                                 20h</p>
                         </div>
                     </div>
@@ -77,10 +91,10 @@
                 <form class="bg-[var(--secondary-white)] p-6 rounded shadow space-y-4 dark:bg-[var(--dark-black)]"
                     @submit.prevent="submit">
 
-                    <h2 class="text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Contactez
-                        Walner Tech</h2>
-                    <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]">Nous sommes à votre écoute.
-                        Envoyez-nous votre message.</p>
+                    <!-- <h2 class="text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)]">Contactez
+                        Walner Tech</h2> -->
+                    <p class="text-[var(--text-secondary)] dark:text-[var(--dark-white)]"><i> Nous sommes à votre écoute.
+                        Envoyez-nous votre message.</i></p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>

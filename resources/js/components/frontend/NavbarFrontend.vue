@@ -29,7 +29,7 @@ function toggleAccountMenu() {
         <!-- Logo -->
         <div class="flex-shrink-0">
           <Link prefetch :href="home()">
-          <img src="/assets/walner.png" loading="lazy" alt="Walner Tech" class="h-12 object-contain" />
+          <img src="/assets/walner.png" loading="lazy" alt="Walner Tech" class="h-12 object-contain rounded border-2 border-solid border-gray-400" />
           </Link>
         </div>
 

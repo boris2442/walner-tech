@@ -14,8 +14,10 @@ function goBack() {
 </script>
 
 <template>
+    <span>
     <button type="button" title="retour" aria-label="Bouton retour à la page précédente" @click="goBack"
-        class="text-blue-600 hover:text-blue-800 dark:text-[var(--dark-gold)]  flex items-center gap-2 mb-4 dark:hover:text-[var(--dark-button-back)]">
-        <FontAwesomeIcon :icon="faArrowLeft" size="lg" />
-    </button>
+        class="text-blue-600 hover:text-blue-800 dark:text-[var(--dark-gold)]  flex items-center gap-2 mb-4 dark:hover:text-[var(--dark-button-back)] ">
+            <FontAwesomeIcon :icon="faArrowLeft" size="lg" />
+        </button>
+    </span>
 </template>
