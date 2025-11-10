@@ -276,7 +276,7 @@ function formatDate(date: string) {
 
             <!-- Croix (effacer) -->
             <button v-if="search" @click="clearSearch" type="button"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg leading-none z-10">
+              class="absolute right-15 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg leading-none z-10">
               ✕
             </button>
           </div>
