@@ -102,8 +102,10 @@ const handleFiles = (event: Event) => {
                         </label>
                         <select v-model="form.category_id" required
                             class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-[var(--primary-blue)] dark:bg-[#2A2A2A] dark:border-gray-600 dark:focus:ring-[var(--dark-gold)]">
-                            <option value="" disabled>Choisir une catégorie</option>
-                            <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
+                            <option value="" disabled class="text-xs">Choisir une catégorie</option>
+                            <option
+                            class="text-xs"
+                            v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                         </select>
                         <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id
                         }}</p>

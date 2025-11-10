@@ -57,8 +57,8 @@ const addDescription = () => {
                     <!-- Sélection du produit -->
                     <select v-model="selectedProduct"
                         class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white">
-                        <option disabled value="">Sélectionnez un produit</option>
-                        <option v-for="product in products" :key="product.id" :value="product.id">
+                        <option disabled value="" class="text-xs">Sélectionnez un produit</option>
+                        <option v-for="product in products" :key="product.id" :value="product.id" class="text-xs">
                             {{ product.title }}
                         </option>
                     </select>

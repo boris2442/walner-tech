@@ -22,6 +22,7 @@ function toggleAccountMenu() {
 </script>
 
 <template>
+  <header>
   <nav class="bg-[var(--primary-blue)] dark:bg-[var(--dark-background)] shadow-md z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
@@ -100,7 +101,7 @@ function toggleAccountMenu() {
 
     <ContactNav />
   </nav>
-
+</header>
 </template>
 
 <style scoped>

@@ -97,8 +97,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <label class="block mb-1 font-medium">Catégorie</label>
                     <select v-model="form.category_id"
                         class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="" disabled>Choisir une catégorie</option>
-                        <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
+                        <option value="" disabled class="text-xs">Choisir une catégorie</option>
+                        <option v-for="cat in categories" :key="cat.id" :value="cat.id" class="text-xs">{{ cat.name }}</option>
                     </select>
                     <p v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id }}
                     </p>
@@ -118,8 +118,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <label class="block mb-1 font-medium">Statut</label>
                     <select v-model="form.status"
                         class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="disponible">Disponible</option>
-                        <option value="indisponible">Indisponible</option>
+                        <option value="disponible" class="text-xs">Disponible</option>
+                        <option value="indisponible" class="text-xs">Indisponible</option>
                     </select>
                 </div>
 

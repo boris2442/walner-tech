@@ -62,8 +62,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <label class="block mb-1 font-medium text-slate-700 dark:text-slate-200">Produit</label>
                     <select v-model="form.product_id"
                         class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option disabled value="">Sélectionner un produit</option>
-                        <option v-for="prod in products" :key="prod.id" :value="prod.id">
+                        <option disabled value="" class="text-xs">Sélectionner un produit</option>
+                        <option class="text-xs" v-for="prod in products" :key="prod.id" :value="prod.id">
                             {{ prod.title }}
                         </option>
                     </select>

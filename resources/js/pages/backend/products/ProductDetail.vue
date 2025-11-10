@@ -1,5 +1,5 @@
 <template>
-     <FlashMessageNewsletter />
+    <FlashMessageNewsletter />
     <CartWidget />
 
     <Head :title="product.title + ' - Détails du produit'" />
@@ -16,29 +16,32 @@
                 <div
                     class="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto md:h-[500px] md:w-[100px] scrollbar-hide">
                     <img v-for="(img, index) in product.images" :key="img.id" :src="getImageUrl(img.url_image)"
-                        :alt="'Image ' + (index + 1)"
+                        loading="lazy" :alt="'Image ' + (index + 1)"
                         class="w-20 h-20 object-cover rounded-lg border cursor-pointer hover:opacity-90 transition"
                         :class="{ 'ring-2 ring-[var(--primary-blue)]': selectedImage === img.url_image }"
-                        @click="selectedImage = img.url_image" loading="lazy" />
+                        @click="selectedImage = img.url_image" />
                 </div>
 
                 <!-- Image principale -->
-                <div class="flex-1 flex items-center justify-center">
-                    <img :src="getImageUrl(selectedImage)" :alt="product.title"
+                <div class="flex-1 flex items-center justify-center relative">
+                    <img loading="lazy" :src="getImageUrl(selectedImage)" :alt="product.title"
                         class="w-full h-80 md:h-[500px] object-contain rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" />
+                    <button @click="showShare = true" type="button" title="partager"
+                        aria-label="partager dans les medias "
+                        class="flex items-center gap-2  px-2 py-2 rounded-lg hover:shadow absolute bottom-0 right-4  text-text-dark dark:text-dark-white  hover:text-white transition share">
+                        <!-- icône share -->
+                        <FontAwesomeIcon :icon="['fas', 'share-alt']" class=" text-gray-500 text-2xl " />
+                        <!-- <span>Transférer</span> -->
+                    </button>
                 </div>
+
             </div>
 
             <!-- Infos produit -->
-            <div class="flex flex-col justify-start md:justify-between relative">
+            <div class="flex flex-col justify-start md:justify-between ">
 
                 <!-- <div class="mt-4 flex items-center gap-3"> -->
-                <button @click="showShare = true"
-                    class="flex items-center gap-2 border px-3 py-2 rounded-lg hover:shadow absolute top-4 right-2  text-text-dark dark:text-dark-white hover:bg-[var(--primary-blue)] hover:text-white transition">
-                    <!-- icône share -->
-                    <FontAwesomeIcon :icon="['fas', 'share-alt']" class="h-4 w-4 text-gray-500 text-2xl" />
-                    <!-- <span>Transférer</span> -->
-                </button>
+
                 <!-- </div> -->
 
 
@@ -47,13 +50,14 @@
                 <div>
                     <h1 class="text-3xl font-bold mb-2">{{ product.title }}</h1>
                     <p class="text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">{{ product.description }}</p>
-                    <p class="text-md font-semibold text-[var(--primary-blue)] flex justify-between "> <span>{{
+                    <p class="text-md font-semibold text-[var(--primary-blue)] flex justify-between mb-3"> <span>{{
                         product.prix }} FCFA </span>
                         <span>
                             <a href="https://wa.me/237656894773" target="_blank" rel="noopener noreferrer"
-                                class='bg-[var(--primary-blue)] w-[100px] h-8 flex items-center justify-center text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition ease-in-out duration-200 '>
+                                class='bg-[#00CC5D]  h-8 flex items-center justify-center text-white px-4 py-2 rounded font-semibold hover:opacity-90 transition ease-in-out duration-200 '>
 
                                 <FontAwesomeIcon :icon="['fab', 'whatsapp']" class="h-5 w-5 ml-2 text-xl text-white" />
+                                <span class="text-sm">Whatsapp</span>
                             </a>
                         </span>
                     </p>
@@ -61,18 +65,24 @@
                                 product.stock }}  -->
 
                     <p v-if="product.stock >= 3"
-                        class="text-sm font-semibold text-[var(--primary-blue)] mb-6 dark:text-gray-300">
+                        class="text-sm font-semibold text-[var(--primary-blue)] mb-2 dark:text-gray-300">
                         <span
                             class="border border-solid border-[var(--primary-blue)] py-[2px] px-1 rounded dark:border-gray-300">
                             <span>En stock </span>
                         </span>
                     </p>
-
+                    <p v-if="!props.auth?.user" class="text-xs my-3"><span><i>Vous devrez etre
+                                <strong>
+                                    <Link prefetch href="login" class="hover:underline"> connecter </Link>
+                                </strong>pour pouvoir
+                                reserver!
+                            </i></span></p>
                 </div>
 
                 <!-- Bouton Ajouter au panier -->
                 <div>
-                    <button @click="addToCart(product)"
+                    <button @click="addToCart(product)" type="button" title="ajout au panier"
+                        aria-label="Bouton ajouter au panier"
                         class="w-full md:w-auto bg-[var(--primary-blue)] dark:bg-dark-gold text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:opacity-90 transition">
                         Ajouter au panier
                     </button>
@@ -108,7 +118,7 @@ import BackButton from '@/components/frontend/BackButton.vue'
 import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
 import FloatingAction from '@/components/frontend/FloatingAction.vue'
 import ShareModal from '@/components/frontend/ShareModal.vue'
-
+import { Link } from '@inertiajs/vue3';
 import { Head, router } from '@inertiajs/vue3'
 import SimilarProducts from '@/components/frontend/products/SimilarProducts.vue'
 import ProductDescriptions from '@/components/frontend/products/ProductDescriptions.vue'
@@ -136,7 +146,7 @@ function addToCart(product) {
     if (!props.auth?.user) {
         if (confirm("Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?")) {
             // window.location.href = '/login'
-              router.visit('/login')
+            router.visit('/login')
         }
         return
     }
@@ -157,5 +167,23 @@ function addToCart(product) {
 .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.share {
+    animation: share 3s linear infinite;
+}
+
+@keyframes share {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
 }
 </style>

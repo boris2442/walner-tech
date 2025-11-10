@@ -220,8 +220,9 @@ function formatDate(date: string) {
           </button>
         </div>
         <select v-model="category" class="border p-2 rounded min-w-[160px]">
-          <option value="">Toutes les catégories</option>
-          <option v-for="cat in props.categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
+          <option value="" class="text-xs">Toutes les catégories</option>
+          <option class="text-xs"
+           v-for="cat in props.categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
         </select>
 
         <div class="relative global-menu">
