@@ -10,7 +10,7 @@ import users from '@/routes/users';
 import dashboardAdmin from '@/routes/dashboard';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, MessageCircleMore, Store, Grid, Home } from 'lucide-vue-next';
+import { BookOpen,  LayoutGrid, MessageCircleMore, Store,  Home,Mail, List, FileText } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import products from '@/routes/products';
 import description from '@/routes/admin/description';
@@ -59,18 +59,18 @@ const mainNavItems: NavItem[] = [
         {
             title: 'Categories',
             href: categories.index().url,
-            icon: Grid,
+            icon: List,
         },
-       
+
         {
             title: 'Descriptions',
             href: description.index().url,
-            icon: Grid,
+            icon: FileText,
         },
         {
             title: 'NewsLetters',
             href: newsletter.index().url,
-            icon: Grid,
+            icon: Mail,
         },
     ] : []),
 ];

@@ -6,6 +6,8 @@ import createProducts from '@/routes/products';
 import { Inertia } from '@inertiajs/inertia';
 import { Edit, Trash } from 'lucide-vue-next';
 import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
+import { router } from '@inertiajs/vue3';
+import { watch } from 'vue';
 import products from '@/routes/products';
 import { dashboard } from '@/routes';
 import dayjs from 'dayjs';
@@ -122,9 +124,9 @@ const breadcrumbs = [
 const totalLikes = computed(() =>
   props.products.data.reduce((sum, p) => sum + p.likes_count, 0)
 );
+// Pour éviter trop d'appels réseau
+let debounceTimeout: number | null = null;
 
-import { router } from '@inertiajs/vue3';
-import { watch } from 'vue';
 
 // 🔄 Quand on change de page
 
@@ -138,18 +140,57 @@ const goToPage = (url) => {
 }
 
 // 🔍 Quand on modifie les filtres
+// watch([search, category], ([newSearch, newCategory]) => {
+//   Inertia.get('/admin/products',
+//     { search: newSearch, category: newCategory },
+//     { preserveState: true, replace: true }
+//   );
+// });
+// 🔍 Recherche avec DEBOUNCE (pas d'appel à chaque frappe)
 watch([search, category], ([newSearch, newCategory]) => {
-  Inertia.get('/admin/products',
-    { search: newSearch, category: newCategory },
-    { preserveState: true, replace: true }
-  );
+  if (debounceTimeout) clearTimeout(debounceTimeout);
+
+  debounceTimeout = window.setTimeout(() => {
+    const params: { search?: string; category?: string } = {};
+    if (newSearch) params.search = newSearch;
+    if (newCategory) params.category = newCategory;
+
+    router.visit('/admin/products', {
+      method: 'get',
+      params,
+      preserveState: true,
+      replace: true,
+      only: ['products'], // 🔥 Ne recharge QUE la liste des produits
+      preserveScroll: true,
+    });
+  }, 600);
 });
 
+
+
+
+
+
+
+
 // Fonction pour effacer la recherche
+// function clearSearch() {
+//   search.value = '';
+//   router.get('/admin/products', {}, { preserveState: true, replace: true });
+// }
+// Effacer la recherche
 function clearSearch() {
   search.value = '';
-  router.get('/admin/products', {}, { preserveState: true, replace: true });
+  router.visit('/admin/products', {
+    data: { category: category.value || undefined },
+    preserveState: true,
+    replace: true,
+    only: ['products'],
+  });
 }
+
+
+
 
 // Formatage date
 function formatDate(date: string) {
@@ -183,17 +224,17 @@ function formatDate(date: string) {
           </div>
         </div>
         <div v-for="item in props.stats.byCategory" :key="item.category?.id" class="kpi-card">
-             <div class="kpi-icon">🆕</div>
-             <div class="kpi-text">
-          <h3>{{ item.category?.name || 'Non catégorisé' }}</h3>
-          <p>{{ item.count }}</p>
+          <div class="kpi-icon">🆕</div>
+          <div class="kpi-text">
+            <h3>{{ item.category?.name || 'Non catégorisé' }}</h3>
+            <p>{{ item.count }}</p>
           </div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-icon">🆕</div>
-             <div class="kpi-text">
-          <h3>Total Likes</h3>
-          <p>{{ totalLikes }}</p>
+          <div class="kpi-icon">🆕</div>
+          <div class="kpi-text">
+            <h3>Total Likes</h3>
+            <p>{{ totalLikes }}</p>
           </div>
         </div>
 
@@ -203,26 +244,47 @@ function formatDate(date: string) {
       </h1>
       <!-- Filtres -->
       <div class="flex flex-wrap gap-4 mb-4 p-2 items-center">
-        <div class="relative flex-1 min-w-[400px]">
-          <!-- <input v-model="search" placeholder="Rechercher un produit..."
-            class="border p-2 rounded flex-1 min-w-[200px]" /> -->
+
+
+        <!-- <div class="relative flex-1 min-w-[400px]">
+         
 
           <div class="relative">
 
-            <input v-model="search" type="text" placeholder="Search..." class="custom-input" />
+            <input v-model="search" type="text" placeholder="Search..." class="custom-input max-w-[350px]" />
             <font-awesome-icon icon="magnifying-glass" class="custom-icon" />
+          
+            <button v-if="search" @click="clearSearch"
+              class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600" type="button">
+              ✕
+            </button>
           </div>
 
-          <!-- Croix pour effacer -->
-          <button v-if="search" @click="clearSearch"
-            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600" type="button">
-            ✕
-          </button>
+
+        </div> -->
+
+
+
+        <div class="relative flex-1 min-w-[400px]">
+          <div class="relative max-w-[350px] mx-auto">
+            <!-- Icône loupe -->
+            <font-awesome-icon icon="magnifying-glass"
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+
+            <!-- Input -->
+            <input v-model="search" type="text" placeholder="Search..." class="custom-input pl-10 pr-10 max-w-[300px] " />
+
+            <!-- Croix (effacer) -->
+            <button v-if="search" @click="clearSearch" type="button"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg leading-none z-10">
+              ✕
+            </button>
+          </div>
         </div>
+
         <select v-model="category" class="border p-2 rounded min-w-[160px]">
           <option value="" class="text-xs">Toutes les catégories</option>
-          <option class="text-xs"
-           v-for="cat in props.categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
+          <option class="text-xs" v-for="cat in props.categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
         </select>
 
         <div class="relative global-menu">
