@@ -6,6 +6,7 @@ import BackButton from '@/components/frontend/BackButton.vue';
 import { type BreadcrumbItem } from '@/types';
 import { dashboard } from '@/routes';
 import description from '@/routes/admin/description';
+import RichTextEditor from '@/Components/RichTextEditor.vue';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'dashboard',
@@ -68,6 +69,9 @@ const addDescription = () => {
                         <textarea v-model="form.content" placeholder="Écrivez ici la description du produit..."
                             class="w-full resize-none border-none outline-none bg-transparent pr-12 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
                             rows="4"></textarea>
+                        <!-- <RichTextEditor v-model="form.content" placeholder="Écrivez ici la description du produit..."
+                            class="w-full resize-none border-none outline-none bg-transparent pr-12 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
+                            rows="4"/> -->
 
                         <!-- Bouton fixe style ChatGPT -->
                         <button type="submit" title="Submit" aria-label="Submit"
