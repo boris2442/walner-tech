@@ -235,3 +235,20 @@ body {
     font-size: 1rem;
     font-weight: 700;
 }
+
+/* rotation panier */
+
+/* Animation de rotation infinie douce */
+.animate-spin-slow {
+    animation: spin 6s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

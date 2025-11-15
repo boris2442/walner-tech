@@ -66,6 +66,7 @@
                     <div
                         v-for="product in filteredProducts"
                         :key="product.id"
+                        :data-id="product.id"
                         class="product-card flex flex-col rounded transition-transform duration-300 hover:scale-105"
                         :class="darkMode ? 'border border-[var(--dark-grey)] bg-[var(--dark-background)] shadow-md' : 'bg-background-light shadow-md'"
                     >
@@ -119,6 +120,12 @@
                             >
                                 <font-awesome-icon :icon="['fas', 'cart-shopping']" />
                             </button>
+
+                            <div class="mt-1 flex items-center gap-1 text-sm text-gray-500">
+                                <Eye class="h-4 w-4 text-gray-400" />
+
+                                <span class="text-xs">{{ product.views_count }} vue{{ product.views_count > 1 ? 's' : '' }}</span>
+                            </div>
 
                             <button
                                 @click="toggleLike(product)"
@@ -198,7 +205,7 @@ import Testimony from '@/components/frontend/Testimony.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import axios from 'axios';
-import { ShoppingCartIcon } from 'lucide-vue-next';
+import { Eye, ShoppingCartIcon } from 'lucide-vue-next';
 import 'swiper/css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -218,14 +225,14 @@ const props = defineProps({
     auth: Object,
     seo: Object,
 });
-// console.log(props.products.categories.name);
+
 const search = ref(props.filters.search || '');
 const selectedCategory = ref(props.filters.category || '');
 const darkMode = ref(false);
 const loading = ref(true);
 const showLoading = ref(true);
 const cart = ref([]);
-
+//const enrichedProducts = ref([]); // ✅ Ajouté ici
 const skeletonCount = computed(() => {
     if (window.innerWidth >= 1024) return 20;
     if (window.innerWidth >= 768) return 12;
@@ -235,6 +242,10 @@ const skeletonCount = computed(() => {
 
 // Image volante
 const flyingImage = ref({ show: false, src: '', x: 0, y: 0, dx: 0, dy: 0 });
+
+// Fonction pour générer un nombre de vues simulé
+
+// 🚀 Initialisation au montage
 
 onMounted(() => {
     const savedCart = localStorage.getItem('cart');
@@ -262,7 +273,7 @@ onMounted(() => {
     }
 });
 
-// Filtrage
+// 🔍 Filtre des produits (basé sur les vrais produits, pas une copie)
 const filteredProducts = computed(() => {
     return props.products.filter((product) => {
         const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase());
@@ -353,6 +364,8 @@ function flyToCart(event, product) {
 function getImageUrl(path) {
     return path ? `/${path}` : '/fallback.png';
 }
+
+// count views
 </script>
 
 <style scoped>
@@ -403,21 +416,6 @@ function getImageUrl(path) {
 }
 
 @keyframes rotateInfinite {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Animation de rotation infinie douce */
-.animate-spin-slow {
-    animation: spin 6s linear infinite;
-    transform-origin: center;
-}
-
-@keyframes spin {
     from {
         transform: rotate(0deg);
     }

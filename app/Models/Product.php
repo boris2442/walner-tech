@@ -17,6 +17,7 @@ class Product extends Model
         'stock',
         'category_id',
         'status',
+        'views_count',
     ];
 
     // Relation avec les images

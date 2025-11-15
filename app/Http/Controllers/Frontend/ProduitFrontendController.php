@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Product;
-
+use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
 class ProduitFrontendController extends Controller
 {
@@ -22,6 +22,7 @@ class ProduitFrontendController extends Controller
                     }
                 ]);
             });
+
 
         // 🔍 Filtre recherche
         if ($request->filled('search')) {
@@ -64,6 +65,10 @@ class ProduitFrontendController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
+
+        // 🔥 Incrémenter la vue ici !
+        $this->incrementProductView($product);
+
         // Transformer le modèle en tableau et la relation descriptionProduct aussi
         $productArray = $product->toArray();
 
@@ -90,5 +95,25 @@ class ProduitFrontendController extends Controller
     }
 
 
+
+    /**
+     * Incrémenter la vue du produit si pas déjà vu (session + IP)
+     */
+    private function incrementProductView($product)
+    {
+        $key = 'viewed:' . $product->id . ':' . session()->getId();
+        $ipKey = 'viewed_ip:' . $product->id . ':' . request()->ip();
+
+        $hasViewed = Cache::has($key) || Cache::has($ipKey);
+
+        if (!$hasViewed) {
+            // Marquer comme vu pendant 24h
+            Cache::put($key, true, now()->addHours(24));
+            Cache::put($ipKey, true, now()->addHours(24));
+
+            // 🔼 Incrémenter le compteur réel
+            $product->increment('views_count');
+        }
+    }
 
 }

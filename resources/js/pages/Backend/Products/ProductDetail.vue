@@ -59,8 +59,8 @@
                 <div>
                     <h1 class="mb-2 text-3xl font-bold">{{ product.title }}</h1>
                     <p class="mb-2 leading-relaxed text-gray-700 dark:text-gray-300">{{ product.description }}</p>
-                    <p class="text-md mb-3 flex justify-between font-semibold text-[var(--primary-blue)]">
-                        <span>{{ product.prix }} FCFA </span>
+                    <p class="text-md mb-3 flex justify-between font-semibold text-[var(--primary-blue)] ">
+                        <span class="dark:text-gray-300"> <strong class=" underline"> {{ product.prix }}</strong> FCFA </span>
                         <span>
                             <a
                                 href="https://wa.me/237656894773"
