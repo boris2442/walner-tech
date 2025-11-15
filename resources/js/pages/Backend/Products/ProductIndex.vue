@@ -1,5 +1,4 @@
 <template>
-
     <Head :title="seo.title" />
 
     <!-- Loader -->
@@ -7,120 +6,155 @@
 
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
-    <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message"
-        :link="$page.props.flash.link" />
+    <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message" :link="$page.props.flash.link" />
 
     <!-- Floating Action -->
     <FloatingAction />
     <FlashMessageNewsletter />
     <!-- Section Produits -->
     <section>
-        <div
-            class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8 transition-colors duration-300">
+        <div class="dark:bg-dark-background dark:text-dark-white bg-background-light text-text-dark p-8 transition-colors duration-300">
             <!-- Barre de recherche -->
 
-            <div class="relative w-full max-w-md mx-auto">
-                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..."
-                    class="custom-input" />
+            <div class="relative mx-auto w-full max-w-md">
+                <input v-model="search" @input="onSearchInput" type="text" placeholder="Rechercher un produit..." class="custom-input" />
                 <font-awesome-icon icon="magnifying-glass" class="custom-icon" />
                 <!-- Croix pour vider l'input, seulement si search n'est pas vide -->
-                <button v-if="search" @click="search = ''" type="button" class="clear-btn">
-                    ✕
-                </button>
+                <button v-if="search" @click="search = ''" type="button" class="clear-btn">✕</button>
             </div>
 
-
             <!-- Liste des catégories -->
-            <div class="flex gap-3 justify-start mb-4 overflow-x-auto whitespace-nowrap px-2">
-                <span @click="filterByCategory('')" :class="categoryButtonClass('')"
-                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 dark:text-[var(--dark-grey)]">Tous</span>
-                <span v-for="cat in categories" :key="cat.id" @click="filterByCategory(cat.id)"
+            <div class="mb-4 flex justify-start gap-3 overflow-x-auto px-2 whitespace-nowrap">
+                <span
+                    @click="filterByCategory('')"
+                    :class="categoryButtonClass('')"
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 dark:text-[var(--dark-grey)]"
+                    >Tous</span
+                >
+                <span
+                    v-for="cat in categories"
+                    :key="cat.id"
+                    @click="filterByCategory(cat.id)"
                     :class="categoryButtonClass(cat.id)"
-                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium transition-colors duration-300 text-[var(--dark-blue)] dark:text-[var(--dark-grey)]">
+                    class="inline-block cursor-pointer px-4 py-2 text-sm font-medium text-[var(--dark-blue)] transition-colors duration-300 dark:text-[var(--dark-grey)]"
+                >
                     {{ cat.name }}
                 </span>
             </div>
 
-            <hr class="border-t border-gray-300 dark:border-[var(--dark-grey)] mb-6" />
+            <hr class="mb-6 border-t border-gray-300 dark:border-[var(--dark-grey)]" />
 
             <!-- Produits -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                 <!-- Skeleton loader -->
                 <template v-if="loading">
-                    <div v-for="n in skeletonCount" :key="n"
-                        class="product-card rounded flex flex-col shadow-md overflow-hidden">
-                        <div class="h-40 w-full rounded mb-3 skeleton"></div>
-                        <div class="p-3 flex flex-col flex-1">
-                            <div class="h-4 rounded w-3/4 mb-2 skeleton"></div>
-                            <div class="h-3 rounded w-1/2 skeleton"></div>
+                    <div v-for="n in skeletonCount" :key="n" class="product-card flex flex-col overflow-hidden rounded shadow-md">
+                        <div class="skeleton mb-3 h-40 w-full rounded"></div>
+                        <div class="flex flex-1 flex-col p-3">
+                            <div class="skeleton mb-2 h-4 w-3/4 rounded"></div>
+                            <div class="skeleton h-3 w-1/2 rounded"></div>
                         </div>
-                        <div class="mt-auto flex justify-between items-center p-3">
-                            <div class="h-6 w-6 rounded-full skeleton"></div>
-                            <div class="h-6 w-6 rounded-full skeleton"></div>
+                        <div class="mt-auto flex items-center justify-between p-3">
+                            <div class="skeleton h-6 w-6 rounded-full"></div>
+                            <div class="skeleton h-6 w-6 rounded-full"></div>
                         </div>
                     </div>
                 </template>
 
                 <!-- Produits réels -->
                 <template v-else>
-                    <div v-for="product in filteredProducts" :key="product.id"
-                        class="product-card rounded flex flex-col transition-transform duration-300 hover:scale-105"
-                        :class="darkMode ? 'bg-[var(--dark-background)] shadow-md border border-[var(--dark-grey)]' : 'bg-background-light shadow-md'">
-
+                    <div
+                        v-for="product in filteredProducts"
+                        :key="product.id"
+                        class="product-card flex flex-col rounded transition-transform duration-300 hover:scale-105"
+                        :class="darkMode ? 'border border-[var(--dark-grey)] bg-[var(--dark-background)] shadow-md' : 'bg-background-light shadow-md'"
+                    >
                         <!-- Images -->
                         <div class="overflow-hidden rounded">
-                            <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]"
-                                :autoplay="{ delay: 3000 }" pagination loop>
+                            <swiper v-if="product.images.length > 1" :modules="[Autoplay, Pagination]" :autoplay="{ delay: 3000 }" pagination loop>
                                 <swiper-slide v-for="img in product.images" :key="img.id">
                                     <Link :href="`/products/${product.slug}`" prefetch class="hover:underline">
-                                    <img :src="getImageUrl(img.url_image)" :alt="product.title" loading="lazy"
-                                        class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
+                                        <img
+                                            :src="getImageUrl(img.url_image)"
+                                            :alt="product.title"
+                                            loading="lazy"
+                                            class="h-40 w-full rounded object-cover transition-transform duration-300 hover:scale-110"
+                                        />
                                     </Link>
                                 </swiper-slide>
                             </swiper>
                             <Link v-else :href="`/products/${product.slug}`" prefetch class="hover:underline">
-                            <img :src="getImageUrl(product.images[0]?.url_image)" :alt="product.title" loading="lazy"
-                                class="w-full h-40 object-cover transition-transform duration-300 hover:scale-110 rounded" />
+                                <img
+                                    :src="getImageUrl(product.images[0]?.url_image)"
+                                    :alt="product.title"
+                                    loading="lazy"
+                                    class="h-40 w-full rounded object-cover transition-transform duration-300 hover:scale-110"
+                                />
                             </Link>
                         </div>
 
                         <!-- Infos produit -->
-                        <div class="p-3 flex flex-col flex-1">
-                            <h3 class="text-sm font-medium truncate mt-2">{{ product.title }}</h3>
-                            <p class="text-sm font-semibold mt-2 "
-                                :class="darkMode ? 'text-dark-white' : 'text-text-dark'">{{ product.prix }} FCFA</p>
+                        <div class="flex flex-1 flex-col p-3">
+                            <h3 class="mt-2 mb-1 truncate text-sm font-medium">{{ product.title }}</h3>
+                            <!-- metttre la description et le prix en display flex -->
+                            <div class="mt-1 flex justify-between">
+                                <p class="dark:text-dark-grey text-[10px] text-gray-500">
+                                    <span
+                                        class="rounded-full border border-[var(--accent-cyan)] px-2 py-1 font-semibold text-[var(--accent-cyan)] dark:border-[var(--dark-grey)] dark:text-[var(--dark-grey)]"
+                                    >
+                                        {{ product.category.name }}</span
+                                    >
+                                </p>
+                                <p class="text-sm font-bold" :class="darkMode ? 'text-dark-white' : 'text-text-dark'">{{ product.prix }} FCFA</p>
+                            </div>
                         </div>
 
                         <!-- Boutons -->
-                        <div class="mt-auto flex justify-between items-center p-3">
-                            <button @click="flyToCart($event, product)" aria-label="Bouton ajout au panier"
+                        <div class="mt-auto flex items-center justify-between p-3 py-1">
+                            <button
+                                @click="flyToCart($event, product)"
+                                aria-label="Bouton ajout au panier"
                                 title="ajout au panier"
-                                class="transition-transform duration-200 hover:scale-125 active:scale-90 text-[var(--accent-cyan)] dark:text-white">
+                                class="text-[var(--accent-cyan)] transition-transform duration-200 hover:scale-125 active:scale-90 dark:text-white"
+                            >
                                 <font-awesome-icon :icon="['fas', 'cart-shopping']" />
                             </button>
 
-                            <button @click="toggleLike(product)" aria-label="Bouton liker le produit"
+                            <button
+                                @click="toggleLike(product)"
+                                aria-label="Bouton liker le produit"
                                 title="Liker le produit"
-                                :class="['transition-transform duration-200 hover:scale-125 active:scale-90', product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]']">
+                                :class="[
+                                    'transition-transform duration-200 hover:scale-125 active:scale-90',
+                                    product.liked ? 'text-red-500' : 'text-[var(--accent-cyan)]',
+                                ]"
+                            >
                                 <font-awesome-icon :icon="['far', 'heart']" />
-                                <span class="ml-1 text-sm dark:text-[var(--dark-grey)]">{{ product.likes_count }}</span>
+                                <span class="ml-1 text-xs font-extrabold dark:text-[var(--dark-grey)]">{{ product.likes_count }}</span>
                             </button>
                         </div>
-
+                        <div
+                            class="m-2 flex items-center justify-center rounded-xl border-2 border-blue-700 px-3 py-2 text-center text-sm font-semibold text-blue-700 transition-colors duration-200 hover:bg-blue-700 hover:text-white"
+                        >
+                            <Link
+                                :href="`/products/${product.slug}`"
+                                prefetch
+                                class="flex w-full items-center justify-center text-center dark:text-gray-300"
+                            >
+                                <ShoppingCartIcon class="animate-spin-slow mr-2" /> Voir plus
+                            </Link>
+                        </div>
                     </div>
                     <CartWidget />
                 </template>
             </div>
 
-            <div v-if="!loading && filteredProducts.length === 0"
-                class="text-center mt-6 text-gray-500 dark:text-dark-grey">
+            <div v-if="!loading && filteredProducts.length === 0" class="dark:text-dark-grey mt-6 text-center text-gray-500">
                 Aucun produit trouvé
             </div>
 
             <!-- Panier -->
             <CartWidget />
-
         </div>
     </section>
 
@@ -133,44 +167,49 @@
     <Footer />
 
     <!-- Image volante -->
-    <img v-if="flyingImage.show" :src="flyingImage.src" :style="{
-        top: flyingImage.y + 'px',
-        left: flyingImage.x + 'px',
-        transform: 'translate(' + flyingImage.dx + 'px,' + flyingImage.dy + 'px) scale(0.2)',
-        transition: 'transform 0.8s ease-in-out, opacity 0.8s ease-in-out',
-        opacity: 1
-    }" class="fixed w-20 h-20 rounded-lg pointer-events-none z-50" />
+    <img
+        v-if="flyingImage.show"
+        :src="flyingImage.src"
+        :style="{
+            top: flyingImage.y + 'px',
+            left: flyingImage.x + 'px',
+            transform: 'translate(' + flyingImage.dx + 'px,' + flyingImage.dy + 'px) scale(0.2)',
+            transition: 'transform 0.8s ease-in-out, opacity 0.8s ease-in-out',
+            opacity: 1,
+        }"
+        class="pointer-events-none fixed z-50 h-20 w-20 rounded-lg"
+    />
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { Head, Link, router } from '@inertiajs/vue3'
-import axios from 'axios'
-import { cartStore } from '@/components/frontend/panier/stores/cart'
-import TopBanner from '@/components/frontend/TopBanner.vue'
-import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue'
-import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue'
-import Footer from '@/components/frontend/Footer.vue'
-import Service from '@/components/frontend/Service.vue'
-import Testimony from '@/components/frontend/Testimony.vue'
-import FloatingAction from '@/components/frontend/FloatingAction.vue'
-import Loading from '@/components/frontend/Loading.vue'
-import LoginReminder from '@/components/frontend/flash/LoginReminder.vue'
-import About2 from '@/components/frontend/About2.vue'
-import Map2 from '@/components/frontend/Map2.vue'
-import HeroSection from '@/components/frontend/HeroSection.vue'
-import CartWidget from '@/components/frontend/panier/CartWidget.vue'
+import About2 from '@/components/frontend/About2.vue';
+import FlashMessageFrontend from '@/components/frontend/flash/FlashMessageFrontend.vue';
+import LoginReminder from '@/components/frontend/flash/LoginReminder.vue';
+import FloatingAction from '@/components/frontend/FloatingAction.vue';
+import Footer from '@/components/frontend/Footer.vue';
+import HeroSection from '@/components/frontend/HeroSection.vue';
+import Loading from '@/components/frontend/Loading.vue';
+import Map2 from '@/components/frontend/Map2.vue';
+import NavbarFrontend from '@/components/frontend/NavbarFrontend.vue';
+import CartWidget from '@/components/frontend/panier/CartWidget.vue';
+import { cartStore } from '@/components/frontend/panier/stores/cart';
+import Service from '@/components/frontend/Service.vue';
+import Testimony from '@/components/frontend/Testimony.vue';
+import TopBanner from '@/components/frontend/TopBanner.vue';
+import { Head, Link, router } from '@inertiajs/vue3';
+import axios from 'axios';
+import { ShoppingCartIcon } from 'lucide-vue-next';
+import 'swiper/css';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { computed, onMounted, ref } from 'vue';
 
-import { Swiper, SwiperSlide } from "swiper/vue"
-import "swiper/css"
-import { Autoplay, Pagination } from "swiper/modules"
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue'
-library.add(faCartShopping, faHeart)
+import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faCartShopping, faHeart);
 
 const props = defineProps({
     products: Array,
@@ -178,98 +217,108 @@ const props = defineProps({
     filters: Object,
     auth: Object,
     seo: Object,
-})
-
-const search = ref(props.filters.search || '')
-const selectedCategory = ref(props.filters.category || '')
-const darkMode = ref(false)
-const loading = ref(true)
-const showLoading = ref(true)
-const cart = ref([])
+});
+// console.log(props.products.categories.name);
+const search = ref(props.filters.search || '');
+const selectedCategory = ref(props.filters.category || '');
+const darkMode = ref(false);
+const loading = ref(true);
+const showLoading = ref(true);
+const cart = ref([]);
 
 const skeletonCount = computed(() => {
-    if (window.innerWidth >= 1024) return 20
-    if (window.innerWidth >= 768) return 12
-    if (window.innerWidth >= 640) return 8
-    return 4
-})
+    if (window.innerWidth >= 1024) return 20;
+    if (window.innerWidth >= 768) return 12;
+    if (window.innerWidth >= 640) return 8;
+    return 4;
+});
 
 // Image volante
-const flyingImage = ref({ show: false, src: '', x: 0, y: 0, dx: 0, dy: 0 })
+const flyingImage = ref({ show: false, src: '', x: 0, y: 0, dx: 0, dy: 0 });
 
 onMounted(() => {
-    const savedCart = localStorage.getItem('cart')
-    if (savedCart) cart.value = JSON.parse(savedCart)
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) cart.value = JSON.parse(savedCart);
 
-    darkMode.value = localStorage.getItem('darkMode') === 'true'
+    darkMode.value = localStorage.getItem('darkMode') === 'true';
 
-    const hasVisited = sessionStorage.getItem('hasVisited')
+    const hasVisited = sessionStorage.getItem('hasVisited');
     if (!hasVisited) {
-        showLoading.value = true
-        loading.value = true
+        showLoading.value = true;
+        loading.value = true;
         setTimeout(() => {
-            showLoading.value = false
-            setTimeout(() => { loading.value = false }, 1000)
-        }, 2000)
-        sessionStorage.setItem('hasVisited', 'true')
+            showLoading.value = false;
+            setTimeout(() => {
+                loading.value = false;
+            }, 1000);
+        }, 2000);
+        sessionStorage.setItem('hasVisited', 'true');
     } else {
-        showLoading.value = false
-        loading.value = true
-        setTimeout(() => { loading.value = false }, 1000)
+        showLoading.value = false;
+        loading.value = true;
+        setTimeout(() => {
+            loading.value = false;
+        }, 1000);
     }
-})
+});
 
 // Filtrage
 const filteredProducts = computed(() => {
-    return props.products.filter(product => {
-        const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase())
-        const matchCategory = selectedCategory.value === '' || product.category_id === selectedCategory.value
-        return matchSearch && matchCategory
-    })
-})
+    return props.products.filter((product) => {
+        const matchSearch = product.title.toLowerCase().includes(search.value.toLowerCase());
+        const matchCategory = selectedCategory.value === '' || product.category_id === selectedCategory.value;
+        return matchSearch && matchCategory;
+    });
+});
 
 // Like
 function toggleLike(product) {
     if (!props.auth?.user) {
-        if (confirm("Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?")) {
-
-            router.visit('/login')
+        if (confirm('Vous devez être connecté pour aimer un produit.\nVoulez-vous vous connecter maintenant ?')) {
+            router.visit('/login');
         }
-        return
+        return;
     }
-    axios.post(`/like/${product.id}`).then(res => {
-        product.liked = res.data.liked
-        product.likes_count = res.data.likesCount
-    }).catch(() => { })
+    axios
+        .post(`/like/${product.id}`)
+        .then((res) => {
+            product.liked = res.data.liked;
+            product.likes_count = res.data.likesCount;
+        })
+        .catch(() => {});
 }
 
 // Catégorie
 function categoryButtonClass(id) {
-    const selected = selectedCategory.value === id
-    return [
-        'border-none',
-        selected ? 'underline text-[var(--accent-cyan)]' : 'text-text-dark hover:text-[var(--accent-cyan)]'
-    ]
+    const selected = selectedCategory.value === id;
+    return ['border-none', selected ? 'underline text-[var(--accent-cyan)]' : 'text-text-dark hover:text-[var(--accent-cyan)]'];
 }
 
-function filterByCategory(id) { selectedCategory.value = id }
-function onSearchInput() { }
+function filterByCategory(id) {
+    selectedCategory.value = id;
+}
+function onSearchInput() {}
 
 // Cart functions
-function saveCart() { localStorage.setItem('cart', JSON.stringify(cart.value)) }
-
-function addToCart(product) {
-    const existing = cart.value.find(p => p.id === product.id)
-    if (existing) existing.quantity++
-    else cart.value.push({ ...product, quantity: 1 })
-    saveCart()
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart.value));
 }
 
-function increaseQuantity(item) { item.quantity++; saveCart() }
+function addToCart(product) {
+    const existing = cart.value.find((p) => p.id === product.id);
+    if (existing) existing.quantity++;
+    else cart.value.push({ ...product, quantity: 1 });
+    saveCart();
+}
+
+function increaseQuantity(item) {
+    item.quantity++;
+    saveCart();
+}
 function decreaseQuantity(item) {
     if (item.quantity > 1) item.quantity--;
-    else cart.value = cart.value.filter(p => p.id !== item.id)
-    saveCart()
+    else cart.value = cart.value.filter((p) => p.id !== item.id);
+    saveCart();
 }
 
 // Image volante
@@ -278,28 +327,32 @@ function flyToCart(event, product) {
     // Vérifier si l'utilisateur est connecté
     if (!props.auth?.user) {
         // Afficher un alert ou confirmer la connexion
-        if (confirm("Vous devez être connecté pour ajouter un produit au panier.\nVoulez-vous vous connecter maintenant ?")) {
-            router.visit('/login')
+        if (confirm('Vous devez être connecté pour ajouter un produit au panier.\nVoulez-vous vous connecter maintenant ?')) {
+            router.visit('/login');
         }
         return; // arrêter la fonction si pas connecté
     }
 
-    const img = event.currentTarget.closest('.product-card').querySelector('img')
-    const cartEl = document.querySelector('.fixed.bottom-6.right-6 button')
-    if (!img || !cartEl) return
+    const img = event.currentTarget.closest('.product-card').querySelector('img');
+    const cartEl = document.querySelector('.fixed.bottom-6.right-6 button');
+    if (!img || !cartEl) return;
 
-    const imgRect = img.getBoundingClientRect()
-    const cartRect = cartEl.getBoundingClientRect()
-    const dx = cartRect.left + cartRect.width / 2 - (imgRect.left + imgRect.width / 2)
-    const dy = cartRect.top + cartRect.height / 2 - (imgRect.top + imgRect.height / 2)
+    const imgRect = img.getBoundingClientRect();
+    const cartRect = cartEl.getBoundingClientRect();
+    const dx = cartRect.left + cartRect.width / 2 - (imgRect.left + imgRect.width / 2);
+    const dy = cartRect.top + cartRect.height / 2 - (imgRect.top + imgRect.height / 2);
 
-    flyingImage.value = { show: true, src: img.src, x: imgRect.left, y: imgRect.top, dx, dy }
+    flyingImage.value = { show: true, src: img.src, x: imgRect.left, y: imgRect.top, dx, dy };
 
-    cartStore.add(product)  // ✅ un seul panier global
-    setTimeout(() => { flyingImage.value.show = false }, 800)
+    cartStore.add(product); // ✅ un seul panier global
+    setTimeout(() => {
+        flyingImage.value.show = false;
+    }, 800);
 }
 // Images
-function getImageUrl(path) { return path ? `/${path}` : '/fallback.png' }
+function getImageUrl(path) {
+    return path ? `/${path}` : '/fallback.png';
+}
 </script>
 
 <style scoped>
@@ -335,11 +388,41 @@ function getImageUrl(path) { return path ? `/${path}` : '/fallback.png' }
 
 @keyframes shimmer {
     0% {
-        background-position: -400px 0
+        background-position: -400px 0;
     }
 
     100% {
-        background-position: 400px 0
+        background-position: 400px 0;
+    }
+}
+
+/* Rotation infinie douce - 360° toutes les 4s */
+.animate-cart .lucide-icon {
+    animation: rotateInfinite 4s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animation de rotation infinie douce */
+.animate-spin-slow {
+    animation: spin 6s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
 </style>
