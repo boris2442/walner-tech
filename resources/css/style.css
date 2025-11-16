@@ -252,3 +252,20 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/* another rotate */
+
+/* Rotation infinie douce - 360° toutes les 4s */
+.animate-cart .lucide-icon {
+    animation: rotateInfinite 4s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

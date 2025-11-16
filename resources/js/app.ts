@@ -4,12 +4,12 @@ import { Inertia } from '@inertiajs/inertia';
 import { createInertiaApp } from '@inertiajs/vue3';
 //import { Link } from '@inertiajs/inertia-vue3'; // <-- important !
 import { library } from '@fortawesome/fontawesome-svg-core';
-
 import { faFacebook, faLinkedin, faTelegram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping, faEnvelope, faMagnifyingGlass, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { Eye, ShoppingCartIcon } from 'lucide-vue-next';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 
@@ -30,7 +30,10 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .component('font-awesome-icon', FontAwesomeIcon)
+            .component('Eye', Eye)
+            .component('ShoppingCartIcon', ShoppingCartIcon)
             //  .component('Link', Link)
+
             // ✅ On ajoute simplement notre plugin head
             .use(head)
             .mount(el);

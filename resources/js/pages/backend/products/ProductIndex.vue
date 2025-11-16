@@ -205,7 +205,7 @@ import Testimony from '@/components/frontend/Testimony.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import axios from 'axios';
-import { Eye, ShoppingCartIcon } from 'lucide-vue-next';
+
 import 'swiper/css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -232,7 +232,7 @@ const darkMode = ref(false);
 const loading = ref(true);
 const showLoading = ref(true);
 const cart = ref([]);
-//const enrichedProducts = ref([]); // ✅ Ajouté ici
+
 const skeletonCount = computed(() => {
     if (window.innerWidth >= 1024) return 20;
     if (window.innerWidth >= 768) return 12;
@@ -406,21 +406,6 @@ function getImageUrl(path) {
 
     100% {
         background-position: 400px 0;
-    }
-}
-
-/* Rotation infinie douce - 360° toutes les 4s */
-.animate-cart .lucide-icon {
-    animation: rotateInfinite 4s linear infinite;
-    transform-origin: center;
-}
-
-@keyframes rotateInfinite {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
     }
 }
 </style>

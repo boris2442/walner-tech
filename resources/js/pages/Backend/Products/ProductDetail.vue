@@ -38,7 +38,7 @@
                         @click="showShare = true"
                         type="button"
                         title="partager"
-                        aria-label="partager dans les medias "
+                        aria-label="Partager ce produit sur les réseaux sociaux"
                         class="text-text-dark dark:text-dark-white share absolute right-4 bottom-0 flex items-center gap-2 rounded-lg px-2 py-2 transition hover:text-white hover:shadow"
                     >
                         <!-- icône share -->
@@ -59,13 +59,16 @@
                 <div>
                     <h1 class="mb-2 text-3xl font-bold">{{ product.title }}</h1>
                     <p class="mb-2 leading-relaxed text-gray-700 dark:text-gray-300">{{ product.description }}</p>
-                    <p class="text-md mb-3 flex justify-between font-semibold text-[var(--primary-blue)] ">
-                        <span class="dark:text-gray-300"> <strong class=" underline"> {{ product.prix }}</strong> FCFA </span>
+                    <p class="text-md mb-3 flex justify-between font-semibold text-[var(--primary-blue)]">
+                        <span class="dark:text-gray-300">
+                            <strong class="underline"> {{ product.prix }}</strong> FCFA
+                        </span>
                         <span>
                             <a
-                                href="https://wa.me/237656894773"
+                                :href="whatsAppLink"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                title="Contacter walner tech via WhatsApp"
                                 class="flex h-8 items-center justify-center rounded bg-[#00CC5D] px-4 py-2 font-semibold text-white transition duration-200 ease-in-out hover:opacity-90"
                             >
                                 <FontAwesomeIcon :icon="['fab', 'whatsapp']" class="ml-2 h-5 w-5 text-xl text-white" />
@@ -73,8 +76,6 @@
                             </a>
                         </span>
                     </p>
-                    <!-- {{
-                                product.stock }}  -->
 
                     <p v-if="product.stock >= 3" class="mb-2 text-sm font-semibold text-[var(--primary-blue)] dark:text-gray-300">
                         <span class="rounded border border-solid border-[var(--primary-blue)] px-1 py-[2px] dark:border-gray-300">
@@ -84,10 +85,8 @@
                     <p v-if="!props.auth?.user" class="my-3 text-xs">
                         <span
                             ><i
-                                >Vous devrez etre
-                                <strong>
-                                    <Link prefetch href="login" class="hover:underline"> connecter </Link> </strong
-                                >pour pouvoir reserver!
+                                >Vous devrez etre <strong> <Link prefetch href="login" class="hover:underline"> connecter </Link> </strong>pour
+                                pouvoir reserver!
                             </i></span
                         >
                     </p>
@@ -100,9 +99,9 @@
                         type="button"
                         title="ajout au panier"
                         aria-label="Bouton ajouter au panier"
-                        class="dark:bg-dark-gold w-full rounded-lg bg-[var(--primary-blue)] px-6 py-3 font-semibold text-white shadow-md transition hover:opacity-90 md:w-auto"
+                        class="dark:bg-dark-gold flex w-full items-center justify-center rounded-lg bg-[var(--primary-blue)] px-6 py-3 text-center font-semibold text-white shadow-md transition hover:opacity-90 md:w-auto dark:text-gray-300"
                     >
-                        Ajouter au panier
+                        <ShoppingCartIcon class="animate-spin-slow mr-2" /> Ajouter au panier
                     </button>
                 </div>
             </div>
@@ -135,7 +134,7 @@ import ShareModal from '@/components/frontend/ShareModal.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps({
     product: Object,
@@ -165,6 +164,39 @@ function addToCart(product) {
 
     cartStore.add(product);
 }
+//send url message
+
+const whatsAppNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '237656894773';
+
+const whatsAppLink = computed(() => {
+    // Sécurité : tronquer et nettoyer le titre
+    const rawTitle = props.product.title;
+    const cleanTitle = rawTitle.replace(/[*_~`]/g, '');
+    const truncatedTitle = cleanTitle.length > 70 ? cleanTitle.slice(0, 67) + '...' : cleanTitle;
+
+    const encodedTitle = encodeURIComponent(truncatedTitle);
+    const baseUrl = encodeURIComponent(window.location.href);
+    const storeName = 'Walner Tech';
+
+    // Gérer le nom utilisateur ou anonyme
+    const userName = props.auth?.user ? encodeURIComponent(props.auth.user.name) : 'Client%20Anonyme'; // encodé manuellement
+
+    const message = `
+Bonjour ${storeName},
+
+Je suis intéressé(e) par le produit suivant : *${decodeURIComponent(encodedTitle)}*.
+
+Pourriez-vous me confirmer sa disponibilité et les modalités de livraison ?
+
+Page du produit : ${decodeURIComponent(baseUrl)}
+
+Cordialement,  
+${props.auth?.user ? props.auth.user.name : 'Client Anonyme'}
+`.trim();
+
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+});
 </script>
 
 <style scoped>

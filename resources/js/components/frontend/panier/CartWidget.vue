@@ -1,44 +1,61 @@
 <template>
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div class="fixed right-6 bottom-6 z-50 flex flex-col items-end">
         <!-- Bouton Panier -->
-        <button @click="toggleCart" type="button" title="Ouvrir le panier" aria-label="Bouton ouvrir le panier"
+        <button
+            @click="toggleCart"
+            type="button"
+            title="Ouvrir le panier"
+            aria-label="Bouton ouvrir le panier"
             ref="cartButton"
-            class="relative bg-[var(--primary-blue)] rounded-full w-12 h-12 flex items-center justify-center text-[var(--dark-gold)] shadow-lg hover:scale-110 transition-transform">
-            <font-awesome-icon :icon="['fas', 'cart-shopping']" class="text-2xl" />
-            <span v-if="totalItems > 0"
-                class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+            class="animate-cart relative flex h-12 w-12 items-center justify-center rounded-full bg-[var(--primary-blue)] text-[var(--dark-gold)] shadow-lg transition-transform hover:scale-110"
+        >
+            <font-awesome-icon :icon="['fas', 'cart-shopping']" class="animate-spin-slow text-2xl" />
+            <span
+                v-if="totalItems > 0"
+                class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white"
+            >
                 {{ totalItems }}
             </span>
         </button>
 
         <!-- Tooltip vide -->
-        <div v-if="showEmptyTooltip"
-            class="absolute bottom-14 right-0 bg-red-500 text-white text-xs py-1 px-2 rounded shadow-lg">
+        <div v-if="showEmptyTooltip" class="absolute right-0 bottom-14 rounded bg-red-500 px-2 py-1 text-xs text-white shadow-lg">
             Votre panier est vide !
         </div>
 
         <!-- Mini Panier -->
         <transition name="fade-slide">
-            <div v-if="showCart"
-                class="cart-widget absolute bottom-14 right-0 z-50 w-80 max-h-96 bg-[var(--accent-cyan)] dark:bg-dark-background shadow-lg rounded-lg overflow-y-auto p-3 cart-scroll mt-2">
+            <div
+                v-if="showCart"
+                class="cart-widget dark:bg-dark-background cart-scroll absolute right-0 bottom-14 z-50 mt-2 max-h-96 w-80 overflow-y-auto rounded-lg bg-[var(--accent-cyan)] p-3 shadow-lg"
+            >
+                <div v-if="cart.length === 0" class="dark:text-dark-grey text-center text-sm text-gray-400">Le panier est vide 😕</div>
 
-                <div v-if="cart.length === 0" class="text-sm text-gray-400 dark:text-dark-grey text-center">
-                    Le panier est vide 😕
-                </div>
-
-                <div v-for="item in cart" :key="item.id" class="flex items-center mb-2">
-                    <img :src="getImageUrl(item.images?.[0]?.url_image)" class="w-12 h-12 object-cover rounded mr-2" />
+                <div v-for="item in cart" :key="item.id" class="mb-2 flex items-center">
+                    <img :src="getImageUrl(item.images?.[0]?.url_image)" class="mr-2 h-12 w-12 rounded object-cover" />
                     <div class="flex-1">
-                        <p class="text-sm font-medium truncate text-gray-100">{{ item.title }}</p>
+                        <p class="truncate text-sm font-medium text-gray-100">{{ item.title }}</p>
                         <p class="text-xs text-[var(--dark-gold)]">{{ item.prix }} FCFA x {{ item.quantity }}</p>
-                        <div class="flex items-center mt-1 gap-1">
-                            <button @click="decrease(item)" type="button" aria-label="Diminuer la quantité"
+                        <div class="mt-1 flex items-center gap-1">
+                            <button
+                                @click="decrease(item)"
+                                type="button"
+                                aria-label="Diminuer la quantité"
                                 title="Diminuer la quantité"
-                                class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300">-</button>
+                                class="rounded bg-gray-200 px-2 text-sm hover:bg-gray-300 dark:bg-gray-700"
+                            >
+                                -
+                            </button>
                             <span class="px-2">{{ item.quantity }}</span>
-                            <button @click="increase(item)" type="button" aria-label="Augmenter la quantité"
+                            <button
+                                @click="increase(item)"
+                                type="button"
+                                aria-label="Augmenter la quantité"
                                 title="Augmenter la quantité"
-                                class="bg-gray-200 dark:bg-gray-700 rounded px-2 text-sm hover:bg-gray-300">+</button>
+                                class="rounded bg-gray-200 px-2 text-sm hover:bg-gray-300 dark:bg-gray-700"
+                            >
+                                +
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -57,71 +74,76 @@
                     Commander sur WhatsApp
                  
                 </button> -->
-                <button type="button" title="Régler la commande sur WhatsApp"
-                    aria-label="Bouton régler la commande sur WhatsApp" @click="orderOnWhatsapp"
-                    :disabled="cart.length === 0" class="w-full flex items-center justify-center gap-2 
-           bg-white dark:bg-[var(--dark-gold)] 
-           text-[var(--accent-cyan)] py-2 rounded 
-           transition mt-3 shadow-md hover:scale-[1.02] active:scale-95">
-
+                <button
+                    type="button"
+                    title="Régler la commande sur WhatsApp"
+                    aria-label="Bouton régler la commande sur WhatsApp"
+                    @click="orderOnWhatsapp"
+                    :disabled="cart.length === 0"
+                    class="mt-3 flex w-full items-center justify-center gap-2 rounded bg-white py-2 text-[var(--accent-cyan)] shadow-md transition hover:scale-[1.02] active:scale-95 dark:bg-[var(--dark-gold)]"
+                >
                     <!-- Icône animée -->
-                    <MessageCircle class="w-5 h-5 animate-pulse-glow" />
+                    <MessageCircle class="animate-pulse-glow h-5 w-5" />
 
                     Commander sur WhatsApp
                 </button>
-
             </div>
         </transition>
     </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
-import { router } from '@inertiajs/vue3'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { cartStore } from '@/components/frontend/panier/stores/cart'
-import { usePage } from '@inertiajs/vue3'  // ✅ Import obligatoire
-import { MessageCircle } from 'lucide-vue-next'
-const showCart = ref(false)
-function toggleCart() { showCart.value = !showCart.value }
+import { cartStore } from '@/components/frontend/panier/stores/cart';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { router, usePage } from '@inertiajs/vue3';
+import { MessageCircle } from 'lucide-vue-next';
+import { computed, ref, watch } from 'vue';
+const showCart = ref(false);
+function toggleCart() {
+    showCart.value = !showCart.value;
+}
 
-const cart = computed(() => cartStore.items)
-const totalItems = computed(() => cartStore.totalItems())
-const cartTotal = computed(() => cartStore.totalPrice())
+const cart = computed(() => cartStore.items);
+const totalItems = computed(() => cartStore.totalItems());
+const cartTotal = computed(() => cartStore.totalPrice());
 
-function increase(item) { cartStore.increase(item) }
-function decrease(item) { cartStore.decrease(item) }
+function increase(item) {
+    cartStore.increase(item);
+}
+function decrease(item) {
+    cartStore.decrease(item);
+}
 
-function getImageUrl(path) { return path ? `/${path}` : '/fallback.png' }
-
+function getImageUrl(path) {
+    return path ? `/${path}` : '/fallback.png';
+}
 
 function orderOnWhatsapp() {
-    const page = usePage() // ✅ On récupère les props Inertia ici
-    const user = page.props.auth?.user
-    const userName = user?.name || "Client Walner Tech"
+    const page = usePage(); // ✅ On récupère les props Inertia ici
+    const user = page.props.auth?.user;
+    const userName = user?.name || 'Client Walner Tech';
 
     // Vérifie la connexion
     if (!user) {
-        if (confirm("⚠️ Vous devez être connecté pour pouvoir effectuer une commande.\nSouhaitez-vous vous connecter maintenant ?")) {
-            router.visit('/login') // redirige vers la page de connexion
+        if (confirm('⚠️ Vous devez être connecté pour pouvoir effectuer une commande.\nSouhaitez-vous vous connecter maintenant ?')) {
+            router.visit('/login'); // redirige vers la page de connexion
         }
-        return
+        return;
     }
 
-    const entreprisePhone = "237657961059"
+    const entreprisePhone = '237657961059';
 
-    let message =
-        `*Bonjour équipe Walner Tech 👋,*
+    let message = `*Bonjour équipe Walner Tech 👋,*
 Je souhaite confirmer ma commande. Voici le récapitulatif :
 
-`
+`;
 
-    cart.value.forEach(item => {
-        message += `• ${item.title} (x${item.quantity}) — ${item.prix * item.quantity} FCFA\n`
-    })
+    cart.value.forEach((item) => {
+        message += `• ${item.title} (x${item.quantity}) — ${item.prix * item.quantity} FCFA\n`;
+    });
 
     // Ajout de la date de commande
-    const date = new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' })
+    const date = new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' });
 
     message += `
 *Montant total :* ${cartTotal.value} FCFA
@@ -133,34 +155,32 @@ Merci de bien vouloir me confirmer la disponibilité et les modalités de livrai
 
 Cordialement,
 ${userName}
-`
+`;
 
-    window.open(`https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`, "_blank")
+    window.open(`https://wa.me/${entreprisePhone}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-
-
 // Animation bouton vide
-const cartButton = ref(null)
-const showEmptyTooltip = ref(false)
+const cartButton = ref(null);
+const showEmptyTooltip = ref(false);
 
 function animateEmptyCart() {
     if (cartButton.value) {
-        cartButton.value.classList.add('animate-shake')
-        showEmptyTooltip.value = true
+        cartButton.value.classList.add('animate-shake');
+        showEmptyTooltip.value = true;
         setTimeout(() => {
-            cartButton.value.classList.remove('animate-shake')
-            showEmptyTooltip.value = false
-        }, 800) // correspond à durée animation
+            cartButton.value.classList.remove('animate-shake');
+            showEmptyTooltip.value = false;
+        }, 800); // correspond à durée animation
     }
 }
 
 // Watch panier vide
 watch(totalItems, (newVal) => {
     if (newVal === 0) {
-        animateEmptyCart()
+        animateEmptyCart();
     }
-})
+});
 </script>
 
 <style scoped>
@@ -194,7 +214,6 @@ watch(totalItems, (newVal) => {
 
 /* ---- Shake Animation ---- */
 @keyframes shake {
-
     0%,
     100% {
         transform: rotate(0deg);
@@ -216,7 +235,6 @@ watch(totalItems, (newVal) => {
 .animate-shake {
     animation: shake 0.8s ease-in-out;
 }
-
 
 /* animation button  commander*/
 @keyframes pulse-glow {
