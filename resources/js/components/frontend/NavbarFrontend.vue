@@ -1,12 +1,12 @@
 <script setup>
 import ContactNav from '@/components/frontend/ContactNav.vue';
+import ThemeToggle from '@/components/frontend/ThemeToggle .vue';
 import { about, contact, home } from '@/routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSignOutAlt, faTachometerAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-
 const logoUrl = '/walner.jpg';
 library.add(faUserCircle, faSignOutAlt, faTachometerAlt);
 
@@ -28,7 +28,7 @@ function toggleAccountMenu() {
                 <div class="flex h-16 items-center justify-between">
                     <!-- Logo -->
                     <div class="flex-shrink-0">
-                        <Link prefetch :href="home()">
+                        <Link prefetch :href="home()" preserve-scroll preserve-state>
                             <img
                                 src="/assets/walner.png"
                                 loading="lazy"
@@ -42,10 +42,14 @@ function toggleAccountMenu() {
                     <div class="hidden flex-1 justify-center space-x-6 md:flex">
                         <Link prefetch :href="about()" class="nav-link">À propos</Link>
                         <Link prefetch :href="contact()" class="nav-link">Contact</Link>
+                        <!-- <ThemeToggle /> -->
                     </div>
 
                     <!-- Actions -->
                     <div class="flex items-center space-x-4">
+                        <!-- Toggle Dark/Light -->
+                        <ThemeToggle />
+
                         <!-- Compte utilisateur -->
                         <div class="relative flex items-center">
                             <button @click="toggleAccountMenu" class="relative z-10 flex items-center space-x-1 text-white">

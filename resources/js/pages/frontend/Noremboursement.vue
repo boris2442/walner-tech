@@ -68,14 +68,14 @@ import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
       </div>
 
       <!-- div 3 -->
-      <div class="mb-8">
+      <div class="pb-8">
         <h2 class="text-2xl font-semibold text-[var(--primary-blue)] dark:text-[var(--dark-gold)] mb-3">
           3. Contact
         </h2>
         <p>
           Pour toute réclamation, veuillez nous écrire à
           <a href="mailto:contact@walnertech.com"
-            class="text-[var(--accent-cyan)] hover:underline">contact@walnertech.com</a>.
+            class="text-[var(--accent-cyan)] hover:underline dark:text-[var(--dark-gold)]">contact@walnertech.com</a>.
         </p>
       </div>
 

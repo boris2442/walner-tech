@@ -45,7 +45,7 @@ function toggle(index) {
                     <span>{{ item.question }}</span>
                     <span>{{ openIndex === index ? '-' : '+' }}</span>
                 </button>
-                <p v-if="openIndex === index" class="mt-1 text-sm text-[var(--dark-gold)] dark:text-gray-300">{{
+                <p v-if="openIndex === index" class="mt-1 text-sm text-blue-900 dark:text-gray-300">{{
                     item.answer }}</p>
             </div>
         </div>

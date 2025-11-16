@@ -51,6 +51,8 @@ const currentYear = new Date().getFullYear();
                         <Link
                             :href="products()"
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             Produits
@@ -60,7 +62,9 @@ const currentYear = new Date().getFullYear();
                         <Link
                             href="/about"
                             prefetch
-                            class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)]  dark:hover:text-[var(--dark-gold)] dark:text-gray-300"
+                            preserve-scroll
+                            preserve-state
+                            class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             À propos
                         </Link>
@@ -69,6 +73,8 @@ const currentYear = new Date().getFullYear();
                         <Link
                             :href="contact()"
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             Contact
@@ -83,6 +89,8 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <Link
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             :href="ressources.notice().url"
                             class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
@@ -92,6 +100,8 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <Link
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             :href="ressources.policy().url"
                             class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
@@ -101,6 +111,8 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <Link
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             :href="ressources.cgu().url"
                             class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
@@ -110,6 +122,8 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <Link
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             :href="ressources.noRemboursement().url"
                             class="nav-link block text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
@@ -119,6 +133,8 @@ const currentYear = new Date().getFullYear();
                     <li>
                         <Link
                             prefetch
+                            preserve-scroll
+                            preserve-state
                             :href="ressources.faq().url"
                             class="nav-link block font-semibold text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
