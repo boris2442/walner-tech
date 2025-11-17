@@ -30,9 +30,18 @@ Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 //Route::get('/home', [HomeController::class, 'index'])->name('home.page');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::post('/like/{product}', [LikeProduitController::class, 'toggle'])->name('like.toggle')->middleware('auth');
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'indexUserId'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+
+
+
+
 Route::get('/ressources/cgu', [RessourceController::class, 'cgu'])->name('ressources.cgu');
 
 Route::get('/ressources/confidentialite', [RessourceController::class, 'politiqueDeConfidentialite'])->name('ressources.policy');

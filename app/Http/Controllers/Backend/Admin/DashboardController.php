@@ -138,4 +138,39 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function indexUserId()
+    {
+        $userId = Auth::id();
+
+        // $orders = OrderClick::where('user_id', $userId)
+        //     ->get();
+        // Charger les commandes avec le produit lié
+        $orders = OrderClick::with('product') // <-- ici
+            ->where('user_id', $userId)
+            ->get();
+        $totalOrders = $orders->count(); // nombre de commandes
+        $totalProducts = $orders->sum('quantity'); // total produits commandés
+        $totalSpent = $orders->sum('prix'); // montant total dépensé
+        $lastOrder = $orders->sortByDesc('created_at')->first(); // dernière commande
+
+        // Graphique : commandes par mois
+        $ordersByMonth = OrderClick::where('user_id', $userId)
+            ->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+
+        return inertia('Dashboard', [
+            'totalOrders' => $totalOrders,
+            'totalProducts' => $totalProducts,
+            'totalSpent' => $totalSpent,
+            'lastOrder' => $lastOrder,
+            'orders' => $orders, // si tu veux afficher un mini tableau des commandes
+            // 'orders' => $orders->take(5), // 5 dernières commandes
+            'ordersByMonth' => $ordersByMonth,
+        ]);
+    }
+
+
 }

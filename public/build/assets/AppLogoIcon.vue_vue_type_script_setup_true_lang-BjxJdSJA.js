@@ -1,0 +1,1 @@
+import{d as a,c as t,y as r,l as o}from"./app-3lHVxEks.js";const l=a({inheritAttrs:!1,__name:"AppLogoIcon",props:{className:{}},setup(e){return(s,n)=>(o(),t("img",r({src:"/walner.jpg",class:e.className},s.$attrs,{alt:"Walner Logo",class:"text-white"}),null,16))}});export{l as _};
