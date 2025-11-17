@@ -153,7 +153,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin')->middleware(['auth', 'isAdmin']);
 Route::get('/admin/newsletters', [NewsLetterController::class, 'index'])->name('admin.newsletter.index')
 ;
-Route::post('/api/track-order-click', [OrderClickController::class, 'store'])->middleware('auth');
+Route::post('/order-click', [OrderClickController::class, 'store'])->middleware('auth');
 
 // Page 404 personnalisée
 Route::fallback(function () {

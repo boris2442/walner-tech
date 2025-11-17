@@ -7,14 +7,28 @@ use App\Models\OrderClick;
 
 class OrderClickController extends Controller
 {
-   public function store(Request $request)
+
+    public function store(Request $request)
     {
-        OrderClick::create([
-            'user_id' => $request->user_id,
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
+        $request->validate([
+            'items' => 'required|array',
+            'items.*.product_id' => 'required|integer|exists:products,id',
+            'items.*.quantity' => 'required|integer|min:1',
+            'items.*.prix' => 'required|numeric|min:0', // prix unitaire
         ]);
 
-        return response()->json(['success' => true]);
+        $userId = auth()->id();
+
+        foreach ($request->items as $item) {
+            OrderClick::create([
+                'user_id' => $userId,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'prix' => $item['prix'], // ici juste le prix unitaire
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Commande enregistrée avec succès !');
     }
+
 }

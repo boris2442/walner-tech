@@ -67,13 +67,6 @@
                     <span class="text-[var(--dark-white)] underline">{{ cartTotal }} FCFA</span>
                 </div>
 
-                <!-- <button type="button" title="Regler la commande sur WhatsApp"
-                    aria-label="Bouton regler la commande sur WhatsApp" @click="orderOnWhatsapp"
-                    :disabled="cart.length === 0"
-                    class="w-full bg-white dark:bg-[var(--dark-gold)] text-[var(--accent-cyan)] py-2 rounded hover:bg-gray-100 transition mt-3">
-                    Commander sur WhatsApp
-                 
-                </button> -->
                 <button
                     type="button"
                     title="Régler la commande sur WhatsApp"
@@ -98,6 +91,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { router, usePage } from '@inertiajs/vue3';
 import { MessageCircle } from 'lucide-vue-next';
 import { computed, ref, watch } from 'vue';
+
 const showCart = ref(false);
 function toggleCart() {
     showCart.value = !showCart.value;
@@ -118,7 +112,7 @@ function getImageUrl(path) {
     return path ? `/${path}` : '/fallback.png';
 }
 
-function orderOnWhatsapp() {
+async function orderOnWhatsapp() {
     const page = usePage(); // ✅ On récupère les props Inertia ici
     const user = page.props.auth?.user;
     const userName = user?.name || 'Client Walner Tech';
@@ -130,6 +124,22 @@ function orderOnWhatsapp() {
         }
         return;
     }
+
+    // ✅ Envoie tous les produits d’un coup
+    await router.post(
+        '/order-click',
+        {
+            items: cart.value.map((item) => ({
+                product_id: item.id,
+                quantity: item.quantity,
+                prix: item.prix,
+            })),
+        },
+        {
+            preserveScroll: true,
+            preserveState: true,
+        },
+    );
 
     const entreprisePhone = '237657961059';
 

@@ -1,28 +1,3 @@
-// import { reactive } from 'vue'
-// export const cartStore = reactive({
-//   items: [],
-
-//   add(item) {
-//     const exist = this.items.find(i => i.id === item.id)
-//     if (exist) exist.quantity++
-//     else this.items.push({ ...item, quantity: 1 })
-//   },
-
-//   increase(item) { item.quantity++ },
-
-//   decrease(item) { 
-//     if (item.quantity > 1) {
-//         item.quantity--;
-//     } else {
-//         const index = this.items.findIndex(i => i.id === item.id);
-//         if (index !== -1) this.items.splice(index, 1);
-//     }
-//   },
-
-//   totalItems() { return this.items.reduce((acc, i) => acc + i.quantity, 0) },
-//   totalPrice() { return this.items.reduce((acc, i) => acc + i.prix * i.quantity, 0) },
-// })
-
 
 
 // resources/js/components/frontend/panier/stores/cart.js

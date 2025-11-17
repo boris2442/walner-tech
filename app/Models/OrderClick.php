@@ -9,7 +9,7 @@ class OrderClick extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_id', 'quantity'];
+    protected $fillable = ['user_id', 'product_id', 'quantity', 'prix'];
 
     // Relations
     public function product()

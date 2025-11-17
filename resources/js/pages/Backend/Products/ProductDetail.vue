@@ -39,23 +39,25 @@
                         type="button"
                         title="partager"
                         aria-label="Partager ce produit sur les réseaux sociaux"
-                        class="text-text-dark dark:text-dark-white share absolute right-4 bottom-0 flex items-center gap-2 rounded-lg px-2 py-2 transition hover:text-white hover:shadow"
+                        class="text-text-dark dark:text-dark-white absolute right-4 bottom-[45%] flex items-center gap-2 rounded-lg px-2 py-2 transition hover:text-white hover:shadow"
                     >
                         <!-- icône share -->
-                        <FontAwesomeIcon :icon="['fas', 'share-alt']" class="text-2xl text-gray-500" />
+                        <FontAwesomeIcon :icon="['fas', 'share-alt']" class="h-4 w-4 text-2xl text-gray-500" />
                         <!-- <span>Transférer</span> -->
                     </button>
+                    <div class="absolute right-5 bottom-[30%] mt-1 flex items-center gap-1 text-sm text-gray-500">
+                        <Eye class="h-4 w-4 text-blue-700" />
+
+                        <span class="text-sm">{{ product.views_count }} </span>
+                    </div>
                 </div>
             </div>
 
             <!-- Infos produit -->
-            <div class="flex flex-col justify-start md:justify-between">
-                <!-- <div class="mt-4 flex items-center gap-3"> -->
-
-                <!-- </div> -->
-
+            <div class="relative flex flex-col justify-start md:justify-between">
                 <!-- Share modal -->
                 <ShareModal :show="showShare" :product="product" @close="showShare = false" />
+
                 <div>
                     <h1 class="mb-2 text-3xl font-bold">{{ product.title }}</h1>
                     <p class="mb-2 leading-relaxed text-gray-700 dark:text-gray-300">{{ product.description }}</p>
@@ -71,8 +73,8 @@
                                 title="Contacter walner tech via WhatsApp"
                                 class="flex h-8 items-center justify-center rounded bg-[#00CC5D] px-4 py-2 font-semibold text-white transition duration-200 ease-in-out hover:opacity-90"
                             >
-                                <FontAwesomeIcon :icon="['fab', 'whatsapp']" class="ml-2 h-5 w-5 text-xl text-white" />
-                                <span class="text-sm">Whatsapp</span>
+                                <FontAwesomeIcon :icon="['fab', 'whatsapp']" class="ml-2 h-5 w-5 text-sm text-white" />
+                                <span class="text-xs">Whatsapp</span>
                             </a>
                         </span>
                     </p>
@@ -81,12 +83,14 @@
                         <span class="rounded border border-solid border-[var(--primary-blue)] px-1 py-[2px] dark:border-gray-300">
                             <span>En stock </span>
                         </span>
+                        <span class="ml-2 text-xs">{{ product.category.name }}</span>
                     </p>
                     <p v-if="!props.auth?.user" class="my-3 text-xs">
                         <span
                             ><i
-                                >Vous devrez etre <strong> <Link prefetch href="login" class="hover:underline"> connecter </Link> </strong>pour
-                                pouvoir reserver!
+                                >Vous devrez etre
+                                <strong> <Link prefetch href="login" class="hover:underline dark:text-[var(--dark-gold)]"> connecter </Link> </strong
+                                >pour pouvoir reserver!
                             </i></span
                         >
                     </p>
