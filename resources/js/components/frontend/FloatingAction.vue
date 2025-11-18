@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 // Etat pour afficher/masquer les boutons
 const showButtons = ref(false);
@@ -25,25 +25,71 @@ onUnmounted(() => {
 });
 </script>
 
-<template>
+<!-- <template>
     <transition name="fade">
-        <div v-if="showButtons" class="fixed bottom-6 w-full flex justify-between px-6 z-50 pointer-events-none">
-            <!-- WhatsApp à gauche -->
-            <a href="https://wa.me/656894773" target="_blank"
-                class="pointer-events-auto bg-[var(--flash)] hover:bg-green-600 text-white p-2 rounded-full shadow-lg transition transform hover:scale-110"
-                title="Contactez-nous sur WhatsApp">
+        <div v-if="showButtons" class="pointer-events-none fixed bottom-6 z-50 flex w-full justify-between px-6">
+          
+            <a
+                href="https://wa.me/656894773"
+                target="_blank"
+                class="pointer-events-auto transform rounded-full bg-[var(--flash)] p-2 text-white shadow-lg transition hover:scale-110 hover:bg-green-600"
+                title="Contactez-nous sur WhatsApp"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path
-                        d="M20.52 3.48A11.88 11.88 0 0012 0C5.37 0 0 5.37 0 12a11.88 11.88 0 001.64 6.11L0 24l5.92-1.64A11.88 11.88 0 0012 24c6.63 0 12-5.37 12-12a11.88 11.88 0 00-3.48-8.52zM12 22c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z" />
+                        d="M20.52 3.48A11.88 11.88 0 0012 0C5.37 0 0 5.37 0 12a11.88 11.88 0 001.64 6.11L0 24l5.92-1.64A11.88 11.88 0 0012 24c6.63 0 12-5.37 12-12a11.88 11.88 0 00-3.48-8.52zM12 22c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"
+                    />
                     <path
-                        d="M17.25 14.1c-.25-.12-1.49-.73-1.72-.81s-.4-.12-.57.12-.65.81-.8.98-.29.18-.54.06c-.25-.12-1.06-.39-2.02-1.25-.75-.66-1.26-1.48-1.41-1.73s-.02-.41.11-.53c.12-.12.25-.29.37-.44.12-.15.16-.25.25-.41.08-.16.04-.3-.02-.41-.06-.12-.57-1.37-.78-1.87-.21-.5-.43-.43-.57-.44-.15-.01-.32-.01-.49-.01s-.41.06-.63.3c-.21.25-.81.79-.81 1.92s.83 2.22.95 2.37c.12.15 1.64 2.52 3.97 3.53.55.24.98.38 1.31.49.55.18 1.05.16 1.44.1.44-.07 1.49-.61 1.7-1.2.21-.59.21-1.09.15-1.2-.06-.12-.21-.18-.46-.3z" />
+                        d="M17.25 14.1c-.25-.12-1.49-.73-1.72-.81s-.4-.12-.57.12-.65.81-.8.98-.29.18-.54.06c-.25-.12-1.06-.39-2.02-1.25-.75-.66-1.26-1.48-1.41-1.73s-.02-.41.11-.53c.12-.12.25-.29.37-.44.12-.15.16-.25.25-.41.08-.16.04-.3-.02-.41-.06-.12-.57-1.37-.78-1.87-.21-.5-.43-.43-.57-.44-.15-.01-.32-.01-.49-.01s-.41.06-.63.3c-.21.25-.81.79-.81 1.92s.83 2.22.95 2.37c.12.15 1.64 2.52 3.97 3.53.55.24.98.38 1.31.49.55.18 1.05.16 1.44.1.44-.07 1.49-.61 1.7-1.2.21-.59.21-1.09.15-1.2-.06-.12-.21-.18-.46-.3z"
+                    />
                 </svg>
             </a>
 
-            <!-- Back to top à droite -->
-            <button @click="scrollToTop"
-                class="pointer-events-auto bg-[var(--primary-blue)] hover:bg-[var(--highlight-gold)] text-white p-2 rounded-full shadow-lg transition transform hover:scale-110 fixed bottom-20 right-6"
-                title="Remonter en haut">
+     
+            <button
+                @click="scrollToTop"
+                class="pointer-events-auto fixed right-6 bottom-20 transform rounded-full bg-[var(--primary-blue)] p-2 text-white shadow-lg transition hover:scale-110 hover:bg-[var(--highlight-gold)]"
+                title="Remonter en haut"
+            >
+                <FontAwesomeIcon :icon="faArrowUp" class="h-4 w-4" />
+            </button>
+        </div>
+    </transition>
+</template> -->
+
+<template>
+    <transition name="fade">
+        <div v-if="showButtons" class="pointer-events-none fixed bottom-6 z-50 flex w-full justify-between px-6">
+            <!-- WhatsApp avec animation et badge -->
+            <a
+                href="https://wa.me/656894773"
+                target="_blank"
+                class="pointer-events-auto relative transform rounded-full bg-[var(--flash)] p-2 text-white shadow-lg transition hover:scale-110 hover:bg-green-600 animate-bounce-short"
+                title="Contactez-nous sur WhatsApp"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20.52 3.48A11.88 11.88 0 0012 0C5.37 0 0 5.37 0 12a11.88 11.88 0 001.64 6.11L0 24l5.92-1.64A11.88 11.88 0 0012 24c6.63 0 12-5.37 12-12a11.88 11.88 0 00-3.48-8.52zM12 22c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"
+                    />
+                    <path
+                        d="M17.25 14.1c-.25-.12-1.49-.73-1.72-.81s-.4-.12-.57.12-.65.81-.8.98-.29.18-.54.06c-.25-.12-1.06-.39-2.02-1.25-.75-.66-1.26-1.48-1.41-1.73s-.02-.41.11-.53c.12-.12.25-.29.37-.44.12-.15.16-.25.25-.41.08-.16.04-.3-.02-.41-.06-.12-.57-1.37-.78-1.87-.21-.5-.43-.43-.57-.44-.15-.01-.32-.01-.49-.01s-.41.06-.63.3c-.21.25-.81.79-.81 1.92s.83 2.22.95 2.37c.12.15 1.64 2.52 3.97 3.53.55.24.98.38 1.31.49.55.18 1.05.16 1.44.1.44-.07 1.49-.61 1.7-1.2.21-.59.21-1.09.15-1.2-.06-.12-.21-.18-.46-.3z"
+                    />
+                </svg>
+
+                <!-- Badge rouge réduit -->
+                <span
+                    class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[0.65rem] font-bold text-white animate-ping-badge"
+                >
+                    1
+                </span>
+            </a>
+
+            <!-- Back to top -->
+            <button
+                @click="scrollToTop"
+                class="pointer-events-auto fixed right-6 bottom-20 transform rounded-full bg-[var(--primary-blue)] p-2 text-white shadow-lg transition hover:scale-110 hover:bg-[var(--highlight-gold)]"
+                title="Remonter en haut"
+            >
                 <FontAwesomeIcon :icon="faArrowUp" class="h-4 w-4" />
             </button>
         </div>
@@ -60,5 +106,49 @@ onUnmounted(() => {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
+}
+
+/* Animation de bounce plus courte pour attirer l’œil */
+@keyframes bounce-short {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+.animate-bounce-short {
+    animation: bounce-short 1s infinite;
+}
+
+/* Animation de bounce courte pour WhatsApp */
+@keyframes bounce-short {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    } /* un peu moins haut car icône réduite */
+}
+.animate-bounce-short {
+    animation: bounce-short 1s infinite;
+}
+
+/* Animation du badge pour pulser */
+@keyframes ping-badge {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 0.8;
+    } /* effet de pulsation plus marqué */
+}
+.animate-ping-badge {
+    animation: ping-badge 1s infinite;
 }
 </style>

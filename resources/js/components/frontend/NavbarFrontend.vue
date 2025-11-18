@@ -1,5 +1,6 @@
 <script setup>
 import ContactNav from '@/components/frontend/ContactNav.vue';
+import SocialMedia from '@/components/frontend/SocialMedia.vue';
 import ThemeToggle from '@/components/frontend/ThemeToggle .vue';
 import { about, contact, home } from '@/routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -81,8 +82,9 @@ function toggleAccountMenu() {
                         </div>
 
                         <!-- Burger menu mobile -->
-                        <div class="flex items-center md:hidden">
-                            <button @click="openMenu = !openMenu" class="flex items-center space-x-1 text-white">
+                        <!-- <div class="flex items-center md:hidden">
+                            <button @click="openMenu = !openMenu"
+                             class="flex items-center space-x-1 text-white">
                                 <svg
                                     v-if="!openMenu"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +100,31 @@ function toggleAccountMenu() {
                                 </svg>
                                 <span class="font-medium">Menu</span>
                             </button>
+                        </div> -->
+
+                        <div class="flex items-center md:hidden">
+                            <button
+                                @click="openMenu = !openMenu"
+                                class="flex items-center space-x-2 rounded-lg border border-white/50 bg-white/10 px-3 py-2 font-medium text-white shadow-sm transition-all duration-200 hover:scale-105 hover:bg-white/20"
+                            >
+                                <!-- Icône hamburger / close -->
+                                <svg
+                                    v-if="!openMenu"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+
+                                <!-- Texte Menu -->
+                                <span>Menu</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -112,6 +139,10 @@ function toggleAccountMenu() {
 
             <ContactNav />
         </nav>
+        <!-- Icônes réseaux sociaux -->
+        <div class="mt-4 flex justify-center px-6">
+            <SocialMedia />
+        </div>
     </header>
 </template>
 

@@ -6,6 +6,7 @@
 
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
+   
     <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message" :link="$page.props.flash.link" />
 
     <!-- Floating Action -->
@@ -212,6 +213,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { computed, onMounted, ref } from 'vue';
 
 import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
+import SocialMedia from '@/components/frontend/SocialMedia.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
