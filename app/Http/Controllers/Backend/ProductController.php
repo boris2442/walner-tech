@@ -150,16 +150,73 @@ class ProductController extends Controller
 
 
     // Formulaire d'édition
+    // public function edit(Product $product)
+    // {
+    //     $categories = Category::all();
+    //     return inertia('backend/produits/Edit', [
+    //         'product' => $product->load('images'),
+    //         'categories' => $categories,
+    //     ]);
+    // }
+
+
     public function edit(Product $product)
     {
         $categories = Category::all();
+
+        // Charge les images et transforme l'url_image en URL absolue
+        $product->load('images');
+        $product->getRelation('images')->transform(function ($image) {
+            $image->url_image = asset($image->url_image); // → devient : http://localhost:8000/imageProducts/xxx.jpg
+            return $image;
+        });
+
         return inertia('backend/produits/Edit', [
-            'product' => $product->load('images'),
+            'product' => $product,
             'categories' => $categories,
         ]);
     }
 
+
+
+
     // Mise à jour du produit
+    // public function update(Request $request, Product $product)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'description' => 'nullable|string',
+    //         'prix' => 'required|numeric|min:0',
+    //         'stock' => 'required|integer|min:0',
+    //         'category_id' => 'required|exists:categories,id',
+    //         'status' => 'required|in:disponible,indisponible',
+    //         'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+    //     ]);
+
+    //     $product->update($validated);
+
+    //     // Gestion des images
+    //     if ($request->hasFile('images')) {
+    //         foreach ($request->file('images') as $file) {
+    //             $path = $file->store('products', 'public');
+    //             $product->images()->create(['url_image' => $path]);
+    //         }
+    //     }
+
+    //     return redirect()->route('products.index', $product->id)
+    //         // ->with('success', 'Produit mis à jour avec succès');
+    //         ->with(
+    //             'flash',
+    //             [
+    //                 'message' => 'Produit mis à jour avec succès',
+    //                 // 'text' => '',
+    //                 //'href' => route('')
+    //             ]
+    //         );
+    // }
+
+
+
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
@@ -169,30 +226,46 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'status' => 'required|in:disponible,indisponible',
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            // ✅ CORRIGÉ ICI 👇
+            'keepOldImages' => 'nullable|array',
+            'keepOldImages.*' => 'exists:products_image,id', // ✅ Bon nom de table
         ]);
 
         $product->update($validated);
 
-        // Gestion des images
+        // Supprimer les images non conservées
+        $keepIds = $request->input('keepOldImages', []);
+        $product->images()->whereNotIn('id', $keepIds)->each(function ($image) {
+            $path = public_path($image->url_image);
+            if (file_exists($path)) {
+                unlink($path);
+            }
+            $image->delete();
+        });
+
+
+        // Ajouter nouvelles images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $path = $file->store('products', 'public');
-                $product->images()->create(['url_image' => $path]);
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('imageProducts'), $filename);
+
+                $product->images()->create([
+                    'url_image' => 'imageProducts/' . $filename,
+                ]);
             }
         }
 
-        return redirect()->route('products.index', $product->id)
-            // ->with('success', 'Produit mis à jour avec succès');
-            ->with(
-                'flash',
-                [
-                    'message' => 'Produit mis à jour avec succès',
-                    // 'text' => '',
-                    //'href' => route('')
-                ]
-            );
+        return redirect()->route('products.index')
+            ->with('flash', ['message' => 'Produit mis à jour avec succès']);
     }
+
+
+
+
+
 
     public function show(Product $product)
     {
