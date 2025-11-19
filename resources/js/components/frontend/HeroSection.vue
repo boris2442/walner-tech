@@ -1,8 +1,6 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
-import { Link } from '@inertiajs/vue3';
-import { products } from '@/routes';
-import { Truck, Shield, Headphones, RotateCcw } from 'lucide-vue-next'
+import { Headphones, RotateCcw, Shield, Truck } from 'lucide-vue-next';
+import { nextTick, onMounted, ref } from 'vue';
 const animateHero = ref(false);
 const showFullText = ref(false); // contrôle "Voir plus / Voir moins"
 
@@ -59,81 +57,91 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="relative flex items-start bg-cover bg-center bg-no-repeat
-            px-6 md:px-16 lg:px-32 pt-4 md:pt-32 lg:pt-40 overflow-hidden
-            dark:bg-[var(--dark-background)] dark:text-[#e0e7ff] bg-[#3b3975] pb-10"
-        style="background-image: url('/herop2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+    <section
+        class="relative flex items-start overflow-hidden bg-[#3b3975] bg-cover bg-center bg-no-repeat px-6 pt-4 pb-10 md:px-16 md:pt-32 lg:px-32 lg:pt-40 dark:bg-[var(--dark-background)] dark:text-[#e0e7ff]"
+        style="
+            background-image: url('/herop2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        "
+    >
+        <div class="absolute inset-0 bg-blue-900/70"></div>
 
-        <div class="absolute inset-0 bg-blue-900/70 "></div>
-
-        <div class="relative z-10 flex flex-col gap-6 max-w-4xl transform -translate-x-2 md:-translate-x-0">
-            <h1 :class="[
-                'text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-3xl font-extrabold leading-snug drop-shadow-xl tracking-tight text-[var(--secondary-white)] dark:text-[var(--dark-grey)]',
-                animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out' : 'opacity-0 translate-y-10'
-            ]">
-                Walner Tech: <br class="sm:block">Votre expert en équipements informatiques
+        <div class="relative z-10 flex max-w-4xl -translate-x-2 transform flex-col gap-6 md:-translate-x-0">
+            <h1
+                :class="[
+                    'max-w-3xl text-2xl leading-snug font-extrabold tracking-tight text-[var(--secondary-white)] drop-shadow-xl sm:text-3xl md:text-4xl lg:text-5xl dark:text-[var(--dark-grey)]',
+                    animateHero ? 'translate-y-0 opacity-100 transition-all duration-700 ease-out' : 'translate-y-10 opacity-0',
+                ]"
+            >
+                Walner Tech: <br class="sm:block" />Votre expert en équipements informatiques
             </h1>
 
             <!-- Paragraphe avec Voir plus / Voir moins -->
             <div class="flex">
-                <p :class="[
-                    'text-sm sm:text-base md:text-base lg:text-lg leading-relaxed text-[var(--secondary-white)] dark:text-[var(--dark-grey)]',
-                    animateHero ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out delay-200' : 'opacity-0 translate-y-10'
-                ]">
+                <p
+                    :class="[
+                        'text-sm leading-relaxed text-[var(--secondary-white)] sm:text-base md:text-base lg:text-lg dark:text-[var(--dark-grey)]',
+                        animateHero ? 'translate-y-0 opacity-100 transition-all delay-200 duration-700 ease-out' : 'translate-y-10 opacity-0',
+                    ]"
+                >
                     {{ showFullText ? fullText : fullText.substring(0, previewLength) + '...' }}
                     <!-- <span> -->
-                    <button @click="showFullText = !showFullText"
-                        class=" gap-2  text-orange-500 font-semibold  hover:underline transition-transform duration-300">
+                    <button
+                        @click="showFullText = !showFullText"
+                        class="gap-2 font-semibold text-orange-500 transition-transform duration-300 hover:underline"
+                    >
                         {{ showFullText ? 'Voir moins' : 'Voir plus' }}
-
                     </button>
                     <!-- </span> -->
                 </p>
             </div>
-
-
-
         </div>
     </section>
 
-
-    <section class="bg-gray-100 pt-8 pb-2 mx-auto w-full dark:bg-[var(--dark-map2)]">
-        <div class="flex flex-wrap gap-4 p-2 items-center justify-center ">
-
+    <section class="mx-auto w-full bg-gray-100 pt-8 pb-2 dark:bg-[var(--dark-map2)]">
+        <div class="mx-auto grid max-w-6xl grid-cols-2 gap-4 p-2">
             <!-- Bloc 1 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2  bg-white p-4 rounded-lg shadow-md md:w-[300px] dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]  hover:bg-[var(--primary-blue)] hover:text-white group transition">
-                <Truck class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Livraison rapide à partir de 3h</span>
+                class="group flex items-center space-x-2 rounded-lg bg-white p-4 shadow-md transition hover:bg-[var(--primary-blue)] hover:text-white dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]"
+            >
+                <Truck class="h-6 w-6 text-yellow-600 group-hover:text-[#FFE600] md:h-8 md:w-8" />
+                <span class="text-sm text-gray-800 group-hover:text-gray-300 dark:text-[var(--text-grey)]"> Livraison rapide à partir de 3h </span>
             </div>
 
             <!-- Bloc 2 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)] hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group transition">
-                <Shield class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Produits authentiques 100%
-                    garantis</span>
+                class="group flex items-center space-x-2 rounded-lg bg-white p-4 shadow-md transition hover:bg-[var(--primary-blue)] hover:text-white dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]"
+            >
+                <Shield class="h-6 w-6 text-yellow-600 group-hover:text-[#FFE600] md:h-8 md:w-8" />
+                <span class="text-sm text-gray-800 group-hover:text-gray-300 dark:text-[var(--text-grey)]">
+                    Produits authentiques 100% garantis
+                </span>
             </div>
 
             <!-- Bloc 3 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)] hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group transition">
-                <Headphones class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Service après vente Walner Tech - SAV
-                    agréé</span>
+                class="group flex items-center space-x-2 rounded-lg bg-white p-4 shadow-md transition hover:bg-[var(--primary-blue)] hover:text-white dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]"
+            >
+                <Headphones class="h-6 w-6 text-yellow-600 group-hover:text-[#FFE600] md:h-8 md:w-8" />
+                <span class="text-sm text-gray-800 group-hover:text-gray-300 dark:text-[var(--text-grey)]">
+                    Service après vente Walner Tech - SAV agréé
+                </span>
             </div>
 
             <!-- Bloc 4 -->
             <div
-                class="flex items-center space-x-2 w-full sm:w-1/2 md:w-[300px] bg-white p-4 rounded-lg shadow-md dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)] transition hover:shadow-lg dark:bg-[#2A2A2A] hover:bg-[var(--primary-blue)] hover:text-white group">
-                <RotateCcw class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 group-hover:text-[#FFE600]" />
-                <span class="text-sm  text-gray-800 dark:text-[var(--text-grey)] group-hover:text-gray-300">Retour rapide et facile sur 7
-                    jours</span>
+                class="group flex items-center space-x-2 rounded-lg bg-white p-4 shadow-md transition hover:bg-[var(--primary-blue)] hover:text-white dark:bg-[var(--dark-grey2)] dark:hover:bg-[var(--card-dark)]"
+            >
+                <RotateCcw class="h-6 w-6 text-yellow-600 group-hover:text-[#FFE600] md:h-8 md:w-8" />
+                <span class="text-sm text-gray-800 group-hover:text-gray-300 dark:text-[var(--text-grey)]">
+                    Retour rapide et facile sur 7 jours
+                </span>
             </div>
-
         </div>
     </section>
-
 </template>
 <!-- <script setup> -->
 

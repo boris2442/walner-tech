@@ -80,14 +80,14 @@ const chartOptions = ref({
                 <div class="kpi-card">
                     <div class="kpi-icon">🆕</div>
                     <div class="kpi-text">
-                        <h3 class="text-2xl">Produits commandé</h3>
+                        <h3 class="text-2xl">Produits commandés</h3>
                         <p>{{ totalProducts }}</p>
                     </div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-icon">🆕</div>
                     <div class="kpi-text">
-                        <h3 class="text-2xl">Montant dépensé</h3>
+                        <h3 class="text-2xl">Montant dépensé (estimation)</h3>
                         <p>{{ totalSpent }} F</p>
                     </div>
                 </div>
@@ -124,14 +124,14 @@ const chartOptions = ref({
                 <!-- <PlaceholderPattern /> -->
 
                 <!-- GRAPH -->
-                <div class="h-72 rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800">
+                <div class="h-72 rounded-xl bg-white p-6 shadow-lg dark:bg-[#090909]">
                     <h2 class="mb-3 text-xl font-bold">Activité des commandes</h2>
 
-                    <Bar :data="chartData" :options="chartOptions" />
+                    <Bar :data="chartData" :options="chartOptions" class="dark:bg-[#1e1e1e]"/>
                 </div>
 
                 <!-- LAST ORDERS -->
-                <div class="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800">
+                <div class="rounded-xl bg-white p-6 shadow-lg dark:bg-[#090909]">
                     <h2 class="mb-4 text-xl font-bold">Dernières commandes</h2>
 
                     <table class="w-full text-left text-sm">
@@ -144,7 +144,7 @@ const chartOptions = ref({
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="order in orders" :key="order.id" class="border-b hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <tr v-for="order in orders" :key="order.id" class="border-b hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" >
                                 <td class="py-2">{{ order.product?.title ?? 'Produit inconnu' }}</td>
                                 <td>{{ order.quantity }}</td>
                                 <td class="font-semibold text-green-600">{{ order.prix }} FCFA</td>

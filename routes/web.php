@@ -38,10 +38,6 @@ Route::get('/dashboard', [DashboardController::class, 'indexUserId'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-
-
-
-
 Route::get('/ressources/cgu', [RessourceController::class, 'cgu'])->name('ressources.cgu');
 
 Route::get('/ressources/confidentialite', [RessourceController::class, 'politiqueDeConfidentialite'])->name('ressources.policy');
@@ -157,7 +153,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 });
-
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin')->middleware(['auth', 'isAdmin']);
 Route::get('/admin/newsletters', [NewsLetterController::class, 'index'])->name('admin.newsletter.index')

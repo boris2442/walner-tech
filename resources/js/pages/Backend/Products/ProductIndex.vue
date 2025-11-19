@@ -6,7 +6,7 @@
 
     <TopBanner />
     <NavbarFrontend :auth="$page.props.auth" class="mt-10 md:mt-12" />
-   
+
     <FlashMessageFrontend v-if="$page.props.flash?.message" :message="$page.props.flash.message" :link="$page.props.flash.link" />
 
     <!-- Floating Action -->
@@ -171,6 +171,7 @@
     <Service />
     <About2 />
     <Testimony />
+    <LogoMarque />
     <LoginReminder />
     <Footer />
 
@@ -204,6 +205,7 @@ import { cartStore } from '@/components/frontend/panier/stores/cart';
 import Service from '@/components/frontend/Service.vue';
 import Testimony from '@/components/frontend/Testimony.vue';
 import TopBanner from '@/components/frontend/TopBanner.vue';
+import LogoMarque from '@/components/LogoMarque.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import axios from 'axios';
 
@@ -213,7 +215,6 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { computed, onMounted, ref } from 'vue';
 
 import FlashMessageNewsletter from '@/components/FlashMessageNewsletter.vue';
-import SocialMedia from '@/components/frontend/SocialMedia.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
