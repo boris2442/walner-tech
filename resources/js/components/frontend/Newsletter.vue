@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 // ✅ Déclaration de la variable réactive
 const email = ref('');
@@ -27,6 +27,18 @@ const subscribe = () => {
         },
     );
 };
+
+const placeholders = ['Entrez votre email', 'Recevez nos promos en premier', 'Ne ratez aucune promotion', 'Alertes promos instantanées'];
+
+const currentPlaceholder = ref(placeholders[0]);
+let index = 0;
+
+onMounted(() => {
+    setInterval(() => {
+        index = (index + 1) % placeholders.length;
+        currentPlaceholder.value = placeholders[index];
+    }, 2500);
+});
 </script>
 
 <template>
@@ -44,14 +56,14 @@ const subscribe = () => {
 
         <div class="relative z-10 flex w-full max-w-7xl flex-col items-center justify-between gap-8 px-6 md:flex-row md:px-12">
             <div class="w-full text-white md:w-2/3 md:text-left">
-                <h2 class="mb-2 text-2xl font-bold md:text-3xl">S'abonner à notre newsletter</h2>
+                <h2 class="mb-2 text-2xl font-bold md:text-3xl">Recevez nos promos en premier !</h2>
 
                 <form @submit.prevent="subscribe" class="flex items-center">
                     <div class="relative w-full">
                         <input
                             v-model="email"
                             type="email"
-                            placeholder="Entrez votre email"
+                            :placeholder="currentPlaceholder"
                             class="w-full rounded-full border border-solid border-white px-4 py-3 pr-14 pl-5 text-gray-100 focus:ring-2 focus:ring-white focus:outline-none"
                         />
                         <button

@@ -216,22 +216,22 @@ class ProductController extends Controller
     // }
 
 
-
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'prix' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'title' => 'required|string|max:255',         // 'description' => 'nullable|string',         // 'prix' => 'required|numeric|min:0',         // 'stock' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'status' => 'required|in:disponible,indisponible',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
-            // ✅ CORRIGÉ ICI 👇
+            //         // // ✅ CORRIGÉ ICI 👇
             'keepOldImages' => 'nullable|array',
             'keepOldImages.*' => 'exists:products_image,id', // ✅ Bon nom de table
+
         ]);
+
+
+
 
         $product->update($validated);
 
@@ -246,7 +246,7 @@ class ProductController extends Controller
         });
 
 
-        // Ajouter nouvelles images
+        //     // Ajouter nouvelles images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();

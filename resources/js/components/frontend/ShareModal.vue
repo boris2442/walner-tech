@@ -4,8 +4,7 @@
         <div class="absolute inset-0 bg-black/40" @click="close"></div>
 
         <!-- modal -->
-        <div class="relative z-10 w-[90%] max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" role="dialog"
-            aria-modal="true">
+        <div class="relative z-10 w-[90%] max-w-md rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800" role="dialog" aria-modal="true">
             <button class="absolute top-3 right-3 text-2xl" @click="close" aria-label="Close">✕</button>
 
             <div class="grid grid-cols-2 gap-6 py-4">
@@ -44,20 +43,22 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
 const props = defineProps({
     show: { type: Boolean, default: false },
     product: { type: Object, required: true },
-    url: { type: String, required: false }
-})
+    url: { type: String, required: false },
+});
 
 // -- Données du produit --
-const productTitle = props.product?.title || ''
-const productUrl = props.url || window.location.href
-const text = ` ${productUrl}`
+const productTitle = props.product?.title || '';
+const productUrl = props.url || window.location.href;
+const text = ` ${productUrl}`;
 
-function enc(s) { return encodeURIComponent(s) }
+function enc(s) {
+    return encodeURIComponent(s);
+}
 
 // -- URLs de partage --
 const shareUrls = {
@@ -66,12 +67,12 @@ const shareUrls = {
     telegram: `https://t.me/share/url?url=${enc(productUrl)}&text=${enc(productTitle)}`,
     twitter: `https://twitter.com/intent/tweet?text=${enc(productTitle)}&url=${enc(productUrl)}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(productUrl)}`,
-    email: `mailto:?subject=${enc(productTitle)}&body=${enc(text)}`
-}
+    email: `mailto:?subject=${enc(productTitle)}&body=${enc(text)}`,
+};
 
 // -- Fermeture du modal --
 function close() {
-    emit('close')
+    emit('close');
 }
 </script>
 

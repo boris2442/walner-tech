@@ -8,6 +8,7 @@ import { dashboard } from '@/routes';
 import products from '@/routes/products';
 import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
+import axios from 'axios';
 import { ref } from 'vue';
 // Props venant du controller
 const props = defineProps<{
@@ -60,8 +61,6 @@ const handleFiles = (event: Event) => {
     newImagePreviews.value = form.newImages.map((file) => URL.createObjectURL(file));
 };
 
-import axios from 'axios'; // ← Ajoute cette ligne en haut
-
 const submitForm = () => {
     if (oldImages.value.length === 0 && form.newImages.length === 0) {
         alert('Le produit doit avoir au moins une image.');
@@ -85,8 +84,10 @@ const submitForm = () => {
         data.append('images[]', file);
     });
 
+    //     axios
     axios
         .post(`/admin/products/${props.product.id}`, data, {
+            forceFormData: true, // 🔥 obligatoire
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'X-Requested-With': 'XMLHttpRequest',
@@ -110,6 +111,13 @@ const submitForm = () => {
 };
 
 // Breadcrumbs
+
+// Supprimer une nouvelle image ajoutée
+const removeNewImage = (index: number) => {
+    newImagePreviews.value.splice(index, 1);
+    form.newImages.splice(index, 1);
+};
+
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Dashboard', href: dashboard().url },
     { title: 'Products List', href: products.index().url },
@@ -148,9 +156,42 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                 <!-- Images -->
                 <div>
-                    <label class="mb-1 block font-medium">Images</label>
-                    <input type="file" multiple accept="image/*" @change="handleFiles" class="block w-full" />
+                    <label class="mb-1 block font-medium text-[var(--primary-blue)] dark:text-[var(--dark-gold)]"> Images * </label>
 
+                    <!-- Zone drag & drop / clic -->
+                    <div
+                        class="mt-1 flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed hover:border-[var(--primary-blue)] dark:hover:border-[var(--dark-gold)]"
+                        @click="$refs.fileInput.click()"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="mb-2 h-8 w-8 text-blue-500"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12V4m0 0l-4 4m4-4l4 4"
+                            />
+                        </svg>
+                        <p class="text-sm text-gray-500">
+                            <span class="text-purple-600">Cliquez pour uploader</span> ou glissez-déposez<br />
+                            PNG, JPG, GIF, SVG, WEBP (max. 2MB)
+                        </p>
+                        <input
+                            ref="fileInput"
+                            type="file"
+                            multiple
+                            accept="image/png, image/jpeg, image/gif, image/svg+xml, image/webp"
+                            @change="handleFiles"
+                            class="hidden"
+                        />
+                    </div>
+
+                    <!-- Aperçu des images -->
                     <div class="mt-2 flex flex-wrap gap-2">
                         <!-- Anciennes images -->
                         <div v-for="img in oldImages" :key="img.id" class="relative">
@@ -160,16 +201,24 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 @click="removeOldImage(img.id)"
                                 class="absolute -top-2 -right-2 rounded-full bg-red-600 px-1.5 text-xs text-white hover:bg-red-700"
                             >
-                                x
+                                ×
                             </button>
                         </div>
 
                         <!-- Nouvelles images -->
                         <div v-for="(preview, index) in newImagePreviews" :key="index" class="relative">
                             <img :src="preview" class="h-24 w-24 rounded border object-cover" />
+                            <button
+                                type="button"
+                                @click="removeNewImage(index)"
+                                class="absolute -top-2 -right-2 rounded-full bg-red-600 px-1.5 text-xs text-white hover:bg-red-700"
+                            >
+                                ×
+                            </button>
                         </div>
                     </div>
 
+                    <!-- Erreur -->
                     <p v-if="form.errors.images" class="mt-1 text-sm text-red-500">{{ form.errors.images }}</p>
                 </div>
 

@@ -93,7 +93,7 @@ const currentYear = new Date().getFullYear();
                             preserve-scroll
                             preserve-state
                             :href="ressources.notice().url"
-                            class="nav-link text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
+                            class="nav-link text-[var(--dark-gold)] hover:text-[#E0BB38] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             Mentions Légales
                         </Link>
@@ -104,7 +104,7 @@ const currentYear = new Date().getFullYear();
                             preserve-scroll
                             preserve-state
                             :href="ressources.policy().url"
-                            class="nav-link text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
+                            class="nav-link text-[var(--dark-gold)] hover:text-[#E0BB38] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             Politique de Confidentialité
                         </Link>
@@ -115,7 +115,7 @@ const currentYear = new Date().getFullYear();
                             preserve-scroll
                             preserve-state
                             :href="ressources.cgu().url"
-                            class="nav-link text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
+                            class="nav-link text-[var(--dark-gold)] hover:text-[#E0BB38] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             Conditions Générales
                         </Link>
@@ -126,7 +126,7 @@ const currentYear = new Date().getFullYear();
                             preserve-scroll
                             preserve-state
                             :href="ressources.noRemboursement().url"
-                            class="nav-link text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
+                            class="nav-link text-[var(--dark-gold)] hover:text-[#E0BB38] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             Politique de Non-Remboursement
                         </Link>
@@ -137,7 +137,7 @@ const currentYear = new Date().getFullYear();
                             preserve-scroll
                             preserve-state
                             :href="ressources.faq().url"
-                            class="nav-link font-semibold text-[var(--background-light)] hover:text-[var(--dark-gold)] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
+                            class="nav-link font-semibold text-[var(--dark-gold)] hover:text-[#E0BB38] dark:text-gray-300 dark:hover:text-[var(--dark-gold)]"
                         >
                             F.A.Q
                         </Link>
